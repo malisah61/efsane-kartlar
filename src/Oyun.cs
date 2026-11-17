@@ -41,6 +41,14 @@ public partial class Oyun : Control
 			if (arg.StartsWith("--denge=")) { DengeTesti.Calistir(arg.Substring(8)); GetTree().Quit(); return; }
 			if (arg.StartsWith("--ilerleme=")) { Simulasyon.Calistir(arg.Substring(11)); GetTree().Quit(); return; }
 			if (arg.StartsWith("--onizleme=")) { Kayit.KayitKapali = true; Kayit.YeniOyun(); _ = Onizleme.Cek(this, arg.Substring(11)); }
+			if (arg.StartsWith("--sunucu-testi="))
+			{
+				Sunucu.Kur(this);
+				string dosya = arg.Substring(15);
+				async void Test() { await SunucuTesti.Calistir(this, dosya); GetTree().Quit(); }
+				Callable.From(Test).CallDeferred();
+				return;
+			}
 		}
 		if (!Kayit.KayitKapali) Kayit.Yukle();
 		Ses.Kur(this);

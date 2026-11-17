@@ -1,0 +1,38 @@
+name: Canlı Sunucu Testi
+
+# Gerçek istemci kodunu (Sunucu.cs) canlı Supabase sunucusuna karşı iki test hesabıyla dener.
+# Elle çalıştırılır; sonuç onizleme/sunucu.txt'ye yazılır.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - name: Godot (C#)
+        run: |
+          curl -sSL https://github.com/godotengine/godot/releases/download/4.3-stable/Godot_v4.3-stable_mono_linux_x86_64.zip -o g.zip
+          unzip -q g.zip -d /opt && rm g.zip
+          sudo ln -sf /opt/Godot_v4.3-stable_mono_linux_x86_64/Godot_v4.3-stable_mono_linux.x86_64 /usr/local/bin/godot
+      - name: Derle ve test et
+        run: |
+          mkdir -p onizleme
+          godot --headless --path . --editor --quit > /dev/null 2>&1 || true
+          dotnet build EfsaneKartlar.csproj > /tmp/derleme.txt 2>&1 || { tail -40 /tmp/derleme.txt; exit 1; }
+          timeout 300 godot --headless --path . -- --sunucu-testi=$PWD/onizleme/sunucu.txt > /tmp/test.txt 2>&1 || echo "cikis $?"
+          cat onizleme/sunucu.txt 2>/dev/null || tail -80 /tmp/test.txt > onizleme/sunucu.txt
+          grep -iE "error|exception" /tmp/test.txt | head -20 || true
+      - name: Sonucu depoya yaz
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898732+github-actions[bot]@users.noreply.github.com"
+          git add onizleme/sunucu.txt
+          git commit -qm "Canlı sunucu testi sonucu" || true
+          for i in 1 2 3 4; do git pull --rebase -q && git push -q && break; sleep 5; done
