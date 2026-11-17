@@ -180,8 +180,11 @@ public static class Simulasyon
 			var s = Kayit.Sahip(id);
 			while (s.Yildiz < 5 && s.Kopya < Kayit.YildizKopya(s.Yildiz) && Kayit.OzleKopyaAl(s)) { }
 		}
-		foreach (var s in p.Kartlar.OrderByDescending(x => p.Takim.Contains(x.Id)).ToList())
+		// önce takım; takım dışı kartlara yalnızca altın bolsa yıldız ver
+		foreach (var s in p.Kartlar.Where(x => p.Takim.Contains(x.Id)).ToList())
 			while (Kayit.YildizAtlat(s)) { }
+		foreach (var s in p.Kartlar.Where(x => !p.Takim.Contains(x.Id)).OrderByDescending(x => Veri.Harita[x.Id].Nadirlik == "efsanevi" ? 3 : Veri.Harita[x.Id].Nadirlik == "epik" ? 2 : 0).ToList())
+			while (p.Altin > 150000 && Kayit.YildizAtlat(s)) { }
 		Kayit.OtomatikDiz();
 		for (int adim = 0; adim < 500; adim++)
 		{
