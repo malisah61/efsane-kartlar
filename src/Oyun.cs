@@ -39,6 +39,7 @@ public partial class Oyun : Control
 		foreach (var arg in OS.GetCmdlineUserArgs())
 		{
 			if (arg.StartsWith("--denge=")) { DengeTesti.Calistir(arg.Substring(8)); GetTree().Quit(); return; }
+			if (arg.StartsWith("--ilerleme=")) { Simulasyon.Calistir(arg.Substring(11)); GetTree().Quit(); return; }
 			if (arg.StartsWith("--onizleme=")) { Kayit.KayitKapali = true; Kayit.YeniOyun(); _ = Onizleme.Cek(this, arg.Substring(11)); }
 		}
 		if (!Kayit.KayitKapali) Kayit.Yukle();
@@ -452,23 +453,7 @@ public partial class Oyun : Control
 		return h;
 	}
 
-	static void OtomatikDiz()
-	{
-		var p = Kayit.P;
-		var sirali = p.Kartlar.OrderByDescending(k => Veri.Guc(Veri.Harita[k.Id], k.Seviye, k.Yildiz)).ToList();
-		var secilen = new List<SahipKart>();
-		// en az bir tank ve bir destek almaya çalış
-		foreach (var sinif in new[] { "tank", "destek" })
-		{
-			var k = sirali.FirstOrDefault(x => Veri.Harita[x.Id].Sinif == sinif && !secilen.Contains(x));
-			if (k != null) secilen.Add(k);
-		}
-		foreach (var k in sirali) { if (secilen.Count >= 5) break; if (!secilen.Contains(k)) secilen.Add(k); }
-		int Oncelik(SahipKart k) => Veri.Harita[k.Id].Sinif switch { "tank" => 0, "savasci" => 1, "destek" => 3, _ => 2 };
-		var dizi = secilen.OrderBy(Oncelik).ToList();
-		for (int i = 0; i < 5; i++) p.Takim[i] = i < dizi.Count ? dizi[i].Id : null;
-		Kayit.Kaydet();
-	}
+	static void OtomatikDiz() => Kayit.OtomatikDiz();
 
 	// ================================================================ ÇAĞIR
 	Control CagirEkrani()

@@ -47,6 +47,12 @@ jobs:
           tail -30 /tmp/denge.txt
           test -f onizleme/denge.txt || tail -80 /tmp/denge.txt > onizleme/denge.txt
 
+      - name: İlerleme simülasyonu (bot oyuncular)
+        run: |
+          timeout 1200 godot --headless --path . -- --ilerleme=$PWD/onizleme/ilerleme.md > /tmp/ilerleme.txt 2>&1 || echo "cikis $?"
+          tail -20 /tmp/ilerleme.txt
+          test -f onizleme/ilerleme.md || tail -80 /tmp/ilerleme.txt > onizleme/ilerleme.md
+
       - name: Ekran görüntüleri
         run: |
           timeout 240 xvfb-run -a -s "-screen 0 720x1280x24" godot --path . --rendering-driver opengl3 --audio-driver Dummy --resolution 720x1280 -- --onizleme=$PWD/onizleme 2>&1 | grep -vE "^\s*$" | tee onizleme/calisma.txt | tail -40
@@ -59,5 +65,4 @@ jobs:
           git config user.email "41898732+github-actions[bot]@users.noreply.github.com"
           git add onizleme
           git commit -m "Derleme kaydı, denge testi ve önizleme görüntüleri" || echo "değişiklik yok"
-          git pull --rebase -q
-          git push
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done

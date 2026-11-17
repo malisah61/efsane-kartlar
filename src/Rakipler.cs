@@ -157,8 +157,17 @@ public static class Rakipler
 	public const int GrupBoyu = 50;
 	static readonly DateTime Baslangic = new(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);   // pazartesi
 
-	public static int Hafta() => (int)Math.Floor((DateTime.UtcNow - Baslangic).TotalDays / 7);
-	public static float HaftaIlerleme() => (float)(((DateTime.UtcNow - Baslangic).TotalDays / 7) % 1.0);
+	/// <summary>Şu an (simülasyonda Kayit.BugunFn'in verdiği gün, gün ortası).</summary>
+	static DateTime Simdi()
+	{
+		var b = Kayit.Bugun();
+		if (DateTime.TryParseExact(b, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out var g)
+			&& g.Date != DateTime.UtcNow.Date)
+			return DateTime.SpecifyKind(g.AddHours(12), DateTimeKind.Utc);
+		return DateTime.UtcNow;
+	}
+	public static int Hafta() => (int)Math.Floor((Simdi() - Baslangic).TotalDays / 7);
+	public static float HaftaIlerleme() => (float)(((Simdi() - Baslangic).TotalDays / 7) % 1.0);
 	public static TimeSpan SezonKalan() => Baslangic.AddDays((Hafta() + 1) * 7) - DateTime.UtcNow;
 
 	/// <summary>Lig grubundaki 49 rakip. Her hafta aynı tohumla üretilir; hafta ilerledikçe kupaları artar.</summary>

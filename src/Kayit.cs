@@ -45,6 +45,10 @@ public class Profil
 	public int ArenaGunlukSavas { get; set; }
 	public bool MuzikAcik { get; set; } = true;
 	public bool EfektAcik { get; set; } = true;
+	public List<string> AlinanUrunler { get; set; } = new();
+	public string AylikKartBitis { get; set; } = "";
+	public string AylikKartSonAlim { get; set; } = "";
+	public long ToplamHarcamaKurus { get; set; }
 }
 
 public static class Kayit
@@ -118,6 +122,8 @@ public static class Kayit
 		foreach (var t in p.Takim) takim.Add(t ?? "");
 		var gorev = new Godot.Collections.Array();
 		foreach (var g in p.AlinanGorevler) gorev.Add(g);
+		var urunler = new Godot.Collections.Array();
+		foreach (var u in p.AlinanUrunler) urunler.Add(u);
 		return new Godot.Collections.Dictionary
 		{
 			["ad"] = p.Ad, ["altin"] = p.Altin, ["elmas"] = p.Elmas, ["parsomen"] = p.Parsomen, ["kupa"] = p.Kupa,
@@ -127,6 +133,8 @@ public static class Kayit
 			["gorevler"] = gorev, ["kartlar"] = kartlar, ["takim"] = takim, ["surum"] = p.SonKayitSurumu,
 			["enerji"] = p.Enerji, ["enerjiZaman"] = p.EnerjiZaman, ["enerjiAlim"] = p.EnerjiAlim, ["sezon"] = p.Sezon,
 			["gHikaye"] = p.GunlukHikaye, ["gArena"] = p.ArenaGunlukSavas, ["muzik"] = p.MuzikAcik, ["efekt"] = p.EfektAcik,
+			["urunler"] = urunler, ["aylikBitis"] = p.AylikKartBitis,
+			["aylikSon"] = p.AylikKartSonAlim, ["harcama"] = p.ToplamHarcamaKurus,
 		};
 	}
 
@@ -148,6 +156,10 @@ public static class Kayit
 			MuzikAcik = !d.ContainsKey("muzik") || d["muzik"].AsBool(), EfektAcik = !d.ContainsKey("efekt") || d["efekt"].AsBool(),
 		};
 		if (d.ContainsKey("gorevler")) foreach (var g in d["gorevler"].AsGodotArray()) p.AlinanGorevler.Add(g.AsInt32());
+		if (d.ContainsKey("urunler")) foreach (var u in d["urunler"].AsGodotArray()) p.AlinanUrunler.Add(u.AsString());
+		if (d.ContainsKey("aylikBitis")) p.AylikKartBitis = d["aylikBitis"].AsString();
+		if (d.ContainsKey("aylikSon")) p.AylikKartSonAlim = d["aylikSon"].AsString();
+		if (d.ContainsKey("harcama")) p.ToplamHarcamaKurus = (long)d["harcama"].AsDouble();
 		if (d.ContainsKey("kartlar"))
 			foreach (var kv in d["kartlar"].AsGodotArray())
 			{
@@ -169,7 +181,9 @@ public static class Kayit
 	}
 
 	// ------------------------------------------------------------ günlük sıfırlama
-	public static string Bugun() => Time.GetDateStringFromSystem();
+	/// <summary>Bugünün tarihi (yyyy-MM-dd). Simülasyon bunu değiştirerek günleri ilerletir.</summary>
+	public static Func<string> BugunFn = () => Time.GetDateStringFromSystem();
+	public static string Bugun() => BugunFn();
 
 	public static void GunKontrol()
 	{
@@ -321,6 +335,25 @@ public static class Kayit
 		t.Where(u => u != null && Veri.Harita.ContainsKey(u.Id)).Sum(u => Veri.Guc(Veri.Harita[u.Id], u.Seviye, u.Yildiz));
 
 	public static bool TakimHazir => P.Takim.Count(x => x != null) > 0;
+
+	/// <summary>En güçlü 5 kartı (en az bir tank ve bir destekle) dizer.</summary>
+	public static void OtomatikDiz()
+	{
+		var p = P;
+		var sirali = p.Kartlar.OrderByDescending(k => Veri.Guc(Veri.Harita[k.Id], k.Seviye, k.Yildiz)).ToList();
+		var secilen = new List<SahipKart>();
+		// en az bir tank ve bir destek almaya çalış
+		foreach (var sinif in new[] { "tank", "destek" })
+		{
+			var k = sirali.FirstOrDefault(x => Veri.Harita[x.Id].Sinif == sinif && !secilen.Contains(x));
+			if (k != null) secilen.Add(k);
+		}
+		foreach (var k in sirali) { if (secilen.Count >= 5) break; if (!secilen.Contains(k)) secilen.Add(k); }
+		int Oncelik(SahipKart k) => Veri.Harita[k.Id].Sinif switch { "tank" => 0, "savasci" => 1, "destek" => 3, _ => 2 };
+		var dizi = secilen.OrderBy(Oncelik).ToList();
+		for (int i = 0; i < 5; i++) p.Takim[i] = i < dizi.Count ? dizi[i].Id : null;
+		Kaydet();
+	}
 
 	// ------------------------------------------------------------ çağırma
 	static readonly Random _r = new();
