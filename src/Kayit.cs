@@ -341,7 +341,8 @@ public static class Kayit
 		return true;
 	}
 
-	public static int MaxSeviye(int yildiz) => 15 + 10 * yildiz;     // 1★:25 … 5★:65
+	public const int MaxYildiz = 7;   // 6★ ve 7★ oyun sonu hedefi
+	public static int MaxSeviye(int yildiz) => 15 + 10 * yildiz;     // 1★:25 … 5★:65 … 7★:85
 	public static int SeviyeMaliyet(int seviye) => (int)(Math.Round(40 * Math.Pow(seviye, 1.6) / 10.0) * 10);
 
 	// ------------------------------------------------------------ ruh özü (fazla kopyalardan)
@@ -357,7 +358,7 @@ public static class Kayit
 		Kaydet();
 		return true;
 	}
-	public static int YildizKopya(int yildiz) => yildiz switch { 1 => 1, 2 => 2, 3 => 4, 4 => 6, _ => 999 };
+	public static int YildizKopya(int yildiz) => yildiz switch { 1 => 1, 2 => 2, 3 => 4, 4 => 6, 5 => 8, 6 => 10, _ => 999 };
 
 	public static bool SeviyeAtlat(SahipKart k)
 	{
@@ -374,7 +375,7 @@ public static class Kayit
 
 	public static bool YildizAtlat(SahipKart k)
 	{
-		if (k.Yildiz >= 5) return false;
+		if (k.Yildiz >= MaxYildiz) return false;
 		int m = YildizKopya(k.Yildiz);
 		if (k.Kopya < m || P.Altin < YildizAltin(k.Yildiz)) return false;
 		P.Altin -= YildizAltin(k.Yildiz);

@@ -311,7 +311,7 @@ public partial class Oyun : Control
 			var s = Kayit.Sahip(t.Id);
 			var kk = s != null ? KartKutu.Sahipten(s, 163) : new KartKutu(t, 163) { Kilitli = true };
 			kk.KopyaGoster = true;
-			if (s != null && (s.Kopya >= Kayit.YildizKopya(s.Yildiz) && s.Yildiz < 5)) kk.Secili = true;
+			if (s != null && (s.Kopya >= Kayit.YildizKopya(s.Yildiz) && s.Yildiz < Kayit.MaxYildiz)) kk.Secili = true;
 			kk.Tiklandi = () => KartDetayi(t, null);
 			izgara.AddChild(kk);
 		}
@@ -362,12 +362,12 @@ public partial class Oyun : Control
 			sb.Disabled = s.Seviye >= maxS;
 			v.AddChild(sb);
 			int gk = Kayit.YildizKopya(s.Yildiz);
-			var yb = Ui.Dugme(s.Yildiz >= 5 ? "En yüksek yıldız" : $"Yıldız Atlat → {s.Yildiz + 1}★  (kopya {s.Kopya}/{gk}, {Kayit.YildizAltin(s.Yildiz):N0} altın)", () =>
+			var yb = Ui.Dugme(s.Yildiz >= Kayit.MaxYildiz ? "En yüksek yıldız" : $"Yıldız Atlat → {s.Yildiz + 1}★  (kopya {s.Kopya}/{gk}, {Kayit.YildizAltin(s.Yildiz):N0} altın)", () =>
 			{
 				if (Kayit.YildizAtlat(s)) { PencereKapat(); KartDetayi(t, null); Yenile(); Mesaj("Yıldız atladı!"); }
 			}, new Color("8a4fc0"), 22);
 			yb.Text = yb.Text.Replace("★", " yıldız");
-			yb.Disabled = s.Yildiz >= 5 || s.Kopya < gk || Kayit.P.Altin < Kayit.YildizAltin(s.Yildiz);
+			yb.Disabled = s.Yildiz >= Kayit.MaxYildiz || s.Kopya < gk || Kayit.P.Altin < Kayit.YildizAltin(s.Yildiz);
 			v.AddChild(yb);
 			int ozf = Kayit.OzKopyaFiyat(t.Nadirlik);
 			var ozb = Ui.Dugme($"Ruh özüyle +1 kopya ({ozf} öz — sende {Kayit.P.RuhOzu})", () =>
@@ -375,7 +375,7 @@ public partial class Oyun : Control
 				if (Kayit.OzleKopyaAl(s)) { PencereKapat(); KartDetayi(t, null); Yenile(); }
 				else Mesaj("Yeterli ruh özü yok");
 			}, new Color("4a6a8a"), 19, 52);
-			ozb.Disabled = s.Yildiz >= 5 || Kayit.P.RuhOzu < ozf;
+			ozb.Disabled = s.Yildiz >= Kayit.MaxYildiz || Kayit.P.RuhOzu < ozf;
 			v.AddChild(ozb);
 			bool takimda = Kayit.P.Takim.Contains(t.Id);
 			v.AddChild(Ui.Dugme(takimda ? "Takımdan Çıkar" : "Takıma Ekle", () =>

@@ -64,7 +64,7 @@ public static class Simulasyon
 			sb.AppendLine();
 			sb.AppendLine("Önemli anlar (gün):");
 			foreach (var (ad, gun) in k.Ilk.OrderBy(x => x.Value)) sb.AppendLine($"- {ad}: {gun}. gün");
-			string[] beklenen = { "İlk epik kart", "İlk efsanevi kart", "Tüm 48 kart", "4 efsanevinin hepsi", "Hikâye bitti (60. aşama)", "Gümüş lig", "Altın lig", "Elmas lig", "Efsane lig", "İlk 5 yıldızlı kart" };
+			string[] beklenen = { "İlk epik kart", "İlk efsanevi kart", "Tüm 48 kart", "4 efsanevinin hepsi", "Hikâye bitti (60. aşama)", "Gümüş lig", "Altın lig", "Elmas lig", "Efsane lig", "İlk 5 yıldızlı kart", "İlk 7 yıldızlı kart", "Takım tamamen maksimum (7★, sv 85)" };
 			foreach (var b in beklenen) if (!k.Ilk.ContainsKey(b)) sb.AppendLine($"- {b}: 365 günde ulaşılamadı");
 			sb.AppendLine($"- Toplam harcama: ₺{kurus / 100m:N2}");
 			if (k.Gecis + k.Odullu > 0) sb.AppendLine($"- Günde ortalama reklam: {k.Gecis / 365.0:0.0} geçiş + {k.Odullu / 365.0:0.0} ödüllü");
@@ -163,9 +163,11 @@ public static class Simulasyon
 			if (p.Kartlar.Count(x => Veri.Harita[x.Id].Nadirlik == "efsanevi") >= 4) k.Olay("4 efsanevinin hepsi", gun);
 			if (p.Kartlar.Count >= Veri.Kartlar.Count) k.Olay("Tüm 48 kart", gun);
 			if (p.Kartlar.Any(x => x.Yildiz >= 5)) k.Olay("İlk 5 yıldızlı kart", gun);
+			if (p.Kartlar.Any(x => x.Yildiz >= 7)) k.Olay("İlk 7 yıldızlı kart", gun);
+			if (p.Takim.Where(x => x != null).All(id => Kayit.Sahip(id).Yildiz >= 7 && Kayit.Sahip(id).Seviye >= Kayit.MaxSeviye(7))) k.Olay("Takım tamamen maksimum (7★, sv 85)", gun);
 			if (p.Kartlar.Any(x => x.Yildiz >= 3)) k.Olay("İlk 3 yıldızlı kart", gun);
 
-			if (!t.Vip) { k.Gecis += p.GunlukSavas / Reklam.GecisAraligi; k.Odullu += p.ReklamGunluk.Sum(); }
+			if (!t.Vip) { k.Gecis += Math.Max(0, p.GunlukSavas - Reklam.GunlukReklamsizSavas) / Reklam.GecisAraligi; k.Odullu += p.ReklamGunluk.Sum(); }
 			if (Kontrol.Contains(gun))
 			{
 				int Say(string n) => p.Kartlar.Count(x => Veri.Harita[x.Id].Nadirlik == n);
@@ -186,7 +188,7 @@ public static class Simulasyon
 		foreach (var id in p.Takim.Where(x => x != null).ToList())
 		{
 			var s = Kayit.Sahip(id);
-			while (s.Yildiz < 5 && s.Kopya < Kayit.YildizKopya(s.Yildiz) && Kayit.OzleKopyaAl(s)) { }
+			while (s.Yildiz < Kayit.MaxYildiz && s.Kopya < Kayit.YildizKopya(s.Yildiz) && Kayit.OzleKopyaAl(s)) { }
 		}
 		// önce takım; takım dışı kartlara yalnızca altın bolsa yıldız ver
 		foreach (var s in p.Kartlar.Where(x => p.Takim.Contains(x.Id)).ToList())

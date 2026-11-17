@@ -147,7 +147,7 @@ public static class Rakipler
 		{
 			var u = takim[r.Aralik(5)];
 			if (u.Seviye < Kayit.MaxSeviye(u.Yildiz)) u.Seviye++;
-			else if (u.Yildiz < 5) u.Yildiz++;
+			else if (u.Yildiz < Kayit.MaxYildiz) u.Yildiz++;
 		}
 		return takim;
 	}

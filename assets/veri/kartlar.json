@@ -13,10 +13,10 @@
    "nadirlik": "efsanevi",
    "sinif": "buyucu",
    "element": "ates",
-   "can": 860,
-   "saldiri": 172,
+   "can": 873,
+   "saldiri": 175,
    "savunma": 32,
-   "hiz": 107,
+   "hiz": 108,
    "ulti": {
     "ad": "Gök Ateşi",
     "etkiler": [
@@ -47,18 +47,18 @@
    "nadirlik": "epik",
    "sinif": "savasci",
    "element": "doga",
-   "can": 1130,
-   "saldiri": 148,
-   "savunma": 46,
-   "hiz": 125,
+   "can": 1113,
+   "saldiri": 146,
+   "savunma": 45,
+   "hiz": 124,
    "ulti": {
     "ad": "Bozkurt Pençesi",
     "etkiler": [
      {
       "tip": "hasar",
       "hedef": "en_zayif",
-      "carpan": 2.2,
-      "can_cal": 0.25
+      "carpan": 2.1,
+      "can_cal": 0.2
      }
     ]
    },
@@ -71,10 +71,10 @@
    "nadirlik": "epik",
    "sinif": "destek",
    "element": "su",
-   "can": 1149,
-   "saldiri": 107,
-   "savunma": 49,
-   "hiz": 117,
+   "can": 1132,
+   "saldiri": 106,
+   "savunma": 48,
+   "hiz": 116,
    "ulti": {
     "ad": "Kutsal Koruma",
     "etkiler": [
@@ -100,9 +100,9 @@
    "nadirlik": "epik",
    "sinif": "tank",
    "element": "doga",
-   "can": 1571,
-   "saldiri": 77,
-   "savunma": 78,
+   "can": 1548,
+   "saldiri": 76,
+   "savunma": 77,
    "hiz": 95,
    "ulti": {
     "ad": "Dev Yumruğu",
@@ -256,10 +256,10 @@
    "nadirlik": "siradan",
    "sinif": "savasci",
    "element": "ates",
-   "can": 848,
-   "saldiri": 108,
-   "savunma": 34,
-   "hiz": 105,
+   "can": 882,
+   "saldiri": 113,
+   "savunma": 35,
+   "hiz": 107,
    "ulti": {
     "ad": "Akın",
     "etkiler": [
@@ -279,10 +279,10 @@
    "nadirlik": "siradan",
    "sinif": "tank",
    "element": "su",
-   "can": 1144,
-   "saldiri": 58,
-   "savunma": 59,
-   "hiz": 93,
+   "can": 1190,
+   "saldiri": 61,
+   "savunma": 61,
+   "hiz": 94,
    "ulti": {
     "ad": "Siper",
     "etkiler": [
@@ -308,22 +308,22 @@
    "nadirlik": "siradan",
    "sinif": "destek",
    "element": "doga",
-   "can": 861,
-   "saldiri": 75,
-   "savunma": 37,
-   "hiz": 101,
+   "can": 896,
+   "saldiri": 78,
+   "savunma": 38,
+   "hiz": 102,
    "ulti": {
     "ad": "Davul Ayini",
     "etkiler": [
      {
       "tip": "iyilestir",
       "hedef": "tum_dost",
-      "carpan": 1.1
+      "carpan": 1.25
      },
      {
       "tip": "enerji",
       "hedef": "tum_dost",
-      "miktar": 10
+      "miktar": 15
      }
     ]
    },
@@ -336,10 +336,10 @@
    "nadirlik": "siradan",
    "sinif": "buyucu",
    "element": "su",
-   "can": 639,
-   "saldiri": 124,
-   "savunma": 25,
-   "hiz": 100,
+   "can": 664,
+   "saldiri": 129,
+   "savunma": 26,
+   "hiz": 101,
    "ulti": {
     "ad": "Girdap",
     "etkiler": [
@@ -359,10 +359,10 @@
    "nadirlik": "efsanevi",
    "sinif": "buyucu",
    "element": "ates",
-   "can": 853,
-   "saldiri": 177,
-   "savunma": 33,
-   "hiz": 107,
+   "can": 865,
+   "saldiri": 179,
+   "savunma": 34,
+   "hiz": 108,
    "ulti": {
     "ad": "Yıldırım Fırtınası",
     "etkiler": [
@@ -388,8 +388,8 @@
    "nadirlik": "epik",
    "sinif": "savasci",
    "element": "ates",
-   "can": 1035,
-   "saldiri": 153,
+   "can": 1019,
+   "saldiri": 151,
    "savunma": 45,
    "hiz": 114,
    "ulti": {
@@ -417,10 +417,10 @@
    "nadirlik": "epik",
    "sinif": "tank",
    "element": "doga",
-   "can": 1671,
-   "saldiri": 82,
-   "savunma": 74,
-   "hiz": 98,
+   "can": 1645,
+   "saldiri": 81,
+   "savunma": 73,
+   "hiz": 97,
    "ulti": {
     "ad": "Aegis",
     "etkiler": [
@@ -452,10 +452,10 @@
    "nadirlik": "epik",
    "sinif": "destek",
    "element": "ates",
-   "can": 1020,
-   "saldiri": 110,
+   "can": 1005,
+   "saldiri": 108,
    "savunma": 53,
-   "hiz": 112,
+   "hiz": 111,
    "ulti": {
     "ad": "Güneş Ezgisi",
     "etkiler": [
@@ -601,10 +601,10 @@
    "nadirlik": "siradan",
    "sinif": "tank",
    "element": "su",
-   "can": 1211,
-   "saldiri": 60,
-   "savunma": 63,
-   "hiz": 89,
+   "can": 1259,
+   "saldiri": 62,
+   "savunma": 66,
+   "hiz": 90,
    "ulti": {
     "ad": "Falanks",
     "etkiler": [
@@ -630,10 +630,10 @@
    "nadirlik": "siradan",
    "sinif": "savasci",
    "element": "doga",
-   "can": 776,
-   "saldiri": 108,
-   "savunma": 32,
-   "hiz": 108,
+   "can": 807,
+   "saldiri": 112,
+   "savunma": 33,
+   "hiz": 109,
    "ulti": {
     "ad": "Ok Yağmuru",
     "etkiler": [
@@ -654,22 +654,22 @@
    "nadirlik": "siradan",
    "sinif": "buyucu",
    "element": "su",
-   "can": 631,
-   "saldiri": 122,
-   "savunma": 24,
-   "hiz": 94,
+   "can": 656,
+   "saldiri": 127,
+   "savunma": 25,
+   "hiz": 95,
    "ulti": {
     "ad": "Büyülü Şarkı",
     "etkiler": [
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.9
+      "carpan": 2.1
      },
      {
       "tip": "sersemlet",
       "hedef": "son",
-      "sans": 0.35,
+      "sans": 0.45,
       "tur": 1
      }
     ]
@@ -683,10 +683,10 @@
    "nadirlik": "siradan",
    "sinif": "destek",
    "element": "doga",
-   "can": 803,
-   "saldiri": 80,
-   "savunma": 40,
-   "hiz": 105,
+   "can": 835,
+   "saldiri": 83,
+   "savunma": 41,
+   "hiz": 106,
    "ulti": {
     "ad": "Orman Nefesi",
     "etkiler": [
@@ -712,10 +712,10 @@
    "nadirlik": "efsanevi",
    "sinif": "buyucu",
    "element": "su",
-   "can": 953,
-   "saldiri": 169,
-   "savunma": 34,
-   "hiz": 103,
+   "can": 966,
+   "saldiri": 172,
+   "savunma": 35,
+   "hiz": 104,
    "ulti": {
     "ad": "Ragnarök Rünleri",
     "etkiler": [
@@ -747,22 +747,22 @@
    "nadirlik": "epik",
    "sinif": "savasci",
    "element": "ates",
-   "can": 1073,
-   "saldiri": 138,
-   "savunma": 45,
-   "hiz": 124,
+   "can": 1057,
+   "saldiri": 136,
+   "savunma": 44,
+   "hiz": 123,
    "ulti": {
     "ad": "Mjölnir",
     "etkiler": [
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.8
+      "carpan": 1.7
      },
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 0.5
+      "carpan": 0.45
      },
      {
       "tip": "sersemlet",
@@ -781,10 +781,10 @@
    "nadirlik": "epik",
    "sinif": "destek",
    "element": "doga",
-   "can": 1089,
-   "saldiri": 103,
-   "savunma": 48,
-   "hiz": 118,
+   "can": 1072,
+   "saldiri": 102,
+   "savunma": 47,
+   "hiz": 117,
    "ulti": {
     "ad": "Altın Gözyaşı",
     "etkiler": [
@@ -815,9 +815,9 @@
    "nadirlik": "epik",
    "sinif": "tank",
    "element": "su",
-   "can": 1602,
-   "saldiri": 84,
-   "savunma": 84,
+   "can": 1578,
+   "saldiri": 82,
+   "savunma": 83,
    "hiz": 104,
    "ulti": {
     "ad": "Buzul Duvarı",
@@ -966,10 +966,10 @@
    "nadirlik": "siradan",
    "sinif": "tank",
    "element": "ates",
-   "can": 1281,
-   "saldiri": 58,
-   "savunma": 59,
-   "hiz": 98,
+   "can": 1332,
+   "saldiri": 61,
+   "savunma": 62,
+   "hiz": 99,
    "ulti": {
     "ad": "Kalkan Duvarı",
     "etkiler": [
@@ -995,10 +995,10 @@
    "nadirlik": "siradan",
    "sinif": "savasci",
    "element": "ates",
-   "can": 772,
-   "saldiri": 119,
-   "savunma": 32,
-   "hiz": 118,
+   "can": 803,
+   "saldiri": 124,
+   "savunma": 33,
+   "hiz": 120,
    "ulti": {
     "ad": "Kudurma",
     "etkiler": [
@@ -1024,22 +1024,22 @@
    "nadirlik": "siradan",
    "sinif": "buyucu",
    "element": "doga",
-   "can": 669,
-   "saldiri": 114,
-   "savunma": 24,
-   "hiz": 106,
+   "can": 696,
+   "saldiri": 118,
+   "savunma": 25,
+   "hiz": 107,
    "ulti": {
     "ad": "Kehanet",
     "etkiler": [
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.7
+      "carpan": 1.95
      },
      {
       "tip": "zayiflat",
       "hedef": "son",
-      "oran": 0.3,
+      "oran": 0.35,
       "tur": 2
      }
     ]
@@ -1053,10 +1053,10 @@
    "nadirlik": "siradan",
    "sinif": "destek",
    "element": "doga",
-   "can": 811,
-   "saldiri": 80,
-   "savunma": 40,
-   "hiz": 105,
+   "can": 844,
+   "saldiri": 84,
+   "savunma": 42,
+   "hiz": 106,
    "ulti": {
     "ad": "Koruma Rünü",
     "etkiler": [
@@ -1082,10 +1082,10 @@
    "nadirlik": "efsanevi",
    "sinif": "buyucu",
    "element": "ates",
-   "can": 871,
-   "saldiri": 158,
+   "can": 884,
+   "saldiri": 161,
    "savunma": 32,
-   "hiz": 110,
+   "hiz": 111,
    "ulti": {
     "ad": "Güneş Diski",
     "etkiler": [
@@ -1111,18 +1111,18 @@
    "nadirlik": "epik",
    "sinif": "savasci",
    "element": "su",
-   "can": 1069,
-   "saldiri": 145,
-   "savunma": 42,
-   "hiz": 128,
+   "can": 1053,
+   "saldiri": 143,
+   "savunma": 41,
+   "hiz": 127,
    "ulti": {
     "ad": "Ruh Terazisi",
     "etkiler": [
      {
       "tip": "hasar",
       "hedef": "en_zayif",
-      "carpan": 2.25,
-      "can_cal": 0.25
+      "carpan": 2.1,
+      "can_cal": 0.2
      },
      {
       "tip": "zayiflat",
@@ -1141,9 +1141,9 @@
    "nadirlik": "epik",
    "sinif": "destek",
    "element": "su",
-   "can": 1063,
-   "saldiri": 103,
-   "savunma": 53,
+   "can": 1047,
+   "saldiri": 101,
+   "savunma": 52,
    "hiz": 124,
    "ulti": {
     "ad": "Hayat Nefesi",
@@ -1170,10 +1170,10 @@
    "nadirlik": "epik",
    "sinif": "tank",
    "element": "doga",
-   "can": 1532,
-   "saldiri": 87,
-   "savunma": 75,
-   "hiz": 104,
+   "can": 1509,
+   "saldiri": 86,
+   "savunma": 74,
+   "hiz": 103,
    "ulti": {
     "ad": "Bilmece",
     "etkiler": [
@@ -1320,10 +1320,10 @@
    "nadirlik": "siradan",
    "sinif": "tank",
    "element": "doga",
-   "can": 1119,
-   "saldiri": 63,
-   "savunma": 60,
-   "hiz": 97,
+   "can": 1164,
+   "saldiri": 65,
+   "savunma": 63,
+   "hiz": 98,
    "ulti": {
     "ad": "Lanetli Sargı",
     "etkiler": [
@@ -1355,10 +1355,10 @@
    "nadirlik": "siradan",
    "sinif": "savasci",
    "element": "doga",
-   "can": 791,
-   "saldiri": 114,
-   "savunma": 36,
-   "hiz": 115,
+   "can": 823,
+   "saldiri": 118,
+   "savunma": 38,
+   "hiz": 116,
    "ulti": {
     "ad": "Zehirli İğne",
     "etkiler": [
@@ -1384,17 +1384,17 @@
    "nadirlik": "siradan",
    "sinif": "buyucu",
    "element": "ates",
-   "can": 700,
-   "saldiri": 113,
-   "savunma": 23,
-   "hiz": 93,
+   "can": 728,
+   "saldiri": 118,
+   "savunma": 24,
+   "hiz": 94,
    "ulti": {
     "ad": "Kum Fırtınası",
     "etkiler": [
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 0.95
+      "carpan": 1.1
      }
     ]
    },
@@ -1407,10 +1407,10 @@
    "nadirlik": "siradan",
    "sinif": "destek",
    "element": "ates",
-   "can": 858,
-   "saldiri": 84,
-   "savunma": 36,
-   "hiz": 112,
+   "can": 892,
+   "saldiri": 88,
+   "savunma": 37,
+   "hiz": 113,
    "ulti": {
     "ad": "Ankh Işığı",
     "etkiler": [

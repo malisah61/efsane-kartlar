@@ -267,7 +267,7 @@ public class Savas
 	void Vur(Birim s, Birim h, float carpan, float canCal)
 	{
 		float A = s.EtkinSal, D = h.EtkinSav;
-		float hasar = 1.3f * A * carpan * (A / (A + D));
+		float hasar = 1.45f * A * carpan * (A / (A + D));
 		int ust = Veri.ElementUstunluk(s.T.Element, h.T.Element);
 		if (ust > 0) hasar *= 1.3f; else if (ust < 0) hasar *= 0.8f;
 		float kritSans = s.T.Sinif == "savasci" ? 0.2f : 0.08f;

@@ -17,7 +17,8 @@ public partial class Reklam : Node
 	public const bool Gercek = false;
 	public const string GecisId = "";        // ör. ca-app-pub-XXXXXXXX/YYYYYYYY
 	public const string OdulluId = "";
-	public const int GecisAraligi = 5;       // her 5 savaşta bir geçiş reklamı
+	public const int GecisAraligi = 7;       // her 7 savaşta bir geçiş reklamı
+	public const int GunlukReklamsizSavas = 10;   // günün ilk 10 savaşında geçiş reklamı yok
 
 	const string Yol = "res://addons/AdmobPlugin/Admob.gd";
 	static Reklam _ben;
@@ -108,12 +109,12 @@ public partial class Reklam : Node
 	{
 		var p = Kayit.P;
 		p.SavasSayaci++;
-		bool goster = !p.Reklamsiz && p.SavasSayaci % GecisAraligi == 0 && _ben?._admob != null && _ben._gecisYuklu;
+		bool goster = !p.Reklamsiz && p.GunlukSavas > GunlukReklamsizSavas && p.SavasSayaci % GecisAraligi == 0 && _ben?._admob != null && _ben._gecisYuklu;
 		if (!goster) { devam(); return; }
 		_ben._gecisCb = devam;
 		_ben._admob.Call("show_interstitial_ad", "");
 	}
 
 	/// <summary>Sıradaki geçiş reklamına kaç savaş kaldı (VIP için -1).</summary>
-	public static int GeciseKalan => Kayit.P.Reklamsiz ? -1 : GecisAraligi - Kayit.P.SavasSayaci % GecisAraligi;
+	public static int GeciseKalan => Kayit.P.Reklamsiz || Kayit.P.GunlukSavas < GunlukReklamsizSavas ? -1 : GecisAraligi - Kayit.P.SavasSayaci % GecisAraligi;
 }
