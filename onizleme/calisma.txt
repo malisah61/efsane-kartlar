@@ -16,7 +16,7 @@ kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10b_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10c_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/11_sonuc.png
-ONIZLEME tamam fps=41
+ONIZLEME tamam fps=48
 WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
      at: cleanup (core/object/object.cpp:2284)
 ERROR: 4 resources still in use at exit (run with --verbose for details).
