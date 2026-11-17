@@ -174,7 +174,7 @@ public partial class SavasEkrani : Control
 			var s = new Savasci
 			{
 				B = b, Can = b.MaxCan, MaxCan = b.MaxCan, Enerji = b.Enerji,
-				Boy = (b.T.Sinif == "tank" ? 128 : 112) + (b.T.Nadirlik == "efsanevi" ? 10 : 0),
+				Boy = (b.T.Sinif == "tank" ? 172 : 152) + (b.T.Nadirlik == "efsanevi" ? 12 : 0),
 			};
 			s.Ev = Konum(b);
 			s.Position = s.Ev;
@@ -206,14 +206,14 @@ public partial class SavasEkrani : Control
 		for (int taraf = 1; taraf >= 0; taraf--)
 		{
 			var et = Ui.Etiket(taraf == 0 ? "Takımın" : "Düşman", 18, taraf == 0 ? Ui.Yesil : Ui.Kirmizi);
-			float y = SahneUst + SahneBoy + 10 + (1 - taraf) * 160;
+			float y = SahneUst + SahneBoy + 14 + (1 - taraf) * 168;
 			et.Position = new Vector2(16, y); et.Size = new Vector2(120, 24);
 			AddChild(et);
 			foreach (var b in S.Birimler.Where(b => b.Taraf == taraf))
 			{
 				var k = new BirimKutu { B = b, Can = b.MaxCan, MaxCan = b.MaxCan, Enerji = b.Enerji };
-				k.Size = new Vector2(100, 120);
-				k.Position = new Vector2(110 + b.Konum * 120, y);
+				k.Size = new Vector2(108, 130);
+				k.Position = new Vector2(104 + b.Konum * 122, y);
 				_kutular[b.Idx] = k;
 				AddChild(k);
 			}
@@ -235,8 +235,8 @@ public partial class SavasEkrani : Control
 	static Vector2 Konum(Birim b)
 	{
 		bool on = b.Konum < 2;
-		float x = on ? 250 : 105;
-		float y = on ? (b.Konum == 0 ? 520 : 640) : 470 + (b.Konum - 2) * 110;
+		float x = on ? 262 : 100;
+		float y = on ? (b.Konum == 0 ? 548 : 672) : 472 + (b.Konum - 2) * 112;
 		if (b.Taraf == 1) x = 720 - x;
 		return new Vector2(x, y);
 	}
