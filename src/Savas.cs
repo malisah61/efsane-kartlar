@@ -125,7 +125,13 @@ public class Savas
 				KontrolEt();
 			}
 		}
-		if (Kazanan < 0) Kazanan = 1;   // süre doldu: savunan kazanır
+		if (Kazanan < 0)
+		{
+			// süre doldu: kalan can oranı yüksek olan kazanır (eşitlikte savunan)
+			float Oran(int t) => Birimler.Where(b => b.Taraf == t).Sum(b => b.Can) / MathF.Max(1, Birimler.Where(b => b.Taraf == t).Sum(b => b.MaxCan));
+			Kazanan = Oran(0) > Oran(1) ? 0 : 1;
+			Olaylar.Add(new Olay { Tip = "durum", Hedef = -1, Metin = "Süre doldu" });
+		}
 		Olaylar.Add(new Olay { Tip = "bitis", Deger = Kazanan });
 	}
 
@@ -261,7 +267,7 @@ public class Savas
 	void Vur(Birim s, Birim h, float carpan, float canCal)
 	{
 		float A = s.EtkinSal, D = h.EtkinSav;
-		float hasar = A * carpan * (A / (A + D));
+		float hasar = 1.3f * A * carpan * (A / (A + D));
 		int ust = Veri.ElementUstunluk(s.T.Element, h.T.Element);
 		if (ust > 0) hasar *= 1.3f; else if (ust < 0) hasar *= 0.8f;
 		float kritSans = s.T.Sinif == "savasci" ? 0.2f : 0.08f;

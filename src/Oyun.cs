@@ -141,8 +141,8 @@ public partial class Oyun : Control
 		hp.AddChild(hv);
 		var hb = Ui.Yatay();
 		hv.AddChild(hb);
-		hb.AddChild(Ui.Genis(Ui.Etiket("Hikâye", 30, Colors.White)));
-		hb.AddChild(Ui.Etiket($"{Rakipler.BolumAd(asama)} — Aşama {asama}/{Rakipler.AsamaSayisi}" + (Rakipler.BossAsamasi(asama) ? "  (BOSS)" : ""), 20, Rakipler.BossAsamasi(asama) ? Ui.Kirmizi : Ui.Soluk, HorizontalAlignment.Right));
+		hb.AddChild(Ui.Genis(Ui.Etiket("Hikâye", 30, Colors.White), 0.5f));
+		hb.AddChild(Ui.Genis(Ui.Etiket($"{Rakipler.BolumAd(asama)} — Aşama {asama}/{Rakipler.AsamaSayisi}" + (Rakipler.BossAsamasi(asama) ? "  (BOSS)" : ""), 20, Rakipler.BossAsamasi(asama) ? Ui.Kirmizi : Ui.Soluk, HorizontalAlignment.Right)));
 		var dusman = Rakipler.AsamaTakimi(asama);
 		hv.AddChild(MiniTakim(dusman, 100));
 		var odul = Rakipler.AsamaOdulu(asama, asama > p.EnIyiAsama);
@@ -508,7 +508,7 @@ public partial class Oyun : Control
 			var rb = Ui.Yatay();
 			rv.AddChild(rb);
 			rb.AddChild(Ui.Genis(Ui.Etiket($"{r.Ad}   ({r.Kupa} kupa)", 23)));
-			rb.AddChild(Ui.Etiket($"Güç {r.Guc:N0}  •  {zad[r.Zorluk]}", 20, zrenk[r.Zorluk], HorizontalAlignment.Right));
+			rb.AddChild(Ui.Genis(Ui.Etiket($"Güç {r.Guc:N0}  •  {zad[r.Zorluk]}", 20, zrenk[r.Zorluk], HorizontalAlignment.Right), 0.8f));
 			var alt = Ui.Yatay(8);
 			rv.AddChild(alt);
 			alt.AddChild(Ui.Genis(MiniTakim(r.Takim, 84)));
@@ -542,7 +542,7 @@ public partial class Oyun : Control
 			no.CustomMinimumSize = new Vector2(56, 0);
 			h.AddChild(no);
 			h.AddChild(Ui.Genis(Ui.Etiket(oyuncu ? ad + " (sen)" : ad, 21)));
-			h.AddChild(Ui.Etiket($"{kupa}  {Rakipler.Lig(kupa)}", 19, Ui.Soluk, HorizontalAlignment.Right));
+			h.AddChild(Ui.Genis(Ui.Etiket($"{kupa}  {Rakipler.Lig(kupa)}", 19, Ui.Soluk, HorizontalAlignment.Right), 0.7f));
 			liste.AddChild(satir);
 		}
 		var kay = Ui.Kaydirma(liste);

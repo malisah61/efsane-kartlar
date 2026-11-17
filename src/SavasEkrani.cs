@@ -70,10 +70,7 @@ public partial class SavasEkrani : Control
 	{
 		SetAnchorsPreset(LayoutPreset.FullRect);
 		MouseFilter = MouseFilterEnum.Stop;
-		AddChild(new ColorRect { Color = new Color("0e1222"), AnchorRight = 1, AnchorBottom = 1 });
-		// arka plan süsü
-		var arka = new ColorRect { Color = new Color("1a2040"), AnchorRight = 1, AnchorTop = 0.5f, AnchorBottom = 1 };
-		AddChild(arka);
+		Size = GetParent<Control>().Size;
 
 		_alan = new Control { AnchorRight = 1, AnchorBottom = 1 };
 		AddChild(_alan);
@@ -84,7 +81,7 @@ public partial class SavasEkrani : Control
 		AddChild(ust);
 		ust.AddChild(Ui.Genis(Ui.Etiket(Baslik, 26, Ui.Altin)));
 		_turEtiket = Ui.Etiket("Tur 1", 24, Colors.White, HorizontalAlignment.Right);
-		ust.AddChild(_turEtiket);
+		ust.AddChild(Ui.Genis(_turEtiket, 0.6f));
 
 		_ultiEtiket = Ui.Etiket("", 34, Ui.Altin, HorizontalAlignment.Center);
 		_ultiEtiket.Position = new Vector2(0, 600);
@@ -111,6 +108,13 @@ public partial class SavasEkrani : Control
 		_ = Oynat();
 	}
 
+	public override void _Draw()
+	{
+		DrawRect(new Rect2(Vector2.Zero, Size), new Color("0e1222"));
+		DrawRect(new Rect2(0, Size.Y / 2, Size.X, Size.Y / 2), new Color("161c38"));
+		DrawLine(new Vector2(0, Size.Y / 2), new Vector2(Size.X, Size.Y / 2), new Color("2a3259"), 3);
+	}
+
 	/// <summary>Düşman üstte (ön sıra aşağıda), oyuncu altta (ön sıra yukarıda).</summary>
 	static Vector2 Konum(Birim b)
 	{
@@ -119,7 +123,7 @@ public partial class SavasEkrani : Control
 		int adet = on ? 2 : 3;
 		float aralik = 150;
 		float x = 360 - (adet - 1) * aralik / 2 + sira * aralik - 59;
-		float y = b.Taraf == 1 ? (on ? 360 : 140) : (on ? 760 : 980);
+		float y = b.Taraf == 1 ? (on ? 380 : 170) : (on ? 750 : 965);
 		return new Vector2(x, y);
 	}
 
@@ -212,6 +216,7 @@ public partial class SavasEkrani : Control
 					break;
 				}
 				case "durum":
+					if (o.Hedef < 0) { _ultiEtiket.Text = o.Metin; _ultiEtiket.Modulate = Colors.White; await Bekle(0.8f); break; }
 					Yazi(_kutular[o.Hedef], o.Metin, new Color("e7c4ff"), 22);
 					_kutular[o.Hedef].QueueRedraw();
 					await Bekle(0.12f);

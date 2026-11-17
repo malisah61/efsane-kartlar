@@ -21,7 +21,7 @@ Hedefler: tek, tum, arka, en_zayif, rastgele(adet), son (önceki hasarın hedefl
 import json, os, hashlib
 
 MITOLOJI = {"turk": "Türk", "yunan": "Yunan", "iskandinav": "İskandinav", "misir": "Mısır"}
-NADIRLIK = {"siradan": 1.00, "nadir": 1.15, "epik": 1.32, "efsanevi": 1.52}
+NADIRLIK = {"siradan": 1.00, "nadir": 1.15, "epik": 1.32, "efsanevi": 1.45}
 SINIF = {  # can, saldırı, savunma, hız
     "tank":    (1200, 62, 60, 92),
     "savasci": (820, 112, 34, 112),
@@ -43,7 +43,7 @@ def E(hedef, miktar): return {"tip": "enerji", "hedef": hedef, "miktar": miktar}
 K_ = [
     # ---------------- TÜRK
     ("ulgen", "Ülgen", "turk", "efsanevi", "buyucu", "ates", "Gök Ateşi",
-     [H("tum", 1.55), Y("tum", 0.25, 2), E("tum_dost", 15)],
+     [H("tum", 1.25), Y("tum", 0.2, 2), E("tum_dost", 10)],
      "Turkic sky god Ulgen, old man with long white beard, glowing golden sun crown, blue robes, fire in hands"),
     ("asena", "Asena", "turk", "epik", "savasci", "doga", "Bozkurt Pençesi",
      [H("en_zayif", 2.6, can_cal=0.3)],
@@ -73,14 +73,14 @@ K_ = [
      [A(1), K("kendi", 0.25, 2)],
      "Turkic shield warrior, blue tunic, large wooden shield with wolf emblem, spear"),
     ("kam", "Kam", "turk", "siradan", "destek", "doga", "Davul Ayini",
-     [I("tum_dost", 0.9)],
+     [I("tum_dost", 1.1), E("tum_dost", 10)],
      "Turkic shaman kam with feathered headdress and frame drum, colorful ribbons"),
     ("su_iyesi", "Su İyesi", "turk", "siradan", "buyucu", "su", "Girdap",
-     [H("arka", 1.25)],
+     [H("arka", 1.55)],
      "water spirit iyesi, translucent blue woman made of water with long flowing hair"),
     # ---------------- YUNAN
     ("zeus", "Zeus", "yunan", "efsanevi", "buyucu", "ates", "Yıldırım Fırtınası",
-     [H("tum", 1.45), S("tum", 0.35, 1)],
+     [H("tum", 1.2), S("tum", 0.3, 1)],
      "Greek god Zeus, muscular old king with white beard, golden laurel crown, holding a lightning bolt"),
     ("akhilleus", "Akhilleus", "yunan", "epik", "savasci", "ates", "Truva Hücumu",
      [H("tek", 3.0), Z("son", 0.3, 2)],
@@ -92,7 +92,7 @@ K_ = [
      [I("tum_dost", 1.25), G("tum_dost", 0.2, 2)],
      "Apollo sun god, young man with golden curly hair, laurel wreath, golden lyre, glowing sun"),
     ("medusa", "Medusa", "yunan", "nadir", "buyucu", "doga", "Taş Bakış",
-     [H("tek", 1.6), S("son", 0.75, 1)],
+     [H("tek", 1.9), S("son", 0.75, 1)],
      "Medusa gorgon with snakes for hair, glowing green eyes, scaly skin"),
     ("herakles", "Herakles", "yunan", "nadir", "savasci", "doga", "On İki Görev",
      [H("tek", 2.1), H("rastgele", 0.8, adet=2)],
@@ -110,14 +110,14 @@ K_ = [
      [H("rastgele", 0.9, adet=3)],
      "Amazon warrior archer woman, braided hair, leather armor, longbow"),
     ("siren", "Siren", "yunan", "siradan", "buyucu", "su", "Büyülü Şarkı",
-     [H("tek", 1.5), S("son", 0.3, 1)],
+     [H("tek", 1.9), S("son", 0.35, 1)],
      "siren sea creature woman with fins and seaweed hair singing, ocean colors"),
     ("nimf", "Nimf", "yunan", "siradan", "destek", "doga", "Orman Nefesi",
-     [I("en_zayif_dost", 1.9)],
+     [I("en_zayif_dost", 2.4), K("en_zayif_dost", 0.1, 2)],
      "forest nymph dryad, green skin, leaves in hair, flowers, gentle smile"),
     # ---------------- İSKANDİNAV
     ("odin", "Odin", "iskandinav", "efsanevi", "buyucu", "su", "Ragnarök Rünleri",
-     [H("tum", 1.4), Z("tum", 0.3, 2), G("tum_dost", 0.2, 2)],
+     [H("tum", 1.15), Z("tum", 0.25, 2), G("tum_dost", 0.15, 2)],
      "Norse god Odin, one-eyed old king with eyepatch, long grey beard, winged helmet, spear Gungnir, raven"),
     ("thor", "Thor", "iskandinav", "epik", "savasci", "ates", "Mjölnir",
      [H("tek", 2.2), H("tum", 0.7), S("son", 0.25, 1)],
@@ -147,14 +147,14 @@ K_ = [
      [H("tek", 1.7), G("kendi", 0.3, 2)],
      "viking berserker wearing a bear pelt, wild eyes, two axes, war paint"),
     ("volva", "Völva", "iskandinav", "siradan", "buyucu", "doga", "Kehanet",
-     [H("tek", 1.3), Z("son", 0.25, 2)],
+     [H("tek", 1.7), Z("son", 0.3, 2)],
      "norse seeress volva, hooded cloak, staff with runes, glowing eyes"),
     ("runa_ustasi", "Rün Ustası", "iskandinav", "siradan", "destek", "doga", "Koruma Rünü",
-     [K("en_zayif_dost", 0.2, 2), I("en_zayif_dost", 0.8)],
+     [K("en_zayif_dost", 0.25, 2), I("en_zayif_dost", 1.3)],
      "viking rune master, bald tattooed head, carved rune stones glowing blue"),
     # ---------------- MISIR
     ("ra", "Ra", "misir", "efsanevi", "buyucu", "ates", "Güneş Diski",
-     [H("tum", 1.35), Y("tum", 0.3, 3)],
+     [H("tum", 1.1), Y("tum", 0.25, 3)],
      "Egyptian sun god Ra, falcon head with a glowing sun disk crown, gold collar, staff"),
     ("anubis", "Anubis", "misir", "epik", "savasci", "su", "Ruh Terazisi",
      [H("en_zayif", 2.4, can_cal=0.25), Z("son", 0.3, 2)],
@@ -184,10 +184,10 @@ K_ = [
      [H("tek", 1.6), Y("son", 0.25, 2)],
      "scorpion warrior, man with scorpion tail and pincers, bronze armor"),
     ("kahin", "Nil Kâhini", "misir", "siradan", "buyucu", "ates", "Kum Fırtınası",
-     [H("tum", 0.75)],
+     [H("tum", 0.95)],
      "Egyptian priest mage with shaved head, gold collar, glowing hieroglyphs, staff"),
     ("ankh_rahibesi", "Ankh Rahibesi", "misir", "siradan", "destek", "ates", "Ankh Işığı",
-     [I("tum_dost", 0.85)],
+     [I("tum_dost", 1.05), G("tum_dost", 0.1, 2)],
      "Egyptian priestess holding a glowing ankh, black bob hair, white linen dress"),
 ]
 

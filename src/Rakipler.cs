@@ -30,20 +30,23 @@ public static class Rakipler
 	public static string BolumAd(int asama) => BolumAdlari[Math.Clamp((asama - 1) / BolumBasina, 0, BolumAdlari.Length - 1)];
 	public static bool BossAsamasi(int asama) => asama % BolumBasina == 0;
 
-	public static int AsamaSeviye(int asama) => Math.Max(1, (int)MathF.Round(1 + (asama - 1) * 0.85f));
+	public static int AsamaSeviye(int asama) => Math.Max(1, (int)MathF.Round((asama - 1) * 0.85f));
+	public static int AsamaDusmanSayisi(int asama) => asama <= 2 ? 3 : asama <= 5 ? 4 : 5;
 
 	public static List<TakimUyesi> AsamaTakimi(int asama)
 	{
 		var r = new Rng((ulong)(asama * 7919 + 13));
 		int sev = AsamaSeviye(asama);
 		// aşama ilerledikçe nadirlik artar
-		float epik = Math.Clamp((asama - 8) / 50f, 0, 0.45f), nadir = Math.Clamp(0.25f + asama / 60f, 0, 0.5f);
+		float epik = Math.Clamp((asama - 8) / 50f, 0, 0.45f), nadir = asama <= 3 ? 0 : Math.Clamp(0.1f + asama / 80f, 0, 0.5f);
 		var takim = new List<TakimUyesi>();
 		var kullanilan = new HashSet<string>();
 		// tutarlı diziliş: 2 ön (tank/savaşçı ağırlıklı), 3 arka
 		string[] sinifSira = { "tank", "savasci", "buyucu", "destek", "buyucu" };
+		int adet = AsamaDusmanSayisi(asama);
 		for (int i = 0; i < 5; i++)
 		{
+			if (i >= adet) { takim.Add(null); continue; }
 			string nad;
 			if (BossAsamasi(asama) && i == 2) nad = asama >= 18 ? "efsanevi" : "epik";
 			else { float x = r.Kesir(); nad = x < epik ? "epik" : x < epik + nadir ? "nadir" : "siradan"; }

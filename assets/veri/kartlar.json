@@ -13,28 +13,28 @@
    "nadirlik": "efsanevi",
    "sinif": "buyucu",
    "element": "ates",
-   "can": 947,
-   "saldiri": 189,
-   "savunma": 35,
-   "hiz": 111,
+   "can": 904,
+   "saldiri": 181,
+   "savunma": 33,
+   "hiz": 109,
    "ulti": {
     "ad": "Gök Ateşi",
     "etkiler": [
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 1.55
+      "carpan": 1.25
      },
      {
       "tip": "yanma",
       "hedef": "tum",
-      "oran": 0.25,
+      "oran": 0.2,
       "tur": 2
      },
      {
       "tip": "enerji",
       "hedef": "tum_dost",
-      "miktar": 15
+      "miktar": 10
      }
     ]
    },
@@ -312,7 +312,12 @@
      {
       "tip": "iyilestir",
       "hedef": "tum_dost",
-      "carpan": 0.9
+      "carpan": 1.1
+     },
+     {
+      "tip": "enerji",
+      "hedef": "tum_dost",
+      "miktar": 10
      }
     ]
    },
@@ -335,7 +340,7 @@
      {
       "tip": "hasar",
       "hedef": "arka",
-      "carpan": 1.25
+      "carpan": 1.55
      }
     ]
    },
@@ -348,22 +353,22 @@
    "nadirlik": "efsanevi",
    "sinif": "buyucu",
    "element": "ates",
-   "can": 940,
-   "saldiri": 195,
-   "savunma": 37,
-   "hiz": 110,
+   "can": 896,
+   "saldiri": 186,
+   "savunma": 35,
+   "hiz": 109,
    "ulti": {
     "ad": "Yıldırım Fırtınası",
     "etkiler": [
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 1.45
+      "carpan": 1.2
      },
      {
       "tip": "sersemlet",
       "hedef": "tum",
-      "sans": 0.35,
+      "sans": 0.3,
       "tur": 1
      }
     ]
@@ -480,7 +485,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.6
+      "carpan": 1.9
      },
      {
       "tip": "sersemlet",
@@ -653,12 +658,12 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.5
+      "carpan": 1.9
      },
      {
       "tip": "sersemlet",
       "hedef": "son",
-      "sans": 0.3,
+      "sans": 0.35,
       "tur": 1
      }
     ]
@@ -682,7 +687,13 @@
      {
       "tip": "iyilestir",
       "hedef": "en_zayif_dost",
-      "carpan": 1.9
+      "carpan": 2.4
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "en_zayif_dost",
+      "oran": 0.1,
+      "tur": 2
      }
     ]
    },
@@ -695,28 +706,28 @@
    "nadirlik": "efsanevi",
    "sinif": "buyucu",
    "element": "su",
-   "can": 1049,
-   "saldiri": 187,
-   "savunma": 38,
-   "hiz": 106,
+   "can": 1001,
+   "saldiri": 178,
+   "savunma": 36,
+   "hiz": 105,
    "ulti": {
     "ad": "Ragnarök Rünleri",
     "etkiler": [
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 1.4
+      "carpan": 1.15
      },
      {
       "tip": "zayiflat",
       "hedef": "tum",
-      "oran": 0.3,
+      "oran": 0.25,
       "tur": 2
      },
      {
       "tip": "guclendir",
       "hedef": "tum_dost",
-      "oran": 0.2,
+      "oran": 0.15,
       "tur": 2
      }
     ]
@@ -1011,12 +1022,12 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.3
+      "carpan": 1.7
      },
      {
       "tip": "zayiflat",
       "hedef": "son",
-      "oran": 0.25,
+      "oran": 0.3,
       "tur": 2
      }
     ]
@@ -1040,13 +1051,13 @@
      {
       "tip": "kalkan",
       "hedef": "en_zayif_dost",
-      "oran": 0.2,
+      "oran": 0.25,
       "tur": 2
      },
      {
       "tip": "iyilestir",
       "hedef": "en_zayif_dost",
-      "carpan": 0.8
+      "carpan": 1.3
      }
     ]
    },
@@ -1059,22 +1070,22 @@
    "nadirlik": "efsanevi",
    "sinif": "buyucu",
    "element": "ates",
-   "can": 959,
-   "saldiri": 174,
-   "savunma": 35,
-   "hiz": 114,
+   "can": 915,
+   "saldiri": 166,
+   "savunma": 33,
+   "hiz": 112,
    "ulti": {
     "ad": "Güneş Diski",
     "etkiler": [
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 1.35
+      "carpan": 1.1
      },
      {
       "tip": "yanma",
       "hedef": "tum",
-      "oran": 0.3,
+      "oran": 0.25,
       "tur": 3
      }
     ]
@@ -1371,7 +1382,7 @@
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 0.75
+      "carpan": 0.95
      }
     ]
    },
@@ -1394,7 +1405,13 @@
      {
       "tip": "iyilestir",
       "hedef": "tum_dost",
-      "carpan": 0.85
+      "carpan": 1.05
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "tum_dost",
+      "oran": 0.1,
+      "tur": 2
      }
     ]
    },
