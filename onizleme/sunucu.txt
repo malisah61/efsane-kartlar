@@ -1,0 +1,35 @@
+Sunucu testi: 33 başarılı, 0 hatalı
+
+[OK]   kullanıcı adı müsait mi (yeni): true
+[OK]   kullanıcı adı müsait mi (alınmış): false
+[OK]   yanlış şifreyle giriş reddedilmeli: reddedildi → Kullanıcı adı veya şifre hatalı
+[OK]   giriş 2 (kullanıcı adıyla): TestBot2 aaaaaaaa-0000-4000-8000-000000000002
+[OK]   bulut kaydı + savunma (2): YOK
+[OK]   giriş 1 (e-postayla): TestBot1
+[OK]   bulut kaydı + savunma (1): ok
+[OK]   ben: {"guc":0,"id":"aaaaaaaa-0000-4000-8000-000000000001","ikili_puan":0,"istek_sayisi":0,"kullanici_adi":"TestBot1","kupa":0,"lonca_ad":null,"lonca_etiket":null,"lonca_id":null,"lonca_rutbe":null,"odul_sayisi":0,"saldiri_sayisi":0}
+[OK]   oyuncu ara: 1 sonuç, TestBot2=aaaaaaaa-0000-4000-8000-000000000002
+[OK]   profil: TestBot2
+[OK]   arkadaş isteği: gonderildi
+[OK]   lonca kur: 2
+[OK]   lonca mesajı: 3
+[OK]   gerçek rakip bul: 0 rakip
+[OK]   arena sonucu (gerçek oyuncu): {"kupa":18,"kupa_degisim":18}
+[OK]   arena sonucu (bot): {"kupa":44,"kupa_degisim":26}
+[OK]   sıralama dünya: 2 satır
+[OK]   sıralama haftalık: [{"ad":"TestBot1","ben":true,"etiket":"TST","guc":0,"id":"aaaaaaaa-0000-4000-8000-000000000001","puan":44,"sira":1}]
+[OK]   benim sıram (ay): {"puan":44,"sira":1}
+[OK]   ikili rastgele (1): bekliyor
+[OK]   giriş 2 tekrar: TestBot2
+[OK]   arkadaşlarım (gelen istek): [{"ad":"TestBot1","cevrimici":true,"durum":"gelen","guc":0,"id":"aaaaaaaa-0000-4000-8000-000000000001","kupa":44,"okunmamis":0}]
+[OK]   isteği kabul: ok
+[OK]   birebir mesaj (küfür filtresi): 4
+[OK]   mesajları getir: [{"ad":"TestBot2","benim":true,"gonderen":"aaaaaaaa-0000-4000-8000-000000000002","id":4,"metin":"selam *** nasılsın","zaman":"2026-11-17T13:54:52.319606+00:00"}]
+[OK]   loncaya katıl: {"aciklama":"deneme","ad":"TestLonca","etiket":"TST","id":2,"min_kupa":0,"puan":44,"uyeler":[{"ad":"TestBot1","cevrimici":true,"guc":0,"haftalik":44,"id":"aaaaaaaa-0000-4000-8000-000000000001","kupa":44,"rutbe":"lider"},{"ad":"TestBot2","cevrimici":true,"guc":0,"haftalik":0,"id":"aaaaaaaa-0000-4000-8000-000000000002","kupa":0,"rutbe":"uye"}]}
+[OK]   lonca sohbeti oku: 1 mesaj
+[OK]   ikili rastgele (2) → eşleşme: eslesti
+[OK]   ikili takımım: hazir
+[OK]   savunma kayıtları: [{"ad":"TestBot1","kazandi":true,"kupa_degisim":18,"tur":"arena","zaman":"2026-11-17T13:54:45.568502+00:00"}]
+[OK]   sıralama lonca: [{"ad":"TestLonca","ben":true,"etiket":"TST","guc":0,"id":"2","puan":44,"sira":1}]
+[OK]   engelle + mesaj reddi: engellendi
+[OK]   oturumsuz korumalı çağrı reddedilmeli: reddedildi → Oturumun sona erdi, tekrar giriş yap.
