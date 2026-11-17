@@ -59,7 +59,7 @@ public static class Kayit
 
 	public const int ElmasCekimFiyat = 300;
 	public const int ElmasOnluFiyat = 2700;
-	public const int EfsaneviGaranti = 40;
+	public const int EfsaneviGaranti = 30;
 	public const int ArenaGunlukHak = 5;
 	public const int ArenaEkHakFiyat = 50;
 	public const int EnerjiMax = 60;
@@ -77,10 +77,10 @@ public static class Kayit
 
 	public static readonly (string ad, Func<Profil, int> ilerleme, int hedef, int elmas)[] Gorevler =
 	{
-		("5 hikâye savaşı yap", p => p.GunlukHikaye, 5, 20),
-		("3 arena savaşı yap", p => p.ArenaGunlukSavas, 3, 20),
-		("1 kart çağır", p => p.GunlukCekim, 1, 10),
-		("2 kez kart yükselt", p => p.GunlukYukseltme, 2, 10),
+		("5 hikâye savaşı yap", p => p.GunlukHikaye, 5, 30),
+		("3 arena savaşı yap", p => p.ArenaGunlukSavas, 3, 30),
+		("1 kart çağır", p => p.GunlukCekim, 1, 20),
+		("2 kez kart yükselt", p => p.GunlukYukseltme, 2, 20),
 	};
 
 	// ------------------------------------------------------------ kaydet / yükle
@@ -173,7 +173,7 @@ public static class Kayit
 
 	public static void YeniOyun()
 	{
-		P = new Profil { Altin = 1500, Elmas = 300, Parsomen = 3, Enerji = EnerjiMax, EnerjiZaman = Simdi(), Sezon = Rakipler.Hafta() };
+		P = new Profil { Altin = 3000, Elmas = 2700, Parsomen = 3, Enerji = EnerjiMax, EnerjiZaman = Simdi(), Sezon = Rakipler.Hafta() };
 		foreach (var id in new[] { "akinci", "bahadir", "kam", "siren", "berserker", "medusa" }) KartEkle(id);
 		P.Takim = new List<string> { "bahadir", "akinci", "medusa", "siren", "kam" };
 		GunKontrol();
@@ -281,7 +281,7 @@ public static class Kayit
 		int elmas = Rakipler.SezonOdulu(sira);
 		int eski = P.Kupa;
 		P.Elmas += elmas;
-		if (P.Kupa > 400) P.Kupa = 400 + (P.Kupa - 400) / 2;
+		if (P.Kupa > 400) P.Kupa = 400 + (P.Kupa - 400) * 3 / 4;
 		P.Sezon = h;
 		Kaydet();
 		return (sira, elmas, eski);
@@ -300,7 +300,7 @@ public static class Kayit
 	}
 
 	public static int MaxSeviye(int yildiz) => 10 + 10 * yildiz;     // 1★:20 … 5★:60
-	public static int SeviyeMaliyet(int seviye) => (int)(Math.Round(100 * Math.Pow(seviye, 1.7) / 10.0) * 10);
+	public static int SeviyeMaliyet(int seviye) => (int)(Math.Round(20 * Math.Pow(seviye, 1.5) / 10.0) * 10);
 	public static int YildizKopya(int yildiz) => yildiz switch { 1 => 2, 2 => 4, 3 => 8, 4 => 12, _ => 999 };
 
 	public static bool SeviyeAtlat(SahipKart k)

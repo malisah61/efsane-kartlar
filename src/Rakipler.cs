@@ -30,7 +30,7 @@ public static class Rakipler
 	public static string BolumAd(int asama) => BolumAdlari[Math.Clamp((asama - 1) / BolumBasina, 0, BolumAdlari.Length - 1)];
 	public static bool BossAsamasi(int asama) => asama % BolumBasina == 0;
 
-	public static int AsamaSeviye(int asama) => Math.Max(1, (int)MathF.Round((asama - 1) * 0.85f));
+	public static int AsamaSeviye(int asama) => Math.Max(1, (int)MathF.Round((asama - 1) * 0.75f));
 	public static int AsamaDusmanSayisi(int asama) => asama <= 2 ? 3 : asama <= 5 ? 4 : 5;
 
 	public static List<TakimUyesi> AsamaTakimi(int asama)
@@ -56,7 +56,7 @@ public static class Rakipler
 			if (havuz.Count == 0) havuz = Veri.Kartlar.Where(k => k.Nadirlik == nad && !kullanilan.Contains(k.Id)).ToList();
 			var k = havuz[r.Aralik(havuz.Count)];
 			kullanilan.Add(k.Id);
-			int yildiz = 1 + Math.Min(4, asama / 15);
+			int yildiz = 1 + Math.Min(2, asama / 20);
 			takim.Add(new TakimUyesi(k.Id, Math.Min(sev, Kayit.MaxSeviye(yildiz)), yildiz));
 		}
 		return takim;
@@ -64,9 +64,9 @@ public static class Rakipler
 
 	public static (int altin, int elmas, int parsomen) AsamaOdulu(int asama, bool ilkKez)
 	{
-		int altin = 120 + asama * 20;
-		if (!ilkKez) return (altin / 2, 0, 0);
-		return (altin, BossAsamasi(asama) ? 50 : 10, asama % 3 == 0 ? 1 : 0);
+		int altin = 150 + asama * 40;
+		if (!ilkKez) return (altin * 7 / 10, 0, 0);
+		return (altin, BossAsamasi(asama) ? 100 : 20, asama % 3 == 0 ? 1 : 0);
 	}
 
 	/// <summary>Bölümün arka planı (mitoloji teması).</summary>
@@ -102,7 +102,7 @@ public static class Rakipler
 		int guc = Math.Max(400, Kayit.TakimGucu());
 		var r = new Rng((ulong)(hafta * 7919 + p.ArenaYenileme * 977 + p.ArenaGalibiyet * 131 + p.ArenaMaglubiyet * 17 + 5));
 		var l = new List<ArenaRakip>();
-		float[] oran = { 0.82f, 1.0f, 1.18f };
+		float[] oran = { 0.75f, 0.92f, 1.1f };
 		(int, int)[] aralik = { (-250, -30), (-40, 60), (50, 300) };
 		var kullanilan = new HashSet<string>();
 		for (int z = 0; z < 3; z++)

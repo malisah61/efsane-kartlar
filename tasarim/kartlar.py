@@ -21,12 +21,12 @@ Hedefler: tek, tum, arka, en_zayif, rastgele(adet), son (önceki hasarın hedefl
 import json, os, hashlib
 
 MITOLOJI = {"turk": "Türk", "yunan": "Yunan", "iskandinav": "İskandinav", "misir": "Mısır"}
-NADIRLIK = {"siradan": 1.00, "nadir": 1.15, "epik": 1.32, "efsanevi": 1.45}
+NADIRLIK = {"siradan": 1.00, "nadir": 1.15, "epik": 1.32, "efsanevi": 1.38}
 SINIF = {  # can, saldırı, savunma, hız
     "tank":    (1200, 62, 60, 92),
     "savasci": (820, 112, 34, 112),
     "buyucu":  (660, 120, 24, 100),
-    "destek":  (760, 74, 34, 106),
+    "destek":  (820, 80, 38, 108),
 }
 
 def H(hedef, carpan, **k): return {"tip": "hasar", "hedef": hedef, "carpan": carpan, **k}
@@ -46,7 +46,7 @@ K_ = [
      [H("tum", 1.25), Y("tum", 0.2, 2), E("tum_dost", 10)],
      "Turkic sky god Ulgen, old man with long white beard, glowing golden sun crown, blue robes, fire in hands"),
     ("asena", "Asena", "turk", "epik", "savasci", "doga", "Bozkurt Pençesi",
-     [H("en_zayif", 2.6, can_cal=0.3)],
+     [H("en_zayif", 2.3, can_cal=0.25)],
      "Asena the grey she-wolf warrior woman, wolf pelt hood, twin curved swords, fierce yellow eyes"),
     ("umay", "Umay Ana", "turk", "epik", "destek", "su", "Kutsal Koruma",
      [I("tum_dost", 1.4), K("tum_dost", 0.10, 2)],
@@ -120,7 +120,7 @@ K_ = [
      [H("tum", 1.15), Z("tum", 0.25, 2), G("tum_dost", 0.15, 2)],
      "Norse god Odin, one-eyed old king with eyepatch, long grey beard, winged helmet, spear Gungnir, raven"),
     ("thor", "Thor", "iskandinav", "epik", "savasci", "ates", "Mjölnir",
-     [H("tek", 2.2), H("tum", 0.7), S("son", 0.25, 1)],
+     [H("tek", 1.9), H("tum", 0.55), S("son", 0.2, 1)],
      "Norse god Thor, red beard, winged helmet, holding hammer Mjolnir with lightning"),
     ("freya", "Freya", "iskandinav", "epik", "destek", "doga", "Altın Gözyaşı",
      [I("tum_dost", 1.2), E("tum_dost", 25)],
