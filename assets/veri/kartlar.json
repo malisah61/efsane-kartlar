@@ -57,7 +57,7 @@
      {
       "tip": "hasar",
       "hedef": "en_zayif",
-      "carpan": 2.3,
+      "carpan": 2.2,
       "can_cal": 0.25
      }
     ]
@@ -115,13 +115,19 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.3
+      "carpan": 1.5
      },
      {
       "tip": "sersemlet",
       "hedef": "son",
-      "sans": 0.6,
+      "sans": 0.8,
       "tur": 1
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.25,
+      "tur": 2
      }
     ]
    },
@@ -751,12 +757,12 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.9
+      "carpan": 1.8
      },
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 0.55
+      "carpan": 0.5
      },
      {
       "tip": "sersemlet",
@@ -785,12 +791,18 @@
      {
       "tip": "iyilestir",
       "hedef": "tum_dost",
-      "carpan": 1.2
+      "carpan": 1.35
      },
      {
       "tip": "enerji",
       "hedef": "tum_dost",
-      "miktar": 25
+      "miktar": 30
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "tum_dost",
+      "oran": 0.1,
+      "tur": 2
      }
     ]
    },
@@ -1109,7 +1121,7 @@
      {
       "tip": "hasar",
       "hedef": "en_zayif",
-      "carpan": 2.4,
+      "carpan": 2.25,
       "can_cal": 0.25
      },
      {

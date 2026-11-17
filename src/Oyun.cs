@@ -774,6 +774,13 @@ public partial class Oyun : Control
 		}, new Color("2f8a57"), 22);
 		rb.Disabled = reklamAlindi;
 		v.AddChild(rb);
+		var tb = Ui.Dugme($"1 parşömen  ←  {Kayit.AltinParsomenFiyat:N0} altın  (bugün {Kayit.TakasKalan} hak)", () =>
+		{
+			if (Kayit.AltinlaParsomen()) { Ses.Efekt("para"); PencereKapat(); Yenile(); MagazaPenceresi(); Mesaj("+1 parşömen"); }
+			else Mesaj("Yeterli altın yok");
+		}, new Color("8a6a2f"), 20);
+		tb.Disabled = Kayit.TakasKalan <= 0 || p.Altin < Kayit.AltinParsomenFiyat;
+		v.AddChild(tb);
 		v.AddChild(Ui.Dugme("5.000 altın  ←  100 elmas", () =>
 		{
 			if (p.Elmas < 100) { Mesaj("Yeterli elmas yok"); return; }

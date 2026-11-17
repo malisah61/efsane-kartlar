@@ -91,6 +91,8 @@ public static class Rakipler
 	{
 		>= 2500 => "Efsane", >= 1600 => "Elmas", >= 900 => "Altın", >= 400 => "Gümüş", _ => "Bronz"
 	};
+	/// <summary>O kupadaki tipik oyuncunun takım gücü (Bronz ~2.500 → Efsane ~12.500).</summary>
+	public static float KupaGucu(int kupa) => 2500f + 4f * Math.Max(0, kupa);
 	public static int LigSira(int kupa) => kupa >= 2500 ? 4 : kupa >= 1600 ? 3 : kupa >= 900 ? 2 : kupa >= 400 ? 1 : 0;
 	public static int SonrakiLigKupa(int kupa) => kupa < 400 ? 400 : kupa < 900 ? 900 : kupa < 1600 ? 1600 : kupa < 2500 ? 2500 : 0;
 
@@ -103,9 +105,9 @@ public static class Rakipler
 		int guc = Math.Max(400, Kayit.TakimGucu());
 		var r = new Rng((ulong)(hafta * 7919 + p.ArenaYenileme * 977 + p.ArenaGalibiyet * 131 + p.ArenaMaglubiyet * 17 + 5));
 		var l = new List<ArenaRakip>();
-		// üst liglerde rakipler daha hazırlıklı
-		float ligCarpani = 1f + 0.07f * LigSira(p.Kupa);
-		float[] oran = { 0.8f * ligCarpani, 1.0f * ligCarpani, 1.15f * ligCarpani };
+		// Rakibin gücü: kendi gücün ile o kupadaki oyuncuların beklenen gücünün karışımı.
+		// Böylece güçlenen oyuncu yukarı tırmanır, ama üst liglerde rakipler de güçlüdür.
+		float[] oran = { 0.85f, 1.0f, 1.12f };
 		(int, int)[] aralik = { (-250, -30), (-40, 60), (50, 300) };
 		var kullanilan = new HashSet<string>();
 		for (int z = 0; z < 3; z++)
@@ -115,7 +117,8 @@ public static class Rakipler
 			var bot = aday[r.Aralik(aday.Count)];
 			kullanilan.Add(bot.Ad);
 			var tr = new Rng(bot.Tohum ^ (ulong)(p.ArenaYenileme * 31 + 1));
-			var takim = HayaletTakim(tr, (int)(guc * oran[z] * (0.96f + 0.08f * tr.Kesir())));
+			int hedef = (int)((0.35f * guc + 0.65f * KupaGucu(bot.Kupa)) * oran[z] * (0.96f + 0.08f * tr.Kesir()));
+			var takim = HayaletTakim(tr, hedef);
 			l.Add(new ArenaRakip { Ad = bot.Ad, Zorluk = z, Takim = takim, Guc = Kayit.TakimGucu(takim), Kupa = bot.Kupa, Tohum = tr.Sonraki() });
 		}
 		return l;

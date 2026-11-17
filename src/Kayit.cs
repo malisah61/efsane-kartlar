@@ -61,6 +61,17 @@ public static class Kayit
 
 	public const int ElmasCekimFiyat = 300;
 	public const int ElmasOnluFiyat = 2700;
+	// Oyun sonu altın harcama yeri: altınla parşömen (günde sınırlı).
+	public const int AltinParsomenFiyat = 25000, GunlukTakasHak = 3;
+	public static int TakasKalan => GunlukTakasHak - P.AlinanGorevler.Count(x => x >= 200 && x < 200 + GunlukTakasHak);
+	public static bool AltinlaParsomen()
+	{
+		if (TakasKalan <= 0 || P.Altin < AltinParsomenFiyat) return false;
+		P.Altin -= AltinParsomenFiyat; P.Parsomen++;
+		P.AlinanGorevler.Add(200 + GunlukTakasHak - TakasKalan);
+		Kaydet();
+		return true;
+	}
 	public const int EfsaneviGaranti = 30;
 	public const int ArenaGunlukHak = 5;
 	public const int ArenaEkHakFiyat = 50;
