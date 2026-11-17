@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using Godot;
 
 namespace EfsaneKartlar;
@@ -71,43 +70,44 @@ public static class Veri
 	public static void Yukle()
 	{
 		if (Kartlar.Count > 0) return;
-		using var f = FileAccess.Open("res://assets/veri/kartlar.json", FileAccess.ModeFlags.Read);
-		YukleMetin(f.GetAsText());
+		YukleMetin(FileAccess.GetFileAsString("res://assets/veri/kartlar.json"));
 	}
 
 	public static void YukleMetin(string json)
 	{
 		Kartlar.Clear(); Harita.Clear(); Mitolojiler.Clear();
-		using var doc = JsonDocument.Parse(json);
-		foreach (var p in doc.RootElement.GetProperty("mitolojiler").EnumerateObject())
-			Mitolojiler[p.Name] = p.Value.GetString();
-		foreach (var k in doc.RootElement.GetProperty("kartlar").EnumerateArray())
+		var kok = Json.ParseString(json).AsGodotDictionary();
+		foreach (var (k, v) in kok["mitolojiler"].AsGodotDictionary())
+			Mitolojiler[k.AsString()] = v.AsString();
+		foreach (var kv in kok["kartlar"].AsGodotArray())
 		{
+			var k = kv.AsGodotDictionary();
 			var t = new KartTanim
 			{
-				Id = k.GetProperty("id").GetString(),
-				Ad = k.GetProperty("ad").GetString(),
-				Mitoloji = k.GetProperty("mitoloji").GetString(),
-				Nadirlik = k.GetProperty("nadirlik").GetString(),
-				Sinif = k.GetProperty("sinif").GetString(),
-				Element = k.GetProperty("element").GetString(),
-				Can = k.GetProperty("can").GetSingle(),
-				Saldiri = k.GetProperty("saldiri").GetSingle(),
-				Savunma = k.GetProperty("savunma").GetSingle(),
-				Hiz = k.GetProperty("hiz").GetSingle(),
+				Id = k["id"].AsString(),
+				Ad = k["ad"].AsString(),
+				Mitoloji = k["mitoloji"].AsString(),
+				Nadirlik = k["nadirlik"].AsString(),
+				Sinif = k["sinif"].AsString(),
+				Element = k["element"].AsString(),
+				Can = k["can"].AsSingle(),
+				Saldiri = k["saldiri"].AsSingle(),
+				Savunma = k["savunma"].AsSingle(),
+				Hiz = k["hiz"].AsSingle(),
 			};
-			var u = k.GetProperty("ulti");
-			t.UltiAd = u.GetProperty("ad").GetString();
-			foreach (var e in u.GetProperty("etkiler").EnumerateArray())
+			var u = k["ulti"].AsGodotDictionary();
+			t.UltiAd = u["ad"].AsString();
+			foreach (var ev in u["etkiler"].AsGodotArray())
 			{
-				var et = new Etki { Tip = e.GetProperty("tip").GetString(), Hedef = e.GetProperty("hedef").GetString() };
-				if (e.TryGetProperty("carpan", out var v)) et.Carpan = v.GetSingle();
-				if (e.TryGetProperty("oran", out v)) et.Oran = v.GetSingle();
-				if (e.TryGetProperty("sans", out v)) et.Sans = v.GetSingle();
-				if (e.TryGetProperty("can_cal", out v)) et.CanCal = v.GetSingle();
-				if (e.TryGetProperty("tur", out v)) et.Tur = v.GetInt32();
-				if (e.TryGetProperty("adet", out v)) et.Adet = v.GetInt32();
-				if (e.TryGetProperty("miktar", out v)) et.Miktar = v.GetInt32();
+				var e = ev.AsGodotDictionary();
+				var et = new Etki { Tip = e["tip"].AsString(), Hedef = e["hedef"].AsString() };
+				if (e.ContainsKey("carpan")) et.Carpan = e["carpan"].AsSingle();
+				if (e.ContainsKey("oran")) et.Oran = e["oran"].AsSingle();
+				if (e.ContainsKey("sans")) et.Sans = e["sans"].AsSingle();
+				if (e.ContainsKey("can_cal")) et.CanCal = e["can_cal"].AsSingle();
+				if (e.ContainsKey("tur")) et.Tur = e["tur"].AsInt32();
+				if (e.ContainsKey("adet")) et.Adet = e["adet"].AsInt32();
+				if (e.ContainsKey("miktar")) et.Miktar = e["miktar"].AsInt32();
 				t.Etkiler.Add(et);
 			}
 			Kartlar.Add(t);

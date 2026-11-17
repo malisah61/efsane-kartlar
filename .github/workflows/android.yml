@@ -59,6 +59,9 @@ jobs:
           tail -60 build/disa_aktar.txt
           ls -la build/android
           test -f build/android/EfsaneKartlar.apk
+          echo "--- APK icindeki .NET derlemeleri:"
+          unzip -l build/android/EfsaneKartlar.apk | grep -iE "\.dll" | head -20
+          unzip -l build/android/EfsaneKartlar.apk | grep -q "EfsaneKartlar.dll" || { echo "HATA: C# derlemesi APK'da yok"; exit 1; }
 
       - name: Hata kaydını depoya yaz
         if: failure()

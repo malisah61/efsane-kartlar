@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using Godot;
 
 namespace EfsaneKartlar;
@@ -72,8 +71,7 @@ public static class Kayit
 		{
 			try
 			{
-				using var f = FileAccess.Open(Yol, FileAccess.ModeFlags.Read);
-				P = JsonSerializer.Deserialize<Profil>(f.GetAsText()) ?? new Profil();
+				P = Coz(FileAccess.GetFileAsString(Yol));
 				P.Kartlar.RemoveAll(k => !Veri.Harita.ContainsKey(k.Id));
 				while (P.Takim.Count < 5) P.Takim.Add(null);
 				for (int i = 0; i < 5; i++) if (P.Takim[i] != null && Sahip(P.Takim[i]) == null) P.Takim[i] = null;
@@ -87,8 +85,58 @@ public static class Kayit
 	public static void Kaydet()
 	{
 		if (KayitKapali) return;
-		using var f = FileAccess.Open(Yol, FileAccess.ModeFlags.Write);
-		f.StoreString(JsonSerializer.Serialize(P));
+		try
+		{
+			using var f = FileAccess.Open(Yol, FileAccess.ModeFlags.Write);
+			f?.StoreString(Json.Stringify(Kodla(P)));
+		}
+		catch (Exception e) { GD.PrintErr("Kayıt yazılamadı: " + e.Message); }
+	}
+
+	// Godot Json ile elle (Android'de yansıma tabanlı serileştirmeye güvenmemek için)
+	static Godot.Collections.Dictionary Kodla(Profil p)
+	{
+		var kartlar = new Godot.Collections.Array();
+		foreach (var k in p.Kartlar)
+			kartlar.Add(new Godot.Collections.Dictionary { ["id"] = k.Id, ["sv"] = k.Seviye, ["y"] = k.Yildiz, ["k"] = k.Kopya });
+		var takim = new Godot.Collections.Array();
+		foreach (var t in p.Takim) takim.Add(t ?? "");
+		var gorev = new Godot.Collections.Array();
+		foreach (var g in p.AlinanGorevler) gorev.Add(g);
+		return new Godot.Collections.Dictionary
+		{
+			["ad"] = p.Ad, ["altin"] = p.Altin, ["elmas"] = p.Elmas, ["parsomen"] = p.Parsomen, ["kupa"] = p.Kupa,
+			["arenaHak"] = p.ArenaHak, ["arenaYenileme"] = p.ArenaYenileme, ["arenaG"] = p.ArenaGalibiyet, ["arenaM"] = p.ArenaMaglubiyet,
+			["enIyiAsama"] = p.EnIyiAsama, ["cekimSayaci"] = p.ElmasCekimSayaci, ["sonGun"] = p.SonGun, ["girisSerisi"] = p.GirisSerisi,
+			["girisAlindi"] = p.GirisOdulAlindi, ["gSavas"] = p.GunlukSavas, ["gCekim"] = p.GunlukCekim, ["gYukseltme"] = p.GunlukYukseltme,
+			["gorevler"] = gorev, ["kartlar"] = kartlar, ["takim"] = takim, ["surum"] = p.SonKayitSurumu,
+		};
+	}
+
+	static Profil Coz(string metin)
+	{
+		var d = Json.ParseString(metin).AsGodotDictionary();
+		int I(string a) => d.ContainsKey(a) ? d[a].AsInt32() : 0;
+		var p = new Profil
+		{
+			Ad = d.ContainsKey("ad") ? d["ad"].AsString() : "Kahraman",
+			Altin = I("altin"), Elmas = I("elmas"), Parsomen = I("parsomen"), Kupa = I("kupa"),
+			ArenaHak = I("arenaHak"), ArenaYenileme = I("arenaYenileme"), ArenaGalibiyet = I("arenaG"), ArenaMaglubiyet = I("arenaM"),
+			EnIyiAsama = I("enIyiAsama"), ElmasCekimSayaci = I("cekimSayaci"),
+			SonGun = d.ContainsKey("sonGun") ? d["sonGun"].AsString() : "", GirisSerisi = I("girisSerisi"),
+			GirisOdulAlindi = d.ContainsKey("girisAlindi") && d["girisAlindi"].AsBool(),
+			GunlukSavas = I("gSavas"), GunlukCekim = I("gCekim"), GunlukYukseltme = I("gYukseltme"), SonKayitSurumu = I("surum"),
+		};
+		if (d.ContainsKey("gorevler")) foreach (var g in d["gorevler"].AsGodotArray()) p.AlinanGorevler.Add(g.AsInt32());
+		if (d.ContainsKey("kartlar"))
+			foreach (var kv in d["kartlar"].AsGodotArray())
+			{
+				var k = kv.AsGodotDictionary();
+				p.Kartlar.Add(new SahipKart { Id = k["id"].AsString(), Seviye = k["sv"].AsInt32(), Yildiz = k["y"].AsInt32(), Kopya = k["k"].AsInt32() });
+			}
+		p.Takim = new List<string>();
+		if (d.ContainsKey("takim")) foreach (var t in d["takim"].AsGodotArray()) { var s = t.AsString(); p.Takim.Add(s == "" ? null : s); }
+		return p;
 	}
 
 	public static void YeniOyun()
@@ -121,7 +169,10 @@ public static class Kayit
 
 	static bool DunMu(string once, string sonra)
 	{
-		return DateTime.TryParse(once, out var a) && DateTime.TryParse(sonra, out var b) && (b - a).TotalDays is > 0.5 and < 1.5;
+		var ci = System.Globalization.CultureInfo.InvariantCulture;
+		return DateTime.TryParseExact(once, "yyyy-MM-dd", ci, System.Globalization.DateTimeStyles.None, out var a)
+			&& DateTime.TryParseExact(sonra, "yyyy-MM-dd", ci, System.Globalization.DateTimeStyles.None, out var b)
+			&& (b - a).TotalDays is > 0.5 and < 1.5;
 	}
 
 	public static (string ad, int altin, int elmas, int parsomen) GirisOdulu => GirisOdulleri[P.GirisSerisi % 7];

@@ -19,3 +19,5 @@
 - Formüller: hasar = Saldırı × çarpan × S/(S+Savunma); element Ateş>Doğa>Su>Ateş (×1.3 / ×0.8); kritik savaşçı %20 diğer %8 (×1.6);
   seviye çarpanı (1+0.07(sv-1))·(1+0.12(yıldız-1)); max seviye 10+10·yıldız; mitoloji uyumu 2/3/4/5 kart → +%5/10/15/20.
 - Yol haritası: `TASARIM.md`.
+- `EfsaneKartlar.sln` silinmemeli: yoksa Android dışa aktarımı C# kodunu APK'ya koymaz ve oyun açılışta kapanır. `android.yml` APK'da `EfsaneKartlar.dll` olduğunu kontrol eder.
+- JSON için `System.Text.Json` değil Godot `Json` kullan (Android'de güvenli).

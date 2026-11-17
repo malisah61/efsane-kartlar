@@ -21,6 +21,19 @@ public partial class Oyun : Control
 	public override void _Ready()
 	{
 		SetAnchorsPreset(LayoutPreset.FullRect);
+		try { Basla(); }
+		catch (Exception e)
+		{
+			GD.PrintErr("BASLATMA HATASI: " + e);
+			foreach (var c in GetChildren()) c.QueueFree();
+			var l = Ui.Etiket("Başlatma hatası:\n" + e.GetType().Name + ": " + e.Message + "\n\n" + e.StackTrace, 18, Colors.White);
+			l.Position = new Vector2(20, 40); l.Size = new Vector2(680, 1200);
+			AddChild(l);
+		}
+	}
+
+	void Basla()
+	{
 		Veri.Yukle();
 		foreach (var arg in OS.GetCmdlineUserArgs())
 		{
