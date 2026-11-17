@@ -30,3 +30,6 @@
 - Ses (`src/Ses.cs`): müzik `assets/ses/muzik/` (CC0, `muzik.yml` indirir; menu, savas1-3, boss), efektler `assets/ses/efekt/` (`tasarim/efekt_sentez.py` üretir),
   karakter replikleri `assets/ses/ses/<kart id>.ogg` + olum_erkek/olum_kadin + anons_basla/zafer/yenilgi (Speko, OpenAI gpt-4o-mini-tts, Türkçe; yeni kart eklerken repliğini de üret, Speko çağrılarını TEK TEK yap).
   Kaynaklar `assets/ses/KREDILER.md`. Ayarlar: Profil.MuzikAcik/EfektAcik (ana sayfadaki düğmeler).
+- Google Play: `play.yml` Godot 4.7.2'ye geçirip gradle ile derler, GodotGooglePlayBilling (kaynaktan) + AdMob v7.0 (`addons/AdmobPlugin`+`GMPShared`) ekler; sırlar PLAY_KEYSTORE_BASE64/PLAY_KEYSTORE_PASSWORD varsa imzalı .aab (`play-surum`), yoksa deneme APK'sı. AdMob uygulama kimliği depo değişkeni ADMOB_APP_ID; birim kimlikleri `src/Reklam.cs` (şimdilik Google test kimlikleri, Gercek=false).
+- Para/reklam: `src/Magaza.cs` ürünler (reklam_kaldir kalıcı/VIP), `src/Odeme.cs` Play Billing, `src/Reklam.cs` ödüllü (elmas/2x altın/enerji/ücretsiz çağrı, günlük hak `Kayit.ReklamHak`) + geçiş reklamı (7 savaşta bir, günün ilk 10 savaşı hariç). Yıldız sınırı 7★ (`Kayit.MaxYildiz`).
+- Ekonomi kontrolü: `onizleme/ilerleme.md` (Simulasyon.cs, 4 bot tipi × 365 gün) ve `onizleme/denge.txt`.
