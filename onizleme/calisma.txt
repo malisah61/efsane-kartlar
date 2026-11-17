@@ -16,4 +16,4 @@ If you want to set size, change the anchors or consider using set_deferred().
      at: _set_size (scene/gui/control.cpp:1448)
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/11_sonuc.png
-ONIZLEME tamam fps=42
+ONIZLEME tamam fps=38
