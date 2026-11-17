@@ -1,0 +1,13 @@
+# sayfa: sol-üst sağ-üst sol-alt sağ-alt
+deneme_2x2.png alp_er_tunga zeus thor anubis
+sayfa01.png ulgen asena umay tepegoz
+sayfa02.png sahmeran dede_korkut demir_alp akinci
+sayfa03.png bahadir kam su_iyesi akhilleus
+sayfa04.png athena apollon medusa herakles
+sayfa05.png minotor asklepios hoplit amazon
+sayfa06.png siren nimf odin freya
+sayfa07.png ymir loki valkur heimdall
+sayfa08.png idun kalkanci berserker volva
+sayfa09_ham.png runa_ustasi ra isis sfenks
+sayfa10.png thoth horus sobek bastet
+sayfa11.png mumya akrep kahin ankh_rahibesi

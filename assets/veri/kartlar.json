@@ -1,0 +1,1404 @@
+{
+ "mitolojiler": {
+  "turk": "Türk",
+  "yunan": "Yunan",
+  "iskandinav": "İskandinav",
+  "misir": "Mısır"
+ },
+ "kartlar": [
+  {
+   "id": "ulgen",
+   "ad": "Ülgen",
+   "mitoloji": "turk",
+   "nadirlik": "efsanevi",
+   "sinif": "buyucu",
+   "element": "ates",
+   "can": 947,
+   "saldiri": 189,
+   "savunma": 35,
+   "hiz": 111,
+   "ulti": {
+    "ad": "Gök Ateşi",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 1.55
+     },
+     {
+      "tip": "yanma",
+      "hedef": "tum",
+      "oran": 0.25,
+      "tur": 2
+     },
+     {
+      "tip": "enerji",
+      "hedef": "tum_dost",
+      "miktar": 15
+     }
+    ]
+   },
+   "tarif": "Turkic sky god Ulgen, old man with long white beard, glowing golden sun crown, blue robes, fire in hands"
+  },
+  {
+   "id": "asena",
+   "ad": "Asena",
+   "mitoloji": "turk",
+   "nadirlik": "epik",
+   "sinif": "savasci",
+   "element": "doga",
+   "can": 1130,
+   "saldiri": 148,
+   "savunma": 46,
+   "hiz": 125,
+   "ulti": {
+    "ad": "Bozkurt Pençesi",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "en_zayif",
+      "carpan": 2.6,
+      "can_cal": 0.3
+     }
+    ]
+   },
+   "tarif": "Asena the grey she-wolf warrior woman, wolf pelt hood, twin curved swords, fierce yellow eyes"
+  },
+  {
+   "id": "umay",
+   "ad": "Umay Ana",
+   "mitoloji": "turk",
+   "nadirlik": "epik",
+   "sinif": "destek",
+   "element": "su",
+   "can": 1065,
+   "saldiri": 99,
+   "savunma": 44,
+   "hiz": 115,
+   "ulti": {
+    "ad": "Kutsal Koruma",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 1.4
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "tum_dost",
+      "oran": 0.1,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Umay mother goddess, kind woman with white veil and silver headdress, glowing blue light, holding a cradle charm"
+  },
+  {
+   "id": "tepegoz",
+   "ad": "Tepegöz",
+   "mitoloji": "turk",
+   "nadirlik": "epik",
+   "sinif": "tank",
+   "element": "doga",
+   "can": 1571,
+   "saldiri": 77,
+   "savunma": 78,
+   "hiz": 95,
+   "ulti": {
+    "ad": "Dev Yumruğu",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.3
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "son",
+      "sans": 0.6,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "Tepegoz one-eyed giant cyclops from Turkish legend, huge brown-skinned brute, single big eye, club, fur loincloth"
+  },
+  {
+   "id": "sahmeran",
+   "ad": "Şahmeran",
+   "mitoloji": "turk",
+   "nadirlik": "nadir",
+   "sinif": "buyucu",
+   "element": "doga",
+   "can": 726,
+   "saldiri": 132,
+   "savunma": 28,
+   "hiz": 100,
+   "ulti": {
+    "ad": "Yılan Zehri",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "rastgele",
+      "carpan": 1.1,
+      "adet": 3
+     },
+     {
+      "tip": "yanma",
+      "hedef": "son",
+      "oran": 0.35,
+      "tur": 3
+     }
+    ]
+   },
+   "tarif": "Sahmeran snake queen, beautiful woman with crown and serpent body, green and gold scales"
+  },
+  {
+   "id": "alp_er_tunga",
+   "ad": "Alp Er Tunga",
+   "mitoloji": "turk",
+   "nadirlik": "nadir",
+   "sinif": "savasci",
+   "element": "ates",
+   "can": 976,
+   "saldiri": 121,
+   "savunma": 42,
+   "hiz": 114,
+   "ulti": {
+    "ad": "Hakan Darbesi",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 2.3
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "kendi",
+      "oran": 0.25,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Alp Er Tunga Turkic khan warrior king, ornate golden helmet, red cape, sword raised"
+  },
+  {
+   "id": "dede_korkut",
+   "ad": "Dede Korkut",
+   "mitoloji": "turk",
+   "nadirlik": "nadir",
+   "sinif": "destek",
+   "element": "su",
+   "can": 887,
+   "saldiri": 86,
+   "savunma": 41,
+   "hiz": 103,
+   "ulti": {
+    "ad": "Kopuz Ezgisi",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "en_zayif_dost",
+      "carpan": 2.4
+     },
+     {
+      "tip": "enerji",
+      "hedef": "tum_dost",
+      "miktar": 20
+     }
+    ]
+   },
+   "tarif": "Dede Korkut old wise bard with long grey beard playing a kopuz lute, blue felt hat"
+  },
+  {
+   "id": "demir_alp",
+   "ad": "Demir Alp",
+   "mitoloji": "turk",
+   "nadirlik": "nadir",
+   "sinif": "tank",
+   "element": "ates",
+   "can": 1477,
+   "saldiri": 67,
+   "savunma": 67,
+   "hiz": 91,
+   "ulti": {
+    "ad": "Demir Kalkan",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.35,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Demir Alp armored Turkic heavy cavalryman, full iron lamellar armor, big round shield"
+  },
+  {
+   "id": "akinci",
+   "ad": "Akıncı",
+   "mitoloji": "turk",
+   "nadirlik": "siradan",
+   "sinif": "savasci",
+   "element": "ates",
+   "can": 848,
+   "saldiri": 108,
+   "savunma": 34,
+   "hiz": 105,
+   "ulti": {
+    "ad": "Akın",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 2.0
+     }
+    ]
+   },
+   "tarif": "Ottoman akinci light cavalry raider, feathered cap, curved sword, red tunic"
+  },
+  {
+   "id": "bahadir",
+   "ad": "Kalkanlı Bahadır",
+   "mitoloji": "turk",
+   "nadirlik": "siradan",
+   "sinif": "tank",
+   "element": "su",
+   "can": 1144,
+   "saldiri": 58,
+   "savunma": 59,
+   "hiz": 93,
+   "ulti": {
+    "ad": "Siper",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 1
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.25,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Turkic shield warrior, blue tunic, large wooden shield with wolf emblem, spear"
+  },
+  {
+   "id": "kam",
+   "ad": "Kam",
+   "mitoloji": "turk",
+   "nadirlik": "siradan",
+   "sinif": "destek",
+   "element": "doga",
+   "can": 798,
+   "saldiri": 69,
+   "savunma": 33,
+   "hiz": 99,
+   "ulti": {
+    "ad": "Davul Ayini",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 0.9
+     }
+    ]
+   },
+   "tarif": "Turkic shaman kam with feathered headdress and frame drum, colorful ribbons"
+  },
+  {
+   "id": "su_iyesi",
+   "ad": "Su İyesi",
+   "mitoloji": "turk",
+   "nadirlik": "siradan",
+   "sinif": "buyucu",
+   "element": "su",
+   "can": 639,
+   "saldiri": 124,
+   "savunma": 25,
+   "hiz": 100,
+   "ulti": {
+    "ad": "Girdap",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "arka",
+      "carpan": 1.25
+     }
+    ]
+   },
+   "tarif": "water spirit iyesi, translucent blue woman made of water with long flowing hair"
+  },
+  {
+   "id": "zeus",
+   "ad": "Zeus",
+   "mitoloji": "yunan",
+   "nadirlik": "efsanevi",
+   "sinif": "buyucu",
+   "element": "ates",
+   "can": 940,
+   "saldiri": 195,
+   "savunma": 37,
+   "hiz": 110,
+   "ulti": {
+    "ad": "Yıldırım Fırtınası",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 1.45
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "tum",
+      "sans": 0.35,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "Greek god Zeus, muscular old king with white beard, golden laurel crown, holding a lightning bolt"
+  },
+  {
+   "id": "akhilleus",
+   "ad": "Akhilleus",
+   "mitoloji": "yunan",
+   "nadirlik": "epik",
+   "sinif": "savasci",
+   "element": "ates",
+   "can": 1035,
+   "saldiri": 153,
+   "savunma": 45,
+   "hiz": 114,
+   "ulti": {
+    "ad": "Truva Hücumu",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 3.0
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "son",
+      "oran": 0.3,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Achilles Greek hero, bronze crested helmet, round shield, spear, red cape"
+  },
+  {
+   "id": "athena",
+   "ad": "Athena",
+   "mitoloji": "yunan",
+   "nadirlik": "epik",
+   "sinif": "tank",
+   "element": "doga",
+   "can": 1671,
+   "saldiri": 82,
+   "savunma": 74,
+   "hiz": 98,
+   "ulti": {
+    "ad": "Aegis",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "tum_dost",
+      "oran": 0.12,
+      "tur": 2
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "tum_dost",
+      "oran": 0.15,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Athena goddess of war, golden crested helmet, owl emblem shield aegis, spear, white robes"
+  },
+  {
+   "id": "apollon",
+   "ad": "Apollon",
+   "mitoloji": "yunan",
+   "nadirlik": "epik",
+   "sinif": "destek",
+   "element": "ates",
+   "can": 946,
+   "saldiri": 101,
+   "savunma": 48,
+   "hiz": 110,
+   "ulti": {
+    "ad": "Güneş Ezgisi",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 1.25
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "tum_dost",
+      "oran": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Apollo sun god, young man with golden curly hair, laurel wreath, golden lyre, glowing sun"
+  },
+  {
+   "id": "medusa",
+   "ad": "Medusa",
+   "mitoloji": "yunan",
+   "nadirlik": "nadir",
+   "sinif": "buyucu",
+   "element": "doga",
+   "can": 804,
+   "saldiri": 144,
+   "savunma": 26,
+   "hiz": 98,
+   "ulti": {
+    "ad": "Taş Bakış",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.6
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "son",
+      "sans": 0.75,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "Medusa gorgon with snakes for hair, glowing green eyes, scaly skin"
+  },
+  {
+   "id": "herakles",
+   "ad": "Herakles",
+   "mitoloji": "yunan",
+   "nadirlik": "nadir",
+   "sinif": "savasci",
+   "element": "doga",
+   "can": 984,
+   "saldiri": 121,
+   "savunma": 42,
+   "hiz": 119,
+   "ulti": {
+    "ad": "On İki Görev",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 2.1
+     },
+     {
+      "tip": "hasar",
+      "hedef": "rastgele",
+      "carpan": 0.8,
+      "adet": 2
+     }
+    ]
+   },
+   "tarif": "Heracles strong hero wearing a lion pelt as hood, big wooden club, beard"
+  },
+  {
+   "id": "minotor",
+   "ad": "Minotor",
+   "mitoloji": "yunan",
+   "nadirlik": "nadir",
+   "sinif": "tank",
+   "element": "ates",
+   "can": 1326,
+   "saldiri": 70,
+   "savunma": 73,
+   "hiz": 99,
+   "ulti": {
+    "ad": "Labirent Öfkesi",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.2
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "son",
+      "oran": 0.25,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Minotaur bull-headed giant, big horns, double axe, dark red fur"
+  },
+  {
+   "id": "asklepios",
+   "ad": "Asklepios",
+   "mitoloji": "yunan",
+   "nadirlik": "nadir",
+   "sinif": "destek",
+   "element": "su",
+   "can": 864,
+   "saldiri": 83,
+   "savunma": 39,
+   "hiz": 107,
+   "ulti": {
+    "ad": "Şifa Asası",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "en_zayif_dost",
+      "carpan": 2.2
+     },
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 0.5
+     }
+    ]
+   },
+   "tarif": "Asclepius god of medicine, bearded man in white toga holding a staff with a snake"
+  },
+  {
+   "id": "hoplit",
+   "ad": "Hoplit",
+   "mitoloji": "yunan",
+   "nadirlik": "siradan",
+   "sinif": "tank",
+   "element": "su",
+   "can": 1211,
+   "saldiri": 60,
+   "savunma": 63,
+   "hiz": 89,
+   "ulti": {
+    "ad": "Falanks",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 1
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.22,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Greek hoplite soldier, bronze corinthian helmet, big round blue shield, spear"
+  },
+  {
+   "id": "amazon",
+   "ad": "Amazon Okçu",
+   "mitoloji": "yunan",
+   "nadirlik": "siradan",
+   "sinif": "savasci",
+   "element": "doga",
+   "can": 776,
+   "saldiri": 108,
+   "savunma": 32,
+   "hiz": 108,
+   "ulti": {
+    "ad": "Ok Yağmuru",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "rastgele",
+      "carpan": 0.9,
+      "adet": 3
+     }
+    ]
+   },
+   "tarif": "Amazon warrior archer woman, braided hair, leather armor, longbow"
+  },
+  {
+   "id": "siren",
+   "ad": "Siren",
+   "mitoloji": "yunan",
+   "nadirlik": "siradan",
+   "sinif": "buyucu",
+   "element": "su",
+   "can": 631,
+   "saldiri": 122,
+   "savunma": 24,
+   "hiz": 94,
+   "ulti": {
+    "ad": "Büyülü Şarkı",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.5
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "son",
+      "sans": 0.3,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "siren sea creature woman with fins and seaweed hair singing, ocean colors"
+  },
+  {
+   "id": "nimf",
+   "ad": "Nimf",
+   "mitoloji": "yunan",
+   "nadirlik": "siradan",
+   "sinif": "destek",
+   "element": "doga",
+   "can": 744,
+   "saldiri": 74,
+   "savunma": 35,
+   "hiz": 103,
+   "ulti": {
+    "ad": "Orman Nefesi",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "en_zayif_dost",
+      "carpan": 1.9
+     }
+    ]
+   },
+   "tarif": "forest nymph dryad, green skin, leaves in hair, flowers, gentle smile"
+  },
+  {
+   "id": "odin",
+   "ad": "Odin",
+   "mitoloji": "iskandinav",
+   "nadirlik": "efsanevi",
+   "sinif": "buyucu",
+   "element": "su",
+   "can": 1049,
+   "saldiri": 187,
+   "savunma": 38,
+   "hiz": 106,
+   "ulti": {
+    "ad": "Ragnarök Rünleri",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 1.4
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "tum",
+      "oran": 0.3,
+      "tur": 2
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "tum_dost",
+      "oran": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Norse god Odin, one-eyed old king with eyepatch, long grey beard, winged helmet, spear Gungnir, raven"
+  },
+  {
+   "id": "thor",
+   "ad": "Thor",
+   "mitoloji": "iskandinav",
+   "nadirlik": "epik",
+   "sinif": "savasci",
+   "element": "ates",
+   "can": 1073,
+   "saldiri": 138,
+   "savunma": 45,
+   "hiz": 124,
+   "ulti": {
+    "ad": "Mjölnir",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 2.2
+     },
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 0.7
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "son",
+      "sans": 0.25,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "Norse god Thor, red beard, winged helmet, holding hammer Mjolnir with lightning"
+  },
+  {
+   "id": "freya",
+   "ad": "Freya",
+   "mitoloji": "iskandinav",
+   "nadirlik": "epik",
+   "sinif": "destek",
+   "element": "doga",
+   "can": 1009,
+   "saldiri": 96,
+   "savunma": 43,
+   "hiz": 115,
+   "ulti": {
+    "ad": "Altın Gözyaşı",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 1.2
+     },
+     {
+      "tip": "enerji",
+      "hedef": "tum_dost",
+      "miktar": 25
+     }
+    ]
+   },
+   "tarif": "Freya norse goddess, long blonde braided hair, golden necklace, falcon feather cloak"
+  },
+  {
+   "id": "ymir",
+   "ad": "Buz Devi Ymir",
+   "mitoloji": "iskandinav",
+   "nadirlik": "epik",
+   "sinif": "tank",
+   "element": "su",
+   "can": 1602,
+   "saldiri": 84,
+   "savunma": 84,
+   "hiz": 104,
+   "ulti": {
+    "ad": "Buzul Duvarı",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.45,
+      "tur": 2
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "tum",
+      "sans": 0.2,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "frost giant Ymir, huge pale blue giant with icicle beard and ice armor"
+  },
+  {
+   "id": "loki",
+   "ad": "Loki",
+   "mitoloji": "iskandinav",
+   "nadirlik": "nadir",
+   "sinif": "buyucu",
+   "element": "ates",
+   "can": 725,
+   "saldiri": 147,
+   "savunma": 29,
+   "hiz": 100,
+   "ulti": {
+    "ad": "Hile Ateşi",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "rastgele",
+      "carpan": 1.2,
+      "adet": 3
+     },
+     {
+      "tip": "yanma",
+      "hedef": "son",
+      "oran": 0.3,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Loki trickster god, sly grin, horned green and gold helmet, green flames in hand"
+  },
+  {
+   "id": "valkur",
+   "ad": "Valkür",
+   "mitoloji": "iskandinav",
+   "nadirlik": "nadir",
+   "sinif": "savasci",
+   "element": "su",
+   "can": 886,
+   "saldiri": 120,
+   "savunma": 39,
+   "hiz": 116,
+   "ulti": {
+    "ad": "Kanatlı Hüküm",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "en_zayif",
+      "carpan": 2.3
+     }
+    ]
+   },
+   "tarif": "Valkyrie warrior maiden, winged helmet, silver armor, spear, white wings"
+  },
+  {
+   "id": "heimdall",
+   "ad": "Heimdall",
+   "mitoloji": "iskandinav",
+   "nadirlik": "nadir",
+   "sinif": "tank",
+   "element": "doga",
+   "can": 1286,
+   "saldiri": 69,
+   "savunma": 73,
+   "hiz": 97,
+   "ulti": {
+    "ad": "Gjallarhorn",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "tum_dost",
+      "oran": 0.08,
+      "tur": 2
+     },
+     {
+      "tip": "enerji",
+      "hedef": "tum_dost",
+      "miktar": 15
+     }
+    ]
+   },
+   "tarif": "Heimdall guardian god, golden armor, holding the horn Gjallarhorn, rainbow bridge glow"
+  },
+  {
+   "id": "idun",
+   "ad": "Idun",
+   "mitoloji": "iskandinav",
+   "nadirlik": "nadir",
+   "sinif": "destek",
+   "element": "su",
+   "can": 899,
+   "saldiri": 87,
+   "savunma": 41,
+   "hiz": 112,
+   "ulti": {
+    "ad": "Ölümsüzlük Elması",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 0.9
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "en_zayif_dost",
+      "oran": 0.15,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Idun goddess with golden apples basket, flower crown, spring green dress"
+  },
+  {
+   "id": "kalkanci",
+   "ad": "Viking Kalkancı",
+   "mitoloji": "iskandinav",
+   "nadirlik": "siradan",
+   "sinif": "tank",
+   "element": "ates",
+   "can": 1281,
+   "saldiri": 58,
+   "savunma": 59,
+   "hiz": 98,
+   "ulti": {
+    "ad": "Kalkan Duvarı",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 1
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.25,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "viking shield warrior, horned-free iron helmet, red and white round shield, axe, braided beard"
+  },
+  {
+   "id": "berserker",
+   "ad": "Berserker",
+   "mitoloji": "iskandinav",
+   "nadirlik": "siradan",
+   "sinif": "savasci",
+   "element": "ates",
+   "can": 772,
+   "saldiri": 119,
+   "savunma": 32,
+   "hiz": 118,
+   "ulti": {
+    "ad": "Kudurma",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.7
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "kendi",
+      "oran": 0.3,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "viking berserker wearing a bear pelt, wild eyes, two axes, war paint"
+  },
+  {
+   "id": "volva",
+   "ad": "Völva",
+   "mitoloji": "iskandinav",
+   "nadirlik": "siradan",
+   "sinif": "buyucu",
+   "element": "doga",
+   "can": 669,
+   "saldiri": 114,
+   "savunma": 24,
+   "hiz": 106,
+   "ulti": {
+    "ad": "Kehanet",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.3
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "son",
+      "oran": 0.25,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "norse seeress volva, hooded cloak, staff with runes, glowing eyes"
+  },
+  {
+   "id": "runa_ustasi",
+   "ad": "Rün Ustası",
+   "mitoloji": "iskandinav",
+   "nadirlik": "siradan",
+   "sinif": "destek",
+   "element": "doga",
+   "can": 752,
+   "saldiri": 74,
+   "savunma": 36,
+   "hiz": 103,
+   "ulti": {
+    "ad": "Koruma Rünü",
+    "etkiler": [
+     {
+      "tip": "kalkan",
+      "hedef": "en_zayif_dost",
+      "oran": 0.2,
+      "tur": 2
+     },
+     {
+      "tip": "iyilestir",
+      "hedef": "en_zayif_dost",
+      "carpan": 0.8
+     }
+    ]
+   },
+   "tarif": "viking rune master, bald tattooed head, carved rune stones glowing blue"
+  },
+  {
+   "id": "ra",
+   "ad": "Ra",
+   "mitoloji": "misir",
+   "nadirlik": "efsanevi",
+   "sinif": "buyucu",
+   "element": "ates",
+   "can": 959,
+   "saldiri": 174,
+   "savunma": 35,
+   "hiz": 114,
+   "ulti": {
+    "ad": "Güneş Diski",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 1.35
+     },
+     {
+      "tip": "yanma",
+      "hedef": "tum",
+      "oran": 0.3,
+      "tur": 3
+     }
+    ]
+   },
+   "tarif": "Egyptian sun god Ra, falcon head with a glowing sun disk crown, gold collar, staff"
+  },
+  {
+   "id": "anubis",
+   "ad": "Anubis",
+   "mitoloji": "misir",
+   "nadirlik": "epik",
+   "sinif": "savasci",
+   "element": "su",
+   "can": 1069,
+   "saldiri": 145,
+   "savunma": 42,
+   "hiz": 128,
+   "ulti": {
+    "ad": "Ruh Terazisi",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "en_zayif",
+      "carpan": 2.4,
+      "can_cal": 0.25
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "son",
+      "oran": 0.3,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Egyptian god Anubis, black jackal head, gold collar and armlets, was-scepter"
+  },
+  {
+   "id": "isis",
+   "ad": "İsis",
+   "mitoloji": "misir",
+   "nadirlik": "epik",
+   "sinif": "destek",
+   "element": "su",
+   "can": 985,
+   "saldiri": 95,
+   "savunma": 47,
+   "hiz": 122,
+   "ulti": {
+    "ad": "Hayat Nefesi",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 1.3
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "tum_dost",
+      "oran": 0.08,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Egyptian goddess Isis, colorful outstretched wings, throne headdress, gold jewelry"
+  },
+  {
+   "id": "sfenks",
+   "ad": "Sfenks",
+   "mitoloji": "misir",
+   "nadirlik": "epik",
+   "sinif": "tank",
+   "element": "doga",
+   "can": 1532,
+   "saldiri": 87,
+   "savunma": 75,
+   "hiz": 104,
+   "ulti": {
+    "ad": "Bilmece",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.3,
+      "tur": 2
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "tum",
+      "sans": 0.25,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "Sphinx creature with lion body and pharaoh head with nemes headdress, sandstone"
+  },
+  {
+   "id": "thoth",
+   "ad": "Thoth",
+   "mitoloji": "misir",
+   "nadirlik": "nadir",
+   "sinif": "buyucu",
+   "element": "su",
+   "can": 725,
+   "saldiri": 139,
+   "savunma": 27,
+   "hiz": 103,
+   "ulti": {
+    "ad": "Bilgelik Yazısı",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "arka",
+      "carpan": 1.4
+     },
+     {
+      "tip": "enerji",
+      "hedef": "tum_dost",
+      "miktar": 10
+     }
+    ]
+   },
+   "tarif": "Egyptian god Thoth with ibis bird head, holding a scroll and reed pen, blue glow"
+  },
+  {
+   "id": "horus",
+   "ad": "Horus",
+   "mitoloji": "misir",
+   "nadirlik": "nadir",
+   "sinif": "savasci",
+   "element": "ates",
+   "can": 999,
+   "saldiri": 129,
+   "savunma": 38,
+   "hiz": 110,
+   "ulti": {
+    "ad": "Şahin Dalışı",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 2.2
+     },
+     {
+      "tip": "hasar",
+      "hedef": "rastgele",
+      "carpan": 0.6,
+      "adet": 1
+     }
+    ]
+   },
+   "tarif": "Egyptian god Horus with falcon head, double crown, khopesh sword"
+  },
+  {
+   "id": "sobek",
+   "ad": "Sobek",
+   "mitoloji": "misir",
+   "nadirlik": "nadir",
+   "sinif": "tank",
+   "element": "su",
+   "can": 1421,
+   "saldiri": 76,
+   "savunma": 71,
+   "hiz": 97,
+   "ulti": {
+    "ad": "Nil Çenesi",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.1,
+      "can_cal": 0.5
+     }
+    ]
+   },
+   "tarif": "Egyptian god Sobek with crocodile head, green scales, gold armor, spear"
+  },
+  {
+   "id": "bastet",
+   "ad": "Bastet",
+   "mitoloji": "misir",
+   "nadirlik": "nadir",
+   "sinif": "destek",
+   "element": "doga",
+   "can": 849,
+   "saldiri": 89,
+   "savunma": 39,
+   "hiz": 116,
+   "ulti": {
+    "ad": "Kedi Lütfu",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 0.8
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "tum_dost",
+      "oran": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Egyptian goddess Bastet with black cat head, gold earrings, sistrum instrument"
+  },
+  {
+   "id": "mumya",
+   "ad": "Mumya",
+   "mitoloji": "misir",
+   "nadirlik": "siradan",
+   "sinif": "tank",
+   "element": "doga",
+   "can": 1119,
+   "saldiri": 63,
+   "savunma": 60,
+   "hiz": 97,
+   "ulti": {
+    "ad": "Lanetli Sargı",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 1
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.2,
+      "tur": 2
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "tum",
+      "oran": 0.1,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "mummy wrapped in old bandages with glowing green eyes"
+  },
+  {
+   "id": "akrep",
+   "ad": "Akrep Savaşçısı",
+   "mitoloji": "misir",
+   "nadirlik": "siradan",
+   "sinif": "savasci",
+   "element": "doga",
+   "can": 791,
+   "saldiri": 114,
+   "savunma": 36,
+   "hiz": 115,
+   "ulti": {
+    "ad": "Zehirli İğne",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.6
+     },
+     {
+      "tip": "yanma",
+      "hedef": "son",
+      "oran": 0.25,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "scorpion warrior, man with scorpion tail and pincers, bronze armor"
+  },
+  {
+   "id": "kahin",
+   "ad": "Nil Kâhini",
+   "mitoloji": "misir",
+   "nadirlik": "siradan",
+   "sinif": "buyucu",
+   "element": "ates",
+   "can": 700,
+   "saldiri": 113,
+   "savunma": 23,
+   "hiz": 93,
+   "ulti": {
+    "ad": "Kum Fırtınası",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 0.75
+     }
+    ]
+   },
+   "tarif": "Egyptian priest mage with shaved head, gold collar, glowing hieroglyphs, staff"
+  },
+  {
+   "id": "ankh_rahibesi",
+   "ad": "Ankh Rahibesi",
+   "mitoloji": "misir",
+   "nadirlik": "siradan",
+   "sinif": "destek",
+   "element": "ates",
+   "can": 795,
+   "saldiri": 78,
+   "savunma": 32,
+   "hiz": 110,
+   "ulti": {
+    "ad": "Ankh Işığı",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 0.85
+     }
+    ]
+   },
+   "tarif": "Egyptian priestess holding a glowing ankh, black bob hair, white linen dress"
+  }
+ ]
+}
