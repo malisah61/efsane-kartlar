@@ -251,6 +251,15 @@ public partial class Sunucu : Node
 		await _ben.GirisSonrasi(true);
 	}
 
+	/// <summary>Hesabı ve sunucudaki tüm verileri kalıcı olarak siler.</summary>
+	public static async Task HesabiSil()
+	{
+		await JetonTazele();
+		var (k, metin) = await _ben.Istek("/functions/v1/hesap_sil", HttpClient.Method.Post, "{}", true);
+		if (k != 200) throw new SunucuHatasi(HataCevir(metin, k));
+		Cikis();
+	}
+
 	public static async Task SifreSifirla(string eposta)
 	{
 		var (kod, metin) = await _ben.Istek("/auth/v1/recover", HttpClient.Method.Post,
