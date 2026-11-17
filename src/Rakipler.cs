@@ -64,9 +64,21 @@ public static class Rakipler
 
 	public static (int altin, int elmas, int parsomen) AsamaOdulu(int asama, bool ilkKez)
 	{
-		int altin = 200 + asama * 40;
+		int altin = 120 + asama * 20;
 		if (!ilkKez) return (altin / 2, 0, 0);
-		return (altin, BossAsamasi(asama) ? 100 : 25, asama % 3 == 0 ? 1 : 0);
+		return (altin, BossAsamasi(asama) ? 50 : 10, asama % 3 == 0 ? 1 : 0);
+	}
+
+	/// <summary>Bölümün arka planı (mitoloji teması).</summary>
+	public static string BolumArka(int asama) => ((asama - 1) / BolumBasina) switch
+	{
+		0 or 7 => "turk", 1 or 4 or 8 => "yunan", 2 or 5 or 9 => "iskandinav", _ => "misir"
+	};
+
+	public static string TakimArka(IEnumerable<TakimUyesi> t)
+	{
+		var g = t.Where(u => u != null && Veri.Harita.ContainsKey(u.Id)).GroupBy(u => Veri.Harita[u.Id].Mitoloji).OrderByDescending(x => x.Count()).FirstOrDefault();
+		return g?.Key ?? "turk";
 	}
 
 	// ------------------------------------------------------------ arena
@@ -81,23 +93,27 @@ public static class Rakipler
 	};
 	public static int SonrakiLigKupa(int kupa) => kupa < 400 ? 400 : kupa < 900 ? 900 : kupa < 1600 ? 1600 : kupa < 2500 ? 2500 : 0;
 
+	/// <summary>Rakipler sıralamadaki gerçek "komşu" oyunculardır: biri altta, biri yakında, biri üstte.</summary>
 	public static List<ArenaRakip> ArenaRakipleri()
 	{
 		var p = Kayit.P;
-		int gun = DateTime.Now.DayOfYear + DateTime.Now.Year * 400;
-		ulong tohum = (ulong)(gun * 31 + p.ArenaYenileme * 977 + p.ArenaGalibiyet * 131 + p.ArenaMaglubiyet * 17 + 5);
-		var r = new Rng(tohum);
+		int hafta = Hafta();
+		var botlar = Botlar(hafta, HaftaIlerleme());
 		int guc = Math.Max(400, Kayit.TakimGucu());
+		var r = new Rng((ulong)(hafta * 7919 + p.ArenaYenileme * 977 + p.ArenaGalibiyet * 131 + p.ArenaMaglubiyet * 17 + 5));
 		var l = new List<ArenaRakip>();
 		float[] oran = { 0.82f, 1.0f, 1.18f };
+		(int, int)[] aralik = { (-250, -30), (-40, 60), (50, 300) };
+		var kullanilan = new HashSet<string>();
 		for (int z = 0; z < 3; z++)
 		{
-			var takim = HayaletTakim(r, (int)(guc * oran[z] * (0.96f + 0.08f * r.Kesir())));
-			l.Add(new ArenaRakip
-			{
-				Ad = BotAdi(r), Zorluk = z, Takim = takim, Guc = Kayit.TakimGucu(takim),
-				Kupa = Math.Max(0, p.Kupa + (z - 1) * 60 + r.Aralik(40) - 20), Tohum = r.Sonraki(),
-			});
+			var aday = botlar.Where(b => !kullanilan.Contains(b.Ad) && b.Kupa - p.Kupa >= aralik[z].Item1 && b.Kupa - p.Kupa <= aralik[z].Item2).ToList();
+			if (aday.Count == 0) aday = botlar.Where(b => !kullanilan.Contains(b.Ad)).OrderBy(b => Math.Abs(b.Kupa - (p.Kupa + (z - 1) * 80))).Take(3).ToList();
+			var bot = aday[r.Aralik(aday.Count)];
+			kullanilan.Add(bot.Ad);
+			var tr = new Rng(bot.Tohum ^ (ulong)(p.ArenaYenileme * 31 + 1));
+			var takim = HayaletTakim(tr, (int)(guc * oran[z] * (0.96f + 0.08f * tr.Kesir())));
+			l.Add(new ArenaRakip { Ad = bot.Ad, Zorluk = z, Takim = takim, Guc = Kayit.TakimGucu(takim), Kupa = bot.Kupa, Tohum = tr.Sonraki() });
 		}
 		return l;
 	}
@@ -132,20 +148,46 @@ public static class Rakipler
 
 	public static (int kupa, int altin, int elmas) ArenaOdulu(ArenaRakip r, bool kazandi)
 	{
-		if (!kazandi) return (-12, 50, 0);
-		return (18 + r.Zorluk * 7, 250 + r.Zorluk * 100, 10 + r.Zorluk * 5);
+		if (!kazandi) return (-12, 30, 0);
+		return (18 + r.Zorluk * 7, 120 + r.Zorluk * 40, 4 + r.Zorluk * 3);
 	}
 
-	/// <summary>Haftalık sıralama (prototip: botlar + oyuncu).</summary>
-	public static List<(string ad, int kupa, bool oyuncu)> Siralama()
+	// ------------------------------------------------------------ haftalık sıralama
+	public class SiraBot { public string Ad; public int Kupa; public ulong Tohum; }
+	public const int GrupBoyu = 50;
+	static readonly DateTime Baslangic = new(2024, 1, 1, 0, 0, 0, DateTimeKind.Utc);   // pazartesi
+
+	public static int Hafta() => (int)Math.Floor((DateTime.UtcNow - Baslangic).TotalDays / 7);
+	public static float HaftaIlerleme() => (float)(((DateTime.UtcNow - Baslangic).TotalDays / 7) % 1.0);
+	public static TimeSpan SezonKalan() => Baslangic.AddDays((Hafta() + 1) * 7) - DateTime.UtcNow;
+
+	/// <summary>Lig grubundaki 49 rakip. Her hafta aynı tohumla üretilir; hafta ilerledikçe kupaları artar.</summary>
+	public static List<SiraBot> Botlar(int hafta, float ilerleme)
 	{
-		int hafta = (int)(DateTime.Now.DayOfYear / 7) + DateTime.Now.Year * 60;
-		var r = new Rng((ulong)hafta * 2654435761UL);
-		var l = new List<(string, int, bool)>();
-		int taban = Math.Max(200, Kayit.P.Kupa);
-		for (int i = 0; i < 49; i++)
-			l.Add((BotAdi(r), Math.Max(0, (int)(taban * (0.4f + 1.4f * MathF.Pow(r.Kesir(), 1.7f))) + r.Aralik(60)), false));
-		l.Add((Kayit.P.Ad, Kayit.P.Kupa, true));
-		return l.OrderByDescending(x => x.Item2).ToList();
+		var r = new Rng((ulong)hafta * 2654435761UL + 7);
+		var l = new List<SiraBot>();
+		for (int i = 0; i < GrupBoyu - 1; i++)
+		{
+			string ad = BotAdi(r);
+			float taban = 80 + 2700 * MathF.Pow(r.Kesir(), 1.8f);
+			float hiz = 0.25f + 0.5f * r.Kesir();   // hafta içinde ne kadar tırmandığı
+			int kupa = (int)(taban * (1 - hiz + hiz * ilerleme)) + r.Aralik(30);
+			l.Add(new SiraBot { Ad = ad, Kupa = kupa, Tohum = r.Sonraki() });
+		}
+		return l;
 	}
+
+	public static List<(string ad, int kupa, bool oyuncu)> Siralama() => Siralama(Hafta(), HaftaIlerleme(), Kayit.P.Kupa);
+
+	public static List<(string ad, int kupa, bool oyuncu)> Siralama(int hafta, float ilerleme, int oyuncuKupa)
+	{
+		var l = Botlar(hafta, ilerleme).Select(b => (b.Ad, b.Kupa, false)).ToList();
+		l.Add((Kayit.P.Ad, oyuncuKupa, true));
+		return l.OrderByDescending(x => x.Item2).ThenBy(x => x.Item3 ? 0 : 1).ToList();
+	}
+
+	public static int OyuncuSirasi(int hafta, float ilerleme, int kupa) => Siralama(hafta, ilerleme, kupa).FindIndex(x => x.oyuncu) + 1;
+	public static int OyuncuSirasi() => OyuncuSirasi(Hafta(), HaftaIlerleme(), Kayit.P.Kupa);
+
+	public static int SezonOdulu(int sira) => sira switch { 1 => 400, <= 3 => 250, <= 10 => 120, <= 25 => 60, _ => 25 };
 }

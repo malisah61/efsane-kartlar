@@ -29,6 +29,7 @@ public static class Veri
 	public static Dictionary<string, KartTanim> Harita = new();
 	public static Dictionary<string, string> Mitolojiler = new();
 	static readonly Dictionary<string, Texture2D> _portreler = new();
+	static readonly Dictionary<string, Texture2D> _bedenler = new();
 
 	public static readonly string[] NadirlikSirasiDizi = { "siradan", "nadir", "epik", "efsanevi" };
 	public static int NadirlikSirasi(string n) => Array.IndexOf(NadirlikSirasiDizi, n);
@@ -163,6 +164,16 @@ public static class Veri
 	};
 
 	// ------------------------------------------------------------ portreler
+	/// <summary>Savaş sahnesindeki tam boy görünüm (assets/beden/<id>.png).</summary>
+	public static Texture2D Beden(string id)
+	{
+		if (_bedenler.TryGetValue(id, out var t)) return t;
+		string yol = $"res://assets/beden/{id}.png";
+		t = ResourceLoader.Exists(yol) ? GD.Load<Texture2D>(yol) : Portre(id);
+		_bedenler[id] = t;
+		return t;
+	}
+
 	public static Texture2D Portre(string id)
 	{
 		if (_portreler.TryGetValue(id, out var t)) return t;

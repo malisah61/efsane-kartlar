@@ -1,0 +1,6 @@
+# sayfa  sütun  id listesi (soldan sağa, yukarıdan aşağı)
+beden01.png 3 alp_er_tunga zeus thor anubis ulgen asena umay tepegoz sahmeran
+beden02.png 3 dede_korkut demir_alp akinci bahadir kam su_iyesi akhilleus athena apollon
+beden03.png 3 medusa herakles minotor asklepios hoplit amazon siren nimf odin
+beden04.png 3 freya ymir loki valkur heimdall idun kalkanci berserker volva
+beden05.png 4 runa_ustasi ra isis sfenks thoth horus sobek bastet mumya akrep kahin ankh_rahibesi koroglu perseus fenrir sekhmet

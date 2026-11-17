@@ -33,7 +33,9 @@ Her mitolojide 3 tank, 3 savaşçı, 3 büyücü, 3 destek. Elementler: Ateş, S
 
 ## Yapılacaklar
 1. [x] Prototip: kartlar, savaş, koleksiyon, takım, çağırma, hikâye, arena (hayalet rakipler), günlük ödüller, mağaza ekranı
-2. [ ] Denge: `onizleme/denge.txt` sonuçlarına göre kart değerleri
+2. [x] Savaş sahnesi: mitoloji arka planları, tam boy piksel karakterler, koşarak saldırı, büyü topları, yıldırım, kalkan/iyileşme/sersemletme efektleri
+2b. [x] Yavaş ekonomi: enerji, pahalı yükseltme, az ödül; haftalık arena sezonu ve sıra ödülleri
+2c. [ ] Denge: `onizleme/denge.txt` sonuçlarına göre kart değerleri
 3. [ ] Sunucu (Supabase/Firebase): gerçek oyuncuların savunma takımları, gerçek sıralama, hesap
 4. [ ] Google Play Billing + AdMob ödüllü reklam
 5. [ ] Sezon kartı, etkinlik kahramanları, lonca boss'u

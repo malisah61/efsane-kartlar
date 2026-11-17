@@ -12,7 +12,8 @@ public partial class Oyun : Control
 	enum Ekran { Ana, Kartlar, Takim, Cagir, Arena }
 	Ekran _ekran = Ekran.Ana;
 	MarginContainer _icerik;
-	Label _altinL, _elmasL, _parsL, _kupaL;
+	Label _altinL, _elmasL, _parsL, _kupaL, _enerjiL;
+	double _saat;
 	readonly List<Button> _menuDugmeleri = new();
 	Control _katman;
 	string _filtre = "hepsi";
@@ -43,7 +44,12 @@ public partial class Oyun : Control
 		if (!Kayit.KayitKapali) Kayit.Yukle();
 		Kur();
 		Goster(Ekran.Ana);
-		if (!Kayit.KayitKapali && !Kayit.P.GirisOdulAlindi) GunlukOdulPenceresi();
+		if (!Kayit.KayitKapali)
+		{
+			var sezon = Kayit.SezonKontrol();
+			if (sezon.HasValue) SezonOdulPenceresi(sezon.Value.sira, sezon.Value.elmas, sezon.Value.eskiKupa);
+			else if (!Kayit.P.GirisOdulAlindi) GunlukOdulPenceresi();
+		}
 	}
 
 	public override void _Notification(int what)
@@ -68,6 +74,7 @@ public partial class Oyun : Control
 		_altinL = Kaynak(uh, Ui.Altin, "Altın");
 		_elmasL = Kaynak(uh, Ui.Elmas, "Elmas");
 		_parsL = Kaynak(uh, new Color("e2c79a"), "Parşömen");
+		_enerjiL = Kaynak(uh, new Color("8fe36a"), "Enerji");
 		_kupaL = Kaynak(uh, new Color("ffb36b"), "Kupa");
 
 		_icerik = new MarginContainer();
@@ -112,6 +119,10 @@ public partial class Oyun : Control
 		_elmasL.Text = Ui.Sayi(p.Elmas);
 		_parsL.Text = p.Parsomen.ToString();
 		_kupaL.Text = p.Kupa.ToString();
+		Kayit.EnerjiGuncelle();
+		int kalan = Kayit.SonrakiEnerji();
+		_enerjiL.Text = $"{p.Enerji}/{Kayit.EnerjiMax}" + (kalan > 0 ? $" {kalan / 60}:{kalan % 60:00}" : "");
+		_enerjiL.AddThemeFontSizeOverride("font_size", kalan > 0 ? 18 : 23);
 	}
 
 	void Goster(Ekran e)
@@ -137,6 +148,44 @@ public partial class Oyun : Control
 
 	void Yenile() => Goster(_ekran);
 
+	public override void _Process(double delta)
+	{
+		_saat += delta;
+		if (_saat < 1 || _enerjiL == null) return;
+		_saat = 0;
+		UstGuncelle();
+	}
+
+	void SezonOdulPenceresi(int sira, int elmas, int eskiKupa)
+	{
+		var v = Ui.Dikey(12);
+		v.AddChild(Ui.Etiket("Sezon Bitti!", 40, Ui.Altin, HorizontalAlignment.Center));
+		v.AddChild(Ui.Etiket($"Geçen hafta lig grubunda {sira}. oldun ({eskiKupa} kupa).", 24, Colors.White, HorizontalAlignment.Center));
+		v.AddChild(Ui.Etiket($"Ödül: +{elmas} elmas", 28, Ui.Elmas, HorizontalAlignment.Center));
+		v.AddChild(Ui.Etiket($"Yeni sezon başladı, kupan {Kayit.P.Kupa} oldu.", 20, Ui.Soluk, HorizontalAlignment.Center));
+		v.AddChild(Ui.Dugme("Harika!", () => { PencereKapat(); Yenile(); if (!Kayit.P.GirisOdulAlindi) GunlukOdulPenceresi(); }, new Color("2f8a57"), 26));
+		Pencere(v);
+	}
+
+	void EnerjiPenceresi()
+	{
+		var p = Kayit.P;
+		var v = Ui.Dikey(12);
+		v.AddChild(Ui.Etiket("Enerjin Bitti", 34, Ui.Altin, HorizontalAlignment.Center));
+		int kalan = Kayit.SonrakiEnerji();
+		v.AddChild(Ui.Etiket($"Enerji: {p.Enerji}/{Kayit.EnerjiMax}. Her 6 dakikada 1 enerji dolar" + (kalan > 0 ? $" (sonraki {kalan / 60}:{kalan % 60:00})." : "."), 21, Colors.White, HorizontalAlignment.Center));
+		var b = Ui.Dugme($"+{Kayit.EnerjiAlimMiktar} enerji  ({Kayit.EnerjiAlimFiyat} elmas)  —  bugün {Kayit.EnerjiAlimGunluk - p.EnerjiAlim} hak", () =>
+		{
+			if (Kayit.EnerjiSatinAl()) { PencereKapat(); UstGuncelle(); Mesaj($"+{Kayit.EnerjiAlimMiktar} enerji"); }
+			else Mesaj(p.EnerjiAlim >= Kayit.EnerjiAlimGunluk ? "Bugünkü alım hakkın bitti" : "Yeterli elmas yok");
+		}, new Color("3478c8"), 21);
+		b.Disabled = p.EnerjiAlim >= Kayit.EnerjiAlimGunluk;
+		v.AddChild(b);
+		v.AddChild(Ui.Etiket("Bu arada arenada savaşabilir veya kartlarını yükseltebilirsin.", 18, Ui.Soluk, HorizontalAlignment.Center));
+		v.AddChild(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 22));
+		Pencere(v);
+	}
+
 	// ================================================================ ANA SAYFA
 	Control AnaEkran()
 	{
@@ -161,7 +210,13 @@ public partial class Oyun : Control
 		var odul = Rakipler.AsamaOdulu(asama, asama > p.EnIyiAsama);
 		hv.AddChild(Ui.Etiket($"Düşman gücü {Kayit.TakimGucu(dusman):N0}   •   Ödül: {odul.altin} altın" + (odul.elmas > 0 ? $", {odul.elmas} elmas" : "") + (odul.parsomen > 0 ? $", {odul.parsomen} parşömen" : ""), 19, Ui.Soluk));
 		bool hepsiBitti = p.EnIyiAsama >= Rakipler.AsamaSayisi;
-		hv.AddChild(Ui.Dugme(hepsiBitti ? "Son aşamayı tekrar oyna" : "Savaşa Başla", () => HikayeSavasi(asama), new Color("c0582f"), 28, 76));
+		hv.AddChild(Ui.Dugme((hepsiBitti ? "Son aşamayı tekrar oyna" : "Savaşa Başla") + $"   ({Kayit.HikayeEnerji} enerji)", () => HikayeSavasi(asama), new Color("c0582f"), 28, 76));
+		if (p.EnIyiAsama >= 1 && !hepsiBitti)
+		{
+			int tekrar = p.EnIyiAsama;
+			var to = Rakipler.AsamaOdulu(tekrar, false);
+			hv.AddChild(Ui.Dugme($"Altın topla: Aşama {tekrar} tekrar  (+{to.altin} altın, {Kayit.HikayeEnerji} enerji)", () => HikayeSavasi(tekrar), new Color("6a5a2f"), 19, 54));
+		}
 
 		// günlük ödül + mağaza
 		var sat = Ui.Yatay(12);
@@ -498,6 +553,9 @@ public partial class Oyun : Control
 		v.AddChild(Ui.Etiket($"Arena — {Rakipler.Lig(p.Kupa)} Ligi", 32, Ui.Altin));
 		int sonraki = Rakipler.SonrakiLigKupa(p.Kupa);
 		v.AddChild(Ui.Etiket($"Kupa {p.Kupa}" + (sonraki > 0 ? $"  (sonraki lig: {sonraki})" : "") + $"   •   G/M {p.ArenaGalibiyet}/{p.ArenaMaglubiyet}", 20, Ui.Soluk));
+		var kalanS = Rakipler.SezonKalan();
+		int sira = Rakipler.OyuncuSirasi();
+		v.AddChild(Ui.Etiket($"Grup sıran: {sira}/{Rakipler.GrupBoyu}  (ödül {Rakipler.SezonOdulu(sira)} elmas)   •   Sezon bitimine {kalanS.Days}g {kalanS.Hours}s", 20, Ui.Elmas));
 		var hs = Ui.Yatay(10);
 		v.AddChild(hs);
 		hs.AddChild(Ui.Genis(Ui.Etiket($"Kalan savaş hakkı: {p.ArenaHak}", 22, p.ArenaHak > 0 ? Colors.White : Ui.Kirmizi)));
@@ -542,7 +600,9 @@ public partial class Oyun : Control
 	{
 		var v = Ui.Dikey(6);
 		v.AddChild(Ui.Etiket("Haftalık Sıralama", 32, Ui.Altin, HorizontalAlignment.Center));
-		v.AddChild(Ui.Etiket("Hafta sonunda ilk 10'a ve liglere göre elmas ödülü verilecek.", 17, Ui.Soluk, HorizontalAlignment.Center));
+		var ks = Rakipler.SezonKalan();
+		v.AddChild(Ui.Etiket($"50 kişilik lig grubu • sezon bitimine {ks.Days}g {ks.Hours}s", 18, Ui.Soluk, HorizontalAlignment.Center));
+		v.AddChild(Ui.Etiket("Sezon ödülü: 1. → 400  •  2-3. → 250  •  4-10. → 120  •  11-25. → 60  •  diğer → 25 elmas", 17, Ui.Elmas, HorizontalAlignment.Center));
 		var liste = Ui.Dikey(4);
 		var sira = Rakipler.Siralama();
 		for (int i = 0; i < sira.Count; i++)
@@ -568,8 +628,11 @@ public partial class Oyun : Control
 	// ================================================================ SAVAŞLAR
 	void HikayeSavasi(int asama)
 	{
+		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
+		if (!Kayit.EnerjiHarca(Kayit.HikayeEnerji)) { EnerjiPenceresi(); return; }
+		Kayit.P.GunlukHikaye++;
 		var dusman = Rakipler.AsamaTakimi(asama);
-		SavasBaslat(dusman, $"Aşama {asama}", kazandi =>
+		SavasBaslat(dusman, $"Aşama {asama}", Rakipler.BolumArka(asama), kazandi =>
 		{
 			var p = Kayit.P;
 			bool ilk = asama > p.EnIyiAsama;
@@ -593,8 +656,10 @@ public partial class Oyun : Control
 	{
 		var p = Kayit.P;
 		if (p.ArenaHak <= 0) { Mesaj("Savaş hakkın bitti"); return; }
+		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
 		p.ArenaHak--;
-		SavasBaslat(r.Takim, $"Arena: {r.Ad}", kazandi =>
+		p.ArenaGunlukSavas++;
+		SavasBaslat(r.Takim, $"Arena: {r.Ad}", Rakipler.TakimArka(r.Takim), kazandi =>
 		{
 			var o = Rakipler.ArenaOdulu(r, kazandi);
 			p.Kupa = Math.Max(0, p.Kupa + o.kupa);
@@ -608,13 +673,13 @@ public partial class Oyun : Control
 		});
 	}
 
-	void SavasBaslat(List<TakimUyesi> dusman, string baslik, Func<bool, List<string>> sonuc)
+	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, List<string>> sonuc)
 	{
 		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
 		var s = new Savas(Kayit.TakimUyeleri(), dusman, (ulong)Time.GetTicksUsec());
 		s.Oyna();
 		Kayit.P.GunlukSavas++;
-		var ekran = new SavasEkrani { S = s, Baslik = baslik };
+		var ekran = new SavasEkrani { S = s, Baslik = baslik, Arka = arka };
 		ekran.Bitti = kazandi =>
 		{
 			var satirlar = sonuc(kazandi);

@@ -49,9 +49,15 @@ public static class Onizleme
 		await Kare(o, $"{klasor}/9_magaza.png");
 		o.OnizlemeKapat();
 		o.OnizlemeEkran(0);
-		var se = o.OnizlemeSavas(12);
-		await Bekle(o, 3.2f);
+		p.Takim = new List<string> { "athena", "akhilleus", "zeus", "medusa", "umay" };
+		foreach (var id in p.Takim) if (Kayit.Sahip(id) == null) Kayit.KartEkle(id);
+		var se = o.OnizlemeSavas(8);
+		await Bekle(o, 1.6f);
 		await Kare(o, $"{klasor}/10_savas.png");
+		await Bekle(o, 1.1f);
+		await Kare(o, $"{klasor}/10b_savas.png");
+		await Bekle(o, 1.3f);
+		await Kare(o, $"{klasor}/10c_savas.png");
 		if (se != null) se.Hiz = 3;
 		for (int i = 0; i < 80 && IsInstanceValid(se); i++) await Bekle(o, 0.5f);
 		await Bekle(o, 0.5f);

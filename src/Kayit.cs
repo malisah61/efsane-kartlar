@@ -37,6 +37,12 @@ public class Profil
 	public List<SahipKart> Kartlar { get; set; } = new();
 	public List<string> Takim { get; set; } = new() { null, null, null, null, null };
 	public int SonKayitSurumu { get; set; } = 1;
+	public int Enerji { get; set; } = 60;
+	public long EnerjiZaman { get; set; }
+	public int EnerjiAlim { get; set; }          // bugün elmasla alınan enerji sayısı
+	public int Sezon { get; set; } = -1;         // hafta numarası
+	public int GunlukHikaye { get; set; }
+	public int ArenaGunlukSavas { get; set; }
 }
 
 public static class Kayit
@@ -50,18 +56,25 @@ public static class Kayit
 	public const int EfsaneviGaranti = 40;
 	public const int ArenaGunlukHak = 5;
 	public const int ArenaEkHakFiyat = 50;
+	public const int EnerjiMax = 60;
+	public const int EnerjiSaniye = 360;          // 6 dakikada 1 enerji
+	public const int HikayeEnerji = 6;
+	public const int EnerjiAlimFiyat = 50;        // 30 enerji
+	public const int EnerjiAlimMiktar = 30;
+	public const int EnerjiAlimGunluk = 3;
 
 	public static readonly (string ad, int altin, int elmas, int parsomen)[] GirisOdulleri =
 	{
-		("1. Gün", 1000, 0, 0), ("2. Gün", 0, 60, 0), ("3. Gün", 0, 0, 2), ("4. Gün", 2500, 0, 0),
-		("5. Gün", 0, 120, 0), ("6. Gün", 0, 0, 3), ("7. Gün", 0, 300, 0),
+		("1. Gün", 800, 0, 0), ("2. Gün", 0, 30, 0), ("3. Gün", 0, 0, 1), ("4. Gün", 1500, 0, 0),
+		("5. Gün", 0, 60, 0), ("6. Gün", 0, 0, 2), ("7. Gün", 0, 150, 0),
 	};
 
 	public static readonly (string ad, Func<Profil, int> ilerleme, int hedef, int elmas)[] Gorevler =
 	{
-		("3 savaş yap", p => p.GunlukSavas, 3, 40),
-		("1 kart çağır", p => p.GunlukCekim, 1, 30),
-		("1 kart yükselt", p => p.GunlukYukseltme, 1, 30),
+		("5 hikâye savaşı yap", p => p.GunlukHikaye, 5, 20),
+		("3 arena savaşı yap", p => p.ArenaGunlukSavas, 3, 20),
+		("1 kart çağır", p => p.GunlukCekim, 1, 10),
+		("2 kez kart yükselt", p => p.GunlukYukseltme, 2, 10),
 	};
 
 	// ------------------------------------------------------------ kaydet / yükle
@@ -110,6 +123,8 @@ public static class Kayit
 			["enIyiAsama"] = p.EnIyiAsama, ["cekimSayaci"] = p.ElmasCekimSayaci, ["sonGun"] = p.SonGun, ["girisSerisi"] = p.GirisSerisi,
 			["girisAlindi"] = p.GirisOdulAlindi, ["gSavas"] = p.GunlukSavas, ["gCekim"] = p.GunlukCekim, ["gYukseltme"] = p.GunlukYukseltme,
 			["gorevler"] = gorev, ["kartlar"] = kartlar, ["takim"] = takim, ["surum"] = p.SonKayitSurumu,
+			["enerji"] = p.Enerji, ["enerjiZaman"] = p.EnerjiZaman, ["enerjiAlim"] = p.EnerjiAlim, ["sezon"] = p.Sezon,
+			["gHikaye"] = p.GunlukHikaye, ["gArena"] = p.ArenaGunlukSavas,
 		};
 	}
 
@@ -126,6 +141,8 @@ public static class Kayit
 			SonGun = d.ContainsKey("sonGun") ? d["sonGun"].AsString() : "", GirisSerisi = I("girisSerisi"),
 			GirisOdulAlindi = d.ContainsKey("girisAlindi") && d["girisAlindi"].AsBool(),
 			GunlukSavas = I("gSavas"), GunlukCekim = I("gCekim"), GunlukYukseltme = I("gYukseltme"), SonKayitSurumu = I("surum"),
+			Enerji = d.ContainsKey("enerji") ? I("enerji") : EnerjiMax, EnerjiZaman = d.ContainsKey("enerjiZaman") ? (long)d["enerjiZaman"].AsDouble() : 0,
+			EnerjiAlim = I("enerjiAlim"), Sezon = d.ContainsKey("sezon") ? I("sezon") : -1, GunlukHikaye = I("gHikaye"), ArenaGunlukSavas = I("gArena"),
 		};
 		if (d.ContainsKey("gorevler")) foreach (var g in d["gorevler"].AsGodotArray()) p.AlinanGorevler.Add(g.AsInt32());
 		if (d.ContainsKey("kartlar"))
@@ -141,7 +158,7 @@ public static class Kayit
 
 	public static void YeniOyun()
 	{
-		P = new Profil { Altin = 3000, Elmas = 600, Parsomen = 5 };
+		P = new Profil { Altin = 1500, Elmas = 300, Parsomen = 3, Enerji = EnerjiMax, EnerjiZaman = Simdi(), Sezon = Rakipler.Hafta() };
 		foreach (var id in new[] { "akinci", "bahadir", "kam", "siren", "berserker", "medusa" }) KartEkle(id);
 		P.Takim = new List<string> { "bahadir", "akinci", "medusa", "siren", "kam" };
 		GunKontrol();
@@ -162,7 +179,7 @@ public static class Kayit
 		P.GirisOdulAlindi = false;
 		P.ArenaHak = Math.Max(P.ArenaHak, ArenaGunlukHak);
 		P.ArenaYenileme = 0;
-		P.GunlukSavas = P.GunlukCekim = P.GunlukYukseltme = 0;
+		P.GunlukSavas = P.GunlukCekim = P.GunlukYukseltme = P.GunlukHikaye = P.EnerjiAlim = P.ArenaGunlukSavas = 0;
 		P.AlinanGorevler.Clear();
 		Kaydet();
 	}
@@ -198,6 +215,61 @@ public static class Kayit
 		return true;
 	}
 
+	// ------------------------------------------------------------ enerji
+	public static long Simdi() => (long)Time.GetUnixTimeFromSystem();
+
+	public static void EnerjiGuncelle()
+	{
+		long simdi = Simdi();
+		if (P.EnerjiZaman <= 0) P.EnerjiZaman = simdi;
+		if (P.Enerji >= EnerjiMax) { P.EnerjiZaman = simdi; return; }
+		long gecen = Math.Max(0, simdi - P.EnerjiZaman);
+		int kazanc = (int)(gecen / EnerjiSaniye);
+		if (kazanc <= 0) return;
+		P.Enerji = Math.Min(EnerjiMax, P.Enerji + kazanc);
+		P.EnerjiZaman = P.Enerji >= EnerjiMax ? simdi : P.EnerjiZaman + kazanc * EnerjiSaniye;
+	}
+
+	/// <summary>Bir sonraki enerjiye kalan saniye (doluysa 0).</summary>
+	public static int SonrakiEnerji() => P.Enerji >= EnerjiMax ? 0 : (int)Math.Max(0, EnerjiSaniye - (Simdi() - P.EnerjiZaman));
+
+	public static bool EnerjiHarca(int n)
+	{
+		EnerjiGuncelle();
+		if (P.Enerji < n) return false;
+		bool doluydu = P.Enerji >= EnerjiMax;
+		P.Enerji -= n;
+		if (doluydu) P.EnerjiZaman = Simdi();
+		Kaydet();
+		return true;
+	}
+
+	public static bool EnerjiSatinAl()
+	{
+		if (P.EnerjiAlim >= EnerjiAlimGunluk || P.Elmas < EnerjiAlimFiyat) return false;
+		P.Elmas -= EnerjiAlimFiyat; P.EnerjiAlim++;
+		P.Enerji += EnerjiAlimMiktar;   // en fazla sınırı aşabilir
+		Kaydet();
+		return true;
+	}
+
+	// ------------------------------------------------------------ haftalık sezon
+	/// <summary>Hafta değiştiyse eski sezonun sıralama ödülünü verir ve kupayı kısmen sıfırlar.</summary>
+	public static (int sira, int elmas, int eskiKupa)? SezonKontrol()
+	{
+		int h = Rakipler.Hafta();
+		if (P.Sezon < 0) { P.Sezon = h; Kaydet(); return null; }
+		if (P.Sezon == h) return null;
+		int sira = Rakipler.OyuncuSirasi(P.Sezon, 1f, P.Kupa);
+		int elmas = Rakipler.SezonOdulu(sira);
+		int eski = P.Kupa;
+		P.Elmas += elmas;
+		if (P.Kupa > 400) P.Kupa = 400 + (P.Kupa - 400) / 2;
+		P.Sezon = h;
+		Kaydet();
+		return (sira, elmas, eski);
+	}
+
 	// ------------------------------------------------------------ kartlar
 	public static SahipKart Sahip(string id) => P.Kartlar.FirstOrDefault(k => k.Id == id);
 
@@ -211,8 +283,8 @@ public static class Kayit
 	}
 
 	public static int MaxSeviye(int yildiz) => 10 + 10 * yildiz;     // 1★:20 … 5★:60
-	public static int SeviyeMaliyet(int seviye) => (int)(Math.Round(60 * Math.Pow(seviye, 1.55) / 10.0) * 10);
-	public static int YildizKopya(int yildiz) => yildiz switch { 1 => 1, 2 => 2, 3 => 4, 4 => 8, _ => 999 };
+	public static int SeviyeMaliyet(int seviye) => (int)(Math.Round(100 * Math.Pow(seviye, 1.7) / 10.0) * 10);
+	public static int YildizKopya(int yildiz) => yildiz switch { 1 => 2, 2 => 4, 3 => 8, 4 => 12, _ => 999 };
 
 	public static bool SeviyeAtlat(SahipKart k)
 	{
