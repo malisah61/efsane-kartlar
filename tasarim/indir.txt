@@ -11,3 +11,4 @@ sayfa08.png https://api.spritecook.ai/v1/assets/9ff226a5-bb69-4664-9e8b-29d4ba65
 sayfa09_ham.png https://api.spritecook.ai/v1/assets/b89897fd-50b3-4ccb-b2f2-1df2764528d5/signed-content/raw?sig=g12guwjHjytbTqmCu_i4UkJYW2MFlcFk8uJevtqrbd0&exp=1794896611
 sayfa10.png https://api.spritecook.ai/v1/assets/3bc5a8c7-1152-4abc-831e-6d9040f6952c/signed-content/pixel?sig=sVItq9g7SXJmNs5zOgnt02AtR84LJN3tEv1xwhHjUv4&exp=1794896633
 sayfa11.png https://api.spritecook.ai/v1/assets/f2ff3878-1957-4fb3-974e-1988caef69c0/signed-content/pixel?sig=45xko_g3LLV0DwD7BloctDkWIL7Jfd7l5d-a9eSIbqc&exp=1794896662
+beden01.png https://api.spritecook.ai/v1/assets/2539a549-293c-49ed-9eed-d7e28aeaeb93/signed-content/pixel?sig=UdQCALBGGh9qx-GAvz8l8W4hev2d4cC7BxpH-UosHmM&exp=1794900439
