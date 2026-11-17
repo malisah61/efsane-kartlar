@@ -108,7 +108,8 @@ jobs:
           unzip -q -o *.zip -d acik
           C=$(find acik -name plugin.cfg | head -1); echo "plugin.cfg: $C"
           A=$(dirname "$C")          # .../addons/AdmobPlugin
-          cp -r "$A" $GITHUB_WORKSPACE/addons/
+          echo "zip içindeki eklenti klasörleri:"; ls "$(dirname "$A")"
+          cp -r "$(dirname "$A")"/. $GITHUB_WORKSPACE/addons/   # AdmobPlugin + paylaşılan yardımcı betikler
           cd $GITHUB_WORKSPACE
           AD=addons/$(basename "$A")
           ls $AD | head -30
@@ -127,7 +128,8 @@ jobs:
           echo -n "${GV}.stable.mono" > android/.build_version
           touch android/build/.gdignore
           godot --headless --editor --quit > build_editor.txt 2>&1 || true
-          tail -30 build_editor.txt
+          godot --headless --editor --quit > build_editor2.txt 2>&1 || true   # ikinci tarama: sınıf adları önbellekte
+          grep -i "error" build_editor2.txt | head -20 || true
 
       - name: Yükleme anahtarı
         id: anahtar
@@ -161,6 +163,7 @@ jobs:
           ls -la build/play
           test -f $OUT
           unzip -l $OUT | grep -iE "EfsaneKartlar.dll|billing" | head
+          echo "--- AdMob/Billing bileşenleri:"; unzip -p $OUT AndroidManifest.xml | strings | grep -iE "gms.ads|billing|APPLICATION_ID" | head || true
           unzip -l $OUT | grep -q "EfsaneKartlar.dll" || { echo "HATA: C# derlemesi pakette yok"; exit 1; }
           echo "CIKTI=$OUT" >> $GITHUB_ENV
 
