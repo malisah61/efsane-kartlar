@@ -143,7 +143,7 @@ public static class Simulasyon
 			if (lig != "Bronz") k.Olay(lig + " lig", gun);
 
 			// çağırma
-			while (Kayit.TakasKalan > 0 && p.Altin >= Kayit.AltinParsomenFiyat + 20000) Kayit.AltinlaParsomen();
+			while (Kayit.TakasKalan > 0 && p.Altin >= Kayit.AltinParsomenFiyat + 100000) Kayit.AltinlaParsomen();
 			while (p.Parsomen > 0) { p.Parsomen--; Kayit.CekimYap(false, r); }
 			while (p.Elmas >= Kayit.ElmasOnluFiyat) { p.Elmas -= Kayit.ElmasOnluFiyat; Kayit.OnluCekim(r); }
 

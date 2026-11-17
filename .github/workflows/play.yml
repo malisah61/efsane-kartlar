@@ -81,13 +81,19 @@ jobs:
           git log -1 --format="%h %s"
           chmod +x gradlew
           ./gradlew assemble --no-daemon -q > $HOME/gpb.txt 2>&1 || { tail -80 $HOME/gpb.txt; exit 1; }
-          P=$(grep -rl --include=plugin.cfg -i "billing" . | grep -v "/build/intermediates" | head -1)
-          echo "plugin.cfg: $P"
-          D=$(dirname "$P")
-          ls -R "$D" | head -40
-          mkdir -p $GITHUB_WORKSPACE/addons
-          rm -rf $GITHUB_WORKSPACE/addons/GodotGooglePlayBilling
-          cp -r "$D" $GITHUB_WORKSPACE/addons/GodotGooglePlayBilling
+          echo "--- üretilen aar dosyaları:"; find . -name "*.aar" -not -path "*/intermediates/*" | head
+          H=$GITHUB_WORKSPACE/addons/GodotGooglePlayBilling
+          rm -rf $H; mkdir -p $H/bin/debug $H/bin/release
+          D=$(find . -type d -path "*addons/GodotGooglePlayBilling" -not -path "*/intermediates/*" | head -1)
+          if [ -n "$D" ] && [ -d "$D/bin" ]; then cp -r "$D"/. $H/; else
+            cp godot-google-play-billing/export_scripts/* $H/
+            DA=$(find . -name "*debug*.aar" -not -path "*/intermediates/*" | head -1)
+            RA=$(find . -name "*release*.aar" -not -path "*/intermediates/*" | head -1)
+            cp "$DA" $H/bin/debug/GodotGooglePlayBilling-debug.aar
+            cp "$RA" $H/bin/release/GodotGooglePlayBilling-release.aar
+          fi
+          grep -n "aar" $H/export_plugin.gd | head
+          ls -R $H
           cd $GITHUB_WORKSPACE
           grep -q "^\[editor_plugins\]" project.godot || printf '\n[editor_plugins]\n\nenabled=PackedStringArray("res://addons/GodotGooglePlayBilling/plugin.cfg")\n' >> project.godot
           cat addons/GodotGooglePlayBilling/plugin.cfg
