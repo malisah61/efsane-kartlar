@@ -1,71 +1,71 @@
 Rastgele takımlar, seviye 20, 6000 savaş
-Ortalama tur: 10.5   zaman aşımı: %20.9   saldıran kazanma: %49.7
+Ortalama tur: 10.5   zaman aşımı: %21.2   saldıran kazanma: %49.7
 
 Nadirlik kazanma oranı:
-  siradan   %39.9
-  nadir     %48.1
-  epik      %60.1
-  efsanevi  %67.9
+  siradan   %39.6
+  nadir     %47.9
+  epik      %61.0
+  efsanevi  %67.2
 Sınıf kazanma oranı:
-  buyucu    %50.8
-  savasci   %53.3
-  destek    %47.1
-  tank      %48.8
+  buyucu    %50.4
+  savasci   %53.0
+  destek    %47.6
+  tank      %48.9
 
 Kart kazanma oranı (yüksekten düşüğe):
-  Odin               efsanevi  buyucu   %69.0  (1242 savaş)
   Ülgen              efsanevi  buyucu   %68.2  (1290 savaş)
-  Ra                 efsanevi  buyucu   %67.4  (1216 savaş)
-  Zeus               efsanevi  buyucu   %66.7  (1218 savaş)
-  Thor               epik      savasci  %66.5  (1240 savaş)
-  Asena              epik      savasci  %66.3  (1248 savaş)
-  Anubis             epik      savasci  %66.2  (1299 savaş)
-  Athena             epik      tank     %64.8  (1281 savaş)
-  Akhilleus          epik      savasci  %63.6  (1288 savaş)
-  Umay Ana           epik      destek   %62.5  (1309 savaş)
+  Odin               efsanevi  buyucu   %67.6  (1242 savaş)
+  Ra                 efsanevi  buyucu   %66.6  (1216 savaş)
+  Zeus               efsanevi  buyucu   %66.1  (1218 savaş)
+  Thor               epik      savasci  %65.7  (1240 savaş)
+  Anubis             epik      savasci  %65.6  (1299 savaş)
+  Asena              epik      savasci  %65.1  (1248 savaş)
+  Athena             epik      tank     %64.6  (1281 savaş)
+  Akhilleus          epik      savasci  %63.7  (1288 savaş)
   Buz Devi Ymir      epik      tank     %62.1  (1206 savaş)
-  Sfenks             epik      tank     %58.8  (1229 savaş)
-  Apollon            epik      destek   %57.8  (1204 savaş)
-  İsis               epik      destek   %55.7  (1218 savaş)
-  Horus              nadir     savasci  %54.2  (1263 savaş)
-  Demir Alp          nadir     tank     %52.8  (1201 savaş)
-  Herakles           nadir     savasci  %52.8  (1258 savaş)
-  Alp Er Tunga       nadir     savasci  %51.7  (1276 savaş)
-  Loki               nadir     buyucu   %50.8  (1240 savaş)
-  Valkür             nadir     savasci  %50.3  (1308 savaş)
-  Freya              epik      destek   %49.7  (1263 savaş)
-  Şahmeran           nadir     buyucu   %49.0  (1270 savaş)
-  Bastet             nadir     destek   %48.2  (1243 savaş)
-  Thoth              nadir     buyucu   %48.1  (1299 savaş)
-  Idun               nadir     destek   %46.8  (1251 savaş)
-  Tepegöz            epik      tank     %46.4  (1258 savaş)
+  Umay Ana           epik      destek   %61.7  (1309 savaş)
+  Apollon            epik      destek   %58.1  (1204 savaş)
+  Sfenks             epik      tank     %57.2  (1229 savaş)
+  Freya              epik      destek   %56.3  (1263 savaş)
+  Tepegöz            epik      tank     %56.0  (1258 savaş)
+  İsis               epik      destek   %55.3  (1218 savaş)
+  Horus              nadir     savasci  %54.4  (1263 savaş)
+  Alp Er Tunga       nadir     savasci  %52.0  (1276 savaş)
+  Herakles           nadir     savasci  %52.0  (1258 savaş)
+  Demir Alp          nadir     tank     %51.7  (1201 savaş)
+  Loki               nadir     buyucu   %50.1  (1240 savaş)
+  Valkür             nadir     savasci  %49.8  (1308 savaş)
+  Şahmeran           nadir     buyucu   %49.4  (1270 savaş)
+  Bastet             nadir     destek   %48.6  (1243 savaş)
+  Thoth              nadir     buyucu   %47.7  (1299 savaş)
+  Idun               nadir     destek   %47.6  (1251 savaş)
   Heimdall           nadir     tank     %46.3  (1273 savaş)
-  Sobek              nadir     tank     %45.9  (1277 savaş)
-  Viking Kalkancı    siradan   tank     %44.6  (1278 savaş)
-  Dede Korkut        nadir     destek   %44.3  (1227 savaş)
-  Akrep Savaşçısı    siradan   savasci  %44.0  (1289 savaş)
-  Hoplit             siradan   tank     %43.8  (1230 savaş)
-  Medusa             nadir     buyucu   %43.7  (1198 savaş)
-  Berserker          siradan   savasci  %43.4  (1234 savaş)
-  Asklepios          nadir     destek   %43.1  (1242 savaş)
-  Kalkanlı Bahadır   siradan   tank     %41.3  (1241 savaş)
+  Dede Korkut        nadir     destek   %44.7  (1227 savaş)
+  Sobek              nadir     tank     %44.6  (1277 savaş)
+  Berserker          siradan   savasci  %44.2  (1234 savaş)
+  Viking Kalkancı    siradan   tank     %44.1  (1278 savaş)
+  Akrep Savaşçısı    siradan   savasci  %44.1  (1289 savaş)
+  Asklepios          nadir     destek   %43.2  (1242 savaş)
+  Medusa             nadir     buyucu   %42.7  (1198 savaş)
+  Hoplit             siradan   tank     %42.0  (1230 savaş)
+  Ankh Rahibesi      siradan   destek   %41.6  (1206 savaş)
   Minotor            nadir     tank     %40.8  (1212 savaş)
-  Ankh Rahibesi      siradan   destek   %40.8  (1206 savaş)
-  Amazon Okçu        siradan   savasci  %39.8  (1205 savaş)
-  Akıncı             siradan   savasci  %39.7  (1230 savaş)
-  Rün Ustası         siradan   destek   %39.0  (1302 savaş)
+  Kalkanlı Bahadır   siradan   tank     %40.4  (1241 savaş)
+  Akıncı             siradan   savasci  %39.3  (1230 savaş)
   Nimf               siradan   destek   %38.9  (1263 savaş)
-  Su İyesi           siradan   buyucu   %38.5  (1256 savaş)
-  Mumya              siradan   tank     %37.6  (1242 savaş)
-  Kam                siradan   destek   %37.5  (1188 savaş)
-  Nil Kâhini         siradan   buyucu   %36.5  (1307 savaş)
-  Siren              siradan   buyucu   %36.5  (1256 savaş)
+  Rün Ustası         siradan   destek   %38.8  (1302 savaş)
+  Amazon Okçu        siradan   savasci  %38.7  (1205 savaş)
+  Su İyesi           siradan   buyucu   %38.3  (1256 savaş)
+  Mumya              siradan   tank     %37.2  (1242 savaş)
+  Siren              siradan   buyucu   %37.1  (1256 savaş)
+  Kam                siradan   destek   %36.4  (1188 savaş)
   Völva              siradan   buyucu   %36.4  (1226 savaş)
+  Nil Kâhini         siradan   buyucu   %35.3  (1307 savaş)
 
 Hikâye: başlangıç takımı (sıradan/nadir) seviye L iken hangi aşamaya kadar %50+ kazanır
   seviye  1: aşama 5  (aşama seviyesi ~3)
-  seviye  5: aşama 6  (aşama seviyesi ~4)
+  seviye  5: aşama 5  (aşama seviyesi ~3)
   seviye 10: aşama 11  (aşama seviyesi ~8)
-  seviye 15: aşama 14  (aşama seviyesi ~10)
+  seviye 15: aşama 13  (aşama seviyesi ~9)
   seviye 20: aşama 19  (aşama seviyesi ~14)
   seviye 30: aşama 28  (aşama seviyesi ~20)
