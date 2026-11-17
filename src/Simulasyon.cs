@@ -144,7 +144,7 @@ public static class Simulasyon
 
 			// çağırma
 			while (p.Parsomen > 0) { p.Parsomen--; Kayit.CekimYap(false, r); }
-			while (p.Elmas >= Kayit.ElmasOnluFiyat) { p.Elmas -= Kayit.ElmasOnluFiyat; for (int i = 0; i < 10; i++) Kayit.CekimYap(true, r); }
+			while (p.Elmas >= Kayit.ElmasOnluFiyat) { p.Elmas -= Kayit.ElmasOnluFiyat; Kayit.OnluCekim(r); }
 
 			Yukselt();
 			for (int i = 0; i < Kayit.Gorevler.Length; i++) Kayit.GorevOdulAl(i);
@@ -173,6 +173,12 @@ public static class Simulasyon
 	static void Yukselt()
 	{
 		var p = Kayit.P;
+		// takım kartlarına ruh özüyle eksik kopyayı al, sonra yıldız atlat
+		foreach (var id in p.Takim.Where(x => x != null).ToList())
+		{
+			var s = Kayit.Sahip(id);
+			while (s.Yildiz < 5 && s.Kopya < Kayit.YildizKopya(s.Yildiz) && Kayit.OzleKopyaAl(s)) { }
+		}
 		foreach (var s in p.Kartlar.OrderByDescending(x => p.Takim.Contains(x.Id)).ToList())
 			while (Kayit.YildizAtlat(s)) { }
 		Kayit.OtomatikDiz();

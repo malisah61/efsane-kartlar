@@ -44,6 +44,9 @@ public partial class Oyun : Control
 		}
 		if (!Kayit.KayitKapali) Kayit.Yukle();
 		Ses.Kur(this);
+		Odeme.Kur(this);
+		Odeme.Bilgi = m => Mesaj(m);
+		Odeme.Tamamlandi = (id, ozet) => { Ses.Efekt("efsanevi"); PencereKapat(); Yenile(); SatinAlmaPenceresi(id, ozet); };
 		Ses.MuzikAcik = Kayit.P.MuzikAcik; Ses.EfektAcik = Kayit.P.EfektAcik;
 		Ses.Muzik("menu");
 		Kur();
@@ -282,7 +285,7 @@ public partial class Oyun : Control
 	{
 		var v = Ui.Dikey(10);
 		var p = Kayit.P;
-		v.AddChild(Ui.Etiket($"Koleksiyon {p.Kartlar.Count}/{Veri.Kartlar.Count}", 30));
+		v.AddChild(Ui.Etiket($"Koleksiyon {p.Kartlar.Count}/{Veri.Kartlar.Count}   •   Ruh özü {p.RuhOzu}", 28));
 		var f = Ui.Yatay(6);
 		v.AddChild(f);
 		foreach (var (k, ad) in new[] { ("hepsi", "Tümü"), ("turk", "Türk"), ("yunan", "Yunan"), ("iskandinav", "İskandinav"), ("misir", "Mısır") })
@@ -352,13 +355,21 @@ public partial class Oyun : Control
 			sb.Disabled = s.Seviye >= maxS;
 			v.AddChild(sb);
 			int gk = Kayit.YildizKopya(s.Yildiz);
-			var yb = Ui.Dugme(s.Yildiz >= 5 ? "En yüksek yıldız" : $"Yıldız Atlat → {s.Yildiz + 1}★   (kopya {s.Kopya}/{gk})", () =>
+			var yb = Ui.Dugme(s.Yildiz >= 5 ? "En yüksek yıldız" : $"Yıldız Atlat → {s.Yildiz + 1}★  (kopya {s.Kopya}/{gk}, {Kayit.YildizAltin(s.Yildiz):N0} altın)", () =>
 			{
 				if (Kayit.YildizAtlat(s)) { PencereKapat(); KartDetayi(t, null); Yenile(); Mesaj("Yıldız atladı!"); }
 			}, new Color("8a4fc0"), 22);
 			yb.Text = yb.Text.Replace("★", " yıldız");
-			yb.Disabled = s.Yildiz >= 5 || s.Kopya < gk;
+			yb.Disabled = s.Yildiz >= 5 || s.Kopya < gk || Kayit.P.Altin < Kayit.YildizAltin(s.Yildiz);
 			v.AddChild(yb);
+			int ozf = Kayit.OzKopyaFiyat(t.Nadirlik);
+			var ozb = Ui.Dugme($"Ruh özüyle +1 kopya ({ozf} öz — sende {Kayit.P.RuhOzu})", () =>
+			{
+				if (Kayit.OzleKopyaAl(s)) { PencereKapat(); KartDetayi(t, null); Yenile(); }
+				else Mesaj("Yeterli ruh özü yok");
+			}, new Color("4a6a8a"), 19, 52);
+			ozb.Disabled = s.Yildiz >= 5 || Kayit.P.RuhOzu < ozf;
+			v.AddChild(ozb);
 			bool takimda = Kayit.P.Takim.Contains(t.Id);
 			v.AddChild(Ui.Dugme(takimda ? "Takımdan Çıkar" : "Takıma Ekle", () =>
 			{
@@ -495,7 +506,7 @@ public partial class Oyun : Control
 		p5.Disabled = p.Parsomen < 5;
 		pb.AddChild(p5);
 
-		v.AddChild(Ui.Etiket("Aynı kartı tekrar çekersen kopya olur; kopyalar kartın yıldızını yükseltir.", 18, Ui.Soluk, HorizontalAlignment.Center));
+		v.AddChild(Ui.Etiket("10'lu çağrıda en az 1 epik garanti. Aynı kartı tekrar çekersen kopya ve ruh özü kazanırsın; ruh özüyle istediğin kartın kopyasını alabilirsin.", 18, Ui.Soluk, HorizontalAlignment.Center));
 		return Ui.Kaydirma(v);
 	}
 
@@ -738,6 +749,17 @@ public partial class Oyun : Control
 		Pencere(v);
 	}
 
+	void SatinAlmaPenceresi(string id, string ozet)
+	{
+		var u = Magaza.Bul(id);
+		var v = Ui.Dikey(12);
+		v.AddChild(Ui.Etiket("Teşekkürler!", 40, Ui.Altin, HorizontalAlignment.Center));
+		v.AddChild(Ui.Etiket(u?.Ad ?? id, 26, Ui.Elmas, HorizontalAlignment.Center));
+		v.AddChild(Ui.Etiket(ozet, 22, Colors.White, HorizontalAlignment.Center));
+		v.AddChild(Ui.Dugme("Harika", PencereKapat, new Color("2f8a57"), 24));
+		Pencere(v);
+	}
+
 	void MagazaPenceresi()
 	{
 		var p = Kayit.P;
@@ -745,9 +767,9 @@ public partial class Oyun : Control
 		v.AddChild(Ui.Etiket("Mağaza", 34, Ui.Altin, HorizontalAlignment.Center));
 
 		bool reklamAlindi = p.AlinanGorevler.Contains(100);
-		var rb = Ui.Dugme(reklamAlindi ? "Bugünkü ücretsiz elmas alındı" : "Reklam izle: +40 elmas (günde 1)", () =>
+		var rb = Ui.Dugme(reklamAlindi ? "Bugünkü hediye alındı" : "Günlük hediye: +40 elmas", () =>
 		{
-			// TODO: AdMob ödüllü reklam bağlanacak; prototipte doğrudan verir.
+			// TODO: AdMob ödüllü reklam eklenince "reklam izle" olacak.
 			p.AlinanGorevler.Add(100); p.Elmas += 40; Kayit.Kaydet(); PencereKapat(); Yenile(); MagazaPenceresi();
 		}, new Color("2f8a57"), 22);
 		rb.Disabled = reklamAlindi;
@@ -763,28 +785,38 @@ public partial class Oyun : Control
 			p.Elmas -= 60; p.Parsomen++; Kayit.Kaydet(); UstGuncelle(); Mesaj("+1 parşömen");
 		}, new Color("a0743a"), 22));
 
-		v.AddChild(Ui.Etiket("Gerçek para paketleri (Google Play ödemesi eklenecek)", 19, Ui.Soluk, HorizontalAlignment.Center));
-		foreach (var (ad, icerik) in new[]
+		// aylık kart günlük ödülü
+		int kalan = Magaza.AylikKartKalan();
+		if (kalan > 0)
 		{
-			("Başlangıç Paketi", "1.000 elmas + 10 parşömen + 1 epik kart  (tek seferlik)"),
-			("Elmas Kesesi", "500 elmas"),
-			("Elmas Sandığı", "2.800 elmas  (+%12 bonus)"),
-			("Sezon Kartı", "30 gün boyunca ek ödüller ve özel kahraman"),
-		})
+			var ab = Ui.Dugme(Magaza.AylikKartAlinabilir() ? $"Aylık kart: bugünkü {Magaza.AylikKartGunluk} elmasını al ({kalan} gün kaldı)" : $"Aylık kart: bugün alındı ({kalan} gün kaldı)", () =>
+			{
+				if (Magaza.AylikKartAl()) { Ses.Efekt("para"); PencereKapat(); Yenile(); MagazaPenceresi(); }
+			}, new Color("2f6fb0"), 20);
+			ab.Disabled = !Magaza.AylikKartAlinabilir();
+			v.AddChild(ab);
+		}
+
+		v.AddChild(Ui.Etiket(Odeme.EklentiVar ? "Elmas paketleri (Google Play ile güvenli ödeme)" : "Elmas paketleri (satın alma Google Play sürümünde açılır)", 19, Ui.Soluk, HorizontalAlignment.Center));
+		foreach (var u in Magaza.Urunler)
 		{
-			var pp = Ui.Panel(Ui.PanelAcik, 12);
+			var pp = Ui.Panel(u.TekSeferlik || u.AylikKart ? new Color("3a2f55") : Ui.PanelAcik, 12);
 			var h = Ui.Yatay();
 			pp.AddChild(h);
 			var t = Ui.Genis(Ui.Dikey(2));
 			h.AddChild(t);
-			t.AddChild(Ui.Etiket(ad, 22, Ui.Elmas));
-			t.AddChild(Ui.Etiket(icerik, 17, Ui.Soluk));
-			var b = Ui.Dugme("Yakında", null, new Color("3a3f55"), 18, 56);
-			b.Disabled = true;
-			b.CustomMinimumSize = new Vector2(130, 56);
+			bool bonus = Magaza.IlkAlimBonusu(u);
+			t.AddChild(Ui.Etiket(u.Ad + (bonus ? "  •  İLK ALIM 2 KAT!" : ""), 22, bonus ? Ui.Altin : Ui.Elmas));
+			t.AddChild(Ui.Etiket(u.Aciklama, 17, Ui.Soluk));
+			bool alinabilir = Magaza.SatinAlinabilir(u);
+			var id = u.Id;
+			var b = Ui.Dugme(alinabilir ? Odeme.Fiyat(u) : (u.TekSeferlik ? "Alındı" : "Aktif"), () => Odeme.SatinAl(id), new Color("2f8a57"), 19, 56);
+			b.Disabled = !alinabilir;
+			b.CustomMinimumSize = new Vector2(140, 56);
 			h.AddChild(b);
 			v.AddChild(pp);
 		}
+		v.AddChild(Ui.Etiket("Fiyatlara vergiler dahildir. Satın alınan elmaslar iade edilmez; ödeme sorunları için Google Play destek.", 15, Ui.Soluk, HorizontalAlignment.Center));
 		v.AddChild(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 22));
 		Pencere(v);
 	}

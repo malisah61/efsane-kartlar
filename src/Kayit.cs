@@ -49,6 +49,8 @@ public class Profil
 	public string AylikKartBitis { get; set; } = "";
 	public string AylikKartSonAlim { get; set; } = "";
 	public long ToplamHarcamaKurus { get; set; }
+	public List<string> IslenenJetonlar { get; set; } = new();
+	public int RuhOzu { get; set; }
 }
 
 public static class Kayit
@@ -124,6 +126,8 @@ public static class Kayit
 		foreach (var g in p.AlinanGorevler) gorev.Add(g);
 		var urunler = new Godot.Collections.Array();
 		foreach (var u in p.AlinanUrunler) urunler.Add(u);
+		var jetonlar = new Godot.Collections.Array();
+		foreach (var j in p.IslenenJetonlar) jetonlar.Add(j);
 		return new Godot.Collections.Dictionary
 		{
 			["ad"] = p.Ad, ["altin"] = p.Altin, ["elmas"] = p.Elmas, ["parsomen"] = p.Parsomen, ["kupa"] = p.Kupa,
@@ -133,7 +137,7 @@ public static class Kayit
 			["gorevler"] = gorev, ["kartlar"] = kartlar, ["takim"] = takim, ["surum"] = p.SonKayitSurumu,
 			["enerji"] = p.Enerji, ["enerjiZaman"] = p.EnerjiZaman, ["enerjiAlim"] = p.EnerjiAlim, ["sezon"] = p.Sezon,
 			["gHikaye"] = p.GunlukHikaye, ["gArena"] = p.ArenaGunlukSavas, ["muzik"] = p.MuzikAcik, ["efekt"] = p.EfektAcik,
-			["urunler"] = urunler, ["aylikBitis"] = p.AylikKartBitis,
+			["urunler"] = urunler, ["oz"] = p.RuhOzu, ["jetonlar"] = jetonlar, ["aylikBitis"] = p.AylikKartBitis,
 			["aylikSon"] = p.AylikKartSonAlim, ["harcama"] = p.ToplamHarcamaKurus,
 		};
 	}
@@ -157,6 +161,8 @@ public static class Kayit
 		};
 		if (d.ContainsKey("gorevler")) foreach (var g in d["gorevler"].AsGodotArray()) p.AlinanGorevler.Add(g.AsInt32());
 		if (d.ContainsKey("urunler")) foreach (var u in d["urunler"].AsGodotArray()) p.AlinanUrunler.Add(u.AsString());
+		if (d.ContainsKey("oz")) p.RuhOzu = d["oz"].AsInt32();
+		if (d.ContainsKey("jetonlar")) foreach (var j in d["jetonlar"].AsGodotArray()) p.IslenenJetonlar.Add(j.AsString());
 		if (d.ContainsKey("aylikBitis")) p.AylikKartBitis = d["aylikBitis"].AsString();
 		if (d.ContainsKey("aylikSon")) p.AylikKartSonAlim = d["aylikSon"].AsString();
 		if (d.ContainsKey("harcama")) p.ToplamHarcamaKurus = (long)d["harcama"].AsDouble();
@@ -294,14 +300,28 @@ public static class Kayit
 	public static bool KartEkle(string id)
 	{
 		var s = Sahip(id);
-		if (s != null) { s.Kopya++; return false; }
+		if (s != null) { s.Kopya++; P.RuhOzu += OzDegeri(Veri.Harita[id].Nadirlik); return false; }
 		P.Kartlar.Add(new SahipKart { Id = id });
 		return true;
 	}
 
-	public static int MaxSeviye(int yildiz) => 10 + 10 * yildiz;     // 1★:20 … 5★:60
-	public static int SeviyeMaliyet(int seviye) => (int)(Math.Round(20 * Math.Pow(seviye, 1.5) / 10.0) * 10);
-	public static int YildizKopya(int yildiz) => yildiz switch { 1 => 2, 2 => 4, 3 => 8, 4 => 12, _ => 999 };
+	public static int MaxSeviye(int yildiz) => 15 + 10 * yildiz;     // 1★:25 … 5★:65
+	public static int SeviyeMaliyet(int seviye) => (int)(Math.Round(40 * Math.Pow(seviye, 1.6) / 10.0) * 10);
+
+	// ------------------------------------------------------------ ruh özü (fazla kopyalardan)
+	/// <summary>Her kopya ayrıca nadirliğine göre ruh özü verir; öz ile istenen kartın kopyası alınır.</summary>
+	public static int OzDegeri(string nadirlik) => nadirlik switch { "nadir" => 2, "epik" => 6, "efsanevi" => 20, _ => 1 };
+	public static int OzKopyaFiyat(string nadirlik) => nadirlik switch { "nadir" => 25, "epik" => 70, "efsanevi" => 180, _ => 10 };
+
+	public static bool OzleKopyaAl(SahipKart k)
+	{
+		int f = OzKopyaFiyat(Veri.Harita[k.Id].Nadirlik);
+		if (P.RuhOzu < f) return false;
+		P.RuhOzu -= f; k.Kopya++;
+		Kaydet();
+		return true;
+	}
+	public static int YildizKopya(int yildiz) => yildiz switch { 1 => 1, 2 => 2, 3 => 4, 4 => 6, _ => 999 };
 
 	public static bool SeviyeAtlat(SahipKart k)
 	{
@@ -314,11 +334,14 @@ public static class Kayit
 		return true;
 	}
 
+	public static int YildizAltin(int yildiz) => 3000 * yildiz * yildiz;
+
 	public static bool YildizAtlat(SahipKart k)
 	{
 		if (k.Yildiz >= 5) return false;
 		int m = YildizKopya(k.Yildiz);
-		if (k.Kopya < m) return false;
+		if (k.Kopya < m || P.Altin < YildizAltin(k.Yildiz)) return false;
+		P.Altin -= YildizAltin(k.Yildiz);
 		k.Kopya -= m; k.Yildiz++;
 		P.GunlukYukseltme++;
 		Kaydet();
@@ -379,6 +402,27 @@ public static class Kayit
 		return kart;
 	}
 
+	/// <summary>10'lu elmas çağrısı: en az bir epik veya efsanevi garanti.</summary>
+	public static List<KartTanim> OnluCekim(Random r = null)
+	{
+		var l = new List<KartTanim>();
+		for (int i = 0; i < 9; i++) l.Add(CekimYap(true, r));
+		if (l.Any(k => k.NadirlikSira >= 2)) l.Add(CekimYap(true, r));
+		else
+		{
+			r ??= _r;
+			P.ElmasCekimSayaci++;
+			bool ef = P.ElmasCekimSayaci >= EfsaneviGaranti || r.NextDouble() < 0.12;
+			var havuz = Veri.Kartlar.Where(k => k.Nadirlik == (ef ? "efsanevi" : "epik")).ToList();
+			var kart = havuz[r.Next(havuz.Count)];
+			if (ef) P.ElmasCekimSayaci = 0;
+			KartEkle(kart.Id);
+			P.GunlukCekim++;
+			l.Add(kart);
+		}
+		return l;
+	}
+
 	public static List<KartTanim> Cagir(string tur, int adet)
 	{
 		var l = new List<KartTanim>();
@@ -393,7 +437,8 @@ public static class Kayit
 			int fiyat = adet >= 10 ? ElmasOnluFiyat : ElmasCekimFiyat * adet;
 			if (P.Elmas < fiyat) return l;
 			P.Elmas -= fiyat;
-			for (int i = 0; i < adet; i++) l.Add(CekimYap(true));
+			if (adet >= 10) l.AddRange(OnluCekim());
+			else for (int i = 0; i < adet; i++) l.Add(CekimYap(true));
 		}
 		Kaydet();
 		return l;

@@ -91,6 +91,7 @@ public static class Rakipler
 	{
 		>= 2500 => "Efsane", >= 1600 => "Elmas", >= 900 => "Altın", >= 400 => "Gümüş", _ => "Bronz"
 	};
+	public static int LigSira(int kupa) => kupa >= 2500 ? 4 : kupa >= 1600 ? 3 : kupa >= 900 ? 2 : kupa >= 400 ? 1 : 0;
 	public static int SonrakiLigKupa(int kupa) => kupa < 400 ? 400 : kupa < 900 ? 900 : kupa < 1600 ? 1600 : kupa < 2500 ? 2500 : 0;
 
 	/// <summary>Rakipler sıralamadaki gerçek "komşu" oyunculardır: biri altta, biri yakında, biri üstte.</summary>
@@ -102,7 +103,9 @@ public static class Rakipler
 		int guc = Math.Max(400, Kayit.TakimGucu());
 		var r = new Rng((ulong)(hafta * 7919 + p.ArenaYenileme * 977 + p.ArenaGalibiyet * 131 + p.ArenaMaglubiyet * 17 + 5));
 		var l = new List<ArenaRakip>();
-		float[] oran = { 0.75f, 0.92f, 1.1f };
+		// üst liglerde rakipler daha hazırlıklı
+		float ligCarpani = 1f + 0.07f * LigSira(p.Kupa);
+		float[] oran = { 0.8f * ligCarpani, 1.0f * ligCarpani, 1.15f * ligCarpani };
 		(int, int)[] aralik = { (-250, -30), (-40, 60), (50, 300) };
 		var kullanilan = new HashSet<string>();
 		for (int z = 0; z < 3; z++)
@@ -148,8 +151,8 @@ public static class Rakipler
 
 	public static (int kupa, int altin, int elmas) ArenaOdulu(ArenaRakip r, bool kazandi)
 	{
-		if (!kazandi) return (-12, 30, 0);
-		return (18 + r.Zorluk * 7, 120 + r.Zorluk * 40, 4 + r.Zorluk * 3);
+		if (!kazandi) return (-14, 30, 0);
+		return (14 + r.Zorluk * 6, 120 + r.Zorluk * 40, 4 + r.Zorluk * 3);
 	}
 
 	// ------------------------------------------------------------ haftalık sıralama
