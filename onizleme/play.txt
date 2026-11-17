@@ -1,6 +1,6 @@
 durum: success
 Downloading https://services.gradle.org/distributions/gradle-8.14.5-bin.zip
-.............10%.............20%.............30%.............40%.............50%..............60%.............70%.............80%.............90%.............100%
+.............10%.............20%.............30%.............40%.............50%.............60%..............70%.............80%.............90%.............100%
 Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
 
 [   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
@@ -9,58 +9,6 @@ Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
 [  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
 [  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
 [  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
-SCRIPT ERROR: Parse Error: Could not find type "SpmDependency" in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:189)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:76)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:88)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:103)
-SCRIPT ERROR: Parse Error: Identifier "SpmDependency" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:172)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:176)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:183)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:185)
-SCRIPT ERROR: Parse Error: Could not find type "SpmDependency" in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:190)
-SCRIPT ERROR: Parse Error: Could not resolve external class member "get_spm_dependencies".
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:193)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:202)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:210)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:213)
-SCRIPT ERROR: Parse Error: Could not find type "SpmDependency" in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:215)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:227)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:230)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:232)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:235)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:237)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:243)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:251)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:252)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:255)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:256)
-SCRIPT ERROR: Parse Error: Identifier "GmpLogger" not declared in the current scope.
-          at: GDScript::reload (res://addons/AdmobPlugin/AdmobPlugin.gd:370)
-ERROR: Failed to load script "res://addons/AdmobPlugin/AdmobPlugin.gd" with error "Parse error".
-   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
 [  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
 [92m[ DONE ][39m [1mfirst_scan_filesystem[22m
 [0m
@@ -72,6 +20,12 @@ ERROR: Failed to load script "res://addons/AdmobPlugin/AdmobPlugin.gd" with erro
 [   0% ] [90m[1mdotnet_publish_project[22m | Running dotnet publish[39m[0m
 [92m[ DONE ][39m [1mdotnet_publish_project[22m
 [0m
+[92mINFO: Loading export config from file![39m[0m
+[92mINFO: Loaded export configuration settings:[39m[0m
+[92mINFO:   is_real: false[39m[0m
+[92mINFO:   enabled_mediation_networks: [39m[0m
+[92mINFO: ... debug_application_id: ca-app-pub-3940256099942544~3347511713[39m[0m
+[92mINFO: ... real_application_id: ca-app-pub-3940256099942544~3347511713[39m[0m
 [   0% ] [90m[1mexport[22m | Started Exporting for Android (105 steps)[39m[0m
 ERROR: No project icon specified. Please specify one in the Project Settings under Application -> Config -> Icon
    at: load_icon_refs (platform/android/export/export_plugin.cpp:1941)
@@ -81,6 +35,7 @@ ERROR: No project icon specified. Please specify one in the Project Settings und
 3 param: --fullscreen
 4 param: --background_color
 5 param: #000000
+[92mINFO: Android dependencies: ["androidx.appcompat:appcompat:1.7.1", "androidx.lifecycle:lifecycle-process:2.8.3", "com.google.android.gms:play-services-ads:24.9.0"][39m[0m
 [92m[ DONE ][39m [1mexport[22m
 [0m
 ERROR: EditorSettings not instantiated yet when getting setting "export/android/shutdown_adb_on_exit".
