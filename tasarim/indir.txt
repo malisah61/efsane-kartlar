@@ -1,0 +1,2 @@
+# dosya_adi URL
+deneme_2x2.png https://api.spritecook.ai/v1/assets/5efeaeba-4862-4f58-a403-1240d4d9b955/signed-content/pixel?sig=7YjN1Jd90HMMiJf_CiCt7BpMpwUBRgEJfHsy4YaXhkM&exp=1794896210

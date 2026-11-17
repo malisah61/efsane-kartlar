@@ -1,0 +1,33 @@
+name: Görselleri indir
+# tasarim/indir.txt içindeki "dosya_adi URL" satırlarını indirir ve tasarim/ham/ altına yazar.
+# SpriteCook imzalı bağlantıları ~1 saat geçerli; dosya her güncellendiğinde çalışır.
+on:
+  push:
+    branches: [main]
+    paths: ["tasarim/indir.txt"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  indir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: İndir
+        run: |
+          mkdir -p tasarim/ham
+          while read -r ad url; do
+            [ -z "$ad" ] && continue
+            case "$ad" in \#*) continue;; esac
+            if [ -f "tasarim/ham/$ad" ]; then echo "var: $ad"; continue; fi
+            curl -sSfL "$url" -o "tasarim/ham/$ad" && echo "indi: $ad" || echo "HATA: $ad"
+          done < tasarim/indir.txt
+          ls -la tasarim/ham
+      - name: Depoya kaydet
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898732+github-actions[bot]@users.noreply.github.com"
+          git add tasarim/ham
+          git commit -m "Ham görseller indirildi" || echo "değişiklik yok"
+          git pull --rebase -q
+          git push
