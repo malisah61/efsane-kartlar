@@ -21,10 +21,10 @@ public static class Efekt
 	}
 
 	/// <summary>Tek seferlik parçacık patlaması.</summary>
-	public static CPUParticles2D Patlama(Node ebeveyn, Vector2 konum, Color renk, int adet = 24, float hiz = 220, float boyut = 6,
+	public static CpuParticles2D Patlama(Node ebeveyn, Vector2 konum, Color renk, int adet = 24, float hiz = 220, float boyut = 6,
 		float omur = 0.5f, float yercekimi = 300, float yayilma = 180, Vector2? yon = null)
 	{
-		var p = new CPUParticles2D
+		var p = new CpuParticles2D
 		{
 			Position = konum, Emitting = false, OneShot = true, Explosiveness = 0.95f, Amount = Math.Max(1, adet),
 			Lifetime = omur, Direction = yon ?? Vector2.Up, Spread = yayilma,
@@ -41,10 +41,10 @@ public static class Efekt
 	/// <summary>Yukarı süzülen parçacıklar (iyileşme, güçlenme, aura).</summary>
 	public static void Yukselen(Node ebeveyn, Vector2 konum, Color renk, int adet = 16, float genislik = 40)
 	{
-		var p = new CPUParticles2D
+		var p = new CpuParticles2D
 		{
 			Position = konum, Emitting = false, OneShot = true, Explosiveness = 0.6f, Amount = adet, Lifetime = 0.9f,
-			EmissionShape = CPUParticles2D.EmissionShapeEnum.Rectangle, EmissionRectExtents = new Vector2(genislik, 10),
+			EmissionShape = CpuParticles2D.EmissionShapeEnum.Rectangle, EmissionRectExtents = new Vector2(genislik, 10),
 			Direction = Vector2.Up, Spread = 15, InitialVelocityMin = 40, InitialVelocityMax = 110, Gravity = new Vector2(0, -60),
 			ScaleAmountMin = 3, ScaleAmountMax = 7, ColorRamp = Solma(renk), ZIndex = 20, LocalCoords = false,
 		};
@@ -69,7 +69,7 @@ public static class Efekt
 	{
 		var m = new MermiDugum { Position = bas, Renk = renk, Boyut = boyut, ZIndex = 21 };
 		ebeveyn.AddChild(m);
-		var iz = new CPUParticles2D
+		var iz = new CpuParticles2D
 		{
 			Amount = 18, Lifetime = 0.25f, Gravity = Vector2.Zero, InitialVelocityMin = 0, InitialVelocityMax = 15, Spread = 180,
 			ScaleAmountMin = boyut * 0.3f, ScaleAmountMax = boyut * 0.7f, ColorRamp = Solma(renk), LocalCoords = false,
