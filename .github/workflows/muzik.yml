@@ -1,0 +1,37 @@
+name: Muzik indir (CC0)
+# OpenGameArt'tan CC0 (telifsiz, atıf zorunlu değil) fantastik savaş müziklerini indirir,
+# ogg'a çevirir ve assets/ses/muzik/ altına yazar.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [".github/workflows/muzik.yml"]
+permissions:
+  contents: write
+jobs:
+  indir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get -qq update && sudo apt-get -qq install -y ffmpeg > /dev/null
+      - name: Indir ve cevir
+        run: |
+          set -u
+          mkdir -p ham assets/ses/muzik && cd ham
+          al() { # $1 = hedef ad, $2 = dosya adı (OpenGameArt)
+            if curl -fsSL -A "Mozilla/5.0" -o "$1.in" "https://opengameart.org/sites/default/files/$2"; then
+              ffmpeg -loglevel error -y -i "$1.in" -ac 2 -ar 44100 -af loudnorm=I=-18:TP=-2 -c:a libvorbis -q:a 3 "../assets/ses/muzik/$1.ogg" && echo "OK $1 $(du -h ../assets/ses/muzik/$1.ogg | cut -f1)"
+            else echo "YOK $1 $2"; fi
+          }
+          al menu   "heartfelt-battle_loop.ogg"
+          al savas1 "Battle.mp3"
+          al savas2 "jrpg_battle_loop.mp3"
+          al savas3 "determined_pursuit_loop.wav"
+          ls -la ../assets/ses/muzik
+      - name: Kaydet
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898732+github-actions[bot]@users.noreply.github.com"
+          git add assets/ses/muzik
+          git commit -qm "CC0 fantastik savaş müzikleri (OpenGameArt)" || echo yok
+          git pull -q --rebase origin main && git push origin HEAD:main
