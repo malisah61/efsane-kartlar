@@ -8,6 +8,7 @@ public class ArenaRakip
 {
 	public string Ad;
 	public int Kupa, Guc, Zorluk;   // Zorluk 0 kolay, 1 denk, 2 zor
+	public string OyuncuId;         // gerçek oyuncu ise sunucu kimliği (bot ise null)
 	public List<TakimUyesi> Takim;
 	public ulong Tohum;
 }

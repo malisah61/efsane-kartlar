@@ -134,6 +134,9 @@ public static class Kayit
 		YeniOyun();
 	}
 
+	/// <summary>Her kayıttan sonra çağrılır (bulut kaydı bunu dinler).</summary>
+	public static event Action Degisti;
+
 	public static void Kaydet()
 	{
 		if (KayitKapali) return;
@@ -143,6 +146,33 @@ public static class Kayit
 			f?.StoreString(Json.Stringify(Kodla(P)));
 		}
 		catch (Exception e) { GD.PrintErr("Kayıt yazılamadı: " + e.Message); }
+		Degisti?.Invoke();
+	}
+
+	// ------------------------------------------------------------ bulut kaydı yardımcıları
+	public static string Metin() => Json.Stringify(Kodla(P));
+
+	public static Profil MetindenProfil(string metin)
+	{
+		try
+		{
+			var p = Coz(metin);
+			p.Kartlar.RemoveAll(k => !Veri.Harita.ContainsKey(k.Id));
+			while (p.Takim.Count < 5) p.Takim.Add(null);
+			for (int i = 0; i < 5; i++) if (p.Takim[i] != null && !p.Kartlar.Any(k => k.Id == p.Takim[i])) p.Takim[i] = null;
+			return p.Kartlar.Count > 0 ? p : null;
+		}
+		catch (Exception e) { GD.PrintErr("Bulut kaydı çözülemedi: " + e.Message); return null; }
+	}
+
+	public static string Ozet(Profil p) =>
+		$"{p.Kartlar.Count} kart • aşama {p.EnIyiAsama}/60 • {p.Elmas:N0} elmas • {p.Altin:N0} altın";
+
+	public static void ProfiliDegistir(Profil p)
+	{
+		P = p;
+		GunKontrol();
+		Kaydet();
 	}
 
 	// Godot Json ile elle (Android'de yansıma tabanlı serileştirmeye güvenmemek için)

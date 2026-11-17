@@ -24,8 +24,8 @@ public static class Onizleme
 		p.Takim = new List<string> { "tepegoz", "akhilleus", "zeus", "medusa", "umay" };
 		await Bekle(o, 0.6f);
 
-		string[] adlar = { "1_ana", "2_kartlar", "3_takim", "4_cagir", "5_arena" };
-		for (int i = 0; i < 5; i++)
+		string[] adlar = { "1_ana", "2_kartlar", "3_takim", "4_cagir", "5_arena", "6_sosyal" };
+		for (int i = 0; i < 6; i++)
 		{
 			o.OnizlemeEkran(i);
 			await Bekle(o, 0.6f);

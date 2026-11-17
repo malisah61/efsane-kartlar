@@ -9,7 +9,7 @@ namespace EfsaneKartlar;
 /// <summary>Ana düğüm: üst kaynak çubuğu, ekranlar, alt menü, açılır pencereler ve savaşlar.</summary>
 public partial class Oyun : Control
 {
-	enum Ekran { Ana, Kartlar, Takim, Cagir, Arena }
+	enum Ekran { Ana, Kartlar, Takim, Cagir, Arena, Sosyal }
 	Ekran _ekran = Ekran.Ana;
 	MarginContainer _icerik;
 	Label _altinL, _elmasL, _parsL, _kupaL, _enerjiL;
@@ -46,6 +46,9 @@ public partial class Oyun : Control
 		Ses.Kur(this);
 		Odeme.Kur(this);
 		Reklam.Kur(this);
+		Sunucu.Kur(this);
+		Sunucu.Degisti = () => { if (IsInstanceValid(this)) { _rakipler = null; Yenile(); } };
+		Sunucu.KayitSecimi = KayitSecimPenceresi;
 		Reklam.Bilgi = m => Mesaj(m);
 		Odeme.Bilgi = m => Mesaj(m);
 		Odeme.Tamamlandi = (id, ozet) => { Ses.Efekt("efsanevi"); PencereKapat(); Yenile(); SatinAlmaPenceresi(id, ozet); };
@@ -55,7 +58,8 @@ public partial class Oyun : Control
 		Goster(Ekran.Ana);
 		if (!Kayit.KayitKapali)
 		{
-			var sezon = Kayit.SezonKontrol();
+			// çevrimiçi oyuncularda haftalık ödülleri sunucu dağıtır
+			var sezon = Sunucu.OturumVar ? null : Kayit.SezonKontrol();
 			if (sezon.HasValue) SezonOdulPenceresi(sezon.Value.sira, sezon.Value.elmas, sezon.Value.eskiKupa);
 			else if (!Kayit.P.GirisOdulAlindi) GunlukOdulPenceresi();
 		}
@@ -96,10 +100,10 @@ public partial class Oyun : Control
 		kok.AddChild(alt);
 		var ah = Ui.Yatay(6);
 		alt.AddChild(ah);
-		var adlar = new[] { ("Ana Sayfa", Ekran.Ana), ("Kartlar", Ekran.Kartlar), ("Takım", Ekran.Takim), ("Çağır", Ekran.Cagir), ("Arena", Ekran.Arena) };
+		var adlar = new[] { ("Ana Sayfa", Ekran.Ana), ("Kartlar", Ekran.Kartlar), ("Takım", Ekran.Takim), ("Çağır", Ekran.Cagir), ("Arena", Ekran.Arena), ("Sosyal", Ekran.Sosyal) };
 		foreach (var (ad, ek) in adlar)
 		{
-			var b = Ui.Genis(Ui.Dugme(ad, () => Goster(ek), new Color("252b4a"), 20, 78));
+			var b = Ui.Genis(Ui.Dugme(ad, () => Goster(ek), new Color("252b4a"), 17, 78));
 			_menuDugmeleri.Add(b);
 			ah.AddChild(b);
 		}
@@ -149,6 +153,7 @@ public partial class Oyun : Control
 			Ekran.Kartlar => KartlarEkrani(),
 			Ekran.Takim => TakimEkrani(),
 			Ekran.Cagir => CagirEkrani(),
+			Ekran.Sosyal => SosyalEkrani(),
 			_ => ArenaEkrani(),
 		};
 		_icerik.AddChild(ekran);
@@ -571,13 +576,23 @@ public partial class Oyun : Control
 	{
 		var v = Ui.Dikey(12);
 		var p = Kayit.P;
-		_rakipler ??= Rakipler.ArenaRakipleri();
+		if (_rakipler == null)
+		{
+			if (Sunucu.Girisli) { CevrimiciRakipleriYukle(); v.AddChild(Ui.Etiket("Rakipler aranıyor…", 24, Ui.Soluk)); return Ui.Kaydirma(v); }
+			_rakipler = Rakipler.ArenaRakipleri();
+		}
 		v.AddChild(Ui.Etiket($"Arena — {Rakipler.Lig(p.Kupa)} Ligi", 32, Ui.Altin));
 		int sonraki = Rakipler.SonrakiLigKupa(p.Kupa);
 		v.AddChild(Ui.Etiket($"Kupa {p.Kupa}" + (sonraki > 0 ? $"  (sonraki lig: {sonraki})" : "") + $"   •   G/M {p.ArenaGalibiyet}/{p.ArenaMaglubiyet}", 20, Ui.Soluk));
 		var kalanS = Rakipler.SezonKalan();
-		int sira = Rakipler.OyuncuSirasi();
-		v.AddChild(Ui.Etiket($"Grup sıran: {sira}/{Rakipler.GrupBoyu}  (ödül {Rakipler.SezonOdulu(sira)} elmas)   •   Sezon bitimine {kalanS.Days}g {kalanS.Hours}s", 20, Ui.Elmas));
+		if (Sunucu.Girisli)
+			v.AddChild(Ui.Etiket($"Gerçek oyunculara karşı savaşıyorsun   •   Haftalık sıralama bitimine {kalanS.Days}g {kalanS.Hours}s", 20, Ui.Elmas));
+		else
+		{
+			int sira = Rakipler.OyuncuSirasi();
+			v.AddChild(Ui.Etiket($"Grup sıran: {sira}/{Rakipler.GrupBoyu}  (ödül {Rakipler.SezonOdulu(sira)} elmas)   •   Sezon bitimine {kalanS.Days}g {kalanS.Hours}s", 20, Ui.Elmas));
+			v.AddChild(Ui.Etiket("Gerçek oyuncularla savaşmak ve dünya sıralamasına girmek için Sosyal sekmesinden giriş yap.", 17, Ui.Soluk));
+		}
 		var hs = Ui.Yatay(10);
 		v.AddChild(hs);
 		hs.AddChild(Ui.Genis(Ui.Etiket($"Kalan savaş hakkı: {p.ArenaHak}", 22, p.ArenaHak > 0 ? Colors.White : Ui.Kirmizi)));
@@ -600,13 +615,13 @@ public partial class Oyun : Control
 			rp.AddChild(rv);
 			var rb = Ui.Yatay();
 			rv.AddChild(rb);
-			rb.AddChild(Ui.Genis(Ui.Etiket($"{r.Ad}   ({r.Kupa} kupa)", 23)));
+			rb.AddChild(Ui.Genis(Ui.Etiket($"{r.Ad}   ({r.Kupa} kupa)" + (Sunucu.Girisli && r.OyuncuId == null ? "  • bot" : ""), 23)));
 			rb.AddChild(Ui.Genis(Ui.Etiket($"Güç {r.Guc:N0}  •  {zad[r.Zorluk]}", 20, zrenk[r.Zorluk], HorizontalAlignment.Right), 0.8f));
 			var alt = Ui.Yatay(8);
 			rv.AddChild(alt);
 			alt.AddChild(Ui.Genis(MiniTakim(r.Takim, 84)));
 			var od = Rakipler.ArenaOdulu(r, true);
-			var sb = Ui.Dugme($"Savaş\n+{od.kupa}", () => ArenaSavasi(r), new Color("c0582f"), 21, 110);
+			var sb = Ui.Dugme(Sunucu.Girisli && r.OyuncuId != null ? "Savaş" : $"Savaş\n+{od.kupa}", () => ArenaSavasi(r), new Color("c0582f"), 21, 110);
 			sb.CustomMinimumSize = new Vector2(110, 110);
 			sb.Disabled = p.ArenaHak <= 0;
 			alt.AddChild(sb);
@@ -614,7 +629,7 @@ public partial class Oyun : Control
 		var alt2 = Ui.Yatay(10);
 		v.AddChild(alt2);
 		alt2.AddChild(Ui.Genis(Ui.Dugme("Rakipleri Yenile", () => { p.ArenaYenileme++; Kayit.Kaydet(); _rakipler = null; Yenile(); }, new Color("444c78"), 21)));
-		alt2.AddChild(Ui.Genis(Ui.Dugme("Haftalık Sıralama", SiralamaPenceresi, new Color("8a4fc0"), 21)));
+		alt2.AddChild(Ui.Genis(Ui.Dugme("Sıralamalar", () => { if (Sunucu.Girisli) CevrimiciSiralama("hafta"); else SiralamaPenceresi(); }, new Color("8a4fc0"), 21)));
 		return Ui.Kaydirma(v);
 	}
 
@@ -682,10 +697,24 @@ public partial class Oyun : Control
 		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
 		p.ArenaHak--;
 		p.ArenaGunlukSavas++;
-		SavasBaslat(r.Takim, $"Arena: {r.Ad}", Rakipler.TakimArka(r.Takim), kazandi =>
+		SavasBaslat(r.Takim, $"Arena: {r.Ad}", Rakipler.TakimArka(r.Takim), async kazandi =>
 		{
 			var o = Rakipler.ArenaOdulu(r, kazandi);
-			p.Kupa = Math.Max(0, p.Kupa + o.kupa);
+			int kupaDegisim = o.kupa;
+			if (Sunucu.Girisli)
+			{
+				try
+				{
+					var d = r.OyuncuId != null
+						? await Sunucu.Sozluk("arena_sonuc", new() { ["p_rakip"] = r.OyuncuId, ["p_kazandi"] = kazandi })
+						: await Sunucu.Sozluk("bot_arena_sonuc", new() { ["p_kazandi"] = kazandi, ["p_zorluk"] = r.Zorluk });
+					kupaDegisim = Sunucu.I(d, "kupa_degisim");
+					p.Kupa = Sunucu.I(d, "kupa");
+				}
+				catch (Exception e) { Mesaj(e.Message); kupaDegisim = 0; }
+			}
+			else p.Kupa = Math.Max(0, p.Kupa + o.kupa);
+			o = (kupaDegisim, o.altin, o.elmas);
 			p.Altin += o.altin; p.Elmas += o.elmas;
 			if (kazandi) p.ArenaGalibiyet++; else p.ArenaMaglubiyet++;
 			_rakipler = null;
@@ -693,24 +722,29 @@ public partial class Oyun : Control
 			var l = new List<string> { $"{(o.kupa >= 0 ? "+" : "")}{o.kupa} kupa", $"+{o.altin} altın" };
 			if (o.elmas > 0) l.Add($"+{o.elmas} elmas");
 			return l;
-		});
+		}, false, null);
 	}
 
 	int _katlaAltin;   // son hikâye zaferinin altını (reklamla 2 kat)
 
 	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, List<string>> sonuc, bool boss = false)
+		=> SavasBaslat(dusman, baslik, arka, k => Task.FromResult(sonuc(k)), boss, null);
+
+	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, Task<List<string>>> sonuc, bool boss, List<TakimUyesi> bizim)
 	{
 		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
-		var s = new Savas(Kayit.TakimUyeleri(), dusman, (ulong)Time.GetTicksUsec());
+		var s = new Savas(bizim ?? Kayit.TakimUyeleri(), dusman, (ulong)Time.GetTicksUsec());
 		s.Oyna();
 		Kayit.P.GunlukSavas++;
 		_katlaAltin = 0;
 		var ekran = new SavasEkrani { S = s, Baslik = baslik, Arka = arka, Boss = boss };
-		ekran.Bitti = kazandi =>
+		ekran.Bitti = async kazandi =>
 		{
 			Ses.Muzik("menu");
 			if (kazandi) Ses.Efekt("para", 0, 1, 0);
-			var satirlar = sonuc(kazandi);
+			List<string> satirlar;
+			try { satirlar = await sonuc(kazandi); }
+			catch (Exception e) { satirlar = new List<string> { e.Message }; }
 			ekran.QueueFree();
 			Yenile();
 			SonucPenceresi(kazandi, satirlar);
