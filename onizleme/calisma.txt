@@ -1,0 +1,16 @@
+Godot Engine v4.3.stable.mono.official.77dcf97d8 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:360)
+OpenGL API 4.5 (Core Profile) Mesa 26.0.8-1ubuntu0.3 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 21.1.8, 256 bits)
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/1_ana.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/2_kartlar.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/3_takim.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/4_cagir.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/5_arena.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/6_kart_detay.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/7_cagri.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/8_gunluk.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/9_magaza.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10_savas.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/11_sonuc.png
+ONIZLEME tamam fps=56
