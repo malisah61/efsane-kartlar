@@ -122,6 +122,9 @@ public partial class Oyun
 		{
 			Onay("Hesabından çıkılsın mı? İlerlemen bulutta kayıtlı kalır.", () => { _ = Sunucu.BulutaGonder(); Sunucu.Cikis(); });
 		}, new Color("6a3a3a"), 20, 60)));
+		v.AddChild(Ui.Dugme("Hesabımı Sil", () => Onay("Hesabın, bulut kaydın, arkadaşların ve mesajların KALICI olarak silinecek. Bu cihazdaki ilerleme kalır. Emin misin?",
+			() => Is(async () => { await Sunucu.Rpc("hesap_sil"); Sunucu.Cikis(); BilgiPenceresi("Hesap silindi", "Hesabın ve sunucudaki tüm verilerin silindi."); })),
+			new Color("4a2222"), 17, 48));
 		// profil bilgisi tazele
 		Is(async () => { await Sunucu.BenYenile(); });
 		return Ui.Kaydirma(v);
