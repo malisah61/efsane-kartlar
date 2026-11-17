@@ -11,6 +11,9 @@ kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/6_kart_detay.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/7_cagri.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/8_gunluk.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/9_magaza.png
+WARNING: Nodes with non-equal opposite anchors will have their size overridden after _ready(). 
+If you want to set size, change the anchors or consider using set_deferred().
+     at: _set_size (scene/gui/control.cpp:1448)
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/11_sonuc.png
-ONIZLEME tamam fps=56
+ONIZLEME tamam fps=42
