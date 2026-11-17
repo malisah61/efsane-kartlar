@@ -3,6 +3,7 @@ WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by 
      at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:360)
 OpenGL API 4.5 (Core Profile) Mesa 26.0.8-1ubuntu0.3 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 21.1.8, 256 bits)
 Ödeme eklentisi yok (Google Play dışı sürüm).
+Reklam eklentisi yok.
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/1_ana.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/2_kartlar.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/3_takim.png
@@ -16,8 +17,8 @@ kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10b_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10c_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/11_sonuc.png
-ONIZLEME tamam fps=48
+ONIZLEME tamam fps=53
 WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
      at: cleanup (core/object/object.cpp:2284)
-ERROR: 4 resources still in use at exit (run with --verbose for details).
+ERROR: 6 resources still in use at exit (run with --verbose for details).
    at: clear (core/io/resource.cpp:604)
