@@ -96,6 +96,25 @@ public partial class Oyun
 		Dugme("Savunma Kayıtları", SavunmaKayitlari, Gri, saldiri);
 		if (odul == 0) Dugme("Ödül Kutusu", OdulKutusu, Gri);
 		v.AddChild(Ui.Bosluk(10));
+		if (Sunucu.B(b, "ad_degisebilir"))
+			v.AddChild(Ui.Dugme("Kullanıcı Adını Değiştir", () =>
+			{
+				var pv = Ui.Dikey(10);
+				pv.AddChild(Ui.Etiket("Yeni Kullanıcı Adı", 30, Ui.Altin, HorizontalAlignment.Center));
+				var ad = Alan("3-16 harf/rakam", false, 16);
+				ad.Text = Sunucu.KullaniciAdi;
+				pv.AddChild(ad);
+				pv.AddChild(Ui.Etiket("Haftada bir değiştirebilirsin.", 17, Ui.Soluk, HorizontalAlignment.Center));
+				pv.AddChild(Ui.Dugme("Kaydet", () => Is(async () =>
+				{
+					await Sunucu.Rpc("ad_degistir", new() { ["p_ad"] = ad.Text.Trim() });
+					await Sunucu.BenYenile();
+					Kayit.P.Ad = Sunucu.KullaniciAdi; Kayit.Kaydet();
+					PencereKapat(); Yenile(); Mesaj("Kullanıcı adın değişti");
+				}), SosyalYesil, 22));
+				pv.AddChild(Ui.Dugme("Vazgeç", PencereKapat, Gri, 22));
+				Pencere(pv);
+			}, Gri, 20, 56));
 		var alt = Ui.Yatay(10);
 		v.AddChild(alt);
 		alt.AddChild(Ui.Genis(Ui.Dugme("Buluta Kaydet", () => Is(async () => { await Sunucu.BulutaGonder(); Mesaj("İlerlemen buluta kaydedildi"); }), SosyalYesil, 20, 60)));
@@ -126,6 +145,8 @@ public partial class Oyun
 	{
 		v.AddChild(Ui.Etiket(_kayitModu ? "Hesap Oluştur" : "Giriş Yap", 36, Ui.Altin, HorizontalAlignment.Center));
 		v.AddChild(Ui.Etiket("Hesapla ilerlemen buluta kaydedilir; gerçek oyuncularla savaşır, arkadaş ekler, loncaya katılır ve dünya sıralamasına girersin.", 19, Ui.Soluk, HorizontalAlignment.Center));
+		v.AddChild(Ui.Dugme("Google Play Games ile Giriş", PlayGames.GirisYap, new Color("01875f"), 26, 84));
+		v.AddChild(Ui.Etiket("— veya kullanıcı adı / e-posta ile —", 18, Ui.Soluk, HorizontalAlignment.Center));
 		var sekme = Ui.Yatay(10);
 		v.AddChild(sekme);
 		sekme.AddChild(Ui.Genis(Ui.Dugme("Giriş", () => { _kayitModu = false; Yenile(); }, _kayitModu ? Gri : SosyalMavi, 22)));

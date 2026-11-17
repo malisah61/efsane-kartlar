@@ -55,6 +55,8 @@ public partial class Oyun : Control
 		Odeme.Kur(this);
 		Reklam.Kur(this);
 		Sunucu.Kur(this);
+		PlayGames.Kur(this);
+		PlayGames.Bilgi = m => Mesaj(m);
 		Sunucu.Degisti = () => { if (IsInstanceValid(this)) { _rakipler = null; Yenile(); } };
 		Sunucu.KayitSecimi = KayitSecimPenceresi;
 		Reklam.Bilgi = m => Mesaj(m);

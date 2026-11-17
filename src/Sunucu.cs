@@ -117,6 +117,8 @@ public partial class Sunucu : Node
 			["zaten takimin var"] = "Zaten bir ikili takımın var.",
 			["takimin yok"] = "Önce bir ikili takım kur.",
 			["kayit cok buyuk"] = "Kayıt çok büyük.",
+			["ad haftada bir"] = "Kullanıcı adını haftada bir değiştirebilirsin.",
+			["ad alinmis"] = "Bu kullanıcı adı alınmış ya da geçersiz (3-16 harf/rakam).",
 			["User already registered"] = "Bu e-posta ile zaten bir hesap var.",
 			["Database error saving new user"] = "Bu kullanıcı adı alınmış, başka bir ad dene.",
 			["duplicate key"] = "Bu ad zaten alınmış.",
@@ -235,6 +237,16 @@ public partial class Sunucu : Node
 		var (kod, metin) = await _ben.Istek("/functions/v1/giris", HttpClient.Method.Post,
 			Json.Stringify(new Godot.Collections.Dictionary { ["kimlik"] = kimlik, ["sifre"] = sifre }), false);
 		if (kod != 200) throw new SunucuHatasi(HataCevir(metin, kod));
+		_ben.JetonlariAl(Json.ParseString(metin).AsGodotDictionary());
+		await _ben.GirisSonrasi(true);
+	}
+
+	/// <summary>Google Play Games sunucu yetki koduyla giriş (hesap yoksa sunucu oluşturur).</summary>
+	public static async Task PlayGamesGiris(string kod)
+	{
+		var (k, metin) = await _ben.Istek("/functions/v1/play_giris", HttpClient.Method.Post,
+			Json.Stringify(new Godot.Collections.Dictionary { ["kod"] = kod }), false);
+		if (k != 200) throw new SunucuHatasi(HataCevir(metin, k));
 		_ben.JetonlariAl(Json.ParseString(metin).AsGodotDictionary());
 		await _ben.GirisSonrasi(true);
 	}

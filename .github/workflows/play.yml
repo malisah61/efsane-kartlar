@@ -120,6 +120,17 @@ jobs:
           printf '\n[editor_plugins]\n\nenabled=PackedStringArray("res://addons/GodotGooglePlayBilling/plugin.cfg", "res://%s/plugin.cfg")\n' "$AD" >> project.godot
           tail -4 project.godot
 
+      - name: Google Play Games eklentisi (PLAY_GAMES_ID değişkeni varsa)
+        env:
+          PGID: ${{ vars.PLAY_GAMES_ID }}
+        run: |
+          if [ -z "$PGID" ]; then echo "PLAY_GAMES_ID yok; Play Games girişi bu derlemede kapalı."; exit 0; fi
+          git clone -q --depth 1 --branch v3.4.0 https://github.com/godot-sdk-integrations/godot-play-game-services.git /tmp/pgs
+          cp -r /tmp/pgs/addons/GodotPlayGameServices addons/
+          sed -i 's#enabled=PackedStringArray(#enabled=PackedStringArray("res://addons/GodotPlayGameServices/plugin.cfg", #' project.godot
+          sed -i "/^\[preset.1.options\]/a godot_play_game_services/game_id=\"$PGID\"" export_presets.cfg
+          tail -3 project.godot; grep -n "game_id" export_presets.cfg
+
       - name: Android gradle şablonunu kur
         run: |
           T=$HOME/.local/share/godot/export_templates/${GV}.stable.mono
