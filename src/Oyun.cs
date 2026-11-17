@@ -42,6 +42,9 @@ public partial class Oyun : Control
 			if (arg.StartsWith("--onizleme=")) { Kayit.KayitKapali = true; Kayit.YeniOyun(); _ = Onizleme.Cek(this, arg.Substring(11)); }
 		}
 		if (!Kayit.KayitKapali) Kayit.Yukle();
+		Ses.Kur(this);
+		Ses.MuzikAcik = Kayit.P.MuzikAcik; Ses.EfektAcik = Kayit.P.EfektAcik;
+		Ses.Muzik("menu");
 		Kur();
 		Goster(Ekran.Ana);
 		if (!Kayit.KayitKapali)
@@ -225,6 +228,16 @@ public partial class Oyun : Control
 		go.Disabled = p.GirisOdulAlindi;
 		sat.AddChild(Ui.Genis(go));
 		sat.AddChild(Ui.Genis(Ui.Dugme("Mağaza", MagazaPenceresi, new Color("8a4fc0"), 22)));
+		var sesSat = Ui.Yatay(12);
+		v.AddChild(sesSat);
+		sesSat.AddChild(Ui.Genis(Ui.Dugme(p.MuzikAcik ? "Müzik: Açık" : "Müzik: Kapalı", () =>
+		{
+			p.MuzikAcik = !p.MuzikAcik; Ses.MuzikAyarla(p.MuzikAcik); Kayit.Kaydet(); Yenile();
+		}, p.MuzikAcik ? new Color("2f6fb0") : new Color("4a4f66"), 19, 50)));
+		sesSat.AddChild(Ui.Genis(Ui.Dugme(p.EfektAcik ? "Sesler: Açık" : "Sesler: Kapalı", () =>
+		{
+			p.EfektAcik = !p.EfektAcik; Ses.EfektAcik = p.EfektAcik; Kayit.Kaydet(); Yenile();
+		}, p.EfektAcik ? new Color("2f6fb0") : new Color("4a4f66"), 19, 50)));
 
 		// görevler
 		var gp = Ui.Panel(Ui.PanelRenk, 16);
@@ -241,7 +254,7 @@ public partial class Oyun : Control
 			int il = Math.Min(g.ilerleme(p), g.hedef);
 			satir.AddChild(Ui.Genis(Ui.Etiket($"{g.ad}  ({il}/{g.hedef})", 21, il >= g.hedef ? Colors.White : Ui.Soluk)));
 			bool alindi = p.AlinanGorevler.Contains(i);
-			var b = Ui.Dugme(alindi ? "Alındı" : $"{g.elmas} elmas", () => { if (Kayit.GorevOdulAl(gi)) { Mesaj($"+{Kayit.Gorevler[gi].elmas} elmas"); Yenile(); } }, Ui.Yesil.Darkened(0.2f), 19, 48);
+			var b = Ui.Dugme(alindi ? "Alındı" : $"{g.elmas} elmas", () => { if (Kayit.GorevOdulAl(gi)) { Ses.Efekt("para"); Mesaj($"+{Kayit.Gorevler[gi].elmas} elmas"); Yenile(); } }, Ui.Yesil.Darkened(0.2f), 19, 48);
 			b.CustomMinimumSize = new Vector2(160, 48);
 			b.Disabled = alindi || !Kayit.GorevTamam(i);
 			satir.AddChild(b);
@@ -534,6 +547,8 @@ public partial class Oyun : Control
 			kut.Modulate = new Color(1, 1, 1, 0);
 			var tw = kut.CreateTween();
 			tw.TweenInterval(gecikme);
+			var nadirlik = t.NadirlikSira;
+			tw.TweenCallback(Callable.From(() => Ses.Efekt(nadirlik >= 3 ? "efsanevi" : "kart", nadirlik >= 2 ? 2 : 0, 1f + nadirlik * 0.08f, 0.03f)));
 			tw.TweenProperty(kut, "modulate:a", 1f, 0.25f);
 			gecikme += t.NadirlikSira >= 2 ? 0.35f : 0.12f;
 		}
@@ -649,7 +664,7 @@ public partial class Oyun : Control
 			else satirlar.Add("İpucu: kartlarını yükselt, takımı yeniden diz veya element avantajını kullan (Ateş > Doğa > Su > Ateş).");
 			Kayit.Kaydet();
 			return satirlar;
-		});
+		}, Rakipler.BossAsamasi(asama));
 	}
 
 	void ArenaSavasi(ArenaRakip r)
@@ -673,15 +688,17 @@ public partial class Oyun : Control
 		});
 	}
 
-	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, List<string>> sonuc)
+	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, List<string>> sonuc, bool boss = false)
 	{
 		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
 		var s = new Savas(Kayit.TakimUyeleri(), dusman, (ulong)Time.GetTicksUsec());
 		s.Oyna();
 		Kayit.P.GunlukSavas++;
-		var ekran = new SavasEkrani { S = s, Baslik = baslik, Arka = arka };
+		var ekran = new SavasEkrani { S = s, Baslik = baslik, Arka = arka, Boss = boss };
 		ekran.Bitti = kazandi =>
 		{
+			Ses.Muzik("menu");
+			if (kazandi) Ses.Efekt("para", 0, 1, 0);
 			var satirlar = sonuc(kazandi);
 			ekran.QueueFree();
 			Yenile();
@@ -728,7 +745,7 @@ public partial class Oyun : Control
 		v.AddChild(c);
 		var b = Ui.Dugme(p.GirisOdulAlindi ? "Yarın tekrar gel" : "Ödülü Al", () =>
 		{
-			if (Kayit.GirisOdulAl()) { PencereKapat(); Yenile(); Mesaj("Ödül alındı!"); }
+			if (Kayit.GirisOdulAl()) { Ses.Efekt("para"); PencereKapat(); Yenile(); Mesaj("Ödül alındı!"); }
 		}, new Color("2f8a57"), 26);
 		b.Disabled = p.GirisOdulAlindi;
 		v.AddChild(b);

@@ -134,6 +134,7 @@ public partial class SavasEkrani : Control
 	public Savas S;
 	public string Baslik = "";
 	public string Arka = "turk";   // assets/arka/<ad>.png
+	public bool Boss;
 	public Action<bool> Bitti;
 	public float Hiz = 1f;
 	public bool Atla;
@@ -228,6 +229,8 @@ public partial class SavasEkrani : Control
 		alt.AddChild(Ui.Genis(hizB));
 		alt.AddChild(Ui.Genis(Ui.Dugme("Atla", () => Atla = true, new Color("6a4c8a"))));
 
+		Ses.Muzik(Boss ? "boss" : Arka switch { "yunan" => "savas3", "iskandinav" => "savas2", _ => "savas1" });
+		Ses.Konus("anons_basla");
 		_ = Oynat();
 	}
 
@@ -265,7 +268,7 @@ public partial class SavasEkrani : Control
 		foreach (var o in S.Olaylar)
 		{
 			if (!IsInsideTree()) return;
-			if (Atla) { HizliUygula(o); if (o.Tip == "bitis") { Bitti?.Invoke(o.Deger == 0); return; } continue; }
+			if (Atla) { HizliUygula(o); if (o.Tip == "bitis") { Ses.Efekt(o.Deger == 0 ? "zafer" : "yenilgi", 0, 1, 0); Ses.Konus(o.Deger == 0 ? "anons_zafer" : "anons_yenilgi"); Bitti?.Invoke(o.Deger == 0); return; } continue; }
 			switch (o.Tip)
 			{
 				case "tur":
@@ -277,6 +280,8 @@ public partial class SavasEkrani : Control
 				{
 					var s = _savascilar[o.Kaynak];
 					_ultiKaynak = o.Kaynak; _ultiYakinYapildi = false;
+					Ses.Konus(s.B.T.Id);
+					Ses.Efekt("buyu", -4, 0.7f);
 					foreach (var k in _kutular.Values) { k.Aktif = k.B.Idx == o.Kaynak; k.QueueRedraw(); }
 					_ultiEtiket.Text = $"{s.B.T.Ad}: {o.Metin}!";
 					_ultiEtiket.Modulate = Colors.White;
@@ -302,6 +307,7 @@ public partial class SavasEkrani : Control
 					if (ulti && Yildirimli(s.B))
 					{
 						Efekt.Yildirim(_efekt, h.Position + new Vector2(0, -h.Boy * 0.4f), new Color("bfe4ff"));
+						Ses.Efekt("yildirim", 0, 1, 0.15f);
 						Efekt.Sarsinti(_sahne, 6, 0.2f);
 						await Bekle(0.12f);
 					}
@@ -313,6 +319,7 @@ public partial class SavasEkrani : Control
 					else if (ulti && Yakin(s.B))
 					{
 						Efekt.Kesik(_efekt, h.Position + new Vector2(0, -h.Boy * 0.5f), renk, s.Yon > 0);
+						Ses.Efekt("kilic", -3, 1.1f);
 						await Bekle(0.08f);
 					}
 					else
@@ -321,8 +328,10 @@ public partial class SavasEkrani : Control
 						s.Parla(new Color(1.6f, 1.6f, 1.6f), 0.2f / Hiz);
 						var bas = s.Position + new Vector2(s.Yon * 24, -s.Boy * 0.6f);
 						var son = h.Position + new Vector2(0, -h.Boy * 0.5f);
+						Ses.Efekt("buyu", ulti ? 0 : -5, ulti ? 1f : 1.25f);
 						await Efekt.Mermi(_efekt, bas, son, renk, Sure(ulti ? 0.22f : 0.3f), ulti ? 12 : 8);
 						Efekt.Patlama(_efekt, son, renk, ulti ? 30 : 14, ulti ? 300 : 180, ulti ? 8 : 5, 0.45f, 250);
+						Ses.Efekt(Ses.ElementEfekti(s.B.T.Element), ulti ? 0 : -7, 1, 0.1f);
 					}
 					break;
 				}
@@ -344,7 +353,7 @@ public partial class SavasEkrani : Control
 						var renk = kaynak != null ? Efekt.ElementRengi(kaynak.B.T.Element) : Colors.White;
 						Efekt.Patlama(_efekt, h.Position + new Vector2(0, -h.Boy * 0.5f), renk.Lerp(Colors.White, 0.3f), o.Kritik ? 22 : 10, 200, 5, 0.35f, 400,
 							80, new Vector2(kaynak != null ? kaynak.Yon : 1, -0.4f));
-						if (o.Kritik) Efekt.Sarsinti(_sahne, 9, 0.22f);
+						if (o.Kritik) { Efekt.Sarsinti(_sahne, 9, 0.22f); Ses.Efekt("kritik", 0, 1, 0.1f); }
 					}
 					var yr = o.Metin == "yanma" ? new Color("ff9a3a") : o.Kritik ? Ui.Altin : o.Ustunluk > 0 ? new Color("ff7b7b") : Colors.White;
 					Yazi(h, $"-{o.Deger:0}" + (o.Kritik ? "!" : ""), yr, o.Kritik ? 38 : 28);
@@ -357,6 +366,7 @@ public partial class SavasEkrani : Control
 					var h = _savascilar[o.Hedef];
 					Guncelle(o.Hedef, o.KalanCan, o.KalanKalkan);
 					Efekt.Yukselen(_efekt, h.Position, Ui.Yesil, 18, 26);
+					Ses.Efekt("iyiles", -3, 1, 0.25f);
 					h.Parla(new Color(1.2f, 2f, 1.2f), 0.3f / Hiz);
 					Yazi(h, $"+{o.Deger:0}", Ui.Yesil, 26);
 					await Bekle(0.12f);
@@ -368,6 +378,7 @@ public partial class SavasEkrani : Control
 					var h = _savascilar[o.Hedef];
 					Guncelle(o.Hedef, o.KalanCan, o.KalanKalkan);
 					Efekt.Halka(_efekt, h.Position + new Vector2(0, -h.Boy * 0.5f), new Color("9fdcff"), h.Boy * 0.3f, h.Boy * 0.62f, 0.5f / Hiz, 6);
+					Ses.Efekt("kalkan", -4, 1, 0.2f);
 					Yazi(h, "Kalkan", new Color("9fdcff"), 22);
 					await Bekle(0.12f);
 					break;
@@ -380,7 +391,7 @@ public partial class SavasEkrani : Control
 					var merkez = h.Position + new Vector2(0, -h.Boy * 0.5f);
 					switch (o.Metin)
 					{
-						case "Sersem": h.Sersem = true; Efekt.Halka(_efekt, h.Position + new Vector2(0, -h.Boy), Ui.Altin, 4, 34, 0.4f / Hiz, 3); break;
+						case "Sersem": Ses.Efekt("sersem", -4, 1, 0.2f); h.Sersem = true; Efekt.Halka(_efekt, h.Position + new Vector2(0, -h.Boy), Ui.Altin, 4, 34, 0.4f / Hiz, 3); break;
 						case "Yanma": Efekt.Yukselen(_efekt, h.Position, new Color("ff6a1a"), 16, 22); break;
 						case "Zehir": Efekt.Yukselen(_efekt, h.Position, new Color("8be04a"), 16, 22); break;
 						case "Alay!": Efekt.Halka(_efekt, merkez, new Color("ff5a4a"), 20, 110, 0.5f / Hiz, 5); break;
@@ -411,6 +422,7 @@ public partial class SavasEkrani : Control
 				{
 					var h = _savascilar[o.Hedef];
 					h.Can = 0; h.Sersem = false;
+					Ses.Olum(h.B.T.Id);
 					h.Dus(Hiz);
 					_kutular[o.Hedef].Olu = true; _kutular[o.Hedef].QueueRedraw();
 					Efekt.Patlama(_efekt, h.Position, new Color("c8b89a"), 16, 120, 6, 0.6f, 80, 70);
@@ -419,7 +431,9 @@ public partial class SavasEkrani : Control
 				}
 
 				case "bitis":
-					await Bekle(0.6f);
+					Ses.Efekt(o.Deger == 0 ? "zafer" : "yenilgi", 0, 1, 0);
+					Ses.Konus(o.Deger == 0 ? "anons_zafer" : "anons_yenilgi");
+					await Bekle(1.2f);
 					Bitti?.Invoke(o.Deger == 0);
 					return;
 			}
@@ -434,6 +448,7 @@ public partial class SavasEkrani : Control
 		tw.TweenProperty(s, "position", hedefNokta, 0.16f / Hiz).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.In);
 		await ToSignal(tw, Tween.SignalName.Finished);
 		Efekt.Kesik(_efekt, h.Position + new Vector2(-s.Yon * 10, -h.Boy * 0.55f), renk, s.Yon > 0);
+		Ses.Efekt(s.B.T.Sinif == "tank" ? "darbe" : "kilic", -2, 1, 0.05f);
 		var don = s.CreateTween();
 		don.TweenInterval(0.12f / Hiz);
 		don.TweenProperty(s, "position", s.Ev, 0.2f / Hiz).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);

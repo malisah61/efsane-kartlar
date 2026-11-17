@@ -43,6 +43,8 @@ public class Profil
 	public int Sezon { get; set; } = -1;         // hafta numarası
 	public int GunlukHikaye { get; set; }
 	public int ArenaGunlukSavas { get; set; }
+	public bool MuzikAcik { get; set; } = true;
+	public bool EfektAcik { get; set; } = true;
 }
 
 public static class Kayit
@@ -124,7 +126,7 @@ public static class Kayit
 			["girisAlindi"] = p.GirisOdulAlindi, ["gSavas"] = p.GunlukSavas, ["gCekim"] = p.GunlukCekim, ["gYukseltme"] = p.GunlukYukseltme,
 			["gorevler"] = gorev, ["kartlar"] = kartlar, ["takim"] = takim, ["surum"] = p.SonKayitSurumu,
 			["enerji"] = p.Enerji, ["enerjiZaman"] = p.EnerjiZaman, ["enerjiAlim"] = p.EnerjiAlim, ["sezon"] = p.Sezon,
-			["gHikaye"] = p.GunlukHikaye, ["gArena"] = p.ArenaGunlukSavas,
+			["gHikaye"] = p.GunlukHikaye, ["gArena"] = p.ArenaGunlukSavas, ["muzik"] = p.MuzikAcik, ["efekt"] = p.EfektAcik,
 		};
 	}
 
@@ -143,6 +145,7 @@ public static class Kayit
 			GunlukSavas = I("gSavas"), GunlukCekim = I("gCekim"), GunlukYukseltme = I("gYukseltme"), SonKayitSurumu = I("surum"),
 			Enerji = d.ContainsKey("enerji") ? I("enerji") : EnerjiMax, EnerjiZaman = d.ContainsKey("enerjiZaman") ? (long)d["enerjiZaman"].AsDouble() : 0,
 			EnerjiAlim = I("enerjiAlim"), Sezon = d.ContainsKey("sezon") ? I("sezon") : -1, GunlukHikaye = I("gHikaye"), ArenaGunlukSavas = I("gArena"),
+			MuzikAcik = !d.ContainsKey("muzik") || d["muzik"].AsBool(), EfektAcik = !d.ContainsKey("efekt") || d["efekt"].AsBool(),
 		};
 		if (d.ContainsKey("gorevler")) foreach (var g in d["gorevler"].AsGodotArray()) p.AlinanGorevler.Add(g.AsInt32());
 		if (d.ContainsKey("kartlar"))

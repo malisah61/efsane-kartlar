@@ -46,6 +46,7 @@ public static class Ui
 		b.AddThemeFontSizeOverride("font_size", boyut);
 		b.AddThemeColorOverride("font_color", Colors.White);
 		b.AddThemeColorOverride("font_disabled_color", new Color("8088a0"));
+		b.Pressed += () => Ses.Efekt("tik", -6, 1, 0.03f);
 		if (tik != null) b.Pressed += tik;
 		return b;
 	}

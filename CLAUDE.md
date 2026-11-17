@@ -27,3 +27,6 @@
 - Yol haritası: `TASARIM.md`.
 - `EfsaneKartlar.sln` silinmemeli: yoksa Android dışa aktarımı C# kodunu APK'ya koymaz ve oyun açılışta kapanır. `android.yml` APK'da `EfsaneKartlar.dll` olduğunu kontrol eder.
 - JSON için `System.Text.Json` değil Godot `Json` kullan (Android'de güvenli).
+- Ses (`src/Ses.cs`): müzik `assets/ses/muzik/` (CC0, `muzik.yml` indirir; menu, savas1-3, boss), efektler `assets/ses/efekt/` (`tasarim/efekt_sentez.py` üretir),
+  karakter replikleri `assets/ses/ses/<kart id>.ogg` + olum_erkek/olum_kadin + anons_basla/zafer/yenilgi (Speko, OpenAI gpt-4o-mini-tts, Türkçe; yeni kart eklerken repliğini de üret, Speko çağrılarını TEK TEK yap).
+  Kaynaklar `assets/ses/KREDILER.md`. Ayarlar: Profil.MuzikAcik/EfektAcik (ana sayfadaki düğmeler).
