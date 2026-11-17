@@ -117,7 +117,8 @@ public partial class Odeme : Node
 			var urunler = s["product_ids"].AsStringArray();
 			if (durum == 2) { Bilgi?.Invoke("Ödemen onay bekliyor; onaylanınca ödülün otomatik verilecek."); continue; }
 			if (durum != 1) continue;
-			if (!Kayit.P.IslenenJetonlar.Contains(jeton))
+			bool kaliciZatenVar = urunler.All(id => Magaza.Bul(id)?.Kalici == true && Kayit.P.AlinanUrunler.Contains(id));
+			if (!Kayit.P.IslenenJetonlar.Contains(jeton) && !kaliciZatenVar)
 			{
 				Kayit.P.IslenenJetonlar.Add(jeton);
 				if (Kayit.P.IslenenJetonlar.Count > 200) Kayit.P.IslenenJetonlar.RemoveAt(0);
@@ -130,8 +131,13 @@ public partial class Odeme : Node
 				}
 				Kayit.Kaydet();
 			}
-			// tüm ürünler tüketilebilir: tekrar alınabilmesi için tüket (tek seferlikleri profil engeller)
-			_eklenti.Call("consumePurchase", jeton);
+			// kalıcı ürün (reklam kaldırma) onaylanır; diğerleri tekrar alınabilsin diye tüketilir
+			if (urunler.Any(id => Magaza.Bul(id)?.Kalici == true))
+			{
+				bool onayli = s.ContainsKey("is_acknowledged") && s["is_acknowledged"].AsBool();
+				if (!onayli) _eklenti.Call("acknowledgePurchase", jeton);
+			}
+			else _eklenti.Call("consumePurchase", jeton);
 		}
 	}
 }

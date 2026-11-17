@@ -45,6 +45,8 @@ public partial class Oyun : Control
 		if (!Kayit.KayitKapali) Kayit.Yukle();
 		Ses.Kur(this);
 		Odeme.Kur(this);
+		Reklam.Kur(this);
+		Reklam.Bilgi = m => Mesaj(m);
 		Odeme.Bilgi = m => Mesaj(m);
 		Odeme.Tamamlandi = (id, ozet) => { Ses.Efekt("efsanevi"); PencereKapat(); Yenile(); SatinAlmaPenceresi(id, ozet); };
 		Ses.MuzikAcik = Kayit.P.MuzikAcik; Ses.EfektAcik = Kayit.P.EfektAcik;
@@ -188,6 +190,11 @@ public partial class Oyun : Control
 		}, new Color("3478c8"), 21);
 		b.Disabled = p.EnerjiAlim >= Kayit.EnerjiAlimGunluk;
 		v.AddChild(b);
+		var rb = Ui.Dugme($"Reklam izle: +{Kayit.ReklamEnerji} enerji  ({Kayit.ReklamKalan(2)} hak)", () =>
+			Reklam.Odullu(() => { if (Kayit.ReklamOdulu(2)) { PencereKapat(); UstGuncelle(); Mesaj($"+{Kayit.ReklamEnerji} enerji"); } }),
+			new Color("2f8a57"), 21);
+		rb.Disabled = Kayit.ReklamKalan(2) <= 0;
+		v.AddChild(rb);
 		v.AddChild(Ui.Etiket("Bu arada arenada savaşabilir veya kartlarını yükseltebilirsin.", 18, Ui.Soluk, HorizontalAlignment.Center));
 		v.AddChild(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 22));
 		Pencere(v);
@@ -505,6 +512,10 @@ public partial class Oyun : Control
 		var p5 = Ui.Genis(Ui.Dugme("5x  (5 parşömen)", () => Cagir("parsomen", 5), new Color("a0743a"), 22, 72));
 		p5.Disabled = p.Parsomen < 5;
 		pb.AddChild(p5);
+		var rc = Ui.Dugme(Kayit.ReklamKalan(3) > 0 ? "Reklam izle: ücretsiz parşömen çağrısı (günde 1)" : "Ücretsiz çağrı yarın yenilenir", () =>
+			Reklam.Odullu(() => { if (Kayit.ReklamOdulu(3)) { p.Parsomen++; Cagir("parsomen", 1); } }), new Color("2f8a57"), 20);
+		rc.Disabled = Kayit.ReklamKalan(3) <= 0;
+		pv.AddChild(rc);
 
 		v.AddChild(Ui.Etiket("10'lu çağrıda en az 1 epik garanti. Aynı kartı tekrar çekersen kopya ve ruh özü kazanırsın; ruh özüyle istediğin kartın kopyasını alabilirsin.", 18, Ui.Soluk, HorizontalAlignment.Center));
 		return Ui.Kaydirma(v);
@@ -653,6 +664,7 @@ public partial class Oyun : Control
 				var o = Rakipler.AsamaOdulu(asama, ilk);
 				p.Altin += o.altin; p.Elmas += o.elmas; p.Parsomen += o.parsomen;
 				if (ilk) p.EnIyiAsama = asama;
+				_katlaAltin = o.altin;
 				satirlar.Add($"+{o.altin} altın");
 				if (o.elmas > 0) satirlar.Add($"+{o.elmas} elmas");
 				if (o.parsomen > 0) satirlar.Add($"+{o.parsomen} parşömen");
@@ -684,12 +696,15 @@ public partial class Oyun : Control
 		});
 	}
 
+	int _katlaAltin;   // son hikâye zaferinin altını (reklamla 2 kat)
+
 	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, List<string>> sonuc, bool boss = false)
 	{
 		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
 		var s = new Savas(Kayit.TakimUyeleri(), dusman, (ulong)Time.GetTicksUsec());
 		s.Oyna();
 		Kayit.P.GunlukSavas++;
+		_katlaAltin = 0;
 		var ekran = new SavasEkrani { S = s, Baslik = baslik, Arka = arka, Boss = boss };
 		ekran.Bitti = kazandi =>
 		{
@@ -708,7 +723,20 @@ public partial class Oyun : Control
 		var v = Ui.Dikey(12);
 		v.AddChild(Ui.Etiket(kazandi ? "ZAFER!" : "YENİLGİ", 52, kazandi ? Ui.Altin : Ui.Kirmizi, HorizontalAlignment.Center));
 		foreach (var s in satirlar) v.AddChild(Ui.Etiket(s, 24, Colors.White, HorizontalAlignment.Center));
-		v.AddChild(Ui.Dugme("Devam", PencereKapat, new Color("3b6fd8"), 26));
+		int ek = _katlaAltin;
+		if (kazandi && ek > 0 && Kayit.ReklamKalan(1) > 0)
+		{
+			v.AddChild(Ui.Dugme($"Reklam izle: altını 2 kat yap (+{ek} altın)  •  {Kayit.ReklamKalan(1)} hak", () =>
+				Reklam.Odullu(() =>
+				{
+					if (!Kayit.ReklamOdulu(1)) return;
+					Kayit.P.Altin += ek; _katlaAltin = 0; Kayit.Kaydet();
+					Ses.Efekt("para"); PencereKapat(); Yenile(); Mesaj($"+{ek} altın");
+				}), new Color("2f8a57"), 22));
+		}
+		int gk = Reklam.GeciseKalan;
+		if (gk > 0 && gk <= 2) v.AddChild(Ui.Etiket(gk == 1 ? "Sonraki savaştan sonra reklam var — Mağaza'dan reklamları kaldırabilirsin." : $"{gk} savaş sonra reklam", 16, Ui.Soluk, HorizontalAlignment.Center));
+		v.AddChild(Ui.Dugme("Devam", () => { PencereKapat(); Reklam.SavasSonrasi(() => { }); }, new Color("3b6fd8"), 26));
 		Pencere(v);
 	}
 
@@ -766,13 +794,13 @@ public partial class Oyun : Control
 		var v = Ui.Dikey(10);
 		v.AddChild(Ui.Etiket("Mağaza", 34, Ui.Altin, HorizontalAlignment.Center));
 
-		bool reklamAlindi = p.AlinanGorevler.Contains(100);
-		var rb = Ui.Dugme(reklamAlindi ? "Bugünkü hediye alındı" : "Günlük hediye: +40 elmas", () =>
-		{
-			// TODO: AdMob ödüllü reklam eklenince "reklam izle" olacak.
-			p.AlinanGorevler.Add(100); p.Elmas += 40; Kayit.Kaydet(); PencereKapat(); Yenile(); MagazaPenceresi();
-		}, new Color("2f8a57"), 22);
-		rb.Disabled = reklamAlindi;
+		int rk = Kayit.ReklamKalan(0);
+		var rb = Ui.Dugme(rk > 0 ? $"Reklam izle: +{Kayit.ReklamElmas} elmas  ({rk}/{Kayit.ReklamHak[0]} hak)" : "Bugünkü reklam hakların bitti", () =>
+			Reklam.Odullu(() =>
+			{
+				if (Kayit.ReklamOdulu(0)) { Ses.Efekt("para"); PencereKapat(); Yenile(); MagazaPenceresi(); Mesaj($"+{Kayit.ReklamElmas} elmas"); }
+			}), new Color("2f8a57"), 22);
+		rb.Disabled = rk <= 0;
 		v.AddChild(rb);
 		var tb = Ui.Dugme($"1 parşömen  ←  {Kayit.AltinParsomenFiyat:N0} altın  (bugün {Kayit.TakasKalan} hak)", () =>
 		{
@@ -786,10 +814,10 @@ public partial class Oyun : Control
 			if (p.Elmas < 100) { Mesaj("Yeterli elmas yok"); return; }
 			p.Elmas -= 100; p.Altin += 5000; Kayit.Kaydet(); UstGuncelle(); Mesaj("+5.000 altın");
 		}, new Color("c0912f"), 22));
-		v.AddChild(Ui.Dugme("1 parşömen  ←  60 elmas", () =>
+		v.AddChild(Ui.Dugme("1 parşömen  ←  100 elmas", () =>
 		{
-			if (p.Elmas < 60) { Mesaj("Yeterli elmas yok"); return; }
-			p.Elmas -= 60; p.Parsomen++; Kayit.Kaydet(); UstGuncelle(); Mesaj("+1 parşömen");
+			if (p.Elmas < 100) { Mesaj("Yeterli elmas yok"); return; }
+			p.Elmas -= 100; p.Parsomen++; Kayit.Kaydet(); UstGuncelle(); Mesaj("+1 parşömen");
 		}, new Color("a0743a"), 22));
 
 		// aylık kart günlük ödülü

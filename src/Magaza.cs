@@ -9,7 +9,7 @@ public class Urun
 {
 	public string Id, Ad, Aciklama, OnerilenFiyat;   // fiyatı Play Console belirler; burada yalnızca öneri/yedek gösterim
 	public int Elmas, Parsomen, Altin;
-	public bool TekSeferlik, AylikKart, EpikKart;
+	public bool TekSeferlik, AylikKart, EpikKart, Kalici;   // Kalici: tüketilmez (Play'de "onayla"), yeniden yüklemede geri gelir
 	public decimal TlFiyat;                          // simülasyon ve raporlar için
 }
 
@@ -25,6 +25,8 @@ public static class Magaza
 			Elmas = 1000, Parsomen = 10, Altin = 20000, EpikKart = true, TekSeferlik = true, OnerilenFiyat = "₺39,99", TlFiyat = 39.99m },
 		new Urun { Id = "aylik_kart", Ad = "Aylık Kart", Aciklama = "Hemen 300 elmas + 30 gün boyunca her gün 100 elmas (toplam 3.300)",
 			Elmas = 300, AylikKart = true, OnerilenFiyat = "₺89,99", TlFiyat = 89.99m },
+		new Urun { Id = "reklam_kaldir", Ad = "Reklamları Kaldır (VIP)", Aciklama = "Geçiş reklamları kalkar, ödüllü reklamlar izlemeden anında verilir + 300 elmas (kalıcı)",
+			Elmas = 300, TekSeferlik = true, Kalici = true, OnerilenFiyat = "₺79,99", TlFiyat = 79.99m },
 		new Urun { Id = "elmas_300", Ad = "Elmas Kesesi", Aciklama = "300 elmas", Elmas = 300, OnerilenFiyat = "₺29,99", TlFiyat = 29.99m },
 		new Urun { Id = "elmas_1100", Ad = "Elmas Torbası", Aciklama = "1.100 elmas (+%10 bonus)", Elmas = 1100, OnerilenFiyat = "₺99,99", TlFiyat = 99.99m },
 		new Urun { Id = "elmas_2400", Ad = "Elmas Sandığı", Aciklama = "2.400 elmas (+%20 bonus)", Elmas = 2400, OnerilenFiyat = "₺199,99", TlFiyat = 199.99m },

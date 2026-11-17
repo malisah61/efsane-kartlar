@@ -51,6 +51,10 @@ public class Profil
 	public long ToplamHarcamaKurus { get; set; }
 	public List<string> IslenenJetonlar { get; set; } = new();
 	public int RuhOzu { get; set; }
+	// reklam: günlük sayaçlar (elmas, ödül katlama, enerji, ücretsiz çağrı) ve geçiş reklamı sayacı
+	public int[] ReklamGunluk { get; set; } = new int[4];
+	public int SavasSayaci { get; set; }
+	public bool Reklamsiz => AlinanUrunler.Contains("reklam_kaldir");
 }
 
 public static class Kayit
@@ -73,27 +77,43 @@ public static class Kayit
 		return true;
 	}
 	public const int EfsaneviGaranti = 30;
+
+	// ------------------------------------------------------------ reklam ödülleri
+	// 0: +elmas, 1: hikâye ödülünü 2 kat, 2: +enerji, 3: ücretsiz çağrı
+	public static readonly int[] ReklamHak = { 6, 8, 3, 1 };
+	public const int ReklamElmas = 25, ReklamEnerji = 12;
+	public static int ReklamKalan(int tur) => Math.Max(0, ReklamHak[tur] - P.ReklamGunluk[tur]);
+	public static bool ReklamOdulu(int tur)
+	{
+		if (ReklamKalan(tur) <= 0) return false;
+		P.ReklamGunluk[tur]++;
+		if (tur == 0) P.Elmas += ReklamElmas;
+		else if (tur == 2) { EnerjiGuncelle(); P.Enerji += ReklamEnerji; }
+		Kaydet();
+		return true;
+	}
 	public const int ArenaGunlukHak = 5;
-	public const int ArenaEkHakFiyat = 50;
+	public const int ArenaEkHakFiyat = 80;
 	public const int EnerjiMax = 60;
 	public const int EnerjiSaniye = 360;          // 6 dakikada 1 enerji
 	public const int HikayeEnerji = 6;
-	public const int EnerjiAlimFiyat = 50;        // 30 enerji
+	public const int EnerjiAlimFiyat = 80;        // 30 enerji
 	public const int EnerjiAlimMiktar = 30;
 	public const int EnerjiAlimGunluk = 3;
 
 	public static readonly (string ad, int altin, int elmas, int parsomen)[] GirisOdulleri =
 	{
-		("1. Gün", 800, 0, 0), ("2. Gün", 0, 30, 0), ("3. Gün", 0, 0, 1), ("4. Gün", 1500, 0, 0),
-		("5. Gün", 0, 60, 0), ("6. Gün", 0, 0, 2), ("7. Gün", 0, 150, 0),
+		("1. Gün", 800, 0, 0), ("2. Gün", 0, 20, 0), ("3. Gün", 0, 0, 1), ("4. Gün", 1500, 0, 0),
+		("5. Gün", 0, 40, 0), ("6. Gün", 0, 0, 1), ("7. Gün", 0, 100, 0),
 	};
 
 	public static readonly (string ad, Func<Profil, int> ilerleme, int hedef, int elmas)[] Gorevler =
 	{
-		("5 hikâye savaşı yap", p => p.GunlukHikaye, 5, 30),
-		("3 arena savaşı yap", p => p.ArenaGunlukSavas, 3, 30),
-		("1 kart çağır", p => p.GunlukCekim, 1, 20),
-		("2 kez kart yükselt", p => p.GunlukYukseltme, 2, 20),
+		("5 hikâye savaşı yap", p => p.GunlukHikaye, 5, 15),
+		("3 arena savaşı yap", p => p.ArenaGunlukSavas, 3, 15),
+		("1 kart çağır", p => p.GunlukCekim, 1, 10),
+		("2 kez kart yükselt", p => p.GunlukYukseltme, 2, 10),
+		("2 reklam izle", p => p.ReklamGunluk[0] + p.ReklamGunluk[1] + p.ReklamGunluk[2] + p.ReklamGunluk[3], 2, 20),
 	};
 
 	// ------------------------------------------------------------ kaydet / yükle
@@ -150,6 +170,8 @@ public static class Kayit
 			["gHikaye"] = p.GunlukHikaye, ["gArena"] = p.ArenaGunlukSavas, ["muzik"] = p.MuzikAcik, ["efekt"] = p.EfektAcik,
 			["urunler"] = urunler, ["oz"] = p.RuhOzu, ["jetonlar"] = jetonlar, ["aylikBitis"] = p.AylikKartBitis,
 			["aylikSon"] = p.AylikKartSonAlim, ["harcama"] = p.ToplamHarcamaKurus,
+			["reklam"] = new Godot.Collections.Array { p.ReklamGunluk[0], p.ReklamGunluk[1], p.ReklamGunluk[2], p.ReklamGunluk[3] },
+			["savasSayaci"] = p.SavasSayaci,
 		};
 	}
 
@@ -177,6 +199,8 @@ public static class Kayit
 		if (d.ContainsKey("aylikBitis")) p.AylikKartBitis = d["aylikBitis"].AsString();
 		if (d.ContainsKey("aylikSon")) p.AylikKartSonAlim = d["aylikSon"].AsString();
 		if (d.ContainsKey("harcama")) p.ToplamHarcamaKurus = (long)d["harcama"].AsDouble();
+		if (d.ContainsKey("reklam")) { var ra = d["reklam"].AsGodotArray(); for (int i = 0; i < Math.Min(4, ra.Count); i++) p.ReklamGunluk[i] = ra[i].AsInt32(); }
+		p.SavasSayaci = I("savasSayaci");
 		if (d.ContainsKey("kartlar"))
 			foreach (var kv in d["kartlar"].AsGodotArray())
 			{
@@ -215,6 +239,7 @@ public static class Kayit
 		P.ArenaYenileme = 0;
 		P.GunlukSavas = P.GunlukCekim = P.GunlukYukseltme = P.GunlukHikaye = P.EnerjiAlim = P.ArenaGunlukSavas = 0;
 		P.AlinanGorevler.Clear();
+		P.ReklamGunluk = new int[4];
 		Kaydet();
 	}
 

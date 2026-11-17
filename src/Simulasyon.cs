@@ -18,7 +18,8 @@ public static class Simulasyon
 	{
 		public string Ad;
 		public int HikayeSavas;        // günde kaç hikâye savaşı (enerji: 6 dk'da 1 → günde en çok ~40)
-		public bool Reklam = true;
+		public int[] Reklam = { 3, 3, 0, 1 };   // günde izlenen ödüllü reklam: elmas, 2x altın, enerji, ücretsiz çağrı
+		public bool Vip;                         // reklamları kaldır satın aldı
 		public bool Baslangic, Aylik;
 		public int HaftalikHazine;     // haftada kaç elmas_6500
 		public int EnerjiAlim;         // günde kaç kez 50 elmasa +30 enerji (5 savaş)
@@ -29,6 +30,7 @@ public static class Simulasyon
 	{
 		public Dictionary<string, int> Ilk = new();
 		public List<string> Satirlar = new();
+		public long Gecis, Odullu;
 		public void Olay(string ad, int gun) { if (!Ilk.ContainsKey(ad)) Ilk[ad] = gun; }
 	}
 
@@ -39,9 +41,9 @@ public static class Simulasyon
 		var tipler = new[]
 		{
 			new Tip { Ad = "Gündelik oyuncu (ücretsiz, günde ~20 hikâye savaşı)", HikayeSavas = 20 },
-			new Tip { Ad = "Aktif oyuncu (ücretsiz, enerjinin tamamı ~40 savaş)", HikayeSavas = 40 },
-			new Tip { Ad = "Az harcayan (başlangıç paketi + aylık kart ≈ ₺90/ay)", HikayeSavas = 40, Baslangic = true, Aylik = true },
-			new Tip { Ad = "Çok harcayan (+ haftada 1 elmas hazinesi ≈ ₺2.000/ay)", HikayeSavas = 40, Baslangic = true, Aylik = true, HaftalikHazine = 1, EnerjiAlim = 3, EkArena = 5 },
+			new Tip { Ad = "Aktif oyuncu (ücretsiz, enerjinin tamamı ~40 savaş, tüm reklamlar)", HikayeSavas = 40, Reklam = new[] { 6, 8, 3, 1 } },
+			new Tip { Ad = "Az harcayan (başlangıç paketi + reklamsız VIP + aylık kart ≈ ₺90/ay)", HikayeSavas = 40, Baslangic = true, Aylik = true, Vip = true, Reklam = new[] { 6, 8, 3, 1 } },
+			new Tip { Ad = "Çok harcayan (+ haftada 1 elmas hazinesi ≈ ₺2.000/ay)", HikayeSavas = 40, Baslangic = true, Aylik = true, HaftalikHazine = 1, EnerjiAlim = 3, EkArena = 5, Vip = true, Reklam = new[] { 6, 8, 3, 1 } },
 		};
 		var sb = new StringBuilder();
 		sb.AppendLine("# İlerleme simülasyonu (bot oyuncular, 365 gün)");
@@ -65,6 +67,7 @@ public static class Simulasyon
 			string[] beklenen = { "İlk epik kart", "İlk efsanevi kart", "Tüm 48 kart", "4 efsanevinin hepsi", "Hikâye bitti (60. aşama)", "Gümüş lig", "Altın lig", "Elmas lig", "Efsane lig", "İlk 5 yıldızlı kart" };
 			foreach (var b in beklenen) if (!k.Ilk.ContainsKey(b)) sb.AppendLine($"- {b}: 365 günde ulaşılamadı");
 			sb.AppendLine($"- Toplam harcama: ₺{kurus / 100m:N2}");
+			if (k.Gecis + k.Odullu > 0) sb.AppendLine($"- Günde ortalama reklam: {k.Gecis / 365.0:0.0} geçiş + {k.Odullu / 365.0:0.0} ödüllü");
 			sb.AppendLine();
 		}
 		var metin = sb.ToString();
@@ -96,12 +99,15 @@ public static class Simulasyon
 			if (t.Aylik && Magaza.AylikKartKalan() == 0) Magaza.Ver("aylik_kart", r);
 			if (t.HaftalikHazine > 0 && gun % 7 == 1) for (int i = 0; i < t.HaftalikHazine; i++) Magaza.Ver("elmas_6500", r);
 			Magaza.AylikKartAl();
-			if (t.Reklam) p.Elmas += 40;
+			if (t.Vip && gun == 1) Magaza.Ver("reklam_kaldir", r);
+			for (int i = 0; i < t.Reklam[0]; i++) Kayit.ReklamOdulu(0);
+			for (int i = 0; i < t.Reklam[3]; i++) if (Kayit.ReklamOdulu(3)) p.Parsomen++;
 
 			Kayit.OtomatikDiz();
 
 			// hikâye
 			int savas = t.HikayeSavas;
+			for (int i = 0; i < t.Reklam[2]; i++) if (Kayit.ReklamOdulu(2)) savas += 2;
 			for (int i = 0; i < t.EnerjiAlim; i++)
 				if (p.Elmas >= Kayit.EnerjiAlimFiyat) { p.Elmas -= Kayit.EnerjiAlimFiyat; savas += 5; }
 			bool takildi = false;
@@ -116,6 +122,7 @@ public static class Simulasyon
 					bool ilk = hedef > p.EnIyiAsama;
 					var o = Rakipler.AsamaOdulu(hedef, ilk);
 					p.Altin += o.altin; p.Elmas += o.elmas; p.Parsomen += o.parsomen;
+					if (p.ReklamGunluk[1] < t.Reklam[1] && Kayit.ReklamOdulu(1)) p.Altin += o.altin;
 					if (ilk) { p.EnIyiAsama = hedef; takildi = false; }
 				}
 				else if (hedef > p.EnIyiAsama) takildi = true;
@@ -158,6 +165,7 @@ public static class Simulasyon
 			if (p.Kartlar.Any(x => x.Yildiz >= 5)) k.Olay("İlk 5 yıldızlı kart", gun);
 			if (p.Kartlar.Any(x => x.Yildiz >= 3)) k.Olay("İlk 3 yıldızlı kart", gun);
 
+			if (!t.Vip) { k.Gecis += p.GunlukSavas / Reklam.GecisAraligi; k.Odullu += p.ReklamGunluk.Sum(); }
 			if (Kontrol.Contains(gun))
 			{
 				int Say(string n) => p.Kartlar.Count(x => Veri.Harita[x.Id].Nadirlik == n);

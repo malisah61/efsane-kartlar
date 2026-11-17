@@ -95,8 +95,29 @@ jobs:
           grep -n "aar" $H/export_plugin.gd | head
           ls -R $H
           cd $GITHUB_WORKSPACE
-          grep -q "^\[editor_plugins\]" project.godot || printf '\n[editor_plugins]\n\nenabled=PackedStringArray("res://addons/GodotGooglePlayBilling/plugin.cfg")\n' >> project.godot
           cat addons/GodotGooglePlayBilling/plugin.cfg
+
+      - name: AdMob reklam eklentisi
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ADMOB_APP_ID: ${{ vars.ADMOB_APP_ID }}
+        run: |
+          mkdir -p /tmp/admob && cd /tmp/admob
+          gh release download v7.0 -R godot-sdk-integrations/godot-admob -p "*Android*.zip" || gh release download -R godot-sdk-integrations/godot-admob -p "*Android*.zip"
+          ls
+          unzip -q -o *.zip -d acik
+          C=$(find acik -name plugin.cfg | head -1); echo "plugin.cfg: $C"
+          A=$(dirname "$C")          # .../addons/AdmobPlugin
+          cp -r "$A" $GITHUB_WORKSPACE/addons/
+          cd $GITHUB_WORKSPACE
+          AD=addons/$(basename "$A")
+          ls $AD | head -30
+          TEST="ca-app-pub-3940256099942544~3347511713"
+          GERCEK="${ADMOB_APP_ID:-$TEST}"
+          printf '[General]\n\nis_real=false\n\n[Debug]\n\napp_id="%s"\n\n[Release]\n\napp_id="%s"\n' "$TEST" "$GERCEK" > $AD/android_export.cfg
+          cat $AD/android_export.cfg
+          printf '\n[editor_plugins]\n\nenabled=PackedStringArray("res://addons/GodotGooglePlayBilling/plugin.cfg", "res://%s/plugin.cfg")\n' "$AD" >> project.godot
+          tail -4 project.godot
 
       - name: Android gradle şablonunu kur
         run: |

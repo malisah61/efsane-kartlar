@@ -64,9 +64,9 @@ public static class Rakipler
 
 	public static (int altin, int elmas, int parsomen) AsamaOdulu(int asama, bool ilkKez)
 	{
-		int altin = 150 + asama * 40;
-		if (!ilkKez) return (altin * 7 / 10, 0, 0);
-		return (altin, BossAsamasi(asama) ? 100 : 20, asama % 3 == 0 ? 1 : 0);
+		int altin = 130 + asama * 35;
+		if (!ilkKez) return (altin / 2, 0, 0);
+		return (altin, BossAsamasi(asama) ? 50 : 10, asama % 3 == 0 ? 1 : 0);
 	}
 
 	/// <summary>Bölümün arka planı (mitoloji teması).</summary>
@@ -155,7 +155,7 @@ public static class Rakipler
 	public static (int kupa, int altin, int elmas) ArenaOdulu(ArenaRakip r, bool kazandi)
 	{
 		if (!kazandi) return (-14, 30, 0);
-		return (14 + r.Zorluk * 6, 120 + r.Zorluk * 40, 4 + r.Zorluk * 3);
+		return (14 + r.Zorluk * 6, 90 + r.Zorluk * 30, 1 + r.Zorluk);
 	}
 
 	// ------------------------------------------------------------ haftalık sıralama
