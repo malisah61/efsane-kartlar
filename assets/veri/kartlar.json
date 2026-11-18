@@ -48,7 +48,7 @@
    "sinif": "savasci",
    "element": "doga",
    "can": 1113,
-   "saldiri": 146,
+   "saldiri": 143,
    "savunma": 45,
    "hiz": 124,
    "ulti": {
@@ -72,7 +72,7 @@
    "sinif": "destek",
    "element": "su",
    "can": 1159,
-   "saldiri": 114,
+   "saldiri": 119,
    "savunma": 48,
    "hiz": 116,
    "ulti": {
@@ -171,7 +171,7 @@
    "sinif": "savasci",
    "element": "ates",
    "can": 976,
-   "saldiri": 121,
+   "saldiri": 119,
    "savunma": 42,
    "hiz": 114,
    "ulti": {
@@ -200,7 +200,7 @@
    "sinif": "destek",
    "element": "su",
    "can": 980,
-   "saldiri": 100,
+   "saldiri": 105,
    "savunma": 46,
    "hiz": 105,
    "ulti": {
@@ -257,7 +257,7 @@
    "sinif": "savasci",
    "element": "ates",
    "can": 882,
-   "saldiri": 113,
+   "saldiri": 111,
    "savunma": 35,
    "hiz": 107,
    "ulti": {
@@ -309,7 +309,7 @@
    "sinif": "destek",
    "element": "doga",
    "can": 917,
-   "saldiri": 83,
+   "saldiri": 87,
    "savunma": 38,
    "hiz": 102,
    "ulti": {
@@ -389,7 +389,7 @@
    "sinif": "savasci",
    "element": "ates",
    "can": 1019,
-   "saldiri": 151,
+   "saldiri": 148,
    "savunma": 45,
    "hiz": 114,
    "ulti": {
@@ -453,7 +453,7 @@
    "sinif": "destek",
    "element": "ates",
    "can": 1029,
-   "saldiri": 116,
+   "saldiri": 121,
    "savunma": 53,
    "hiz": 111,
    "ulti": {
@@ -511,7 +511,7 @@
    "sinif": "savasci",
    "element": "doga",
    "can": 984,
-   "saldiri": 121,
+   "saldiri": 119,
    "savunma": 42,
    "hiz": 119,
    "ulti": {
@@ -574,7 +574,7 @@
    "sinif": "destek",
    "element": "su",
    "can": 955,
-   "saldiri": 97,
+   "saldiri": 101,
    "savunma": 44,
    "hiz": 109,
    "ulti": {
@@ -631,7 +631,7 @@
    "sinif": "savasci",
    "element": "doga",
    "can": 807,
-   "saldiri": 112,
+   "saldiri": 110,
    "savunma": 33,
    "hiz": 109,
    "ulti": {
@@ -684,7 +684,7 @@
    "sinif": "destek",
    "element": "doga",
    "can": 856,
-   "saldiri": 89,
+   "saldiri": 93,
    "savunma": 41,
    "hiz": 106,
    "ulti": {
@@ -748,7 +748,7 @@
    "sinif": "savasci",
    "element": "ates",
    "can": 1057,
-   "saldiri": 136,
+   "saldiri": 134,
    "savunma": 44,
    "hiz": 123,
    "ulti": {
@@ -782,7 +782,7 @@
    "sinif": "destek",
    "element": "doga",
    "can": 1098,
-   "saldiri": 109,
+   "saldiri": 115,
    "savunma": 47,
    "hiz": 117,
    "ulti": {
@@ -881,7 +881,7 @@
    "sinif": "savasci",
    "element": "su",
    "can": 886,
-   "saldiri": 120,
+   "saldiri": 118,
    "savunma": 39,
    "hiz": 116,
    "ulti": {
@@ -938,7 +938,7 @@
    "sinif": "destek",
    "element": "su",
    "can": 994,
-   "saldiri": 101,
+   "saldiri": 105,
    "savunma": 46,
    "hiz": 115,
    "ulti": {
@@ -996,7 +996,7 @@
    "sinif": "savasci",
    "element": "ates",
    "can": 803,
-   "saldiri": 124,
+   "saldiri": 122,
    "savunma": 33,
    "hiz": 120,
    "ulti": {
@@ -1054,7 +1054,7 @@
    "sinif": "destek",
    "element": "doga",
    "can": 864,
-   "saldiri": 90,
+   "saldiri": 94,
    "savunma": 42,
    "hiz": 106,
    "ulti": {
@@ -1112,7 +1112,7 @@
    "sinif": "savasci",
    "element": "su",
    "can": 1053,
-   "saldiri": 143,
+   "saldiri": 140,
    "savunma": 41,
    "hiz": 127,
    "ulti": {
@@ -1142,7 +1142,7 @@
    "sinif": "destek",
    "element": "su",
    "can": 1073,
-   "saldiri": 109,
+   "saldiri": 114,
    "savunma": 52,
    "hiz": 124,
    "ulti": {
@@ -1234,7 +1234,7 @@
    "sinif": "savasci",
    "element": "ates",
    "can": 999,
-   "saldiri": 129,
+   "saldiri": 127,
    "savunma": 38,
    "hiz": 110,
    "ulti": {
@@ -1292,7 +1292,7 @@
    "sinif": "destek",
    "element": "doga",
    "can": 939,
-   "saldiri": 104,
+   "saldiri": 109,
    "savunma": 43,
    "hiz": 118,
    "ulti": {
@@ -1356,7 +1356,7 @@
    "sinif": "savasci",
    "element": "doga",
    "can": 823,
-   "saldiri": 118,
+   "saldiri": 116,
    "savunma": 38,
    "hiz": 116,
    "ulti": {
@@ -1408,7 +1408,7 @@
    "sinif": "destek",
    "element": "ates",
    "can": 914,
-   "saldiri": 94,
+   "saldiri": 99,
    "savunma": 37,
    "hiz": 113,
    "ulti": {

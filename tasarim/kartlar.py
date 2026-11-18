@@ -24,9 +24,9 @@ MITOLOJI = {"turk": "Türk", "yunan": "Yunan", "iskandinav": "İskandinav", "mis
 NADIRLIK = {"siradan": 1.04, "nadir": 1.15, "epik": 1.30, "efsanevi": 1.40}
 SINIF = {  # can, saldırı, savunma, hız
     "tank":    (1200, 62, 60, 92),
-    "savasci": (820, 112, 34, 112),
+    "savasci": (820, 110, 34, 112),
     "buyucu":  (660, 120, 24, 100),
-    "destek":  (840, 86, 38, 108),
+    "destek":  (840, 90, 38, 108),
 }
 
 def H(hedef, carpan, **k): return {"tip": "hasar", "hedef": hedef, "carpan": carpan, **k}

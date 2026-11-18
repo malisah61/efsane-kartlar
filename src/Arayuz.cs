@@ -209,14 +209,12 @@ public partial class KartKutu : Control
 		var ic = new StyleBoxFlat { BgColor = new Color("2a1d55") };
 		ic.SetCornerRadiusAll((int)(w * 0.06f));
 		DrawStyleBox(ic, new Rect2(k, k, w - 2 * k, h - 2 * k));
-		// çapraz desen
-		var desen = new Color(1, 1, 1, 0.06f);
+		// elmas desen (kartın içinde kalır)
+		var desen = new Color(1, 1, 1, 0.07f);
 		float ad = w * 0.16f;
-		for (float x = -h; x < w + h; x += ad)
-		{
-			DrawLine(new Vector2(x, k * 2), new Vector2(x + h - k * 4, h - k * 2), desen, 2);
-			DrawLine(new Vector2(x + h - k * 4, k * 2), new Vector2(x, h - k * 2), desen, 2);
-		}
+		for (float y = k * 3 + ad / 2; y < h - k * 3; y += ad)
+			for (float x = k * 3 + ad / 2; x < w - k * 3; x += ad)
+				Ui.ElmasSekli(this, new Vector2(x, y), ad * 0.3f, desen);
 		var m = new Vector2(w / 2, h / 2);
 		DrawCircle(m, w * 0.3f, new Color("1a1238"));
 		DrawArc(m, w * 0.3f, 0, Mathf.Tau, 40, new Color("c79a3a"), MathF.Max(2, w * 0.025f));

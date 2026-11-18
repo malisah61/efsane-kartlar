@@ -641,6 +641,9 @@ public partial class Oyun : Control
 			hepsi.Disabled = true;
 		}, new Color("6a4fa0"), 22));
 		sat.AddChild(hepsi);
+		var stw = hepsi.CreateTween();
+		stw.TweenInterval(gecikme + 0.4f);
+		stw.TweenCallback(Callable.From(() => hepsi.Disabled = true));
 		sat.AddChild(Ui.Genis(Ui.Dugme("Tamam", PencereKapat, new Color("3b6fd8"), 24)));
 		Pencere(v);
 	}

@@ -11,4 +11,4 @@
 - Yeni: **Efsane Yolu** aylık sezon kartı (30 seviye, ücretsiz + Altın Yol `sezon_karti` ürünü ₺59,99).
 - İyileştirme: çağırmada kart çevirme animasyonu (kart arkası, epik/efsanevide parıltı + titreme + parçacık, efsanevide ekran flaşı, "Hepsini Aç").
 - İyileştirme: geçilmiş aşamalar için **Hızlı Geç** x1/x5; alt menüde yapılacak iş rozetleri (görev, yıldız, boş takım yeri, parşömen, arena hakkı).
-- Denge: 9. turdan sonra öfke (her tur hasar +%15) — zaman aşımı %15.1'di; destek sınıfı can 820→840, saldırı 80→86 (destek %46.1'di).
+- Denge: 9. turdan sonra öfke (her tur hasar +%15) — zaman aşımı %15.1'di; destek can 820→840, saldırı 80→90; savaşçı saldırı 112→110 (destek %46.1'di).
