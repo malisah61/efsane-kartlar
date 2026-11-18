@@ -54,6 +54,13 @@ public class Profil
 	// reklam: günlük sayaçlar (elmas, ödül katlama, enerji, ücretsiz çağrı) ve geçiş reklamı sayacı
 	public int[] ReklamGunluk { get; set; } = new int[4];
 	public int SavasSayaci { get; set; }
+	// Efsaneler Kulesi ve aylık sezon kartı (Efsane Yolu)
+	public int KuleKat { get; set; }
+	public string SezonKartiKimlik { get; set; } = "";
+	public int SezonXp { get; set; }
+	public string SezonPremium { get; set; } = "";
+	public List<int> SezonAlinan { get; set; } = new();
+	public List<int> SezonAlinanP { get; set; } = new();
 	public bool Reklamsiz => AlinanUrunler.Contains("reklam_kaldir");
 }
 
@@ -201,8 +208,17 @@ public static class Kayit
 			["urunler"] = urunler, ["oz"] = p.RuhOzu, ["jetonlar"] = jetonlar, ["aylikBitis"] = p.AylikKartBitis,
 			["aylikSon"] = p.AylikKartSonAlim, ["harcama"] = p.ToplamHarcamaKurus,
 			["reklam"] = new Godot.Collections.Array { p.ReklamGunluk[0], p.ReklamGunluk[1], p.ReklamGunluk[2], p.ReklamGunluk[3] },
-			["savasSayaci"] = p.SavasSayaci,
+			["savasSayaci"] = p.SavasSayaci, ["kule"] = p.KuleKat,
+			["skKimlik"] = p.SezonKartiKimlik, ["skXp"] = p.SezonXp, ["skPremium"] = p.SezonPremium,
+			["skAlinan"] = Dizi(p.SezonAlinan), ["skAlinanP"] = Dizi(p.SezonAlinanP),
 		};
+	}
+
+	static Godot.Collections.Array Dizi(List<int> l)
+	{
+		var a = new Godot.Collections.Array();
+		foreach (var x in l) a.Add(x);
+		return a;
 	}
 
 	static Profil Coz(string metin)
@@ -231,6 +247,12 @@ public static class Kayit
 		if (d.ContainsKey("harcama")) p.ToplamHarcamaKurus = (long)d["harcama"].AsDouble();
 		if (d.ContainsKey("reklam")) { var ra = d["reklam"].AsGodotArray(); for (int i = 0; i < Math.Min(4, ra.Count); i++) p.ReklamGunluk[i] = ra[i].AsInt32(); }
 		p.SavasSayaci = I("savasSayaci");
+		p.KuleKat = I("kule");
+		if (d.ContainsKey("skKimlik")) p.SezonKartiKimlik = d["skKimlik"].AsString();
+		p.SezonXp = I("skXp");
+		if (d.ContainsKey("skPremium")) p.SezonPremium = d["skPremium"].AsString();
+		if (d.ContainsKey("skAlinan")) foreach (var x in d["skAlinan"].AsGodotArray()) p.SezonAlinan.Add(x.AsInt32());
+		if (d.ContainsKey("skAlinanP")) foreach (var x in d["skAlinanP"].AsGodotArray()) p.SezonAlinanP.Add(x.AsInt32());
 		if (d.ContainsKey("kartlar"))
 			foreach (var kv in d["kartlar"].AsGodotArray())
 			{
@@ -300,6 +322,7 @@ public static class Kayit
 		if (!GorevTamam(i) || P.AlinanGorevler.Contains(i)) return false;
 		P.AlinanGorevler.Add(i);
 		P.Elmas += Gorevler[i].elmas;
+		SezonKarti.XpEkle(SezonKarti.XpGorev);
 		Kaydet();
 		return true;
 	}

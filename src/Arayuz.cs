@@ -108,6 +108,7 @@ public partial class KartKutu : Control
 	public KartTanim T;
 	public int Seviye = 1, Yildiz = 1, Kopya;
 	public bool Kilitli, Secili, KopyaGoster;
+	public bool Arka;   // kart arkası (çağırma animasyonunda açılmadan önce)
 	public Action Tiklandi;
 	Vector2 _basma;
 	bool _basili;
@@ -142,6 +143,7 @@ public partial class KartKutu : Control
 	{
 		if (T == null) return;
 		var w = Size.X; var h = Size.Y;
+		if (Arka) { ArkaCiz(w, h); return; }
 		var nadir = Veri.NadirlikRenk(T.Nadirlik);
 		float k = MathF.Max(3, w * 0.035f);
 		var dis = new StyleBoxFlat { BgColor = Kilitli ? new Color("2a2e40") : nadir };
@@ -196,5 +198,32 @@ public partial class KartKutu : Control
 			}
 		}
 		if (Secili) DrawRect(new Rect2(1, 1, w - 2, h - 2), Ui.Altin, false, 4);
+	}
+
+	void ArkaCiz(float w, float h)
+	{
+		float k = MathF.Max(3, w * 0.035f);
+		var dis = new StyleBoxFlat { BgColor = new Color("c79a3a") };
+		dis.SetCornerRadiusAll((int)(w * 0.08f));
+		DrawStyleBox(dis, new Rect2(0, 0, w, h));
+		var ic = new StyleBoxFlat { BgColor = new Color("2a1d55") };
+		ic.SetCornerRadiusAll((int)(w * 0.06f));
+		DrawStyleBox(ic, new Rect2(k, k, w - 2 * k, h - 2 * k));
+		// çapraz desen
+		var desen = new Color(1, 1, 1, 0.06f);
+		float ad = w * 0.16f;
+		for (float x = -h; x < w + h; x += ad)
+		{
+			DrawLine(new Vector2(x, k * 2), new Vector2(x + h - k * 4, h - k * 2), desen, 2);
+			DrawLine(new Vector2(x + h - k * 4, k * 2), new Vector2(x, h - k * 2), desen, 2);
+		}
+		var m = new Vector2(w / 2, h / 2);
+		DrawCircle(m, w * 0.3f, new Color("1a1238"));
+		DrawArc(m, w * 0.3f, 0, Mathf.Tau, 40, new Color("c79a3a"), MathF.Max(2, w * 0.025f));
+		Ui.ElmasSekli(this, m, w * 0.2f, new Color("f2c14e"));
+		Ui.ElmasSekli(this, m, w * 0.1f, new Color("fff1b0"));
+		float yr = w * 0.05f;
+		foreach (var c in new[] { new Vector2(k * 3.5f, k * 3.5f), new Vector2(w - k * 3.5f, k * 3.5f), new Vector2(k * 3.5f, h - k * 3.5f), new Vector2(w - k * 3.5f, h - k * 3.5f) })
+			Ui.Yildiz(this, c, yr, new Color("c79a3a"));
 	}
 }

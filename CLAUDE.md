@@ -10,6 +10,7 @@
   - `src/SavasEkrani.cs` olay listesini animasyonla oynatır.
   - `src/Kayit.cs` profil/ekonomi (`user://kayit.json`): altın, elmas, parşömen, kupa, kartlar, takım, günlük ödül/görevler, çağırma oranları.
   - `src/Rakipler.cs` hikâye aşamaları (60), arena hayalet rakipleri, haftalık sıralama (prototip: botlar).
+  - `src/Kule.cs` Efsaneler Kulesi (100 kat), `src/SezonKarti.cs` aylık Efsane Yolu, `src/OyunEk.cs` bunların ekranları + menü rozetleri + hızlı geçiş (Oyun partial).
   - `src/Onizleme.cs` bulutta ekran görüntüsü (`--onizleme=klasör`) ve denge testi (`--denge=dosya`).
 - Kart verisi kaynağı `tasarim/kartlar.py` → `python3 tasarim/kartlar.py` ile `assets/veri/kartlar.json` üretilir. JSON'u elle düzenleme, betiği düzenle.
 - Portreler: `assets/kartlar/<id>.png` (128x128 piksel art). SpriteCook ile 2x2 sayfa halinde üretilir (gpt-image-2, quality low = 2 kredi/sayfa = 4 kart).

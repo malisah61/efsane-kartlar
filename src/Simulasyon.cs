@@ -117,6 +117,7 @@ public static class Simulasyon
 				var s = new Savas(Kayit.TakimUyeleri(), Rakipler.AsamaTakimi(hedef), savasTohum++);
 				s.Oyna();
 				p.GunlukSavas++; p.GunlukHikaye++;
+				SezonKarti.XpEkle(SezonKarti.XpHikaye);
 				if (s.Kazanan == 0)
 				{
 					bool ilk = hedef > p.EnIyiAsama;
@@ -145,7 +146,21 @@ public static class Simulasyon
 				p.Kupa = Math.Max(0, p.Kupa + o.kupa); p.Altin += o.altin; p.Elmas += o.elmas;
 				if (kazandi) p.ArenaGalibiyet++; else p.ArenaMaglubiyet++;
 				p.ArenaGunlukSavas++; p.GunlukSavas++;
+				SezonKarti.XpEkle(SezonKarti.XpArena);
 			}
+
+			// Efsaneler Kulesi: kazandıkça tırman (günde en fazla 10 kat), ilk yenilgide bırak
+			for (int i = 0; i < 10 && !Kule.Bitti; i++)
+			{
+				int kat = Kule.SiradakiKat;
+				var s = new Savas(Kayit.TakimUyeleri(), Kule.KatTakimi(kat), savasTohum++);
+				s.Oyna();
+				Kule.Sonuc(kat, s.Kazanan == 0);
+				if (s.Kazanan != 0) break;
+			}
+			if (p.KuleKat >= 25) k.Olay("Kule 25. kat", gun);
+			if (p.KuleKat >= 50) k.Olay("Kule 50. kat", gun);
+			if (p.KuleKat >= 100) k.Olay("Kule zirvesi (100. kat)", gun);
 			string lig = Rakipler.Lig(p.Kupa);
 			if (lig != "Bronz") k.Olay(lig + " lig", gun);
 
@@ -156,6 +171,7 @@ public static class Simulasyon
 
 			Yukselt();
 			for (int i = 0; i < Kayit.Gorevler.Length; i++) Kayit.GorevOdulAl(i);
+			SezonKarti.HepsiniAl(r);   // yalnızca ücretsiz yol (botlar Altın Yol almaz)
 
 			// olaylar
 			if (p.Kartlar.Any(x => Veri.Harita[x.Id].Nadirlik == "epik")) k.Olay("İlk epik kart", gun);

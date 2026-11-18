@@ -9,7 +9,7 @@ public class Urun
 {
 	public string Id, Ad, Aciklama, OnerilenFiyat;   // fiyatı Play Console belirler; burada yalnızca öneri/yedek gösterim
 	public int Elmas, Parsomen, Altin;
-	public bool TekSeferlik, AylikKart, EpikKart, Kalici;   // Kalici: tüketilmez (Play'de "onayla"), yeniden yüklemede geri gelir
+	public bool TekSeferlik, AylikKart, EpikKart, Kalici, SezonKarti;   // Kalici: tüketilmez (Play'de "onayla"), yeniden yüklemede geri gelir
 	public decimal TlFiyat;                          // simülasyon ve raporlar için
 }
 
@@ -25,6 +25,8 @@ public static class Magaza
 			Elmas = 1000, Parsomen = 10, Altin = 20000, EpikKart = true, TekSeferlik = true, OnerilenFiyat = "₺39,99", TlFiyat = 39.99m },
 		new Urun { Id = "aylik_kart", Ad = "Aylık Kart", Aciklama = "Hemen 300 elmas + 30 gün boyunca her gün 100 elmas (toplam 3.300)",
 			Elmas = 300, AylikKart = true, OnerilenFiyat = "₺89,99", TlFiyat = 89.99m },
+		new Urun { Id = EfsaneKartlar.SezonKarti.UrunId, Ad = "Efsane Yolu: Altın Yol", Aciklama = "Bu ayın sezon kartında Altın Yol ödüllerini açar: toplam 1.380 elmas, 12 parşömen, ruh özü, altın ve 30. seviyede epik kahraman",
+			SezonKarti = true, OnerilenFiyat = "₺59,99", TlFiyat = 59.99m },
 		new Urun { Id = "reklam_kaldir", Ad = "Reklamları Kaldır (VIP)", Aciklama = "Geçiş reklamları kalkar, ödüllü reklamlar izlemeden anında verilir + 300 elmas (kalıcı)",
 			Elmas = 300, TekSeferlik = true, Kalici = true, OnerilenFiyat = "₺79,99", TlFiyat = 79.99m },
 		new Urun { Id = "elmas_300", Ad = "Elmas Kesesi", Aciklama = "300 elmas", Elmas = 300, OnerilenFiyat = "₺29,99", TlFiyat = 29.99m },
@@ -39,7 +41,19 @@ public static class Magaza
 	public static bool IlkAlimBonusu(Urun u) => u.Id.StartsWith("elmas_") && !Kayit.P.AlinanUrunler.Contains(u.Id);
 
 	public static bool SatinAlinabilir(Urun u) => !(u.TekSeferlik && Kayit.P.AlinanUrunler.Contains(u.Id))
-		&& !(u.AylikKart && AylikKartKalan() > 3);
+		&& !(u.AylikKart && AylikKartKalan() > 3)
+		&& !(u.SezonKarti && EfsaneKartlar.SezonKarti.Premium);
+
+	/// <summary>Sahip olunmayan (yoksa herhangi) bir epik kahraman verir; dönüş kartın adı.</summary>
+	public static string EpikVer(Random r = null)
+	{
+		r ??= new Random();
+		var havuz = Veri.Kartlar.Where(k => k.Nadirlik == "epik" && Kayit.Sahip(k.Id) == null).ToList();
+		if (havuz.Count == 0) havuz = Veri.Kartlar.Where(k => k.Nadirlik == "epik").ToList();
+		var k = havuz[r.Next(havuz.Count)];
+		Kayit.KartEkle(k.Id);
+		return k.Ad;
+	}
 
 	/// <summary>Ödeme onaylandı: ödülü ver. Dönüş: kullanıcıya gösterilecek özet.</summary>
 	public static string Ver(string id, Random r = null)
@@ -52,14 +66,12 @@ public static class Magaza
 		p.Elmas += elmas; if (elmas > 0) parca.Add($"+{elmas:N0} elmas");
 		p.Parsomen += u.Parsomen; if (u.Parsomen > 0) parca.Add($"+{u.Parsomen} parşömen");
 		p.Altin += u.Altin; if (u.Altin > 0) parca.Add($"+{u.Altin:N0} altın");
-		if (u.EpikKart)
+		if (u.EpikKart) parca.Add($"Epik kahraman: {EpikVer(r)}");
+		if (u.SezonKarti)
 		{
-			r ??= new Random();
-			var havuz = Veri.Kartlar.Where(k => k.Nadirlik == "epik" && Kayit.Sahip(k.Id) == null).ToList();
-			if (havuz.Count == 0) havuz = Veri.Kartlar.Where(k => k.Nadirlik == "epik").ToList();
-			var k = havuz[r.Next(havuz.Count)];
-			Kayit.KartEkle(k.Id);
-			parca.Add($"Epik kahraman: {k.Ad}");
+			EfsaneKartlar.SezonKarti.Kontrol();
+			p.SezonPremium = EfsaneKartlar.SezonKarti.Kimlik();
+			parca.Add($"Altın Yol açıldı ({EfsaneKartlar.SezonKarti.AyAdi()})");
 		}
 		if (u.AylikKart)
 		{

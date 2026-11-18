@@ -26,7 +26,7 @@ SINIF = {  # can, saldırı, savunma, hız
     "tank":    (1200, 62, 60, 92),
     "savasci": (820, 112, 34, 112),
     "buyucu":  (660, 120, 24, 100),
-    "destek":  (820, 80, 38, 108),
+    "destek":  (840, 86, 38, 108),
 }
 
 def H(hedef, carpan, **k): return {"tip": "hasar", "hedef": hedef, "carpan": carpan, **k}

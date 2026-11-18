@@ -15,6 +15,7 @@ public partial class Oyun : Control
 	Label _altinL, _elmasL, _parsL, _kupaL, _enerjiL;
 	double _saat;
 	readonly List<Button> _menuDugmeleri = new();
+	readonly List<Control> _rozetler = new();
 	Control _katman;
 	string _filtre = "hepsi";
 	List<ArenaRakip> _rakipler;
@@ -115,6 +116,7 @@ public partial class Oyun : Control
 		{
 			var b = Ui.Genis(Ui.Dugme(ad, () => Goster(ek), new Color("252b4a"), 17, 78));
 			_menuDugmeleri.Add(b);
+			_rozetler.Add(Rozet(b));
 			ah.AddChild(b);
 		}
 
@@ -146,6 +148,7 @@ public partial class Oyun : Control
 		int kalan = Kayit.SonrakiEnerji();
 		_enerjiL.Text = $"{p.Enerji}/{Kayit.EnerjiMax}" + (kalan > 0 ? $" {kalan / 60}:{kalan % 60:00}" : "");
 		_enerjiL.AddThemeFontSizeOverride("font_size", kalan > 0 ? 18 : 23);
+		RozetleriGuncelle();
 	}
 
 	void Goster(Ekran e)
@@ -246,6 +249,14 @@ public partial class Oyun : Control
 			var to = Rakipler.AsamaOdulu(tekrar, false);
 			hv.AddChild(Ui.Dugme($"Altın topla: Aşama {tekrar} tekrar  (+{to.altin} altın, {Kayit.HikayeEnerji} enerji)", () => HikayeSavasi(tekrar), new Color("6a5a2f"), 19, 54));
 		}
+		if (p.EnIyiAsama >= 1) hv.AddChild(HizliGecSatiri(p.EnIyiAsama));
+
+		// kule + sezon kartı
+		var ks = Ui.Yatay(12);
+		v.AddChild(ks);
+		ks.AddChild(Ui.Genis(Ui.Dugme(Kule.Bitti ? "Efsaneler Kulesi\nZirve fethedildi" : $"Efsaneler Kulesi\nKat {Kule.SiradakiKat}/{Kule.KatSayisi}", KulePenceresi, new Color("5a3a9a"), 21, 84)));
+		int sOdul = SezonKarti.AlinabilirSayi();
+		ks.AddChild(Ui.Genis(Ui.Dugme($"Efsane Yolu\nSeviye {SezonKarti.Seviye}/{SezonKarti.SeviyeSayisi}" + (sOdul > 0 ? $"  •  {sOdul} ödül!" : ""), SezonPenceresi, new Color("9a6a2a"), 21, 84)));
 
 		// günlük ödül + mağaza
 		var sat = Ui.Yatay(12);
@@ -549,36 +560,100 @@ public partial class Oyun : Control
 	{
 		var v = Ui.Dikey(12);
 		v.AddChild(Ui.Etiket("Çağrı Sonucu", 34, Ui.Altin, HorizontalAlignment.Center));
-		var izgara = new GridContainer { Columns = sonuc.Count == 1 ? 1 : 5 };
+		bool tek = sonuc.Count == 1;
+		var izgara = new GridContainer { Columns = tek ? 1 : 5 };
 		izgara.AddThemeConstantOverride("h_separation", 8);
 		izgara.AddThemeConstantOverride("v_separation", 8);
 		var c = new CenterContainer();
 		c.AddChild(izgara);
 		v.AddChild(c);
 		var gorulen = new HashSet<string>(oncedenSahip);
-		float gecikme = 0;
+		var acicilar = new List<Action>();
+		var tweenler = new List<Tween>();
+		float gecikme = 0.35f;
 		foreach (var t in sonuc)
 		{
 			bool yeni = gorulen.Add(t.Id);
+			float w = tek ? 240 : 118;
 			var kut = Ui.Dikey(2);
-			var kk = new KartKutu(t, sonuc.Count == 1 ? 240 : 118);
-			kk.Tiklandi = () => KartDetayi(t, null);
+			var kk = new KartKutu(t, w) { Arka = true, PivotOffset = new Vector2(w / 2, w * 1.38f / 2) };
 			kut.AddChild(kk);
-			kut.AddChild(Ui.Etiket(yeni ? "YENİ!" : "+1 kopya", sonuc.Count == 1 ? 24 : 16, yeni ? Ui.Yesil : Ui.Soluk, HorizontalAlignment.Center));
+			var et = Ui.Etiket(yeni ? "YENİ!" : "+1 kopya", tek ? 24 : 16, yeni ? Ui.Yesil : Ui.Soluk, HorizontalAlignment.Center);
+			et.Modulate = new Color(1, 1, 1, 0);
+			kut.AddChild(et);
 			izgara.AddChild(kut);
-			kut.Modulate = new Color(1, 1, 1, 0);
-			var tw = kut.CreateTween();
+			int nad = t.NadirlikSira;
+			var renk = Veri.NadirlikRenk(t.Nadirlik);
+			void Ac()
+			{
+				if (!IsInstanceValid(kk)) return;
+				kk.Arka = false; kk.QueueRedraw();
+				kk.Scale = Vector2.One; kk.Modulate = Colors.White; et.Modulate = Colors.White;
+				kk.Tiklandi = () => KartDetayi(t, null);
+			}
+			var tw = kk.CreateTween();
 			tw.TweenInterval(gecikme);
-			var nadirlik = t.NadirlikSira;
-			tw.TweenCallback(Callable.From(() => Ses.Efekt(nadirlik >= 3 ? "efsanevi" : "kart", nadirlik >= 2 ? 2 : 0, 1f + nadirlik * 0.08f, 0.03f)));
-			tw.TweenProperty(kut, "modulate:a", 1f, 0.25f);
-			gecikme += t.NadirlikSira >= 2 ? 0.35f : 0.12f;
+			if (nad >= 2)
+			{
+				// epik ve efsanevi: kart açılmadan önce nadirlik renginde parlar ve titrer
+				tw.TweenCallback(Callable.From(() => Ses.Efekt("kart", -2, 0.7f, 0)));
+				tw.TweenProperty(kk, "modulate", new Color(renk.R * 1.9f, renk.G * 1.9f, renk.B * 1.9f), 0.3f);
+				tw.Parallel().TweenProperty(kk, "rotation", 0.06f, 0.08f);
+				tw.TweenProperty(kk, "rotation", -0.06f, 0.08f);
+				tw.TweenProperty(kk, "rotation", 0f, 0.08f);
+			}
+			tw.TweenProperty(kk, "scale:x", 0f, 0.12f).SetTrans(Tween.TransitionType.Sine);
+			tw.TweenCallback(Callable.From(() =>
+			{
+				kk.Arka = false; kk.QueueRedraw();
+				kk.Tiklandi = () => KartDetayi(t, null);
+				Ses.Efekt(nad >= 3 ? "efsanevi" : "kart", nad >= 2 ? 2 : 0, 1f + nad * 0.08f, 0.03f);
+				if (nad >= 2) Efekt.Patlama(kut, kk.Position + kk.Size / 2, renk, nad >= 3 ? 60 : 30, nad >= 3 ? 340 : 240, 6, 0.8f, 150);
+				if (nad >= 3) Flas(renk);
+			}));
+			tw.TweenProperty(kk, "scale:x", 1f, 0.14f).SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
+			tw.Parallel().TweenProperty(kk, "modulate", Colors.White, 0.35f);
+			tw.TweenProperty(et, "modulate:a", 1f, 0.2f);
+			tweenler.Add(tw);
+			acicilar.Add(Ac);
+			gecikme += nad >= 2 ? 0.75f : 0.16f;
 		}
 		var en = sonuc.OrderByDescending(x => x.NadirlikSira).First();
+		Label enL = null;
 		if (en.NadirlikSira >= 2)
-			v.AddChild(Ui.Etiket($"{Veri.NadirlikAd(en.Nadirlik)} kart: {en.Ad}!", 26, Veri.NadirlikRenk(en.Nadirlik), HorizontalAlignment.Center));
-		v.AddChild(Ui.Dugme("Tamam", PencereKapat, new Color("3b6fd8"), 24));
+		{
+			enL = Ui.Etiket($"{Veri.NadirlikAd(en.Nadirlik)} kart: {en.Ad}!", 26, Veri.NadirlikRenk(en.Nadirlik), HorizontalAlignment.Center);
+			enL.Modulate = new Color(1, 1, 1, 0);
+			v.AddChild(enL);
+			var etw = enL.CreateTween();
+			etw.TweenInterval(gecikme + 0.2f);
+			etw.TweenProperty(enL, "modulate:a", 1f, 0.3f);
+			tweenler.Add(etw);
+		}
+		var sat = Ui.Yatay(10);
+		v.AddChild(sat);
+		Button hepsi = null;
+		hepsi = Ui.Genis(Ui.Dugme("Hepsini Aç", () =>
+		{
+			foreach (var x in tweenler) if (x.IsValid()) x.Kill();
+			foreach (var a in acicilar) a();
+			if (enL != null) enL.Modulate = Colors.White;
+			hepsi.Disabled = true;
+		}, new Color("6a4fa0"), 22));
+		sat.AddChild(hepsi);
+		sat.AddChild(Ui.Genis(Ui.Dugme("Tamam", PencereKapat, new Color("3b6fd8"), 24)));
 		Pencere(v);
+	}
+
+	/// <summary>Efsanevi çekimde tüm ekranı kısa süre parlatır.</summary>
+	void Flas(Color renk)
+	{
+		var f = new ColorRect { Color = new Color(renk, 0.55f), MouseFilter = MouseFilterEnum.Ignore };
+		f.SetAnchorsPreset(LayoutPreset.FullRect);
+		AddChild(f);
+		var tw = f.CreateTween();
+		tw.TweenProperty(f, "color:a", 0f, 0.6f);
+		tw.TweenCallback(Callable.From(f.QueueFree));
 	}
 
 	// ================================================================ ARENA
@@ -678,6 +753,7 @@ public partial class Oyun : Control
 		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
 		if (!Kayit.EnerjiHarca(Kayit.HikayeEnerji)) { EnerjiPenceresi(); return; }
 		Kayit.P.GunlukHikaye++;
+		SezonKarti.XpEkle(SezonKarti.XpHikaye);
 		var dusman = Rakipler.AsamaTakimi(asama);
 		SavasBaslat(dusman, $"Aşama {asama}", Rakipler.BolumArka(asama), kazandi =>
 		{
@@ -695,6 +771,7 @@ public partial class Oyun : Control
 				if (o.parsomen > 0) satirlar.Add($"+{o.parsomen} parşömen");
 			}
 			else satirlar.Add("İpucu: kartlarını yükselt, takımı yeniden diz veya element avantajını kullan (Ateş > Doğa > Su > Ateş).");
+			satirlar.Add($"+{SezonKarti.XpHikaye} sezon puanı");
 			Kayit.Kaydet();
 			return satirlar;
 		}, Rakipler.BossAsamasi(asama));
@@ -707,6 +784,7 @@ public partial class Oyun : Control
 		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
 		p.ArenaHak--;
 		p.ArenaGunlukSavas++;
+		SezonKarti.XpEkle(SezonKarti.XpArena);
 		SavasBaslat(r.Takim, $"Arena: {r.Ad}", Rakipler.TakimArka(r.Takim), async kazandi =>
 		{
 			var o = Rakipler.ArenaOdulu(r, kazandi);
@@ -731,6 +809,7 @@ public partial class Oyun : Control
 			Kayit.Kaydet();
 			var l = new List<string> { $"{(o.kupa >= 0 ? "+" : "")}{o.kupa} kupa", $"+{o.altin} altın" };
 			if (o.elmas > 0) l.Add($"+{o.elmas} elmas");
+			l.Add($"+{SezonKarti.XpArena} sezon puanı");
 			return l;
 		}, false, null);
 	}
@@ -953,6 +1032,8 @@ public partial class Oyun : Control
 	public void OnizlemeKapat() => PencereKapat();
 	public void OnizlemeGunluk() => GunlukOdulPenceresi();
 	public void OnizlemeMagaza() => MagazaPenceresi();
+	public void OnizlemeKule() => KulePenceresi();
+	public void OnizlemeSezon() => SezonPenceresi();
 	public SavasEkrani OnizlemeSavas(int asama)
 	{
 		HikayeSavasi(asama);

@@ -67,6 +67,9 @@ public class TakimUyesi
 public class Savas
 {
 	public const int MaxTur = 15;
+	/// <summary>Bu turdan sonra öfke başlar: her tur hasar +%15 (uzayan savaşları bitirir).</summary>
+	public const int OfkeTur = 9;
+	public static float OfkeCarpan(int tur) => tur > OfkeTur ? 1f + 0.15f * (tur - OfkeTur) : 1f;
 	public readonly List<Birim> Birimler = new();
 	public readonly List<Olay> Olaylar = new();
 	public int Kazanan = -1;
@@ -114,6 +117,7 @@ public class Savas
 		for (Tur = 1; Tur <= MaxTur && Kazanan < 0; Tur++)
 		{
 			Olaylar.Add(new Olay { Tip = "tur", Deger = Tur });
+			if (Tur > OfkeTur) Olaylar.Add(new Olay { Tip = "durum", Hedef = -1, Metin = $"Öfke! Hasar +%{(OfkeCarpan(Tur) - 1) * 100:0}" });
 			var sira = Birimler.Where(b => b.Canli)
 				.OrderByDescending(b => b.Hiz * (0.95f + 0.1f * _rng.Kesir()))
 				.ToList();
@@ -267,7 +271,7 @@ public class Savas
 	void Vur(Birim s, Birim h, float carpan, float canCal)
 	{
 		float A = s.EtkinSal, D = h.EtkinSav;
-		float hasar = 1.45f * A * carpan * (A / (A + D));
+		float hasar = 1.45f * A * carpan * (A / (A + D)) * OfkeCarpan(Tur);
 		int ust = Veri.ElementUstunluk(s.T.Element, h.T.Element);
 		if (ust > 0) hasar *= 1.3f; else if (ust < 0) hasar *= 0.8f;
 		float kritSans = s.T.Sinif == "savasci" ? 0.2f : 0.08f;
