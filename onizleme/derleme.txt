@@ -1,5 +1,5 @@
   Determining projects to restore...
-  Restored /home/runner/work/efsane-kartlar/efsane-kartlar/EfsaneKartlar.csproj (in 743 ms).
+  Restored /home/runner/work/efsane-kartlar/efsane-kartlar/EfsaneKartlar.csproj (in 648 ms).
 /home/runner/work/efsane-kartlar/efsane-kartlar/src/Reklam.cs(50,5): warning CS0162: Unreachable code detected [/home/runner/work/efsane-kartlar/efsane-kartlar/EfsaneKartlar.csproj]
   EfsaneKartlar -> /home/runner/work/efsane-kartlar/efsane-kartlar/.godot/mono/temp/bin/Debug/EfsaneKartlar.dll
 
@@ -9,4 +9,4 @@ Build succeeded.
     1 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:08.54
+Time Elapsed 00:00:11.62
