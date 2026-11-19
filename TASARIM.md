@@ -1,10 +1,10 @@
 # Efsane Kartlar — Tasarım ve Yol Haritası
 
 ## Oyun özeti
-Türk, Yunan, İskandinav ve Mısır mitolojilerinden 48 kahraman kartı topla, yükselt, 5 kişilik takım kur.
+Türk, Yunan, İskandinav ve Mısır mitolojilerinden 52 kahraman kartı topla, yükselt, 5 kişilik takım kur.
 Savaşlar otomatik ve sıra tabanlıdır; strateji takım kurmada: diziliş (2 ön, 3 arka), element üstünlüğü, mitoloji uyumu ve ultilerin uyumu.
 
-## Kartlar (çıkış seti: 48)
+## Kartlar (çıkış seti 48 + ek kartlar)
 | | Türk | Yunan | İskandinav | Mısır |
 |---|---|---|---|---|
 | Efsanevi | Ülgen | Zeus | Odin | Ra |
@@ -13,6 +13,8 @@ Savaşlar otomatik ve sıra tabanlıdır; strateji takım kurmada: diziliş (2 �
 | Sıradan | Akıncı, Kalkanlı Bahadır, Kam, Su İyesi | Hoplit, Amazon Okçu, Siren, Nimf | Viking Kalkancı, Berserker, Völva, Rün Ustası | Mumya, Akrep Savaşçısı, Nil Kâhini, Ankh Rahibesi |
 
 Her mitolojide 3 tank, 3 savaşçı, 3 büyücü, 3 destek. Elementler: Ateş, Su, Doğa.
+
+Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), Perseus (Yunan tank, su), Fenrir (İskandinav savaşçı, doğa), Sekhmet (Mısır büyücü, ateş) — 2026-11-19.
 
 ## Savaş
 - Her tur canlı kartlar hıza göre sırayla hareket eder. Normal saldırı enerji verir (+38, destek +45), hasar alınca +10.
@@ -28,6 +30,7 @@ Her mitolojide 3 tank, 3 savaşçı, 3 büyücü, 3 destek. Elementler: Ateş, S
 - Günlük: 7 günlük giriş ödülü döngüsü, 5 günlük görev, ödüllü reklamlar.
 - Hızlı Geç: geçilmiş aşama savaşmadan geçilir (aynı enerji, tekrar ödülü), x1 / x5.
 - **Efsaneler Kulesi**: 100 kat, enerji yok, ödül yalnızca ilk geçişte (her 5 katta elmas, her 10. kat boss + parşömen + ruh özü). Her 10 kat bir mitolojinin katları.
+- **Mitoloji Haftası (haftalık etkinlik)**: her hafta sırayla Türk → Yunan → İskandinav → Mısır. O mitolojinin kartları hikâye ve kulede +%10 can/saldırı (arenada yok), çağırmada 2 kat sık. Zafer puanı: hikâye/kule 10, arena 15, takımdaki etkinlik kartı başına +5. Eşikler 100/250/450/700/1000/1400/2000 → altın, elmas, parşömen, ruh özü; 2000'de haftanın etkinlik kahramanı.
 - **Efsane Yolu (sezon kartı)**: aylık, 30 seviye × 250 puan. Puan: hikâye +5, arena +10, yeni kule katı +20, günlük görev +20. Ücretsiz yol (≈525 elmas, 6 parşömen) + Altın Yol ürünü `sezon_karti` (1.380 elmas, 12 parşömen, 150 ruh özü, epik kahraman).
 
 ## Para kazanma (planlanan)
@@ -38,7 +41,7 @@ Her mitolojide 3 tank, 3 savaşçı, 3 büyücü, 3 destek. Elementler: Ateş, S
 1. [x] Prototip: kartlar, savaş, koleksiyon, takım, çağırma, hikâye, arena (hayalet rakipler), günlük ödüller, mağaza ekranı
 2. [x] Savaş sahnesi: mitoloji arka planları, tam boy piksel karakterler, koşarak saldırı, büyü topları, yıldırım, kalkan/iyileşme/sersemletme efektleri
 2b. [x] Yavaş ekonomi: enerji, pahalı yükseltme, az ödül; haftalık arena sezonu ve sıra ödülleri
-2c. [~] Denge: `onizleme/denge.txt` sonuçlarına göre kart değerleri (sürekli; 2026-11-18: öfke mekaniği, destek güçlendi)
+2c. [~] Denge: `onizleme/denge.txt` sonuçlarına göre kart değerleri (sürekli; 2026-11-18: öfke mekaniği, destek güçlendi; 2026-11-19: Siren/Medusa/Völva/Nil Kâhini güçlendi, Thor alan hasarı azaldı)
 3. [x] Sunucu (Supabase): hesap, bulut kaydı, gerçek oyunculu arena, sıralamalar, arkadaş, mesaj, lonca
    - [ ] Sunucuda savaş doğrulaması (sonuç şu an istemcide hesaplanıyor)
 4. [x] Google Play Billing + AdMob ödüllü/geçiş reklamı (Play Console'da ürün kimlikleri oluşturulmalı)
@@ -46,9 +49,11 @@ Her mitolojide 3 tank, 3 savaşçı, 3 büyücü, 3 destek. Elementler: Ateş, S
    - [x] Sezon kartı (Efsane Yolu, aylık) — 2026-11-18
    - [x] Efsaneler Kulesi (100 kat) — 2026-11-18
    - [ ] Lonca boss'u (sunucu: lonca üyelerinin toplam hasarı, haftalık ödül)
-   - [ ] Haftalık etkinlik (ör. "Mısır Haftası": o mitolojiden kartlara +%10 ve etkinlik görevleri, etkinlik kahramanı)
+   - [x] Haftalık etkinlik: Mitoloji Haftası (+%10, çağırma oranı, puan eşikleri, etkinlik kahramanı) — 2026-11-19
+   - [ ] Etkinliğe özel boss aşaması / etkinlik mağazası (puanla takas)
    - [ ] Kule'ye haftalık "mitoloji kısıtlı" katlar
 6. [~] Ses/müzik [x], savaş efektleri [x], kart çekme animasyonu [x] (kart çevirme, nadirlik parıltısı, efsanevide ekran flaşı), menü rozetleri [x]
-   - [ ] Seviye/yıldız atlatma animasyonu, ulti yakın plan
-7. [ ] Yeni kartlar (ayda 2-4): hazır bedenler koroglu, perseus, fenrir, sekhmet — portreleri çizilecek
+   - [x] Seviye/yıldız atlatma kutlaması + çoklu seviye düğmesi (2026-11-19)
+   - [ ] Ulti yakın plan
+7. [~] Yeni kartlar (ayda 2-4): Köroğlu, Perseus, Fenrir, Sekhmet eklendi (2026-11-19, Kasım kotası doldu). Sonraki: Aralık'ta 2-4 kart (bedenleri de çizilmeli)
 8. [ ] Yeni oyuncu rehberi (ilk 10 dakika: ok işaretli adımlar)

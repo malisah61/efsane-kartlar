@@ -22,7 +22,8 @@
 - Savaş sahnesi (`SavasEkrani.cs`): arka plan `assets/arka/<turk|yunan|iskandinav|misir>.png`, tam boy savaşçılar `assets/beden/<id>.png`
   (SpriteCook 3x3/4x4 şeffaf sayfalar → `tasarim/bedenler.txt` + `python3 tasarim/beden_kes.py`). Oyuncu solda sağa bakar, düşman sağda (yansıtılmış).
   Efektler `src/Efekt.cs`: tamamen koddan (CPUParticles2D, mermi, halka, yıldırım, kesik); harici dosya yok.
-  `assets/beden/` içinde henüz kartı olmayan hazır bedenler var: koroglu, perseus, fenrir, sekhmet (yeni kart eklerken kullan; portreleri yok).
+  Köroğlu, Perseus, Fenrir, Sekhmet etkinlik kahramanı olarak eklendi (2026-11-19); `assets/beden/` içinde kartsız hazır beden kalmadı — yeni kartlar için beden de çizilmeli.
+- Haftalık etkinlik `src/Etkinlik.cs` (Mitoloji Haftası; `Savas` yapıcısına bonusMitoloji verilir, yalnızca hikâye/kule), ekranı `src/OyunEtkinlik.cs`.
 - Ekonomi bilerek yavaş: hikâye savaşı 6 enerji (max 60, 6 dakikada 1, günde 3 kez 50 elmasa +30), seviye maliyeti 100·sv^1.7, yıldız 2/4/8/12 kopya,
   haftalık arena sezonu (50 kişilik grup, sıra ödülü, kupa yarıya yakın sıfırlanır).
 - Yol haritası: `TASARIM.md`.

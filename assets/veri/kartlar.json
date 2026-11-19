@@ -491,7 +491,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 2.05
+      "carpan": 2.2
      },
      {
       "tip": "sersemlet",
@@ -583,12 +583,12 @@
      {
       "tip": "iyilestir",
       "hedef": "en_zayif_dost",
-      "carpan": 2.2
+      "carpan": 2.3
      },
      {
       "tip": "iyilestir",
       "hedef": "tum_dost",
-      "carpan": 0.5
+      "carpan": 0.6
      }
     ]
    },
@@ -664,7 +664,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 2.3
+      "carpan": 2.5
      },
      {
       "tip": "sersemlet",
@@ -1034,7 +1034,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 2.1
+      "carpan": 2.3
      },
      {
       "tip": "zayiflat",

@@ -122,10 +122,12 @@ public partial class Oyun
 	void Kutla(Control kart, string yazi, Color renk)
 	{
 		Ses.Efekt("kart", 2, 1.25f, 0);
-		Callable.From(() =>
+		// pencere yerleşimi bitsin diye kısa bekle (kartın boyutu ancak o zaman belli olur)
+		GetTree().CreateTimer(0.06).Timeout += () =>
 		{
 			if (!IsInstanceValid(kart)) return;
-			var merkez = kart.Size / 2;
+			var boyut = kart.Size.X > 1 ? kart.Size : kart.CustomMinimumSize;
+			var merkez = boyut / 2;
 			kart.PivotOffset = merkez;
 			var tw = kart.CreateTween();
 			tw.TweenProperty(kart, "scale", new Vector2(1.08f, 1.08f), 0.12f).SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
@@ -133,13 +135,13 @@ public partial class Oyun
 			tw.TweenProperty(kart, "scale", Vector2.One, 0.25f);
 			tw.Parallel().TweenProperty(kart, "modulate", Colors.White, 0.35f);
 			Efekt.Patlama(kart, merkez, renk, 40, 280, 7, 0.8f, 200);
-			Efekt.Yukselen(kart, new Vector2(merkez.X, kart.Size.Y - 10), renk, 24, merkez.X * 0.8f);
-			Efekt.Halka(kart, merkez, renk, 20, kart.Size.X * 0.75f, 0.5f, 6);
+			Efekt.Yukselen(kart, new Vector2(merkez.X, boyut.Y - 10), renk, 24, merkez.X * 0.8f);
+			Efekt.Halka(kart, merkez, renk, 20, boyut.X * 0.75f, 0.5f, 6);
 			var l = Ui.Etiket(yazi, 34, renk, HorizontalAlignment.Center);
 			l.AddThemeColorOverride("font_outline_color", Colors.Black);
 			l.AddThemeConstantOverride("outline_size", 8);
 			l.MouseFilter = MouseFilterEnum.Ignore;
-			l.Size = new Vector2(kart.Size.X + 120, 50);
+			l.Size = new Vector2(boyut.X + 120, 50);
 			l.Position = new Vector2(-60, merkez.Y - 25);
 			l.ZIndex = 30;
 			kart.AddChild(l);
@@ -147,6 +149,6 @@ public partial class Oyun
 			lt.TweenProperty(l, "position:y", merkez.Y - 110, 1.1f).SetTrans(Tween.TransitionType.Quad).SetEase(Tween.EaseType.Out);
 			lt.Parallel().TweenProperty(l, "modulate:a", 0f, 0.5f).SetDelay(0.9f);
 			lt.TweenCallback(Callable.From(l.QueueFree));
-		}).CallDeferred();
+		};
 	}
 }
