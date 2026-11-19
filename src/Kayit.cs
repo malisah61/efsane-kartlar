@@ -61,6 +61,10 @@ public class Profil
 	public string SezonPremium { get; set; } = "";
 	public List<int> SezonAlinan { get; set; } = new();
 	public List<int> SezonAlinanP { get; set; } = new();
+	// haftalık mitoloji etkinliği
+	public int EtkinlikHafta { get; set; } = -1;
+	public int EtkinlikPuan { get; set; }
+	public List<int> EtkinlikAlinan { get; set; } = new();
 	public bool Reklamsiz => AlinanUrunler.Contains("reklam_kaldir");
 }
 
@@ -211,6 +215,7 @@ public static class Kayit
 			["savasSayaci"] = p.SavasSayaci, ["kule"] = p.KuleKat,
 			["skKimlik"] = p.SezonKartiKimlik, ["skXp"] = p.SezonXp, ["skPremium"] = p.SezonPremium,
 			["skAlinan"] = Dizi(p.SezonAlinan), ["skAlinanP"] = Dizi(p.SezonAlinanP),
+			["etHafta"] = p.EtkinlikHafta, ["etPuan"] = p.EtkinlikPuan, ["etAlinan"] = Dizi(p.EtkinlikAlinan),
 		};
 	}
 
@@ -253,6 +258,9 @@ public static class Kayit
 		if (d.ContainsKey("skPremium")) p.SezonPremium = d["skPremium"].AsString();
 		if (d.ContainsKey("skAlinan")) foreach (var x in d["skAlinan"].AsGodotArray()) p.SezonAlinan.Add(x.AsInt32());
 		if (d.ContainsKey("skAlinanP")) foreach (var x in d["skAlinanP"].AsGodotArray()) p.SezonAlinanP.Add(x.AsInt32());
+		p.EtkinlikHafta = d.ContainsKey("etHafta") ? I("etHafta") : -1;
+		p.EtkinlikPuan = I("etPuan");
+		if (d.ContainsKey("etAlinan")) foreach (var x in d["etAlinan"].AsGodotArray()) p.EtkinlikAlinan.Add(x.AsInt32());
 		if (d.ContainsKey("kartlar"))
 			foreach (var kv in d["kartlar"].AsGodotArray())
 			{
@@ -486,7 +494,7 @@ public static class Kayit
 		}
 		else nadirlik = x < 0.04 ? "epik" : x < 0.30 ? "nadir" : "siradan";
 		var havuz = Veri.Kartlar.Where(k => k.Nadirlik == nadirlik).ToList();
-		var kart = havuz[r.Next(havuz.Count)];
+		var kart = Etkinlik.HavuzdanSec(havuz, r);
 		KartEkle(kart.Id);
 		P.GunlukCekim++;
 		return kart;
@@ -504,7 +512,7 @@ public static class Kayit
 			P.ElmasCekimSayaci++;
 			bool ef = P.ElmasCekimSayaci >= EfsaneviGaranti || r.NextDouble() < 0.12;
 			var havuz = Veri.Kartlar.Where(k => k.Nadirlik == (ef ? "efsanevi" : "epik")).ToList();
-			var kart = havuz[r.Next(havuz.Count)];
+			var kart = Etkinlik.HavuzdanSec(havuz, r);
 			if (ef) P.ElmasCekimSayaci = 0;
 			KartEkle(kart.Id);
 			P.GunlukCekim++;

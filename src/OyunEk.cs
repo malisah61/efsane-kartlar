@@ -25,7 +25,7 @@ public partial class Oyun
 		if (_rozetler.Count < 6) return;
 		var p = Kayit.P;
 		bool gorev = Enumerable.Range(0, Kayit.Gorevler.Length).Any(i => Kayit.GorevTamam(i) && !p.AlinanGorevler.Contains(i));
-		_rozetler[0].Visible = !p.GirisOdulAlindi || gorev || SezonKarti.AlinabilirSayi() > 0 || Magaza.AylikKartAlinabilir();
+		_rozetler[0].Visible = !p.GirisOdulAlindi || gorev || SezonKarti.AlinabilirSayi() > 0 || Magaza.AylikKartAlinabilir() || Etkinlik.AlinabilirSayi() > 0;
 		_rozetler[1].Visible = p.Kartlar.Any(s => s.Yildiz < Kayit.MaxYildiz && s.Kopya >= Kayit.YildizKopya(s.Yildiz) && p.Altin >= Kayit.YildizAltin(s.Yildiz));
 		_rozetler[2].Visible = p.Takim.Contains(null) && p.Kartlar.Count > p.Takim.Count(x => x != null);
 		_rozetler[3].Visible = p.Parsomen > 0 || Kayit.ReklamKalan(3) > 0;
@@ -47,7 +47,7 @@ public partial class Oyun
 	void HizliGec(int asama, int adet)
 	{
 		var p = Kayit.P;
-		int yapilan = 0, altin = 0;
+		int yapilan = 0, altin = 0, etPuan = 0;
 		for (int i = 0; i < adet; i++)
 		{
 			if (!Kayit.EnerjiHarca(Kayit.HikayeEnerji)) break;
@@ -55,13 +55,14 @@ public partial class Oyun
 			p.Altin += o.altin; altin += o.altin;
 			p.GunlukHikaye++; p.GunlukSavas++;
 			SezonKarti.XpEkle(SezonKarti.XpHikaye);
+			etPuan += Etkinlik.PuanEkle(Etkinlik.ZaferPuani(false));
 			yapilan++;
 		}
 		if (yapilan == 0) { EnerjiPenceresi(); return; }
 		Kayit.Kaydet();
 		Ses.Efekt("para");
 		Yenile();
-		Mesaj($"Aşama {asama} x{yapilan}: +{altin:N0} altın, +{yapilan * SezonKarti.XpHikaye} sezon puanı");
+		Mesaj($"Aşama {asama} x{yapilan}: +{altin:N0} altın, +{yapilan * SezonKarti.XpHikaye} sezon, +{etPuan} etkinlik puanı");
 	}
 
 	// ================================================================ EFSANELER KULESİ
@@ -104,7 +105,12 @@ public partial class Oyun
 	{
 		if (!Kayit.TakimHazir) { PencereKapat(); Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
 		PencereKapat();
-		SavasBaslat(Kule.KatTakimi(kat), $"Kule — {kat}. Kat", Kule.KatMitoloji(kat), k => Kule.Sonuc(kat, k), Kule.BossKati(kat));
+		SavasBaslat(Kule.KatTakimi(kat), $"Kule — {kat}. Kat", Kule.KatMitoloji(kat), k =>
+		{
+			var l = Kule.Sonuc(kat, k);
+			if (k) { l.Add($"+{Etkinlik.PuanEkle(Etkinlik.ZaferPuani(false))} etkinlik puanı"); Kayit.Kaydet(); }
+			return l;
+		}, Kule.BossKati(kat), Etkinlik.Mitoloji);
 	}
 
 	static Control Cubuk(float deger, float max, Color renk, float yukseklik = 18)

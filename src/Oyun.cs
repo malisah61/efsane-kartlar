@@ -251,6 +251,9 @@ public partial class Oyun : Control
 		}
 		if (p.EnIyiAsama >= 1) hv.AddChild(HizliGecSatiri(p.EnIyiAsama));
 
+		// haftalık etkinlik
+		v.AddChild(EtkinlikDugmesi());
+
 		// kule + sezon kartı
 		var ks = Ui.Yatay(12);
 		v.AddChild(ks);
@@ -346,7 +349,7 @@ public partial class Oyun : Control
 		return Ui.Kaydirma(v);
 	}
 
-	void KartDetayi(KartTanim t, TakimUyesi gosterim)
+	void KartDetayi(KartTanim t, TakimUyesi gosterim, string kutlama = null)
 	{
 		var s = Kayit.Sahip(t.Id);
 		bool rakip = gosterim != null && (s == null || s.Seviye != gosterim.Seviye || s.Yildiz != gosterim.Yildiz || !Kayit.P.Takim.Contains(t.Id));
@@ -380,17 +383,33 @@ public partial class Oyun : Control
 		{
 			int maxS = Kayit.MaxSeviye(s.Yildiz);
 			int mal = Kayit.SeviyeMaliyet(s.Seviye);
-			var sb = Ui.Dugme(s.Seviye >= maxS ? $"En yüksek seviye ({maxS}) — yıldız atlat" : $"Seviye Atlat → {s.Seviye + 1}   ({mal:N0} altın)", () =>
+			var sbSat = Ui.Yatay(8);
+			v.AddChild(sbSat);
+			var sb = Ui.Genis(Ui.Dugme(s.Seviye >= maxS ? $"En yüksek seviye ({maxS})" : $"Seviye Atlat → {s.Seviye + 1}   ({mal:N0} altın)", () =>
 			{
-				if (Kayit.SeviyeAtlat(s)) { PencereKapat(); KartDetayi(t, null); Yenile(); }
+				if (Kayit.SeviyeAtlat(s)) { PencereKapat(); KartDetayi(t, null, $"Seviye {s.Seviye}!"); Yenile(); }
 				else Mesaj("Yeterli altın yok");
-			}, new Color("c0912f"), 22);
+			}, new Color("c0912f"), 22));
 			sb.Disabled = s.Seviye >= maxS;
-			v.AddChild(sb);
+			sbSat.AddChild(sb);
+			// çoklu seviye: altının yettiği kadar (en fazla 5)
+			int coklu = 0, cokluMal = 0;
+			for (int sv = s.Seviye; sv < maxS && coklu < 5 && cokluMal + Kayit.SeviyeMaliyet(sv) <= Kayit.P.Altin; sv++) { cokluMal += Kayit.SeviyeMaliyet(sv); coklu++; }
+			if (s.Seviye < maxS && coklu > 1)
+			{
+				var cb = Ui.Dugme($"+{coklu} sv\n{Ui.Sayi(cokluMal)} altın", () =>
+				{
+					int n = 0;
+					for (int i = 0; i < coklu; i++) if (Kayit.SeviyeAtlat(s)) n++;
+					if (n > 0) { PencereKapat(); KartDetayi(t, null, $"+{n} Seviye!"); Yenile(); }
+				}, new Color("a0702a"), 18, 64);
+				cb.CustomMinimumSize = new Vector2(150, 64);
+				sbSat.AddChild(cb);
+			}
 			int gk = Kayit.YildizKopya(s.Yildiz);
 			var yb = Ui.Dugme(s.Yildiz >= Kayit.MaxYildiz ? "En yüksek yıldız" : $"Yıldız Atlat → {s.Yildiz + 1}★  (kopya {s.Kopya}/{gk}, {Kayit.YildizAltin(s.Yildiz):N0} altın)", () =>
 			{
-				if (Kayit.YildizAtlat(s)) { PencereKapat(); KartDetayi(t, null); Yenile(); Mesaj("Yıldız atladı!"); }
+				if (Kayit.YildizAtlat(s)) { PencereKapat(); KartDetayi(t, null, $"{s.Yildiz} Yıldız!"); Yenile(); }
 			}, new Color("8a4fc0"), 22);
 			yb.Text = yb.Text.Replace("★", " yıldız");
 			yb.Disabled = s.Yildiz >= Kayit.MaxYildiz || s.Kopya < gk || Kayit.P.Altin < Kayit.YildizAltin(s.Yildiz);
@@ -422,6 +441,7 @@ public partial class Oyun : Control
 			v.AddChild(Ui.Etiket(rakip ? "Bu kart sende yok. Çağırarak kazanabilirsin." : "Bu kart henüz sende yok. Çağır ekranından kazanabilirsin.", 19, Ui.Soluk, HorizontalAlignment.Center));
 		v.AddChild(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 22));
 		Pencere(v);
+		if (kutlama != null) Kutla(kk, kutlama, kutlama.Contains("Yıldız") ? new Color("c58bff") : Ui.Altin);
 	}
 
 	// ================================================================ TAKIM
@@ -772,12 +792,13 @@ public partial class Oyun : Control
 				satirlar.Add($"+{o.altin} altın");
 				if (o.elmas > 0) satirlar.Add($"+{o.elmas} elmas");
 				if (o.parsomen > 0) satirlar.Add($"+{o.parsomen} parşömen");
+				satirlar.Add($"+{Etkinlik.PuanEkle(Etkinlik.ZaferPuani(false))} etkinlik puanı ({Etkinlik.Ad})");
 			}
 			else satirlar.Add("İpucu: kartlarını yükselt, takımı yeniden diz veya element avantajını kullan (Ateş > Doğa > Su > Ateş).");
 			satirlar.Add($"+{SezonKarti.XpHikaye} sezon puanı");
 			Kayit.Kaydet();
 			return satirlar;
-		}, Rakipler.BossAsamasi(asama));
+		}, Rakipler.BossAsamasi(asama), Etkinlik.Mitoloji);
 	}
 
 	void ArenaSavasi(ArenaRakip r)
@@ -807,25 +828,27 @@ public partial class Oyun : Control
 			else p.Kupa = Math.Max(0, p.Kupa + o.kupa);
 			o = (kupaDegisim, o.altin, o.elmas);
 			p.Altin += o.altin; p.Elmas += o.elmas;
+			int etPuan = kazandi ? Etkinlik.PuanEkle(Etkinlik.ZaferPuani(true)) : 0;
 			if (kazandi) p.ArenaGalibiyet++; else p.ArenaMaglubiyet++;
 			_rakipler = null;
 			Kayit.Kaydet();
 			var l = new List<string> { $"{(o.kupa >= 0 ? "+" : "")}{o.kupa} kupa", $"+{o.altin} altın" };
 			if (o.elmas > 0) l.Add($"+{o.elmas} elmas");
 			l.Add($"+{SezonKarti.XpArena} sezon puanı");
+			if (etPuan > 0) l.Add($"+{etPuan} etkinlik puanı");
 			return l;
 		}, false, null);
 	}
 
 	int _katlaAltin;   // son hikâye zaferinin altını (reklamla 2 kat)
 
-	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, List<string>> sonuc, bool boss = false)
-		=> SavasBaslat(dusman, baslik, arka, k => Task.FromResult(sonuc(k)), boss, null);
+	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, List<string>> sonuc, bool boss = false, string bonusMit = null)
+		=> SavasBaslat(dusman, baslik, arka, k => Task.FromResult(sonuc(k)), boss, null, bonusMit);
 
-	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, Task<List<string>>> sonuc, bool boss, List<TakimUyesi> bizim)
+	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, Task<List<string>>> sonuc, bool boss, List<TakimUyesi> bizim, string bonusMit = null)
 	{
 		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
-		var s = new Savas(bizim ?? Kayit.TakimUyeleri(), dusman, (ulong)Time.GetTicksUsec());
+		var s = new Savas(bizim ?? Kayit.TakimUyeleri(), dusman, (ulong)Time.GetTicksUsec(), bonusMit, bonusMit != null ? Etkinlik.GucBonus : 0f);
 		s.Oyna();
 		Kayit.P.GunlukSavas++;
 		_katlaAltin = 0;
@@ -1037,6 +1060,8 @@ public partial class Oyun : Control
 	public void OnizlemeMagaza() => MagazaPenceresi();
 	public void OnizlemeKule() => KulePenceresi();
 	public void OnizlemeSezon() => SezonPenceresi();
+	public void OnizlemeEtkinlik() => EtkinlikPenceresi();
+	public void OnizlemeKutlama(string id) => KartDetayi(Veri.Harita[id], null, "Seviye 12!");
 	public SavasEkrani OnizlemeSavas(int asama)
 	{
 		HikayeSavasi(asama);

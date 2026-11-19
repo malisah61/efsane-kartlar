@@ -11,3 +11,4 @@ sayfa08.png idun kalkanci berserker volva
 sayfa09_ham.png runa_ustasi ra isis sfenks
 sayfa10.png thoth horus sobek bastet
 sayfa11.png mumya akrep kahin ankh_rahibesi
+sayfa13.png koroglu perseus fenrir sekhmet

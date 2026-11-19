@@ -491,7 +491,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.9
+      "carpan": 2.05
      },
      {
       "tip": "sersemlet",
@@ -664,7 +664,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 2.1
+      "carpan": 2.3
      },
      {
       "tip": "sersemlet",
@@ -762,7 +762,7 @@
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 0.45
+      "carpan": 0.4
      },
      {
       "tip": "sersemlet",
@@ -1034,7 +1034,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.95
+      "carpan": 2.1
      },
      {
       "tip": "zayiflat",
@@ -1394,7 +1394,7 @@
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 1.1
+      "carpan": 1.2
      }
     ]
    },
@@ -1428,6 +1428,129 @@
     ]
    },
    "tarif": "Egyptian priestess holding a glowing ankh, black bob hair, white linen dress"
+  },
+  {
+   "id": "koroglu",
+   "ad": "Köroğlu",
+   "mitoloji": "turk",
+   "nadirlik": "epik",
+   "sinif": "savasci",
+   "element": "ates",
+   "can": 1128,
+   "saldiri": 147,
+   "savunma": 46,
+   "hiz": 113,
+   "ulti": {
+    "ad": "Kır At Hücumu",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 2.2
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "tum_dost",
+      "oran": 0.15,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Koroglu Turkish folk hero bard-warrior, thick black mustache, fur-trimmed red kaftan, saz lute and curved sword"
+  },
+  {
+   "id": "perseus",
+   "ad": "Perseus",
+   "mitoloji": "yunan",
+   "nadirlik": "epik",
+   "sinif": "tank",
+   "element": "su",
+   "can": 1598,
+   "saldiri": 82,
+   "savunma": 79,
+   "hiz": 104,
+   "ulti": {
+    "ad": "Ayna Kalkan",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.3,
+      "tur": 2
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "tek",
+      "sans": 0.6,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "Perseus young Greek hero, bronze winged helmet, polished mirror shield, short sword"
+  },
+  {
+   "id": "fenrir",
+   "ad": "Fenrir",
+   "mitoloji": "iskandinav",
+   "nadirlik": "epik",
+   "sinif": "savasci",
+   "element": "doga",
+   "can": 1049,
+   "saldiri": 136,
+   "savunma": 44,
+   "hiz": 119,
+   "ulti": {
+    "ad": "Zincir Kıran",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "en_zayif",
+      "carpan": 2.0,
+      "can_cal": 0.25
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "kendi",
+      "oran": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Fenrir giant grey wolf, glowing yellow eyes, broken iron chain, snarling fangs"
+  },
+  {
+   "id": "sekhmet",
+   "ad": "Sekhmet",
+   "mitoloji": "misir",
+   "nadirlik": "epik",
+   "sinif": "buyucu",
+   "element": "ates",
+   "can": 891,
+   "saldiri": 152,
+   "savunma": 31,
+   "hiz": 111,
+   "ulti": {
+    "ad": "Kızıl Öfke",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 0.85
+     },
+     {
+      "tip": "yanma",
+      "hedef": "tum",
+      "oran": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Sekhmet lioness-headed Egyptian war goddess, golden sun disc crown, red linen dress"
   }
  ]
 }

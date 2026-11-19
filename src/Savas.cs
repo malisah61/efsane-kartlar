@@ -76,10 +76,14 @@ public class Savas
 	public int Tur;
 	readonly Rng _rng;
 	List<Birim> _son = new();
+	readonly string _bonusMit;
+	readonly float _bonusOran;
 
-	public Savas(IList<TakimUyesi> a, IList<TakimUyesi> b, ulong tohum)
+	/// <summary>bonusMitoloji: saldıran taraftaki bu mitolojinin kartları +bonusOran can/saldırı alır (haftalık etkinlik).</summary>
+	public Savas(IList<TakimUyesi> a, IList<TakimUyesi> b, ulong tohum, string bonusMitoloji = null, float bonusOran = 0f)
 	{
 		_rng = new Rng(tohum);
+		_bonusMit = bonusMitoloji; _bonusOran = bonusOran;
 		Ekle(a, 0);
 		Ekle(b, 1);
 	}
@@ -95,6 +99,7 @@ public class Savas
 			var u = takim[i];
 			if (u == null || !Veri.Harita.TryGetValue(u.Id, out var t)) continue;
 			var s = Veri.Stat(t, u.Seviye, u.Yildiz);
+			if (taraf == 0 && _bonusMit != null && t.Mitoloji == _bonusMit) { s.can *= 1 + _bonusOran; s.sal *= 1 + _bonusOran; }
 			Birimler.Add(new Birim
 			{
 				T = t, Idx = taraf * 5 + i, Taraf = taraf, Konum = i, Seviye = u.Seviye, Yildiz = u.Yildiz,

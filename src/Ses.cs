@@ -22,9 +22,9 @@ public partial class Ses : Node
 	static readonly HashSet<string> Kadinlar = new()
 	{
 		"asena", "umay", "sahmeran", "su_iyesi", "athena", "medusa", "amazon", "siren", "nimf",
-		"freya", "valkur", "idun", "volva", "isis", "bastet", "ankh_rahibesi",
+		"freya", "valkur", "idun", "volva", "isis", "bastet", "ankh_rahibesi", "sekhmet",
 	};
-	static readonly HashSet<string> Canavarlar = new() { "tepegoz", "minotor", "ymir", "sobek", "mumya", "sfenks", "akrep" };
+	static readonly HashSet<string> Canavarlar = new() { "tepegoz", "minotor", "ymir", "sobek", "mumya", "sfenks", "akrep", "fenrir" };
 
 	public static void Kur(Node ebeveyn)
 	{
