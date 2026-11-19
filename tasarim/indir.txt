@@ -20,3 +20,4 @@ arka_turk.png https://api.spritecook.ai/v1/assets/d76bb66d-2fd8-4c8d-b19b-334391
 arka_yunan.png https://api.spritecook.ai/v1/assets/5db5c5d5-f4fc-48d1-9955-11e5ea6f7d5a/signed-content/pixel?sig=IAh7Fi3trU8EIG2Lq88Y6J3q4V3L52JRnRCwXqiI3jE&exp=1794900683
 arka_iskandinav.png https://api.spritecook.ai/v1/assets/e02d6d07-1cbe-4937-bf62-17f76c090a58/signed-content/pixel?sig=H6qf5e5065GvR5TyhZKMc2OkQYePmZIp7rCdCrkrYqY&exp=1794900702
 arka_misir.png https://api.spritecook.ai/v1/assets/23b4365d-f0d8-44bc-8cfe-505816a9aa9e/signed-content/pixel?sig=cLZhGYGniOrnyvhg6LNW1UMFTRFv7EH_ptGss7apVRU&exp=1794900720
+sayfa13.png https://api.spritecook.ai/v1/assets/d599878f-efb1-4699-88ab-ac9c5ac9c716/signed-content/pixel?sig=4fg3V5246tZZt3MlCuoA817CIjO5YQ-BEzLQ3caURoQ&exp=1795052597
