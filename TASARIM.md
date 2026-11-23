@@ -58,6 +58,9 @@ Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), 
    - [x] Ulti yakın plan: portre + ulti adı kayan şerit (Hız 3'te kapalı) — 2026-11-24
 7. [~] Yeni kartlar (ayda 2-4): Köroğlu, Perseus, Fenrir, Sekhmet eklendi (2026-11-19, Kasım kotası doldu). Sonraki: Aralık'ta 2-4 kart (bedenleri de çizilmeli)
 8. [x] Yeni oyuncu rehberi: **Başlangıç Yolu** (10 adım, ana sayfada parlayan panel, Git/Al düğmesi; aşama 12'yi geçmiş eski oyunculara gösterilmez) — 2026-11-24
-   - [ ] Sonraki: ilk açılışta kısa hikâye girişi, alt menüde rehberin gösterdiği sekmeye ok işareti
-9. [~] Takım simyası: 62 bağ (2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi, ör. Ergenekon, Ragnarök Düellosu, Yedi Akrep, Su Ruhları, Kalkan Duvarı)
-10. [ ] Sıradaki fikirler: Kule'ye haftalık "mitoloji kısıtlı" katlar, lonca boss'u (sunucu), kart koleksiyon başarımları (mitoloji tamamlama ödülü), takım ön ayarları (hikâye/arena/kule için ayrı diziliş)
+   - [x] Alt menüde rehberin gösterdiği sekmenin üstünde zıplayan ok — 2026-11-23 gece
+   - [ ] Sonraki: ilk açılışta kısa hikâye girişi
+9. [~] Takım simyası: 66 bağ (2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi; 2026-11-23 gece: Şoki ve Oni, Kilden İnsan, Göklerin Hükümdarları, Odin'in Seçtikleri)
+10. [x] Koleksiyon başarımları: mitoloji yarısı/tamamı, toplam kart, yıldız hedefleri, bağ koleksiyoncusu (ömür boyu ~2.000 elmas) — 2026-11-23 gece
+11. [x] Kayıtlı dizilişler: 3 takım (hikâye/arena/kule için), Takım ekranında "Dizilişler" — 2026-11-23 gece
+12. [ ] Sıradaki fikirler: Kule'ye haftalık "mitoloji kısıtlı" katlar, lonca boss'u (sunucu), dizilişi moda göre otomatik seçme (kule/muhafız savaşı öncesi "Diziliş seç"), başarım rozeti/unvanı profilde

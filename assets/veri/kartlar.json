@@ -955,7 +955,7 @@
      {
       "tip": "hasar",
       "hedef": "en_zayif",
-      "carpan": 2.3
+      "carpan": 2.2
      }
     ]
    },
@@ -1113,8 +1113,8 @@
      },
      {
       "tip": "zayiflat",
-      "hedef": "son",
-      "oran": 0.35,
+      "hedef": "tum",
+      "oran": 0.2,
       "tur": 2
      }
     ]
@@ -2725,8 +2725,8 @@
      {
       "tip": "hasar",
       "hedef": "rastgele",
-      "carpan": 1.1,
-      "adet": 2
+      "carpan": 0.85,
+      "adet": 3
      },
      {
       "tip": "yanma",

@@ -108,7 +108,7 @@ public partial class Oyun
 			gl.AutowrapMode = TextServer.AutowrapMode.Off;
 			bas.AddChild(gl);
 			if (bos) dv.AddChild(Ui.Etiket("Boş — şu anki takımını buraya kaydedebilirsin.", 17, Ui.Soluk, HorizontalAlignment.Center));
-			else dv.AddChild(MiniTakim(uyeler, 92));
+			else dv.AddChild(MiniTakim(uyeler.Where(u => u != null).ToList(), 92));
 			var sat = Ui.Yatay(10);
 			dv.AddChild(sat);
 			var yb = Ui.Genis(Ui.Dugme("Yükle", () =>
@@ -151,14 +151,22 @@ public partial class Oyun
 		ok.OffsetTop = -30; ok.OffsetBottom = -30;
 		var ucgen = new Polygon2D
 		{
-			Polygon = new[] { new Vector2(-16, -8), new Vector2(16, -8), new Vector2(0, 14) },
+			Polygon = new[] { new Vector2(-22, -12), new Vector2(22, -12), new Vector2(0, 16) },
 			Color = Ui.Altin,
 		};
-		var kenar = new Line2D { Points = new[] { new Vector2(-16, -8), new Vector2(16, -8), new Vector2(0, 14), new Vector2(-16, -8) }, Width = 3, DefaultColor = new Color("1a1f3a") };
-		ok.AddChild(ucgen);
+		var kenar = new Line2D { Points = new[] { new Vector2(-22, -12), new Vector2(22, -12), new Vector2(0, 16), new Vector2(-22, -12) }, Width = 5, DefaultColor = new Color("0c0f1e"), JointMode = Line2D.LineJointMode.Round };
 		ok.AddChild(kenar);
-		b.AddChild(ok);
-		_rehberOk = ok;
+		ok.AddChild(ucgen);
+		// sekmenin etrafında parlayan altın çerçeve
+		var cerceve = new Panel { MouseFilter = MouseFilterEnum.Ignore };
+		cerceve.AddThemeStyleboxOverride("panel", Ui.Kutu(new Color(0, 0, 0, 0), 14, Ui.Altin, 3, 0));
+		cerceve.SetAnchorsPreset(LayoutPreset.FullRect);
+		cerceve.AddChild(ok);
+		b.AddChild(cerceve);
+		_rehberOk = cerceve;
+		var ctw = cerceve.CreateTween().SetLoops();
+		ctw.TweenProperty(cerceve, "modulate:a", 0.35f, 0.45f).SetTrans(Tween.TransitionType.Sine);
+		ctw.TweenProperty(cerceve, "modulate:a", 1f, 0.45f).SetTrans(Tween.TransitionType.Sine);
 		var tw = ok.CreateTween().SetLoops();
 		tw.TweenProperty(ok, "position:y", -40f, 0.45f).SetTrans(Tween.TransitionType.Sine);
 		tw.TweenProperty(ok, "position:y", -28f, 0.45f).SetTrans(Tween.TransitionType.Sine);

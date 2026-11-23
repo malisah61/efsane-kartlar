@@ -46,3 +46,11 @@
 - İyileştirme: etkinlik penceresi sıkılaştırıldı, Muhafızlar/Mağaza düğmeleri eklendi; ana sayfadaki etkinlik düğmesi kalan muhafız hakkını gösterir.
 - Takım simyası: bağı olmayan 19 kartın hepsine 14 yeni bağ (toplam 62): Ergenekon'dan Çıkış (Asena+Demir Alp), Gök Yolculuğu (Kam+Ülgen), Lohusa Bekçisi (Umay+Al Karısı), Ragnarök Düellosu (Heimdall+Loki), Seiðr Büyüsü (Freya+Völva), Rünlerin Sırrı (Odin+Rün Ustası), Nil'in Bekçileri (Sobek+Nil Kâhini), Yedi Akrep (İsis+Akrep Savaşçısı), Hathor'un Rahibesi, Kurama Dağı (Tengu+Samuray), Kalkan Duvarı (Bahadır+Viking Kalkancı+Hoplit), Su Ruhları (Su İyesi+Kappa+Nimf), Ölümcül Ezgi (Siren+Yuki-onna), Kadim Bekçiler (Sfenks+Minotor).
 - Denge: destek sınıfı %47,4 / savaşçı %52,7 (fark 5,3) → destek can 840→850, saldırı 90→93; Qilin (%32,5, en düşük) iyileştirme 1.5→1.8 + küçük kalkan.
+
+## 2026-11-23 (gece) — Koleksiyon başarımları, kayıtlı dizilişler, rehber oku
+- Yeni: **Koleksiyon Başarımları** (Kartlar ekranında "Başarımlar" düğmesi, menü rozeti): her mitolojinin yarısı ve tamamı, 15/30/50/70/tüm kart, ilk 3★/5★/7★ ve 5/15 kart 3★, 5 kart 5★, "Bağ Koleksiyoncusu" (bütün kartlarına sahip olunan bağ sayısı 5/15/30/tümü). Her biri bir kez elmas/parşömen/ruh özü/altın verir; "Hepsini Al".
+- Yeni: **Kayıtlı Dizilişler** — 3 takım kaydı (ör. hikâye/arena/kule), Takım ekranında "Dizilişler" düğmesi; Yükle / Üzerine Kaydet, güç gösterimi. Artık sahip olunmayan kart boş kalır.
+- İyileştirme: Başlangıç Yolu'nun gösterdiği sekmenin üstünde zıplayan altın ok (ödül hazırsa Ana Sayfa'yı gösterir).
+- İyileştirme: Kartlar ekranındaki mitoloji filtresinde koleksiyon sayısı (ör. "Türk 12/16"); tamamlanan mitoloji altın renkli.
+- Takım simyası: 4 yeni bağ (toplam 66): Şoki ve Oni (Zhong Kui+Oni), Kilden İnsan (Nüwa+Ülgen), Göklerin Hükümdarları (Yeşim İmparator+Zeus+Odin), Odin'in Seçtikleri (Odin+Valkür).
+- Denge (önceki test: saldıran %50,1, zaman aşımı %8,0, sınıflar %48,0–52,5): Völva 2.3→2.5 + zayıflatma tüm düşmanlara, Valkür 2.3→2.2, Chang'e 0.75→0.85 + sersemletme %18, Zhong Kui kendine kalkan, Taocu 2×1.0→3×0.85, Dede Korkut takıma küçük iyileştirme, Hel iyileştirme 1.35→1.5 + enerji 15; Köroğlu 2.2→2.1 (güçlendirme %12), Sun Wukong 0.95→0.9.
