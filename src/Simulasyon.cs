@@ -172,6 +172,7 @@ public static class Simulasyon
 			Yukselt();
 			for (int i = 0; i < Kayit.Gorevler.Length; i++) Kayit.GorevOdulAl(i);
 			SezonKarti.HepsiniAl(r);   // yalnızca ücretsiz yol (botlar Altın Yol almaz)
+			Koleksiyon.HepsiniAl();
 
 			// olaylar
 			if (p.Kartlar.Any(x => Veri.Harita[x.Id].Nadirlik == "epik")) k.Olay("İlk epik kart", gun);

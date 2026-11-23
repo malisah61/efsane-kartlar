@@ -324,4 +324,9 @@ BAGLAR = [
     ("su_ruhlari", "Su Ruhları", ["su_iyesi", "kappa", "nimf"], "hiz", 0.10, "Göllerin, nehirlerin ve pınarların sahipleri."),
     ("olumcul_ezgi", "Ölümcül Ezgi", ["siren", "yuki_onna"], "saldiri", 0.08, "Yolcuyu güzelliğiyle çağırıp ölüme götürenler."),
     ("kadim_bekciler", "Kadim Bekçiler", ["sfenks", "minotor"], "savunma", 0.10, "Biri piramitlerin, biri labirentin yarı insan bekçisi."),
+    # 2026-11-23 gece: mitolojiler arası yeni bağlar
+    ("soki", "Şoki ve Oni", ["zhong_kui", "oni"], "saldiri", 0.10, "Japonya'da Şoki adıyla bilinen Zhong Kui, resimlerde hep bir oniyi yakalarken çizilir."),
+    ("kilden_insan", "Kilden İnsan", ["nuwa", "ulgen"], "can", 0.10, "Nüwa sarı kilden, Ülgen çamurdan ilk insanı yoğurdu."),
+    ("gok_hukumdarlari", "Göklerin Hükümdarları", ["yesim_imparator", "zeus", "odin"], "savunma", 0.08, "Üç diyarın tanrılar meclisine başkanlık eden hükümdarlar."),
+    ("kizkalkanlar", "Odin'in Seçtikleri", ["odin", "valkur"], "hiz", 0.08, "Valkürler savaş alanından seçtikleri ruhları Odin'in salonuna taşır."),
 ]

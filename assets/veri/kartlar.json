@@ -226,6 +226,11 @@
       "carpan": 2.4
      },
      {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 0.5
+     },
+     {
       "tip": "enerji",
       "hedef": "tum_dost",
       "miktar": 20
@@ -1104,7 +1109,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 2.3
+      "carpan": 2.5
      },
      {
       "tip": "zayiflat",
@@ -1544,12 +1549,12 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 2.2
+      "carpan": 2.1
      },
      {
       "tip": "guclendir",
       "hedef": "tum_dost",
-      "oran": 0.15,
+      "oran": 0.12,
       "tur": 2
      }
     ]
@@ -1886,7 +1891,7 @@
      {
       "tip": "iyilestir",
       "hedef": "tum_dost",
-      "carpan": 1.35
+      "carpan": 1.5
      },
      {
       "tip": "zayiflat",
@@ -1897,7 +1902,7 @@
      {
       "tip": "enerji",
       "hedef": "tum_dost",
-      "miktar": 10
+      "miktar": 15
      }
     ]
    },
@@ -2392,7 +2397,7 @@
      {
       "tip": "hasar",
       "hedef": "rastgele",
-      "carpan": 0.95,
+      "carpan": 0.9,
       "adet": 4
      },
      {
@@ -2585,12 +2590,12 @@
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 0.75
+      "carpan": 0.85
      },
      {
       "tip": "sersemlet",
       "hedef": "tum",
-      "sans": 0.15,
+      "sans": 0.18,
       "tur": 1
      }
     ]
@@ -2626,6 +2631,12 @@
      {
       "tip": "zayiflat",
       "hedef": "son",
+      "oran": 0.2,
+      "tur": 2
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
       "oran": 0.2,
       "tur": 2
      }
@@ -2714,13 +2725,13 @@
      {
       "tip": "hasar",
       "hedef": "rastgele",
-      "carpan": 1.0,
+      "carpan": 1.1,
       "adet": 2
      },
      {
       "tip": "yanma",
       "hedef": "son",
-      "oran": 0.2,
+      "oran": 0.25,
       "tur": 3
      }
     ]
@@ -3461,6 +3472,51 @@
    "stat": "savunma",
    "oran": 0.1,
    "aciklama": "Biri piramitlerin, biri labirentin yarı insan bekçisi."
+  },
+  {
+   "id": "soki",
+   "ad": "Şoki ve Oni",
+   "kartlar": [
+    "zhong_kui",
+    "oni"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Japonya'da Şoki adıyla bilinen Zhong Kui, resimlerde hep bir oniyi yakalarken çizilir."
+  },
+  {
+   "id": "kilden_insan",
+   "ad": "Kilden İnsan",
+   "kartlar": [
+    "nuwa",
+    "ulgen"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Nüwa sarı kilden, Ülgen çamurdan ilk insanı yoğurdu."
+  },
+  {
+   "id": "gok_hukumdarlari",
+   "ad": "Göklerin Hükümdarları",
+   "kartlar": [
+    "yesim_imparator",
+    "zeus",
+    "odin"
+   ],
+   "stat": "savunma",
+   "oran": 0.08,
+   "aciklama": "Üç diyarın tanrılar meclisine başkanlık eden hükümdarlar."
+  },
+  {
+   "id": "kizkalkanlar",
+   "ad": "Odin'in Seçtikleri",
+   "kartlar": [
+    "odin",
+    "valkur"
+   ],
+   "stat": "hiz",
+   "oran": 0.08,
+   "aciklama": "Valkürler savaş alanından seçtikleri ruhları Odin'in salonuna taşır."
   }
  ]
 }

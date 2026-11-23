@@ -171,6 +171,7 @@ public partial class Oyun : Control
 		};
 		_icerik.AddChild(ekran);
 		UstGuncelle();
+		RehberOkuGuncelle();
 	}
 
 	void Yenile() => Goster(_ekran);
@@ -325,7 +326,21 @@ public partial class Oyun : Control
 	{
 		var v = Ui.Dikey(10);
 		var p = Kayit.P;
-		v.AddChild(Ui.Etiket($"Koleksiyon {p.Kartlar.Count}/{Veri.Kartlar.Count}   •   Ruh özü {p.RuhOzu}", 28));
+		var bas = Ui.Yatay(10);
+		v.AddChild(bas);
+		var bl = Ui.Genis(Ui.Etiket($"Koleksiyon {p.Kartlar.Count}/{Veri.Kartlar.Count}\nRuh özü {p.RuhOzu}", 24));
+		bl.VerticalAlignment = VerticalAlignment.Center;
+		bas.AddChild(bl);
+		int bn = Koleksiyon.AlinabilirSayi();
+		var bd = Ui.Dugme(bn > 0 ? $"Başarımlar ({bn}!)" : "Başarımlar", KoleksiyonPenceresi, bn > 0 ? new Color("2f8a57") : new Color("5a4a2a"), 21, 60);
+		bd.CustomMinimumSize = new Vector2(230, 60);
+		bas.AddChild(bd);
+		if (bn > 0)
+		{
+			var tw = bd.CreateTween().SetLoops();
+			tw.TweenProperty(bd, "modulate", new Color(1.3f, 1.3f, 1.1f), 0.6f).SetTrans(Tween.TransitionType.Sine);
+			tw.TweenProperty(bd, "modulate", Colors.White, 0.6f).SetTrans(Tween.TransitionType.Sine);
+		}
 		// mitoloji filtresi: 4 sütunlu ızgara (mitoloji sayısı arttıkça satır ekler)
 		var f = new GridContainer { Columns = 4 };
 		f.AddThemeConstantOverride("h_separation", 6);
@@ -333,7 +348,9 @@ public partial class Oyun : Control
 		v.AddChild(f);
 		foreach (var (k, ad) in new[] { ("hepsi", "Tümü") }.Concat(Veri.Mitolojiler.Select(m => (m.Key, m.Value))))
 		{
-			var b = Ui.Genis(Ui.Dugme(ad, () => { _filtre = k; Yenile(); }, _filtre == k ? new Color("3b6fd8") : new Color("2a3052"), 18, 48));
+			int sahip = p.Kartlar.Count(x => k == "hepsi" || Veri.Harita[x.Id].Mitoloji == k);
+			int hepsi = Veri.Kartlar.Count(x => k == "hepsi" || x.Mitoloji == k);
+			var b = Ui.Genis(Ui.Dugme($"{ad}\n{sahip}/{hepsi}", () => { _filtre = k; Yenile(); }, _filtre == k ? new Color("3b6fd8") : sahip >= hepsi ? new Color("5a4a2a") : new Color("2a3052"), 17, 60));
 			f.AddChild(b);
 		}
 		var izgara = new GridContainer { Columns = 4 };
@@ -534,6 +551,7 @@ public partial class Oyun : Control
 		var sat = Ui.Yatay(10);
 		v.AddChild(sat);
 		sat.AddChild(Ui.Genis(Ui.Dugme("Otomatik Diz", () => { OtomatikDiz(); Yenile(); }, new Color("2f8a57"), 22)));
+		sat.AddChild(Ui.Genis(Ui.Dugme("Dizilişler", DizilisPenceresi, new Color("3478c8"), 22)));
 		sat.AddChild(Ui.Genis(Ui.Dugme("Temizle", () => { for (int i = 0; i < 5; i++) p.Takim[i] = null; Kayit.Kaydet(); Yenile(); }, new Color("6a4c4c"), 22)));
 
 		v.AddChild(Ui.Etiket("Kartların (özellikleri görmek ve eklemek için dokun)", 22));
@@ -1211,6 +1229,8 @@ public partial class Oyun : Control
 	public void OnizlemeTakimKart(string id) { var s = Kayit.Sahip(id); if (s != null) TakimKartPenceresi(s); }
 	public void OnizlemeEtkinlikMagaza() => EtkinlikMagazasi();
 	public void OnizlemeMuhafiz() => MuhafizPenceresi();
+	public void OnizlemeKoleksiyon() => KoleksiyonPenceresi();
+	public void OnizlemeDizilis() => DizilisPenceresi();
 	public void OnizlemeKutlama(string id) => KartDetayi(Veri.Harita[id], null, "Seviye 12!");
 	public SavasEkrani OnizlemeSavas(int asama)
 	{

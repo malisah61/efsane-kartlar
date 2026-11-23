@@ -88,6 +88,17 @@ public static class Onizleme
 		await Bekle(o, 0.5f);
 		await Kare(o, $"{klasor}/14c_muhafiz.png");
 		o.OnizlemeKapat();
+		p.Basarimlar.Add("toplam_15");
+		o.OnizlemeKoleksiyon();
+		await Bekle(o, 0.5f);
+		await Kare(o, $"{klasor}/17_koleksiyon.png");
+		o.OnizlemeKapat();
+		Kayit.DizilisKaydet(0);
+		p.Dizilisler[1] = new List<string> { "athena", "akhilleus", "zeus", "medusa", "umay" };
+		o.OnizlemeDizilis();
+		await Bekle(o, 0.5f);
+		await Kare(o, $"{klasor}/18_dizilis.png");
+		o.OnizlemeKapat();
 		o.OnizlemeKutlama(p.Kartlar[0].Id);
 		await Bekle(o, 0.35f);
 		await Kare(o, $"{klasor}/15_seviye_atlama.png");

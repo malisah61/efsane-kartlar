@@ -26,7 +26,7 @@ public partial class Oyun
 		var p = Kayit.P;
 		bool gorev = Enumerable.Range(0, Kayit.Gorevler.Length).Any(i => Kayit.GorevTamam(i) && !p.AlinanGorevler.Contains(i));
 		_rozetler[0].Visible = !p.GirisOdulAlindi || gorev || SezonKarti.AlinabilirSayi() > 0 || Magaza.AylikKartAlinabilir() || Etkinlik.AlinabilirSayi() > 0;
-		_rozetler[1].Visible = p.Kartlar.Any(s => s.Yildiz < Kayit.MaxYildiz && s.Kopya >= Kayit.YildizKopya(s.Yildiz) && p.Altin >= Kayit.YildizAltin(s.Yildiz));
+		_rozetler[1].Visible = Koleksiyon.AlinabilirSayi() > 0 || p.Kartlar.Any(s => s.Yildiz < Kayit.MaxYildiz && s.Kopya >= Kayit.YildizKopya(s.Yildiz) && p.Altin >= Kayit.YildizAltin(s.Yildiz));
 		_rozetler[2].Visible = p.Takim.Contains(null) && p.Kartlar.Count > p.Takim.Count(x => x != null);
 		_rozetler[3].Visible = p.Parsomen > 0 || Kayit.ReklamKalan(3) > 0;
 		_rozetler[4].Visible = p.ArenaHak > 0 && Kayit.TakimHazir;

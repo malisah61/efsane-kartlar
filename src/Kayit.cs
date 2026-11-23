@@ -69,6 +69,9 @@ public class Profil
 	public List<int> EtkinlikAlim { get; set; } = new();   // mağazadan alınan ürün sıraları (haftalık)
 	public int MuhafizSavas { get; set; }           // bugünkü mitoloji muhafızı savaşları
 	public int RehberAdim { get; set; }             // Başlangıç Yolu: ödülü alınan adım sayısı
+	public List<string> Basarimlar { get; set; } = new();   // ödülü alınan koleksiyon başarımları
+	// kayıtlı takım dizilişleri (ör. hikâye / arena / kule için)
+	public List<List<string>> Dizilisler { get; set; } = Kayit.BosDizilisler();
 	public bool Reklamsiz => AlinanUrunler.Contains("reklam_kaldir");
 }
 
@@ -221,7 +224,22 @@ public static class Kayit
 			["skAlinan"] = Dizi(p.SezonAlinan), ["skAlinanP"] = Dizi(p.SezonAlinanP),
 			["etHafta"] = p.EtkinlikHafta, ["etPuan"] = p.EtkinlikPuan, ["etAlinan"] = Dizi(p.EtkinlikAlinan),
 			["etJeton"] = p.EtkinlikJeton, ["etAlim"] = Dizi(p.EtkinlikAlim), ["muhafiz"] = p.MuhafizSavas, ["rehber"] = p.RehberAdim,
+			["basarim"] = Dizi(p.Basarimlar), ["dizilis"] = DizilisDizi(p.Dizilisler),
 		};
+	}
+
+	static Godot.Collections.Array Dizi(List<string> l)
+	{
+		var a = new Godot.Collections.Array();
+		foreach (var x in l) a.Add(x ?? "");
+		return a;
+	}
+
+	static Godot.Collections.Array DizilisDizi(List<List<string>> l)
+	{
+		var a = new Godot.Collections.Array();
+		foreach (var d in l) a.Add(Dizi(d));
+		return a;
 	}
 
 	static Godot.Collections.Array Dizi(List<int> l)
@@ -272,6 +290,16 @@ public static class Kayit
 		p.MuhafizSavas = I("muhafiz");
 		p.RehberAdim = I("rehber");
 		if (!d.ContainsKey("rehber") && p.EnIyiAsama >= 12) p.RehberAdim = 99;   // eski, ilerlemiş oyuncular rehberi görmez
+		if (d.ContainsKey("basarim")) foreach (var x in d["basarim"].AsGodotArray()) p.Basarimlar.Add(x.AsString());
+		if (d.ContainsKey("dizilis"))
+		{
+			var da = d["dizilis"].AsGodotArray();
+			for (int i = 0; i < Math.Min(DizilisSayisi, da.Count); i++)
+			{
+				var tek = da[i].AsGodotArray();
+				for (int j = 0; j < Math.Min(5, tek.Count); j++) { var s = tek[j].AsString(); p.Dizilisler[i][j] = s == "" ? null : s; }
+			}
+		}
 		if (d.ContainsKey("kartlar"))
 			foreach (var kv in d["kartlar"].AsGodotArray())
 			{
@@ -456,6 +484,32 @@ public static class Kayit
 		Kaydet();
 		return true;
 	}
+
+	// ------------------------------------------------------------ kayıtlı dizilişler
+	public const int DizilisSayisi = 3;
+	public static List<List<string>> BosDizilisler() =>
+		Enumerable.Range(0, DizilisSayisi).Select(_ => new List<string> { null, null, null, null, null }).ToList();
+
+	public static bool DizilisBos(int i) => P.Dizilisler[i].All(x => x == null || Sahip(x) == null);
+
+	public static void DizilisKaydet(int i)
+	{
+		P.Dizilisler[i] = P.Takim.Select(x => x).ToList();
+		Kaydet();
+	}
+
+	/// <summary>Kayıtlı dizilişi takıma koyar (artık sahip olunmayan kartlar boş kalır).</summary>
+	public static bool DizilisYukle(int i)
+	{
+		if (DizilisBos(i)) return false;
+		var d = P.Dizilisler[i];
+		for (int j = 0; j < 5; j++) P.Takim[j] = d[j] != null && Sahip(d[j]) != null ? d[j] : null;
+		Kaydet();
+		return true;
+	}
+
+	public static List<TakimUyesi> DizilisUyeleri(int i) =>
+		P.Dizilisler[i].Select(id => { var s = id == null ? null : Sahip(id); return s == null ? null : new TakimUyesi(s.Id, s.Seviye, s.Yildiz); }).ToList();
 
 	public static List<TakimUyesi> TakimUyeleri()
 	{
