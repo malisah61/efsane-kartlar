@@ -36,6 +36,27 @@ def en_buyuk_parca(im):
                 tp[x, y] = (0, 0, 0, 0)
     return temiz
 
+def en_buyuk_bant(im):
+    """Boş satırlarla ayrılmış dikey bantlardan en yükseğini bırakır (2026-11-23: Ülgen'in altına komşu hücreden
+    Tepegöz'ün kafası taşmıştı, ayakları alt kenarda değildi, savaşta havada duruyordu)."""
+    a = im.getchannel("A")
+    w, h = im.size
+    px = a.load()
+    dolu = [any(px[x, y] > 40 for x in range(w)) for y in range(h)]
+    bantlar, bas = [], None
+    for y in range(h + 1):
+        if y < h and dolu[y]:
+            bas = y if bas is None else bas
+        elif bas is not None:
+            bantlar.append((bas, y)); bas = None
+    if len(bantlar) <= 1:
+        return im
+    b0, b1 = max(bantlar, key=lambda b: b[1] - b[0])
+    temiz = Image.new("RGBA", im.size, (0, 0, 0, 0))
+    temiz.paste(im.crop((0, b0, w, b1)), (0, b0))
+    return temiz
+
+
 def main():
     cikis = os.path.join(KOK, "assets", "beden")
     os.makedirs(cikis, exist_ok=True)
@@ -57,6 +78,7 @@ def main():
             x0, y0 = int((i % sutun) * cw), int((i // sutun) * ch)
             parca = im.crop((x0, y0, int(x0 + cw), int(y0 + ch)))
             parca = en_buyuk_parca(parca)
+            parca = en_buyuk_bant(parca)
             kutu = parca.getbbox()
             if kutu:
                 parca = parca.crop(kutu)
