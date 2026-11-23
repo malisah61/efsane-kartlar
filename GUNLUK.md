@@ -32,3 +32,8 @@
 - Yeni mitoloji **Japon** (12 kart: Amaterasu, Susanoo, Raijin, Ryujin, Kitsune, Oni, Tengu, Yuki-onna, Samuray, Ninja, Miko, Kappa). Yeni ulti etkisi `kacinma` (saldırıyı şansla boşa çıkarır, kaçınca +10 enerji). Etkinlik/kule/hikâye arka planı/filtre/müzik listelerine eklendi; repliklerı Speko ile.
 - Her kartın **unvanı ve kısa biyografisi** (`tasarim/hikaye.py`): kart detayında "Efsanesi ve Bağları" düğmesi.
 - **Takım simyası**: 36 efsane bağı (ör. Zeus+Hades, Loki+Fenrir+Hel, Amaterasu+Susanoo, mitolojiler arası Şimşek Tanrıları Zeus+Thor+Raijin). Bağın bütün kartları takımdaysa yalnızca onlar +%8–12 can/saldırı/savunma/hız alır; mitoloji uyumuyla birlikte işler. Takım ekranında aktif ve bir kartı eksik bağlar gösterilir.
+
+## 2026-11-23 (akşam) — Çin mitolojisi
+- 12 kart: Sun Wukong (efsanevi), Yeşim İmparator, Guan Yu, Gök Ejderhası (epik), Nezha, Nüwa, Chang'e, Zhong Kui (nadir), Terakota Askeri, Şaolin Keşişi, Taocu Büyücü, Qilin (sıradan). Portre, beden, arka plan (saray avlusu) Sprite Atölye; replikler Speko.
+- 12 yeni bağ (toplam 48), ör. Batı'ya Yolculuk, Ejderha Kralları, Hilebazlar (Sun Wukong+Loki+Kitsune). Etkinlik kahramanı Guan Yu.
+- Kartlar ekranındaki mitoloji filtresi 4 sütunlu ızgara oldu (mitoloji sayısı arttıkça satır ekler).
