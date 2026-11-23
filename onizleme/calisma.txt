@@ -22,6 +22,8 @@ kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/13_sezon.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/14_etkinlik.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/14b_etkinlik_magaza.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/14c_muhafiz.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/17_koleksiyon.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/18_dizilis.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/15_seviye_atlama.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/16_yeni_kart.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10_savas.png
@@ -29,7 +31,7 @@ kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10b_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10c_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10d_ulti.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/11_sonuc.png
-ONIZLEME tamam fps=32
+ONIZLEME tamam fps=29
 WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
      at: cleanup (core/object/object.cpp:2284)
 ERROR: 6 resources still in use at exit (run with --verbose for details).
