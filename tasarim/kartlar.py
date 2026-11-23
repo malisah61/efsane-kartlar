@@ -23,7 +23,7 @@ import json, os, hashlib, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from hikaye import HIKAYE, BAGLAR
 
-MITOLOJI = {"turk": "Türk", "yunan": "Yunan", "iskandinav": "İskandinav", "misir": "Mısır", "japon": "Japon"}
+MITOLOJI = {"turk": "Türk", "yunan": "Yunan", "iskandinav": "İskandinav", "misir": "Mısır", "japon": "Japon", "cin": "Çin"}
 NADIRLIK = {"siradan": 1.04, "nadir": 1.15, "epik": 1.30, "efsanevi": 1.40}
 SINIF = {  # can, saldırı, savunma, hız
     "tank":    (1200, 62, 60, 92),
@@ -274,6 +274,43 @@ K_ = [
     ("kappa", "Kappa", "japon", "siradan", "tank", "doga", "Su Kabuğu",
      [A(1), K("kendi", 0.25, 2)],
      "Kappa Japanese river creature, green turtle-like humanoid with a turtle shell on its back, beak, water-filled dish on top of its head, webbed hands"),
+    # ---------------- ÇİN (2026-11-23)
+    ("sun_wukong", "Sun Wukong", "cin", "efsanevi", "savasci", "doga", "Altın Çubuk Fırtınası",
+     [H("rastgele", 0.95, adet=4), KC("kendi", 0.3, 2)],
+     "Sun Wukong the Monkey King from Journey to the West, monkey face with golden fur, golden circlet headband on his head, red and gold Chinese armor with phoenix feathers on his cap, holding a long golden staff Ruyi Jingu Bang, cheeky grin"),
+    ("yesim_imparator", "Yeşim İmparator", "cin", "epik", "destek", "su", "Göksel Ferman",
+     [I("tum_dost", 1.25), G("tum_dost", 0.15, 2)],
+     "Jade Emperor of Chinese heaven, wise old man with long black beard, golden Chinese imperial mianguan crown with hanging bead strings, yellow dragon robe, holding a white jade tablet, clouds behind"),
+    ("guan_yu", "Guan Yu", "cin", "epik", "savasci", "ates", "Yeşil Ejder Palası",
+     [H("tek", 2.0), G("kendi", 0.2, 2)],
+     "Guan Yu Chinese god of war from the Three Kingdoms, red face, very long black beard, green robe over armor, green headscarf, holding a Green Dragon Crescent Blade guandao polearm"),
+    ("long", "Gök Ejderhası", "cin", "epik", "tank", "su", "Yağmur Ejderhası",
+     [A(2), H("tum", 0.5), K("kendi", 0.2, 2)],
+     "Chinese dragon Long, long serpentine body with blue and gold scales, deer antlers, long whiskers, flowing mane, holding a glowing pearl in its claw, swirling clouds and water"),
+    ("nezha", "Nezha", "cin", "nadir", "savasci", "ates", "Ateş Tekerleri",
+     [H("rastgele", 1.0, adet=3), Y("son", 0.25, 3)],
+     "Nezha Chinese child warrior god, young boy with two hair buns, red silk sash floating around him, golden ring on his arm, standing on two flaming wind-fire wheels, holding a fire-tipped spear"),
+    ("nuwa", "Nüwa", "cin", "nadir", "destek", "doga", "Göğü Onarma",
+     [I("tum_dost", 1.0), K("tum_dost", 0.12, 2)],
+     "Nuwa Chinese creator goddess, beautiful woman with the lower body of a green serpent, long black hair with golden hairpins, flowing green and white hanfu robes, holding a glowing five-colored stone"),
+    ("change", "Chang'e", "cin", "nadir", "buyucu", "su", "Ay Işığı",
+     [H("tum", 0.75), S("tum", 0.15, 1)],
+     "Chang'e Chinese moon goddess, graceful woman in flowing white and pale blue hanfu with long silk ribbons, elaborate hair bun with silver ornaments, holding a white jade rabbit, full moon behind her"),
+    ("zhong_kui", "Zhong Kui", "cin", "nadir", "tank", "ates", "İblis Kovucu",
+     [A(2), H("tek", 1.3), Z("son", 0.2, 2)],
+     "Zhong Kui Chinese demon queller, fierce burly man with bulging eyes and a thick bushy black beard, black scholar official hat with wings, red robe, holding a sword"),
+    ("terakota", "Terakota Askeri", "cin", "siradan", "tank", "doga", "Toprak Ordusu",
+     [A(1), K("kendi", 0.3, 2)],
+     "Chinese Terracotta Army warrior statue come to life, clay brown skin and armor, topknot hair, lamellar terracotta armor plates, holding a bronze ji halberd"),
+    ("saolin", "Şaolin Keşişi", "cin", "siradan", "savasci", "doga", "Kaplan Yumruğu",
+     [H("tek", 1.45), S("son", 0.3, 1)],
+     "Shaolin kung fu monk, shaved head with incense burn dots, orange and red monk robes, prayer beads necklace, fighting stance with fist forward"),
+    ("taocu", "Taocu Büyücü", "cin", "siradan", "buyucu", "ates", "Tılsım Ateşi",
+     [H("rastgele", 1.0, adet=2), Y("son", 0.2, 3)],
+     "Chinese Taoist priest sorcerer, black and white yin yang robe, black Taoist hat, thin long beard, holding yellow paper talismans with red writing that burn with fire, peach wood sword"),
+    ("qilin", "Qilin", "cin", "siradan", "destek", "su", "Uğur Işığı",
+     [I("en_zayif_dost", 1.5), E("tum_dost", 10)],
+     "Qilin Chinese mythical chimera, deer-like body covered in blue and gold dragon scales, single antler horn, flowing cloud-like mane and tail, hooves wreathed in soft flames, gentle glowing eyes"),
 ]
 
 def varyans(id_, i):

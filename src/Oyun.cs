@@ -322,11 +322,14 @@ public partial class Oyun : Control
 		var v = Ui.Dikey(10);
 		var p = Kayit.P;
 		v.AddChild(Ui.Etiket($"Koleksiyon {p.Kartlar.Count}/{Veri.Kartlar.Count}   •   Ruh özü {p.RuhOzu}", 28));
-		var f = Ui.Yatay(6);
+		// mitoloji filtresi: 4 sütunlu ızgara (mitoloji sayısı arttıkça satır ekler)
+		var f = new GridContainer { Columns = 4 };
+		f.AddThemeConstantOverride("h_separation", 6);
+		f.AddThemeConstantOverride("v_separation", 6);
 		v.AddChild(f);
-		foreach (var (k, ad) in new[] { ("hepsi", "Tümü"), ("turk", "Türk"), ("yunan", "Yunan"), ("iskandinav", "İskandinav"), ("misir", "Mısır"), ("japon", "Japon") })
+		foreach (var (k, ad) in new[] { ("hepsi", "Tümü") }.Concat(Veri.Mitolojiler.Select(m => (m.Key, m.Value))))
 		{
-			var b = Ui.Genis(Ui.Dugme(ad, () => { _filtre = k; Yenile(); }, _filtre == k ? new Color("3b6fd8") : new Color("2a3052"), 16, 50));
+			var b = Ui.Genis(Ui.Dugme(ad, () => { _filtre = k; Yenile(); }, _filtre == k ? new Color("3b6fd8") : new Color("2a3052"), 18, 48));
 			f.AddChild(b);
 		}
 		var izgara = new GridContainer { Columns = 4 };

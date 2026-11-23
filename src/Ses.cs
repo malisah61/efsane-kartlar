@@ -24,8 +24,9 @@ public partial class Ses : Node
 		"asena", "umay", "sahmeran", "su_iyesi", "athena", "medusa", "amazon", "siren", "nimf",
 		"freya", "valkur", "idun", "volva", "isis", "bastet", "ankh_rahibesi", "sekhmet",
 		"al_karisi", "artemis", "hel", "hathor", "amaterasu", "kitsune", "yuki_onna", "miko",
+		"nuwa", "change",
 	};
-	static readonly HashSet<string> Canavarlar = new() { "tepegoz", "minotor", "ymir", "sobek", "mumya", "sfenks", "akrep", "fenrir", "kerberos", "ryujin" };
+	static readonly HashSet<string> Canavarlar = new() { "tepegoz", "minotor", "ymir", "sobek", "mumya", "sfenks", "akrep", "fenrir", "kerberos", "ryujin", "long", "qilin" };
 
 	public static void Kur(Node ebeveyn)
 	{

@@ -220,6 +220,41 @@ HIKAYE = {
     "kappa": ("Nehir Yaratığı",
         "Nehirlerde yaşayan kaplumbağa kabuklu yaramaz su yaratığı. Gücü başındaki su çanağından gelir; eğilip selam "
         "verirse su dökülür ve gücünü kaybeder. Salatalığa bayılır."),
+    # ---------------- ÇİN
+    "sun_wukong": ("Maymun Kral",
+        "Bir taştan doğan, ölümsüzlüğü çalıp göklerde kıyamet koparan Maymun Kral. Yetmiş iki dönüşüm bilir, tek takla ile "
+        "binlerce kilometre aşar; altın çubuğunu iğne kadar küçültüp dağ kadar büyütebilir. Batı'ya Yolculuk'ta keşiş Tang'ı korudu."),
+    "yesim_imparator": ("Göklerin Hükümdarı",
+        "Çin halk inancında cennetin imparatoru; tanrıları, ruhları ve insanları bir saray düzeni gibi yönetir. "
+        "Yıl sonunda her evin mutfak tanrısı ona ailenin davranışlarını rapor eder."),
+    "guan_yu": ("Savaş Tanrısı",
+        "Üç Krallık döneminin efsanevi generali; kızıl yüzü, uzun sakalı ve Yeşil Ejder palasıyla tanınır. Sadakati ve "
+        "onuru yüzünden öldükten sonra savaş ve kardeşlik tanrısı olarak tapınaklara konmuştur."),
+    "long": ("Yağmur Ejderhası",
+        "Çin ejderhaları korkunç değil, bilge ve uğurlu varlıklardır. Yağmuru, ırmakları ve denizleri yönetir; "
+        "pençesindeki inci bilgeliğin ve gücün simgesidir. İmparatorlar ejderhanın oğlu sayılırdı."),
+    "nezha": ("Ateş Tekerlekli Çocuk",
+        "Ejderha Kral'ın oğlunu yendiği için ailesini kurtarmak adına kendini feda eden çocuk tanrı. Bir ustanın büyüsüyle "
+        "nilüferlerden yeniden yaratıldı; ateş tekerlekleri ve kızıl kuşağıyla iblislerle savaşır."),
+    "nuwa": ("Yaratıcı Ana",
+        "Belden aşağısı yılan olan yaratıcı tanrıça. İnsanları sarı kilden şekillendirdi; gök kubbe çatlayınca beş renkli "
+        "taşları eriterek göğü onardı ve dünyayı tufandan kurtardı."),
+    "change": ("Ay Tanrıçası",
+        "Kocası okçu Hou Yi'nin ölümsüzlük iksirini içince aya yükselen tanrıça. Orada yeşim tavşanıyla yalnız yaşar; "
+        "Ay Festivali'nde insanlar ona ay çörekleri sunar."),
+    "zhong_kui": ("İblis Avcısı",
+        "Sınavda birinci olduğu hâlde çirkin yüzü yüzünden unvanı elinden alınan bilgin. Öldükten sonra iblislerin kralı "
+        "oldu; resmi kötü ruhları kovmak için kapılara asılır."),
+    "terakota": ("Toprak Ordusu",
+        "İlk imparator Qin Shi Huang'ın mezarını sonsuza dek korumak için pişmiş topraktan yapılmış binlerce askerden biri. "
+        "Her birinin yüzü farklıdır."),
+    "saolin": ("Kung Fu Ustası",
+        "Şaolin Tapınağı'nda yıllarca kung fu ve meditasyon çalışmış keşiş. Silahsız elleriyle bir orduya karşı durabilir."),
+    "taocu": ("Tılsım Ustası",
+        "Yin ve yang dengesini bilen Taocu büyücü. Kırmızı yazılı sarı kâğıt tılsımlarıyla hayaletleri bağlar, ateş çağırır."),
+    "qilin": ("Uğur Getiren",
+        "Ejderha pullu, geyik gövdeli kutsal yaratık. Yalnızca bilge bir hükümdar ya da büyük bir bilge doğacağı zaman "
+        "görünür; çimenleri bile ezmeyecek kadar naziktir."),
 }
 
 # id, ad, kartlar, stat, oran, açıklama
@@ -262,4 +297,16 @@ BAGLAR = [
     ("kediler", "Kedi Tanrıçalar", ["bastet", "sekhmet"], "hiz", 0.10, "Ev kedisi ile çöl aslanı."),
     ("sifacilar", "Şifacılar", ["asklepios", "idun"], "can", 0.10, "Hekimlik ve gençlik bir arada."),
     ("bilgeler", "Bilgeler Meclisi", ["thoth", "dede_korkut", "athena"], "savunma", 0.10, "Yazının, sözün ve aklın ustaları."),
+    ("bati_yolculugu", "Batı'ya Yolculuk", ["sun_wukong", "long"], "hiz", 0.10, "Maymun Kral ve atına dönüşen ejderha prens."),
+    ("cennet_sarayi", "Cennet Sarayı", ["yesim_imparator", "sun_wukong"], "saldiri", 0.12, "Maymun Kral'ın göklerde kopardığı kıyamet."),
+    ("ejder_ve_nezha", "Ejder Kral'ın Öcü", ["nezha", "long"], "saldiri", 0.10, "Ezeli düşmanlar aynı safta."),
+    ("ay_ve_tavsan", "Ay Sarayı", ["change", "qilin"], "can", 0.10, "Ay tanrıçası ve uğur yaratığı."),
+    ("iblis_avcilari", "İblis Avcıları", ["zhong_kui", "taocu"], "savunma", 0.10, "İki usta, bir hayalet avı."),
+    ("imparator_ordusu", "İmparatorun Ordusu", ["guan_yu", "terakota"], "savunma", 0.10, "General ve toprak askerleri."),
+    ("yilan_tanricalar", "Yılan Gövdeli Ana", ["nuwa", "sahmeran"], "can", 0.10, "İki yılan gövdeli bilge kadın."),
+    ("dovus_ustalari", "Dövüş Ustaları", ["saolin", "samuray"], "hiz", 0.08, "Şaolin ve Buşido."),
+    ("ejderhalar", "Ejderha Kralları", ["long", "ryujin"], "can", 0.10, "Doğu'nun iki deniz ejderhası."),
+    ("ay_tanricalari", "Ay Işığı", ["change", "artemis"], "hiz", 0.10, "İki ay tanrıçası."),
+    ("savas_tanrilari", "Savaş Tanrıları", ["guan_yu", "tyr", "akhilleus"], "saldiri", 0.08, "Üç diyarın onurlu savaşçıları."),
+    ("hilebazlar", "Hilebazlar", ["sun_wukong", "loki", "kitsune"], "hiz", 0.10, "Kılık değiştiren üç düzenbaz."),
 ]

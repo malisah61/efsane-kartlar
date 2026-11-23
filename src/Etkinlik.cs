@@ -13,10 +13,10 @@ namespace EfsaneKartlar;
 /// </summary>
 public static class Etkinlik
 {
-	static readonly string[] Sira = { "turk", "yunan", "iskandinav", "misir", "japon" };
+	static readonly string[] Sira = { "turk", "yunan", "iskandinav", "misir", "japon", "cin" };
 	static readonly Dictionary<string, string> Kahramanlar = new()
 	{
-		["turk"] = "koroglu", ["yunan"] = "perseus", ["iskandinav"] = "fenrir", ["misir"] = "sekhmet", ["japon"] = "susanoo",
+		["turk"] = "koroglu", ["yunan"] = "perseus", ["iskandinav"] = "fenrir", ["misir"] = "sekhmet", ["japon"] = "susanoo", ["cin"] = "guan_yu",
 	};
 	public const float GucBonus = 0.10f;
 	public const float CekimAgirlik = 2f;

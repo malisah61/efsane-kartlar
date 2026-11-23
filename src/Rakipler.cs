@@ -73,7 +73,7 @@ public static class Rakipler
 	/// <summary>Bölümün arka planı (mitoloji teması).</summary>
 	public static string BolumArka(int asama) => ((asama - 1) / BolumBasina) switch
 	{
-		0 or 7 => "turk", 1 => "yunan", 4 or 8 => "japon", 2 or 5 or 9 => "iskandinav", _ => "misir"
+		0 or 6 => "turk", 1 => "yunan", 2 or 7 => "iskandinav", 4 or 8 => "japon", 5 or 9 => "cin", _ => "misir"
 	};
 
 	public static string TakimArka(IEnumerable<TakimUyesi> t)

@@ -2,184 +2,160 @@
  "aciklama": "Sprite Atölye siparişleri. Çalıştırma: sprite-atolye → Actions → Sipariş, hedef malisah61/efsane-kartlar. 'referans' = kimlik için hedef repodaki görsel.",
  "siparisler": [
   {
-   "ad": "beden_amaterasu",
+   "ad": "portre_sun_wukong",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 600,
+   "seed": 700,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Amaterasu Japanese sun goddess, serene woman with long black hair, golden sun disc halo behind her head, white and red layered kimono robes, holding the sacred bronze mirror Yata no Kagami, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/amaterasu.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/amaterasu.png"
+   "tarif": "Sun Wukong the Monkey King from Journey to the West, monkey face with golden fur, golden circlet headband on his head, red and gold Chinese armor with phoenix feathers on his cap, holding a long golden staff Ruyi Jingu Bang, cheeky grin, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/sun_wukong.png"
   },
   {
-   "ad": "beden_susanoo",
+   "ad": "portre_yesim_imparator",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 601,
+   "seed": 701,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Susanoo Japanese storm god, wild long black hair and beard, dark blue armored kimono with storm clouds, holding the long straight sword Kusanagi, lightning and rain, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/susanoo.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/susanoo.png"
+   "tarif": "Jade Emperor of Chinese heaven, wise old man with long black beard, golden Chinese imperial mianguan crown with hanging bead strings, yellow dragon robe, holding a white jade tablet, clouds behind, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/yesim_imparator.png"
   },
   {
-   "ad": "beden_raijin",
+   "ad": "portre_guan_yu",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 602,
+   "seed": 702,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Raijin Japanese thunder god, red-skinned muscular oni-like god with wild hair and horns, ring of taiko drums behind his back, drumsticks, lightning bolts, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/raijin.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/raijin.png"
+   "tarif": "Guan Yu Chinese god of war from the Three Kingdoms, red face, very long black beard, green robe over armor, green headscarf, holding a Green Dragon Crescent Blade guandao polearm, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/guan_yu.png"
   },
   {
-   "ad": "beden_ryujin",
+   "ad": "portre_long",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 603,
+   "seed": 703,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Ryujin Japanese dragon king of the sea, long blue-green eastern dragon with golden horns and whiskers, holding a glowing tide jewel pearl, ocean waves, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/ryujin.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/ryujin.png"
+   "tarif": "Chinese dragon Long, long serpentine body with blue and gold scales, deer antlers, long whiskers, flowing mane, holding a glowing pearl in its claw, swirling clouds and water, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/long.png"
   },
   {
-   "ad": "beden_kitsune",
+   "ad": "portre_nezha",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 604,
+   "seed": 704,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Kitsune Japanese fox spirit woman, white fox ears, nine fluffy white fox tails, red and white shrine kimono, blue foxfire flames floating around her, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/kitsune.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/kitsune.png"
+   "tarif": "Nezha Chinese child warrior god, young boy with two hair buns, red silk sash floating around him, golden ring on his arm, standing on two flaming wind-fire wheels, holding a fire-tipped spear, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/nezha.png"
   },
   {
-   "ad": "beden_oni",
+   "ad": "portre_nuwa",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 605,
+   "seed": 705,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Oni Japanese ogre demon, big red-skinned brute with two horns, tiger skin loincloth, huge spiked iron club kanabo, fangs, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/oni.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/oni.png"
+   "tarif": "Nuwa Chinese creator goddess, beautiful woman with the lower body of a green serpent, long black hair with golden hairpins, flowing green and white hanfu robes, holding a glowing five-colored stone, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/nuwa.png"
   },
   {
-   "ad": "beden_tengu",
+   "ad": "portre_change",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 606,
+   "seed": 706,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Tengu Japanese mountain spirit warrior, red face with a very long nose, black feathered wings, yamabushi monk clothes with small black hat tokin, feather fan and katana, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/tengu.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/tengu.png"
+   "tarif": "Chang'e Chinese moon goddess, graceful woman in flowing white and pale blue hanfu with long silk ribbons, elaborate hair bun with silver ornaments, holding a white jade rabbit, full moon behind her, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/change.png"
   },
   {
-   "ad": "beden_yuki_onna",
+   "ad": "portre_zhong_kui",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 607,
+   "seed": 707,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Yuki-onna Japanese snow woman spirit, very pale skin, long straight black hair, pure white kimono, icy blue breath, snowflakes swirling, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/yuki_onna.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/yuki_onna.png"
+   "tarif": "Zhong Kui Chinese demon queller, fierce burly man with bulging eyes and a thick bushy black beard, black scholar official hat with wings, red robe, holding a sword, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/zhong_kui.png"
   },
   {
-   "ad": "beden_samuray",
+   "ad": "portre_terakota",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 608,
+   "seed": 708,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Japanese samurai warrior in red lacquered o-yoroi armor, horned kabuto helmet with menpo face mask, drawing a katana, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/samuray.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/samuray.png"
+   "tarif": "Chinese Terracotta Army warrior statue come to life, clay brown skin and armor, topknot hair, lamellar terracotta armor plates, holding a bronze ji halberd, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/terakota.png"
   },
   {
-   "ad": "beden_ninja",
+   "ad": "portre_saolin",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 609,
+   "seed": 709,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Japanese ninja shinobi in dark navy shinobi shozoku outfit and face mask, short ninjato sword on the back, shuriken in hand, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/ninja.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/ninja.png"
+   "tarif": "Shaolin kung fu monk, shaved head with incense burn dots, orange and red monk robes, prayer beads necklace, fighting stance with fist forward, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/saolin.png"
   },
   {
-   "ad": "beden_miko",
+   "ad": "portre_taocu",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 610,
+   "seed": 710,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Japanese shrine maiden miko, long black hair tied with white ribbon, white kimono top and red hakama trousers, holding a gohei purification wand with paper streamers, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/miko.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/miko.png"
+   "tarif": "Chinese Taoist priest sorcerer, black and white yin yang robe, black Taoist hat, thin long beard, holding yellow paper talismans with red writing that burn with fire, peach wood sword, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/taocu.png"
   },
   {
-   "ad": "beden_kappa",
+   "ad": "portre_qilin",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 611,
+   "seed": 711,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Kappa Japanese river creature, green turtle-like humanoid with a turtle shell on its back, beak, water-filled dish on top of its head, webbed hands, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "referans": "assets/kartlar/kappa.png",
-   "ref_scale": 0.5,
-   "cikti": "assets/beden/kappa.png"
+   "tarif": "Qilin Chinese mythical chimera, deer-like body covered in blue and gold dragon scales, single antler horn, flowing cloud-like mane and tail, hooves wreathed in soft flames, gentle glowing eyes, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/qilin.png"
   }
  ]
 }
