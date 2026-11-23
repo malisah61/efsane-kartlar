@@ -18,3 +18,9 @@
 - Yeni kartlar (epik): **Köroğlu** (Türk savaşçı, ateş), **Perseus** (Yunan tank, su), **Fenrir** (İskandinav savaşçı, doğa), **Sekhmet** (Mısır büyücü, ateş). Portreler SpriteCook (1 sayfa, 2 kredi), Türkçe ulti replikleri Speko; Thor'un eksik repliği de eklendi.
 - İyileştirme: seviye/yıldız atlatınca kartta parlama, parçacık ve süzülen yazı; altının yettiği kadar **çoklu seviye** (en fazla +5) düğmesi.
 - Denge: Siren 2.1→2.5, Medusa 1.9→2.2, Völva 1.95→2.3, Nil Kâhini 1.1→1.2, Asklepios iyileştirme artırıldı; Thor alan hasarı 0.45→0.40. Önceki test: saldıran %49.2, zaman aşımı %7.9, sınıflar %47.6–52.7.
+
+## 2026-11-23 — 10 yeni kahraman (görseller Sprite Atölye'den)
+- Yeni kartlar: **Erlik Han** (Türk, efsanevi büyücü, su), **Al Karısı** (Türk, nadir büyücü, ateş), **Battal Gazi** (Türk, epik savaşçı, doğa), **Hades** (Yunan, efsanevi tank, su), **Artemis** (Yunan, epik savaşçı, doğa), **Kerberos** (Yunan, nadir tank, ateş), **Hel** (İskandinav, epik destek, su), **Tyr** (İskandinav, nadir savaşçı, su), **Set** (Mısır, efsanevi savaşçı, ateş), **Hathor** (Mısır, nadir destek, doğa). Toplam 62 kart, 7 efsanevi.
+- Portreler ve savaş bedenleri kullanıcının kendi uygulaması Sprite Atölye ile (sipariş sistemi, `assets/siparis.json` → `tasarim/atolye_al.py`), Türkçe ulti replikleri Speko (gpt-4o-mini-tts).
+- Ses: Al Karısı, Artemis, Hel, Hathor kadın ölüm sesi; Kerberos canavar. Simülasyondaki "4 efsanevinin hepsi" hedefi "Tüm efsaneviler" oldu.
+

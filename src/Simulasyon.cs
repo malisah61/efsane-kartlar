@@ -64,7 +64,7 @@ public static class Simulasyon
 			sb.AppendLine();
 			sb.AppendLine("Önemli anlar (gün):");
 			foreach (var (ad, gun) in k.Ilk.OrderBy(x => x.Value)) sb.AppendLine($"- {ad}: {gun}. gün");
-			string[] beklenen = { "İlk epik kart", "İlk efsanevi kart", "Tüm kartlar", "4 efsanevinin hepsi", "Hikâye bitti (60. aşama)", "Gümüş lig", "Altın lig", "Elmas lig", "Efsane lig", "İlk 5 yıldızlı kart", "İlk 7 yıldızlı kart", "Takım tamamen maksimum (7★, sv 85)" };
+			string[] beklenen = { "İlk epik kart", "İlk efsanevi kart", "Tüm kartlar", "Tüm efsaneviler", "Hikâye bitti (60. aşama)", "Gümüş lig", "Altın lig", "Elmas lig", "Efsane lig", "İlk 5 yıldızlı kart", "İlk 7 yıldızlı kart", "Takım tamamen maksimum (7★, sv 85)" };
 			foreach (var b in beklenen) if (!k.Ilk.ContainsKey(b)) sb.AppendLine($"- {b}: 365 günde ulaşılamadı");
 			sb.AppendLine($"- Toplam harcama: ₺{kurus / 100m:N2}");
 			if (k.Gecis + k.Odullu > 0) sb.AppendLine($"- Günde ortalama reklam: {k.Gecis / 365.0:0.0} geçiş + {k.Odullu / 365.0:0.0} ödüllü");
@@ -176,7 +176,7 @@ public static class Simulasyon
 			// olaylar
 			if (p.Kartlar.Any(x => Veri.Harita[x.Id].Nadirlik == "epik")) k.Olay("İlk epik kart", gun);
 			if (p.Kartlar.Any(x => Veri.Harita[x.Id].Nadirlik == "efsanevi")) k.Olay("İlk efsanevi kart", gun);
-			if (p.Kartlar.Count(x => Veri.Harita[x.Id].Nadirlik == "efsanevi") >= 4) k.Olay("4 efsanevinin hepsi", gun);
+			if (p.Kartlar.Count(x => Veri.Harita[x.Id].Nadirlik == "efsanevi") >= Veri.Kartlar.Count(x => x.Nadirlik == "efsanevi")) k.Olay("Tüm efsaneviler", gun);
 			if (p.Kartlar.Count >= Veri.Kartlar.Count) k.Olay("Tüm kartlar", gun);
 			if (p.Kartlar.Any(x => x.Yildiz >= 5)) k.Olay("İlk 5 yıldızlı kart", gun);
 			if (p.Kartlar.Any(x => x.Yildiz >= 7)) k.Olay("İlk 7 yıldızlı kart", gun);

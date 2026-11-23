@@ -13,7 +13,7 @@
   - `src/Kule.cs` Efsaneler Kulesi (100 kat), `src/SezonKarti.cs` aylık Efsane Yolu, `src/OyunEk.cs` bunların ekranları + menü rozetleri + hızlı geçiş (Oyun partial).
   - `src/Onizleme.cs` bulutta ekran görüntüsü (`--onizleme=klasör`) ve denge testi (`--denge=dosya`).
 - Kart verisi kaynağı `tasarim/kartlar.py` → `python3 tasarim/kartlar.py` ile `assets/veri/kartlar.json` üretilir. JSON'u elle düzenleme, betiği düzenle.
-- Portreler: `assets/kartlar/<id>.png` (128x128 piksel art). SpriteCook ile 2x2 sayfa halinde üretilir (gpt-image-2, quality low = 2 kredi/sayfa = 4 kart).
+- Portreler: `assets/kartlar/<id>.png` (128x128 piksel art). **2026-11-23'ten itibaren yeni kart görselleri kullanıcının kendi uygulaması Sprite Atölye ile üretilir** (kullanıcı isteği): `assets/siparis.json`'a `portre_<id>` ve `beden_<id>` satırları → sprite-atolye Actions "Sipariş" (hedef malisah61/efsane-kartlar) → çıktılar sprite-atolye `deneme-sonuclari/siparis/efsane-kartlar/<zaman>/` → `python3 tasarim/atolye_al.py <klasör> [sola_bakan_id,...]` portre (koyu zemin) ve bedeni (şeffaf, ~110 px) yazar. Eski yöntem: SpriteCook ile 2x2 sayfa halinde üretilir (gpt-image-2, quality low = 2 kredi/sayfa = 4 kart).
   Sayfa bağlantıları `tasarim/indir.txt`'e eklenir → `gorsel-indir.yml` bulutta `tasarim/ham/`'a indirir (çalışma ortamından SpriteCook'a erişim yok; bağlantılar ~1 saat geçerli).
   Sonra `tasarim/sayfalar.txt`'e satır ekle ve `python3 tasarim/kes.py` çalıştır.
 - İş akışları: `android.yml` her main gönderiminde APK'yı `son-surum` sürümüne yükler; `onizleme.yml` C# derler, denge testini çalıştırır ve ekran görüntülerini `onizleme/`'ye geri yazar. Kod değişikliğinden sonra `onizleme/derleme.txt`, `onizleme/denge.txt` ve görüntüleri kontrol et.

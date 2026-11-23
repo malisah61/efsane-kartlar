@@ -1551,6 +1551,315 @@
     ]
    },
    "tarif": "Sekhmet lioness-headed Egyptian war goddess, golden sun disc crown, red linen dress"
+  },
+  {
+   "id": "erlik",
+   "ad": "Erlik Han",
+   "mitoloji": "turk",
+   "nadirlik": "efsanevi",
+   "sinif": "buyucu",
+   "element": "su",
+   "can": 892,
+   "saldiri": 180,
+   "savunma": 33,
+   "hiz": 106,
+   "ulti": {
+    "ad": "Yeraltı Hükmü",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 1.1
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "tum",
+      "oran": 0.2,
+      "tur": 2
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "tum",
+      "sans": 0.15,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "Erlik Khan Turkic god of the underworld, old king with black beard, horned black iron crown, dark robes, staff with blue flames"
+  },
+  {
+   "id": "al_karisi",
+   "ad": "Al Karısı",
+   "mitoloji": "turk",
+   "nadirlik": "nadir",
+   "sinif": "buyucu",
+   "element": "ates",
+   "can": 800,
+   "saldiri": 138,
+   "savunma": 29,
+   "hiz": 97,
+   "ulti": {
+    "ad": "Kâbus Ateşi",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "rastgele",
+      "carpan": 1.0,
+      "adet": 3
+     },
+     {
+      "tip": "yanma",
+      "hedef": "son",
+      "oran": 0.3,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Al Karisi Turkic nightmare demon woman, wild red hair, pale skin, glowing red eyes, ragged red dress, fire in hand"
+  },
+  {
+   "id": "battal_gazi",
+   "ad": "Battal Gazi",
+   "mitoloji": "turk",
+   "nadirlik": "epik",
+   "sinif": "savasci",
+   "element": "doga",
+   "can": 1039,
+   "saldiri": 134,
+   "savunma": 44,
+   "hiz": 123,
+   "ulti": {
+    "ad": "Gazi Kılıcı",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 2.4
+     },
+     {
+      "tip": "guclendir",
+      "hedef": "kendi",
+      "oran": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Battal Gazi legendary Turkish warrior, turban helmet with plume, chainmail, green cape, curved sword"
+  },
+  {
+   "id": "hades",
+   "ad": "Hades",
+   "mitoloji": "yunan",
+   "nadirlik": "efsanevi",
+   "sinif": "tank",
+   "element": "su",
+   "can": 1746,
+   "saldiri": 87,
+   "savunma": 86,
+   "hiz": 103,
+   "ulti": {
+    "ad": "Ölüler Diyarı",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.4,
+      "tur": 2
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "tum",
+      "oran": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Hades Greek god of the underworld, pale grim king with black beard, dark armor, black crown, bident, green ghost flames"
+  },
+  {
+   "id": "artemis",
+   "ad": "Artemis",
+   "mitoloji": "yunan",
+   "nadirlik": "epik",
+   "sinif": "savasci",
+   "element": "doga",
+   "can": 1025,
+   "saldiri": 145,
+   "savunma": 46,
+   "hiz": 126,
+   "ulti": {
+    "ad": "Ay Okları",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "rastgele",
+      "carpan": 1.0,
+      "adet": 3
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "son",
+      "oran": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Artemis goddess of the hunt, silver hair, crescent moon tiara, white tunic, silver bow"
+  },
+  {
+   "id": "kerberos",
+   "ad": "Kerberos",
+   "mitoloji": "yunan",
+   "nadirlik": "nadir",
+   "sinif": "tank",
+   "element": "ates",
+   "can": 1352,
+   "saldiri": 71,
+   "savunma": 73,
+   "hiz": 93,
+   "ulti": {
+    "ad": "Üç Başlı Öfke",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.0
+     },
+     {
+      "tip": "yanma",
+      "hedef": "son",
+      "oran": 0.25,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Cerberus three-headed black hellhound, fiery eyes, spiked collar, flames"
+  },
+  {
+   "id": "hel",
+   "ad": "Hel",
+   "mitoloji": "iskandinav",
+   "nadirlik": "epik",
+   "sinif": "destek",
+   "element": "su",
+   "can": 1120,
+   "saldiri": 109,
+   "savunma": 52,
+   "hiz": 117,
+   "ulti": {
+    "ad": "Ölüm Sisi",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 1.0
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "tum",
+      "oran": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Hel Norse goddess of the dead, face half pale half dark blue, long black hair, dark hooded cloak, bone crown"
+  },
+  {
+   "id": "tyr",
+   "ad": "Tyr",
+   "mitoloji": "iskandinav",
+   "nadirlik": "nadir",
+   "sinif": "savasci",
+   "element": "su",
+   "can": 915,
+   "saldiri": 129,
+   "savunma": 37,
+   "hiz": 112,
+   "ulti": {
+    "ad": "Kurban Eli",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 2.2
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "son",
+      "oran": 0.25,
+      "tur": 2
+     }
+    ]
+   },
+   "tarif": "Tyr Norse god of war, one-handed bearded warrior, iron helmet, chainmail, sword, round shield"
+  },
+  {
+   "id": "set",
+   "ad": "Set",
+   "mitoloji": "misir",
+   "nadirlik": "efsanevi",
+   "sinif": "savasci",
+   "element": "ates",
+   "can": 1163,
+   "saldiri": 150,
+   "savunma": 47,
+   "hiz": 127,
+   "ulti": {
+    "ad": "Kaos Fırtınası",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "en_zayif",
+      "carpan": 2.4,
+      "can_cal": 0.15
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "son",
+      "sans": 0.4,
+      "tur": 1
+     }
+    ]
+   },
+   "tarif": "Set Egyptian god of chaos, red-skinned man with a desert animal head with tall square ears, dark armor, golden was-scepter"
+  },
+  {
+   "id": "hathor",
+   "ad": "Hathor",
+   "mitoloji": "misir",
+   "nadirlik": "nadir",
+   "sinif": "destek",
+   "element": "doga",
+   "can": 917,
+   "saldiri": 103,
+   "savunma": 42,
+   "hiz": 116,
+   "ulti": {
+    "ad": "Sistrum Ezgisi",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 1.0
+     },
+     {
+      "tip": "enerji",
+      "hedef": "tum_dost",
+      "miktar": 20
+     }
+    ]
+   },
+   "tarif": "Hathor Egyptian goddess of love and music, cow horns with golden sun disc, red dress, gold collar, sistrum"
   }
  ]
 }
