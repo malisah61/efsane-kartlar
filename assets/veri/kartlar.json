@@ -1740,6 +1740,12 @@
       "hedef": "son",
       "oran": 0.25,
       "tur": 2
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.25,
+      "tur": 2
      }
     ]
    },
@@ -1762,13 +1768,18 @@
      {
       "tip": "iyilestir",
       "hedef": "tum_dost",
-      "carpan": 1.0
+      "carpan": 1.35
      },
      {
       "tip": "zayiflat",
       "hedef": "tum",
-      "oran": 0.2,
+      "oran": 0.25,
       "tur": 2
+     },
+     {
+      "tip": "enerji",
+      "hedef": "tum_dost",
+      "miktar": 10
      }
     ]
    },
@@ -1850,7 +1861,7 @@
      {
       "tip": "iyilestir",
       "hedef": "tum_dost",
-      "carpan": 1.0
+      "carpan": 1.15
      },
      {
       "tip": "enerji",

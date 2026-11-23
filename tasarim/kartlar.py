@@ -219,10 +219,10 @@ K_ = [
      [H("rastgele", 1.0, adet=3), Z("son", 0.2, 2)],
      "Artemis goddess of the hunt, silver hair, crescent moon tiara, white tunic, silver bow"),
     ("kerberos", "Kerberos", "yunan", "nadir", "tank", "ates", "Üç Başlı Öfke",
-     [A(2), H("tek", 1.0), Y("son", 0.25, 2)],
+     [A(2), H("tek", 1.0), Y("son", 0.25, 2), K("kendi", 0.25, 2)],
      "Cerberus three-headed black hellhound, fiery eyes, spiked collar, flames"),
     ("hel", "Hel", "iskandinav", "epik", "destek", "su", "Ölüm Sisi",
-     [I("tum_dost", 1.0), Z("tum", 0.2, 2)],
+     [I("tum_dost", 1.35), Z("tum", 0.25, 2), E("tum_dost", 10)],
      "Hel Norse goddess of the dead, face half pale half dark blue, long black hair, dark hooded cloak, bone crown"),
     ("tyr", "Tyr", "iskandinav", "nadir", "savasci", "su", "Kurban Eli",
      [H("tek", 2.2), Z("son", 0.25, 2)],
@@ -231,7 +231,7 @@ K_ = [
      [H("en_zayif", 2.4, can_cal=0.15), S("son", 0.4, 1)],
      "Set Egyptian god of chaos, red-skinned man with a desert animal head with tall square ears, dark armor, golden was-scepter"),
     ("hathor", "Hathor", "misir", "nadir", "destek", "doga", "Sistrum Ezgisi",
-     [I("tum_dost", 1.0), E("tum_dost", 20)],
+     [I("tum_dost", 1.15), E("tum_dost", 20)],
      "Hathor Egyptian goddess of love and music, cow horns with golden sun disc, red dress, gold collar, sistrum"),
 ]
 
