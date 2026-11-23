@@ -259,6 +259,8 @@ public partial class SavasEkrani : Control
 		var k = _kutular[idx]; k.Can = can; k.Kalkan = kalkan; k.QueueRedraw();
 	}
 
+	public void OnizlemeUlti() { var b = S.Birimler.FirstOrDefault(x => x.Taraf == 0); if (b != null) UltiYakinPlan(b, b.T.UltiAd); }
+
 	/// <summary>Ulti yakın planı: ekranı boydan kesen şeritte kartın portresi ve ulti adı kayarak girer.</summary>
 	void UltiYakinPlan(Birim b, string ultiAd)
 	{

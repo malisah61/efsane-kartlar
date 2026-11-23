@@ -100,6 +100,7 @@ public static class Onizleme
 		await Kare(o, $"{klasor}/10b_savas.png");
 		await Bekle(o, 1.3f);
 		await Kare(o, $"{klasor}/10c_savas.png");
+		if (se != null) { se.OnizlemeUlti(); await Bekle(o, 0.3f); await Kare(o, $"{klasor}/10d_ulti.png"); }
 		if (se != null) se.Hiz = 3;
 		for (int i = 0; i < 80 && IsInstanceValid(se); i++) await Bekle(o, 0.5f);
 		await Bekle(o, 0.5f);

@@ -24,7 +24,9 @@ public partial class Oyun
 		var ust = Ui.Yatay(8);
 		v.AddChild(ust);
 		ust.AddChild(Ui.Genis(Ui.Etiket($"Başlangıç Yolu  {no}/{Rehber.Adimlar.Length}", 20, Ui.Altin)));
-		ust.AddChild(Ui.Etiket("Ödül: " + a.OdulYazi(), 18, Ui.Elmas, HorizontalAlignment.Right));
+		var odul = Ui.Etiket("Ödül: " + a.OdulYazi(), 18, Ui.Elmas, HorizontalAlignment.Right);
+		odul.AutowrapMode = TextServer.AutowrapMode.Off;
+		ust.AddChild(odul);
 		var alt = Ui.Yatay(10);
 		v.AddChild(alt);
 		var yazi = Ui.Dikey(2);
