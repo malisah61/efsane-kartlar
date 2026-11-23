@@ -83,13 +83,13 @@
    "ad": "portre_hades",
    "tur": "karakter",
    "stil": "pixel",
-   "adet": 2,
-   "seed": 103,
+   "adet": 3,
+   "seed": 153,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Hades, Greek god of the underworld, pale grim king with black beard, dark bronze armor, black crown, two-pronged bident spear, green ghost flames, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "close-up portrait of the face and shoulders only, Hades Greek god of the underworld, grim pale king with long black beard, black spiked crown, dark bronze armored shoulders, green ghost flames in the background, pixel art, 16-bit SNES JRPG character portrait, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
    "cikti": "assets/kartlar/hades.png"
   },
   {
@@ -135,13 +135,13 @@
    "ad": "portre_kerberos",
    "tur": "karakter",
    "stil": "pixel",
-   "adet": 2,
-   "seed": 105,
+   "adet": 3,
+   "seed": 155,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Cerberus, three-headed black hellhound with fiery orange eyes and spiked collar, flames, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "close-up portrait, Cerberus, one big black hellhound body with three snarling dog heads side by side, fiery orange eyes, spiked collars, flames, pixel art, 16-bit SNES JRPG monster portrait, bold outlines, vibrant colors, single creature, plain flat solid medium gray background",
    "cikti": "assets/kartlar/kerberos.png"
   },
   {
@@ -187,13 +187,13 @@
    "ad": "portre_tyr",
    "tur": "karakter",
    "stil": "pixel",
-   "adet": 2,
-   "seed": 107,
+   "adet": 3,
+   "seed": 157,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Tyr, Norse god of war, bearded warrior with one hand, iron helmet, chainmail, sword, round wooden shield, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "close-up portrait of the face and shoulders only, Tyr Norse god of war, stern bearded man with braided red-brown beard, iron helmet with nose guard, chainmail shoulders, fur cloak, pixel art, 16-bit SNES JRPG character portrait, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
    "cikti": "assets/kartlar/tyr.png"
   },
   {
