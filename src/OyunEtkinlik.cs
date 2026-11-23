@@ -8,10 +8,7 @@ namespace EfsaneKartlar;
 /// <summary>Haftalık mitoloji etkinliği ekranı ve yükseltme kutlaması (Oyun partial).</summary>
 public partial class Oyun
 {
-	static Color MitolojiRenk(string m) => m switch
-	{
-		"turk" => new Color("b8432f"), "yunan" => new Color("2f6fb8"), "iskandinav" => new Color("4a7a8f"), "japon" => new Color("b8304e"), "cin" => new Color("c8202a"), _ => new Color("b88a2f"),
-	};
+	static Color MitolojiRenk(string m) => Veri.MitolojiRenk(m);
 
 	Control EtkinlikDugmesi()
 	{

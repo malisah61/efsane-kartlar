@@ -32,6 +32,12 @@ public static class Onizleme
 			await Kare(o, $"{klasor}/{adlar[i]}.png");
 		}
 		o.OnizlemeEkran(1);
+		o.OnizlemeEkran(2);
+		o.OnizlemeTakimKart(p.Kartlar.First(k => !p.Takim.Contains(k.Id)).Id);
+		await Bekle(o, 0.5f);
+		await Kare(o, $"{klasor}/3b_takim_kart.png");
+		o.OnizlemeKapat();
+		o.OnizlemeEkran(1);
 		o.OnizlemeDetay("zeus");
 		await Bekle(o, 0.5f);
 		await Kare(o, $"{klasor}/6_kart_detay.png");

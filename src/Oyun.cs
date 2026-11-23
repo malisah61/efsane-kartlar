@@ -536,7 +536,7 @@ public partial class Oyun : Control
 		sat.AddChild(Ui.Genis(Ui.Dugme("Otomatik Diz", () => { OtomatikDiz(); Yenile(); }, new Color("2f8a57"), 22)));
 		sat.AddChild(Ui.Genis(Ui.Dugme("Temizle", () => { for (int i = 0; i < 5; i++) p.Takim[i] = null; Kayit.Kaydet(); Yenile(); }, new Color("6a4c4c"), 22)));
 
-		v.AddChild(Ui.Etiket("Kartın (eklemek için dokun)", 22));
+		v.AddChild(Ui.Etiket("Kartların (özellikleri görmek ve eklemek için dokun)", 22));
 		var izgara = new GridContainer { Columns = 5 };
 		izgara.AddThemeConstantOverride("h_separation", 8);
 		izgara.AddThemeConstantOverride("v_separation", 8);
@@ -544,12 +544,7 @@ public partial class Oyun : Control
 			.OrderByDescending(k => Veri.Guc(Veri.Harita[k.Id], k.Seviye, k.Yildiz)))
 		{
 			var kk = KartKutu.Sahipten(s, 128);
-			kk.Tiklandi = () =>
-			{
-				int bos = p.Takim.IndexOf(null);
-				if (bos < 0) { Mesaj("Takım dolu — çıkarmak için yukarıdaki karta dokun"); return; }
-				p.Takim[bos] = s.Id; Kayit.Kaydet(); Yenile();
-			};
+			kk.Tiklandi = () => TakimKartPenceresi(s);
 			izgara.AddChild(kk);
 		}
 		v.AddChild(izgara);
@@ -576,13 +571,99 @@ public partial class Oyun : Control
 			}
 			var kk = KartKutu.Sahipten(s, 140);
 			int si = i;
-			kk.Tiklandi = () => { Kayit.P.Takim[si] = null; Kayit.Kaydet(); Yenile(); };
+			kk.Tiklandi = () => TakimKartPenceresi(s);
 			h.AddChild(kk);
 		}
 		return h;
 	}
 
 	static void OtomatikDiz() => Kayit.OtomatikDiz();
+
+	/// <summary>Takım ekranında karta dokununca: özellikler, ulti, mitoloji, bağlar ve ekle/çıkar/yer değiştir.</summary>
+	void TakimKartPenceresi(SahipKart s)
+	{
+		var t = Veri.Harita[s.Id];
+		var tk = Kayit.P.Takim;
+		bool takimda = tk.Contains(s.Id);
+		var v = Ui.Dikey(8);
+		var ust = Ui.Yatay(14);
+		v.AddChild(ust);
+		ust.AddChild(KartKutu.Sahipten(s, 170));
+		var bilgi = Ui.Genis(Ui.Dikey(4));
+		ust.AddChild(bilgi);
+		bilgi.AddChild(Ui.Etiket(t.Ad, 30, Veri.NadirlikRenk(t.Nadirlik)));
+		if (t.Unvan != "") bilgi.AddChild(Ui.Etiket(t.Unvan, 18, new Color("e8d9a8")));
+		bilgi.AddChild(Ui.Etiket($"{Veri.MitolojiAd(t.Mitoloji)} mitolojisi", 21, Veri.MitolojiRenk(t.Mitoloji).Lightened(0.35f)));
+		bilgi.AddChild(Ui.Etiket($"{Veri.NadirlikAd(t.Nadirlik)} {Veri.SinifAd(t.Sinif)} • {Veri.ElementAd(t.Element)}", 19, Veri.ElementRenk(t.Element)));
+		bilgi.AddChild(Ui.Etiket($"Seviye {s.Seviye} • {s.Yildiz} yıldız • Güç {Veri.Guc(t, s.Seviye, s.Yildiz):N0}", 19, Ui.Altin));
+		var st = Veri.Stat(t, s.Seviye, s.Yildiz);
+		bilgi.AddChild(Ui.Etiket($"Can {st.can:0}   Saldırı {st.sal:0}\nSavunma {st.sav:0}   Hız {st.hiz:0}", 20));
+		string yer = t.Sinif switch
+		{
+			"tank" => "Ön sırada düşman saldırılarını karşılar.",
+			"savasci" => "Ön sırada ya da arkada yüksek tek hedef hasarı verir.",
+			"buyucu" => "Arka sırada; rastgele hedeflere büyü yapar.",
+			_ => "Arka sırada takımı iyileştirir ve güçlendirir.",
+		};
+		bilgi.AddChild(Ui.Etiket(yer, 16, Ui.Soluk));
+
+		var up = Ui.Panel(Ui.PanelAcik, 10);
+		v.AddChild(up);
+		var uv = Ui.Dikey(2);
+		up.AddChild(uv);
+		uv.AddChild(Ui.Etiket($"Ulti: {t.UltiAd}", 22, Ui.Altin));
+		uv.AddChild(Ui.Etiket(Veri.UltiAciklama(t), 18));
+
+		// bu kart takıma girince/çıkınca bağlar ve uyum
+		var digerleri = tk.Where(x => x != null && x != s.Id).ToList();
+		var ileTakim = digerleri.Append(s.Id).ToList();
+		var yeniBag = Veri.AktifBaglar(ileTakim).Where(b => b.Kartlar.Contains(s.Id)).ToList();
+		int ayniMit = ileTakim.Count(x => Veri.Harita[x].Mitoloji == t.Mitoloji);
+		var bp = Ui.Panel(Ui.PanelRenk, 10);
+		v.AddChild(bp);
+		var bv = Ui.Dikey(2);
+		bp.AddChild(bv);
+		bv.AddChild(Ui.Etiket(takimda ? "Takımdaki katkısı" : "Takıma girerse", 19, Colors.White));
+		bv.AddChild(Ui.Etiket(ayniMit >= 2 ? $"• {Veri.MitolojiAd(t.Mitoloji)} uyumu: {ayniMit} kart (+%{Savas.MitolojiBonus(ayniMit) * 100:0} can ve saldırı)" : $"• Takımda başka {Veri.MitolojiAd(t.Mitoloji)} kartı yok (uyum için 2+ gerekir)", 17, ayniMit >= 2 ? Ui.Yesil : Ui.Soluk));
+		if (yeniBag.Count > 0)
+			foreach (var b in yeniBag) bv.AddChild(Ui.Etiket($"• Bağ: {b.Ad} (+%{b.Oran * 100:0} {b.StatAd})", 17, Ui.Yesil));
+		else
+		{
+			var kartBag = Veri.KartBaglari(s.Id).Take(2).ToList();
+			bv.AddChild(Ui.Etiket(kartBag.Count == 0 ? "• Aktif bağ yok" : "• Bağ için gerekenler: " + string.Join("; ", kartBag.Select(b => string.Join(" + ", b.Kartlar.Where(k => k != s.Id).Select(k => Veri.Harita[k].Ad)))), 17, Ui.Soluk));
+		}
+
+		if (takimda)
+			v.AddChild(Ui.Dugme("Takımdan Çıkar", () => { tk[tk.IndexOf(s.Id)] = null; Kayit.Kaydet(); PencereKapat(); Yenile(); }, new Color("8a4c4c"), 22, 58));
+		else if (tk.Contains(null))
+			v.AddChild(Ui.Dugme("Takıma Ekle", () =>
+			{
+				int bos = tk.IndexOf(null);
+				if (bos < 0) return;
+				tk[bos] = s.Id; Kayit.Kaydet(); PencereKapat(); Yenile();
+			}, new Color("2f8a57"), 22, 58));
+		else
+		{
+			v.AddChild(Ui.Etiket("Takım dolu. Kimin yerine girsin?", 18, Ui.Soluk, HorizontalAlignment.Center));
+			var yer2 = Ui.Yatay(6);
+			yer2.Alignment = BoxContainer.AlignmentMode.Center;
+			v.AddChild(yer2);
+			for (int i = 0; i < 5; i++)
+			{
+				int si = i;
+				var ds = Kayit.Sahip(tk[i]);
+				if (ds == null) continue;
+				var dk = KartKutu.Sahipten(ds, 112);
+				dk.Tiklandi = () => { tk[si] = s.Id; Kayit.Kaydet(); PencereKapat(); Yenile(); Mesaj($"{t.Ad} takıma girdi"); };
+				yer2.AddChild(dk);
+			}
+		}
+		var alt = Ui.Yatay(10);
+		v.AddChild(alt);
+		alt.AddChild(Ui.Genis(Ui.Dugme("Tüm Ayrıntılar", () => KartDetayi(t, null), new Color("5a4a2a"), 20, 52)));
+		alt.AddChild(Ui.Genis(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 20, 52)));
+		Pencere(v);
+	}
 
 	// ================================================================ ÇAĞIR
 	Control CagirEkrani()
@@ -1127,6 +1208,7 @@ public partial class Oyun : Control
 	public void OnizlemeKule() => KulePenceresi();
 	public void OnizlemeSezon() => SezonPenceresi();
 	public void OnizlemeEtkinlik() => EtkinlikPenceresi();
+	public void OnizlemeTakimKart(string id) { var s = Kayit.Sahip(id); if (s != null) TakimKartPenceresi(s); }
 	public void OnizlemeEtkinlikMagaza() => EtkinlikMagazasi();
 	public void OnizlemeMuhafiz() => MuhafizPenceresi();
 	public void OnizlemeKutlama(string id) => KartDetayi(Veri.Harita[id], null, "Seviye 12!");

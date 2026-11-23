@@ -167,6 +167,17 @@ public partial class KartKutu : Control
 		if (Kilitli)
 			DrawString(Ui.Yazi, pr.Position + new Vector2(0, pw * 0.65f), "?", HorizontalAlignment.Center, pw, (int)(pw * 0.5f), new Color(1, 1, 1, 0.5f));
 
+		// mitoloji şeridi: portrenin altında, kartın hangi mitolojiden olduğunu yazar
+		if (!Kilitli && w >= 90)
+		{
+			float bh = MathF.Max(13, w * 0.12f);
+			var br = new Rect2(pr.Position.X, pr.End.Y - bh, pw, bh);
+			var mr = Veri.MitolojiRenk(T.Mitoloji);
+			DrawRect(br, new Color(mr.R, mr.G, mr.B, 0.85f));
+			int mfs = (int)MathF.Max(9, bh * 0.72f);
+			DrawString(Ui.Yazi, new Vector2(br.Position.X, br.End.Y - bh * 0.22f), Veri.MitolojiKisa(T.Mitoloji), HorizontalAlignment.Center, pw, mfs, Colors.White);
+		}
+
 		// element ve sınıf rozetleri
 		float r = w * 0.1f;
 		var em = new Vector2(k + r + 2, k + r + 2);

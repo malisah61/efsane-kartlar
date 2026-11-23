@@ -84,6 +84,16 @@ public static class Veri
 		bool ustun = (saldiran == "ates" && hedef == "doga") || (saldiran == "doga" && hedef == "su") || (saldiran == "su" && hedef == "ates");
 		return ustun ? 1 : -1;
 	}
+	public static Color MitolojiRenk(string m) => m switch
+	{
+		"turk" => new Color("b8432f"), "yunan" => new Color("2f6fb8"), "iskandinav" => new Color("4a7a8f"), "japon" => new Color("b8304e"), "cin" => new Color("c8202a"), _ => new Color("b88a2f"),
+	};
+	/// <summary>Kart üstündeki mitoloji şeridi için kısa ad.</summary>
+	public static string MitolojiKisa(string m) => m switch
+	{
+		"turk" => "TÜRK", "yunan" => "YUNAN", "iskandinav" => "İSKANDİNAV", "misir" => "MISIR", "japon" => "JAPON", "cin" => "ÇİN",
+		_ => MitolojiAd(m).Replace("i", "İ").ToUpperInvariant(),
+	};
 	public static string MitolojiAd(string m) => Mitolojiler.TryGetValue(m, out var a) ? a : m;
 
 	public static void Yukle()
