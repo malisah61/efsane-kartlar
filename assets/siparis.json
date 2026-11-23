@@ -1,265 +1,261 @@
 {
- "aciklama": "Sprite Atölye siparişleri (10 yeni kart: portre + savaş bedeni). Çalıştırma: sprite-atolye → Actions → Sipariş, hedef malisah61/efsane-kartlar.",
+ "aciklama": "Sprite Atölye siparişleri. Çalıştırma: sprite-atolye → Actions → Sipariş, hedef malisah61/efsane-kartlar. 'referans' = kimlik için hedef repodaki görsel.",
  "siparisler": [
-  {
-   "ad": "portre_erlik",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 2,
-   "seed": 100,
-   "boyut": [
-    1024,
-    1024
-   ],
-   "tarif": "Erlik Khan, Turkic god of the underworld, old king with long black beard, black iron crown with horns, dark purple robes, black iron staff with blue flames, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/kartlar/erlik.png"
-  },
-  {
-   "ad": "beden_erlik",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 2,
-   "seed": 200,
-   "boyut": [
-    832,
-    1216
-   ],
-   "tarif": "Erlik Khan, Turkic god of the underworld, old king with long black beard, black iron crown with horns, dark purple robes, black iron staff with blue flames, pixel art, full body standing battle pose, side view facing right, 16-bit SNES JRPG battle sprite, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/beden/erlik.png"
-  },
-  {
-   "ad": "portre_al_karisi",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 2,
-   "seed": 101,
-   "boyut": [
-    1024,
-    1024
-   ],
-   "tarif": "Al Karisi, Turkic nightmare demon woman, wild long red hair, pale skin, glowing red eyes, ragged red dress, fire in her hand, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/kartlar/al_karisi.png"
-  },
-  {
-   "ad": "beden_al_karisi",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 2,
-   "seed": 201,
-   "boyut": [
-    832,
-    1216
-   ],
-   "tarif": "Al Karisi, Turkic nightmare demon woman, wild long red hair, pale skin, glowing red eyes, ragged red dress, fire in her hand, pixel art, full body standing battle pose, side view facing right, 16-bit SNES JRPG battle sprite, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/beden/al_karisi.png"
-  },
   {
    "ad": "portre_battal_gazi",
    "tur": "karakter",
    "stil": "pixel",
-   "adet": 2,
-   "seed": 102,
+   "adet": 3,
+   "seed": 300,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Battal Gazi, legendary Turkish warrior hero, pointed helmet with turban and plume, chainmail, green cape, curved sword, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "Battal Gazi, legendary Seljuk Turkish warrior hero, tall pointed conical iron helmet wrapped with a white turban, chainmail aventail hanging from the helmet, grey beard, long kaftan with lamellar scale armor, green cloak, wide sash belt, holding a curved scimitar sword, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
    "cikti": "assets/kartlar/battal_gazi.png"
   },
   {
    "ad": "beden_battal_gazi",
    "tur": "karakter",
    "stil": "pixel",
-   "adet": 2,
-   "seed": 202,
+   "adet": 3,
+   "seed": 400,
    "boyut": [
     832,
     1216
    ],
-   "tarif": "Battal Gazi, legendary Turkish warrior hero, pointed helmet with turban and plume, chainmail, green cape, curved sword, pixel art, full body standing battle pose, side view facing right, 16-bit SNES JRPG battle sprite, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "Battal Gazi, legendary Seljuk Turkish warrior hero, tall pointed conical iron helmet wrapped with a white turban, chainmail aventail hanging from the helmet, grey beard, long kaftan with lamellar scale armor, green cloak, wide sash belt, holding a curved scimitar sword, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/battal_gazi.png",
+   "ref_scale": 0.5,
    "cikti": "assets/beden/battal_gazi.png"
+  },
+  {
+   "ad": "portre_kam",
+   "tur": "karakter",
+   "stil": "pixel",
+   "adet": 3,
+   "seed": 301,
+   "boyut": [
+    1024,
+    1024
+   ],
+   "tarif": "Turkic Siberian shaman kam, headdress of owl feathers and colorful cloth ribbons hanging over the face, long leather robe covered with hanging metal pendants, small bells and fringe tassels, holding a large round frame drum painted with a world tree, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/kam.png"
+  },
+  {
+   "ad": "beden_kam",
+   "tur": "karakter",
+   "stil": "pixel",
+   "adet": 3,
+   "seed": 401,
+   "boyut": [
+    832,
+    1216
+   ],
+   "tarif": "Turkic Siberian shaman kam, headdress of owl feathers and colorful cloth ribbons hanging over the face, long leather robe covered with hanging metal pendants, small bells and fringe tassels, holding a large round frame drum painted with a world tree, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/kam.png",
+   "ref_scale": 0.5,
+   "cikti": "assets/beden/kam.png"
   },
   {
    "ad": "portre_hades",
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 153,
+   "seed": 302,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "close-up portrait of the face and shoulders only, Hades Greek god of the underworld, grim pale king with long black beard, black spiked crown, dark bronze armored shoulders, green ghost flames in the background, pixel art, 16-bit SNES JRPG character portrait, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "Hades Greek god of the underworld, stern pale grey-skinned king with long black beard, black spiked crown, dark robes with bronze armor on the shoulders, holding a two-pronged bident, green ghost flames, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
    "cikti": "assets/kartlar/hades.png"
   },
   {
    "ad": "beden_hades",
    "tur": "karakter",
    "stil": "pixel",
-   "adet": 2,
-   "seed": 203,
+   "adet": 3,
+   "seed": 402,
    "boyut": [
     832,
     1216
    ],
-   "tarif": "Hades, Greek god of the underworld, pale grim king with black beard, dark bronze armor, black crown, two-pronged bident spear, green ghost flames, pixel art, full body standing battle pose, side view facing right, 16-bit SNES JRPG battle sprite, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "Hades Greek god of the underworld, stern pale grey-skinned king with long black beard, black spiked crown, dark robes with bronze armor on the shoulders, holding a two-pronged bident, green ghost flames, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/hades.png",
+   "ref_scale": 0.5,
    "cikti": "assets/beden/hades.png"
-  },
-  {
-   "ad": "portre_artemis",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 2,
-   "seed": 104,
-   "boyut": [
-    1024,
-    1024
-   ],
-   "tarif": "Artemis, Greek goddess of the hunt, young woman with long silver hair, crescent moon tiara, short white tunic, silver bow, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/kartlar/artemis.png"
-  },
-  {
-   "ad": "beden_artemis",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 2,
-   "seed": 204,
-   "boyut": [
-    832,
-    1216
-   ],
-   "tarif": "Artemis, Greek goddess of the hunt, young woman with long silver hair, crescent moon tiara, short white tunic, silver bow, pixel art, full body standing battle pose, side view facing right, 16-bit SNES JRPG battle sprite, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/beden/artemis.png"
-  },
-  {
-   "ad": "portre_kerberos",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 3,
-   "seed": 155,
-   "boyut": [
-    1024,
-    1024
-   ],
-   "tarif": "close-up portrait, Cerberus, one big black hellhound body with three snarling dog heads side by side, fiery orange eyes, spiked collars, flames, pixel art, 16-bit SNES JRPG monster portrait, bold outlines, vibrant colors, single creature, plain flat solid medium gray background",
-   "cikti": "assets/kartlar/kerberos.png"
-  },
-  {
-   "ad": "beden_kerberos",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 2,
-   "seed": 205,
-   "boyut": [
-    832,
-    1216
-   ],
-   "tarif": "Cerberus, three-headed black hellhound with fiery orange eyes and spiked collar, flames, pixel art, full body standing battle pose, side view facing right, 16-bit SNES JRPG battle sprite, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/beden/kerberos.png"
-  },
-  {
-   "ad": "portre_hel",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 2,
-   "seed": 106,
-   "boyut": [
-    1024,
-    1024
-   ],
-   "tarif": "Hel, Norse goddess of the dead, woman whose face is half pale and half dark blue, long black hair, dark hooded cloak, bone crown, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/kartlar/hel.png"
-  },
-  {
-   "ad": "beden_hel",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 2,
-   "seed": 206,
-   "boyut": [
-    832,
-    1216
-   ],
-   "tarif": "Hel, Norse goddess of the dead, woman whose face is half pale and half dark blue, long black hair, dark hooded cloak, bone crown, pixel art, full body standing battle pose, side view facing right, 16-bit SNES JRPG battle sprite, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/beden/hel.png"
-  },
-  {
-   "ad": "portre_tyr",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 3,
-   "seed": 157,
-   "boyut": [
-    1024,
-    1024
-   ],
-   "tarif": "close-up portrait of the face and shoulders only, Tyr Norse god of war, stern bearded man with braided red-brown beard, iron helmet with nose guard, chainmail shoulders, fur cloak, pixel art, 16-bit SNES JRPG character portrait, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/kartlar/tyr.png"
-  },
-  {
-   "ad": "beden_tyr",
-   "tur": "karakter",
-   "stil": "pixel",
-   "adet": 2,
-   "seed": 207,
-   "boyut": [
-    832,
-    1216
-   ],
-   "tarif": "Tyr, Norse god of war, bearded warrior with one hand, iron helmet, chainmail, sword, round wooden shield, pixel art, full body standing battle pose, side view facing right, 16-bit SNES JRPG battle sprite, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
-   "cikti": "assets/beden/tyr.png"
   },
   {
    "ad": "portre_set",
    "tur": "karakter",
    "stil": "pixel",
-   "adet": 2,
-   "seed": 108,
+   "adet": 3,
+   "seed": 303,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Set, Egyptian god of chaos and the desert, red-skinned man with the head of a mythical desert animal with tall square ears and long snout, dark armor, golden was-scepter, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "Set Egyptian god of chaos and the desert, man with the head of the Set animal: a black jackal-like beast with a long curved snout and two tall upright flat-topped square ears, red skin, golden collar and armlets, white kilt, holding a golden was-scepter, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
    "cikti": "assets/kartlar/set.png"
   },
   {
    "ad": "beden_set",
    "tur": "karakter",
    "stil": "pixel",
-   "adet": 2,
-   "seed": 208,
+   "adet": 3,
+   "seed": 403,
    "boyut": [
     832,
     1216
    ],
-   "tarif": "Set, Egyptian god of chaos and the desert, red-skinned man with the head of a mythical desert animal with tall square ears and long snout, dark armor, golden was-scepter, pixel art, full body standing battle pose, side view facing right, 16-bit SNES JRPG battle sprite, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "Set Egyptian god of chaos and the desert, man with the head of the Set animal: a black jackal-like beast with a long curved snout and two tall upright flat-topped square ears, red skin, golden collar and armlets, white kilt, holding a golden was-scepter, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/set.png",
+   "ref_scale": 0.5,
    "cikti": "assets/beden/set.png"
+  },
+  {
+   "ad": "portre_kerberos",
+   "tur": "karakter",
+   "stil": "pixel",
+   "adet": 3,
+   "seed": 304,
+   "boyut": [
+    1024,
+    1024
+   ],
+   "tarif": "Cerberus, one huge black hellhound body with three snarling dog heads side by side on three necks, fiery orange eyes, spiked collars, flames, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/kerberos.png"
+  },
+  {
+   "ad": "beden_kerberos",
+   "tur": "karakter",
+   "stil": "pixel",
+   "adet": 3,
+   "seed": 404,
+   "boyut": [
+    832,
+    1216
+   ],
+   "tarif": "Cerberus, one huge black hellhound body with three snarling dog heads side by side on three necks, fiery orange eyes, spiked collars, flames, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/kerberos.png",
+   "ref_scale": 0.5,
+   "cikti": "assets/beden/kerberos.png"
   },
   {
    "ad": "portre_hathor",
    "tur": "karakter",
    "stil": "pixel",
-   "adet": 2,
-   "seed": 109,
+   "adet": 3,
+   "seed": 305,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Hathor, Egyptian goddess of love and music, woman with cow horns holding a golden sun disc headdress, red linen dress, gold collar, holding a sistrum, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "Hathor Egyptian goddess of love and music, beautiful woman with long black hair, a golden sun disc held between two large curved cow horns on her head, red linen dress, gold collar necklace, holding a sistrum, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
    "cikti": "assets/kartlar/hathor.png"
   },
   {
    "ad": "beden_hathor",
    "tur": "karakter",
    "stil": "pixel",
-   "adet": 2,
-   "seed": 209,
+   "adet": 3,
+   "seed": 405,
    "boyut": [
     832,
     1216
    ],
-   "tarif": "Hathor, Egyptian goddess of love and music, woman with cow horns holding a golden sun disc headdress, red linen dress, gold collar, holding a sistrum, pixel art, full body standing battle pose, side view facing right, 16-bit SNES JRPG battle sprite, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "Hathor Egyptian goddess of love and music, beautiful woman with long black hair, a golden sun disc held between two large curved cow horns on her head, red linen dress, gold collar necklace, holding a sistrum, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/hathor.png",
+   "ref_scale": 0.5,
    "cikti": "assets/beden/hathor.png"
+  },
+  {
+   "ad": "portre_hel",
+   "tur": "karakter",
+   "stil": "pixel",
+   "adet": 3,
+   "seed": 306,
+   "boyut": [
+    1024,
+    1024
+   ],
+   "tarif": "Hel Norse goddess of the dead, woman whose face and body are split down the middle, the left half pale and beautiful, the right half dark blue and corpse-like, long black hair, dark hooded cloak, bone crown, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "cikti": "assets/kartlar/hel.png"
+  },
+  {
+   "ad": "beden_hel",
+   "tur": "karakter",
+   "stil": "pixel",
+   "adet": 3,
+   "seed": 406,
+   "boyut": [
+    832,
+    1216
+   ],
+   "tarif": "Hel Norse goddess of the dead, woman whose face and body are split down the middle, the left half pale and beautiful, the right half dark blue and corpse-like, long black hair, dark hooded cloak, bone crown, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/hel.png",
+   "ref_scale": 0.5,
+   "cikti": "assets/beden/hel.png"
+  },
+  {
+   "ad": "beden_erlik",
+   "tur": "karakter",
+   "stil": "pixel",
+   "adet": 3,
+   "seed": 407,
+   "boyut": [
+    832,
+    1216
+   ],
+   "tarif": "Erlik Khan, Turkic god of the underworld, old king with long black beard, black iron crown with horns, dark purple robes, black iron staff with blue flames, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/erlik.png",
+   "ref_scale": 0.5,
+   "cikti": "assets/beden/erlik.png"
+  },
+  {
+   "ad": "beden_al_karisi",
+   "tur": "karakter",
+   "stil": "pixel",
+   "adet": 3,
+   "seed": 408,
+   "boyut": [
+    832,
+    1216
+   ],
+   "tarif": "Al Karisi, Turkic nightmare demon woman, wild long red hair, small horns, pale skin, glowing red eyes, ragged dark grey dress with armor pieces, fire in her hand, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/al_karisi.png",
+   "ref_scale": 0.5,
+   "cikti": "assets/beden/al_karisi.png"
+  },
+  {
+   "ad": "beden_artemis",
+   "tur": "karakter",
+   "stil": "pixel",
+   "adet": 3,
+   "seed": 409,
+   "boyut": [
+    832,
+    1216
+   ],
+   "tarif": "Artemis Greek goddess of the hunt, young woman with long silver hair, crescent moon tiara, short white tunic, silver bow, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/artemis.png",
+   "ref_scale": 0.5,
+   "cikti": "assets/beden/artemis.png"
+  },
+  {
+   "ad": "beden_tyr",
+   "tur": "karakter",
+   "stil": "pixel",
+   "adet": 3,
+   "seed": 410,
+   "boyut": [
+    832,
+    1216
+   ],
+   "tarif": "Tyr Norse god of war, stern warrior with braided red-brown beard, iron helmet with a nose guard, chainmail, fur cloak, sword in his only hand, round wooden shield strapped to his other arm, pixel art, full body 16-bit SNES JRPG battle sprite with chunky proportions, short and stocky, big head about one third of the body height, standing three-quarter view facing right, whole body visible from head to feet, bold outlines, vibrant colors, single character, plain flat solid medium gray background",
+   "referans": "assets/kartlar/tyr.png",
+   "ref_scale": 0.5,
+   "cikti": "assets/beden/tyr.png"
   }
  ]
 }
