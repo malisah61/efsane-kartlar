@@ -24,3 +24,6 @@
 - Portreler ve savaş bedenleri kullanıcının kendi uygulaması Sprite Atölye ile (sipariş sistemi, `assets/siparis.json` → `tasarim/atolye_al.py`), Türkçe ulti replikleri Speko (gpt-4o-mini-tts).
 - Ses: Al Karısı, Artemis, Hel, Hathor kadın ölüm sesi; Kerberos canavar. Simülasyondaki "4 efsanevinin hepsi" hedefi "Tüm efsaneviler" oldu.
 - Denge (ilk test): Hel %43,1 (epik ortalaması %57,4, 10 puandan fazla altta) → iyileştirme 1.0→1.35, zayıflatma 0.2→0.25, +10 enerji; Kerberos %39,6 → kendine kalkan; Hathor %40,9 → iyileştirme 1.0→1.15. Set %65,7, Erlik %64,7, Hades %60,2 (efsanevi ortalaması %66,6).
+- Görsel gözden geçirme (62 kart): Ülgen'in bedenine komşu hücreden Tepegöz'ün kafası taşmıştı (havada duruyordu) → düzeltildi, `beden_kes.py` artık en büyük dikey bandı bırakır.
+  Yeniden çizildi (Sprite Atölye, beden çizilirken portre referans verildi): Battal Gazi (Selçuklu sivri miğferi, pul zırh, kırmızı pelerin, eğri kılıç), Kam (Kızılderili başlığı yerine baykuş tüylü, püsküllü Türk şaman başlığı), Hades (portre ve beden aynı kişi), Set (Set hayvanı başı), Hel, Hathor (inek boynuzları arasında güneş diski); Erlik, Al Karısı, Tyr bedenleri portreyle uyumlu yeniden. Kerberos'ta üç baş çizdirilemedi (tek baş kaldı).
+
