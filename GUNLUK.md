@@ -27,3 +27,8 @@
 - Görsel gözden geçirme (62 kart): Ülgen'in bedenine komşu hücreden Tepegöz'ün kafası taşmıştı (havada duruyordu) → düzeltildi, `beden_kes.py` artık en büyük dikey bandı bırakır.
   Yeniden çizildi (Sprite Atölye, beden çizilirken portre referans verildi): Battal Gazi (Selçuklu sivri miğferi, pul zırh, kırmızı pelerin, eğri kılıç), Kam (Kızılderili başlığı yerine baykuş tüylü, püsküllü Türk şaman başlığı), Hades (portre ve beden aynı kişi), Set (Set hayvanı başı), Hel, Hathor (inek boynuzları arasında güneş diski); Erlik, Al Karısı, Tyr bedenleri portreyle uyumlu yeniden. Kerberos'ta üç baş çizdirilemedi (tek baş kaldı).
 
+
+## 2026-11-23 — Japon mitolojisi, kart hikâyeleri, takım simyası
+- Yeni mitoloji **Japon** (12 kart: Amaterasu, Susanoo, Raijin, Ryujin, Kitsune, Oni, Tengu, Yuki-onna, Samuray, Ninja, Miko, Kappa). Yeni ulti etkisi `kacinma` (saldırıyı şansla boşa çıkarır, kaçınca +10 enerji). Etkinlik/kule/hikâye arka planı/filtre/müzik listelerine eklendi; repliklerı Speko ile.
+- Her kartın **unvanı ve kısa biyografisi** (`tasarim/hikaye.py`): kart detayında "Efsanesi ve Bağları" düğmesi.
+- **Takım simyası**: 36 efsane bağı (ör. Zeus+Hades, Loki+Fenrir+Hel, Amaterasu+Susanoo, mitolojiler arası Şimşek Tanrıları Zeus+Thor+Raijin). Bağın bütün kartları takımdaysa yalnızca onlar +%8–12 can/saldırı/savunma/hız alır; mitoloji uyumuyla birlikte işler. Takım ekranında aktif ve bir kartı eksik bağlar gösterilir.

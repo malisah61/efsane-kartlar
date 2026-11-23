@@ -94,12 +94,22 @@ public class Savas
 		// mitoloji uyumu: aynı mitolojiden 2/3/4/5 kart → +%5/10/15/20 can ve saldırı
 		int enCok = uyeler.Count == 0 ? 0 : uyeler.GroupBy(u => Veri.Harita[u.Id].Mitoloji).Max(g => g.Count());
 		float bonus = MitolojiBonus(enCok);
+		var baglar = Veri.AktifBaglar(uyeler.Select(u => u.Id));
 		for (int i = 0; i < takim.Count && i < 5; i++)
 		{
 			var u = takim[i];
 			if (u == null || !Veri.Harita.TryGetValue(u.Id, out var t)) continue;
 			var s = Veri.Stat(t, u.Seviye, u.Yildiz);
 			if (taraf == 0 && _bonusMit != null && t.Mitoloji == _bonusMit) { s.can *= 1 + _bonusOran; s.sal *= 1 + _bonusOran; }
+			// takım bağları (simya): yalnızca bağın üyeleri
+			foreach (var bag in baglar.Where(b => b.Kartlar.Contains(t.Id)))
+				switch (bag.Stat)
+				{
+					case "can": s.can *= 1 + bag.Oran; break;
+					case "saldiri": s.sal *= 1 + bag.Oran; break;
+					case "savunma": s.sav *= 1 + bag.Oran; break;
+					case "hiz": s.hiz *= 1 + bag.Oran; break;
+				}
 			Birimler.Add(new Birim
 			{
 				T = t, Idx = taraf * 5 + i, Taraf = taraf, Konum = i, Seviye = u.Seviye, Yildiz = u.Yildiz,
@@ -268,6 +278,15 @@ public class Savas
 				case "enerji":
 					foreach (var h in hedefler.Where(h => h.Canli && h != b)) EnerjiVer(h, e.Miktar);
 					break;
+				case "kacinma":
+					// Japon mitolojisi (2026-11-23): kitsune yanılsaması — hedef saldırıları "sans" ihtimalle boşa çıkarır
+					foreach (var h in hedefler.Where(h => h.Canli))
+					{
+						h.Durumlar.RemoveAll(d => d.Tip == "kacinma");
+						h.Durumlar.Add(new Durum { Tip = "kacinma", Deger = e.Sans, Kalan = Math.Max(1, e.Tur) + (h == b ? 1 : 0) });
+						Olaylar.Add(new Olay { Tip = "durum", Hedef = h.Idx, Metin = $"Kaçınma %{e.Sans * 100:0}" });
+					}
+					break;
 			}
 			if (TarafBitti(1 - b.Taraf)) break;
 		}
@@ -275,6 +294,14 @@ public class Savas
 
 	void Vur(Birim s, Birim h, float carpan, float canCal)
 	{
+		var kac = h.Durumlar.FirstOrDefault(d => d.Tip == "kacinma");
+		if (kac != null && _rng.Sans(kac.Deger))
+		{
+			// rastgele sayı yalnızca kaçınma durumu varken çekilir: eski takımların savaşları aynı kalır
+			Olaylar.Add(new Olay { Tip = "durum", Hedef = h.Idx, Metin = "Kaçtı!" });
+			if (h.Canli) EnerjiVer(h, 10);
+			return;
+		}
 		float A = s.EtkinSal, D = h.EtkinSav;
 		float hasar = 1.45f * A * carpan * (A / (A + D)) * OfkeCarpan(Tur);
 		int ust = Veri.ElementUstunluk(s.T.Element, h.T.Element);

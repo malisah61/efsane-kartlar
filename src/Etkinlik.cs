@@ -13,16 +13,16 @@ namespace EfsaneKartlar;
 /// </summary>
 public static class Etkinlik
 {
-	static readonly string[] Sira = { "turk", "yunan", "iskandinav", "misir" };
+	static readonly string[] Sira = { "turk", "yunan", "iskandinav", "misir", "japon" };
 	static readonly Dictionary<string, string> Kahramanlar = new()
 	{
-		["turk"] = "koroglu", ["yunan"] = "perseus", ["iskandinav"] = "fenrir", ["misir"] = "sekhmet",
+		["turk"] = "koroglu", ["yunan"] = "perseus", ["iskandinav"] = "fenrir", ["misir"] = "sekhmet", ["japon"] = "susanoo",
 	};
 	public const float GucBonus = 0.10f;
 	public const float CekimAgirlik = 2f;
 
 	public static int Hafta => Rakipler.Hafta();
-	public static string Mitoloji => Sira[((Hafta % 4) + 4) % 4];
+	public static string Mitoloji => Sira[((Hafta % Sira.Length) + Sira.Length) % Sira.Length];
 	public static string Ad => Veri.MitolojiAd(Mitoloji) + " Haftası";
 	public static string KahramanId => Kahramanlar[Mitoloji];
 	public static KartTanim Kahraman => Veri.Harita.TryGetValue(KahramanId, out var t) ? t : null;

@@ -17,14 +17,32 @@ public class Etki
 /// <summary>Kartın değişmeyen tanımı (seviye 1, 1 yıldız değerleri).</summary>
 public class KartTanim
 {
-	public string Id, Ad, Mitoloji, Nadirlik, Sinif, Element, UltiAd;
+	public string Id, Ad, Mitoloji, Nadirlik, Sinif, Element, UltiAd, Unvan = "", Biyo = "";
 	public float Can, Saldiri, Savunma, Hiz;
 	public List<Etki> Etkiler = new();
 	public int NadirlikSira => Veri.NadirlikSirasi(Nadirlik);
 }
 
+/// <summary>Takım bağı (simya): listedeki kartların hepsi takımdaysa o kartlar bonus alır.</summary>
+public class Bag
+{
+	public string Id, Ad, Stat, Aciklama;
+	public float Oran;
+	public List<string> Kartlar = new();
+	public string StatAd => Stat switch { "can" => "can", "saldiri" => "saldırı", "savunma" => "savunma", "hiz" => "hız", _ => Stat };
+	public string Ozet => $"{string.Join(" + ", Kartlar.Select(k => Veri.Harita.TryGetValue(k, out var t) ? t.Ad : k))}: {StatAd} +%{Oran * 100:0}";
+}
+
 public static class Veri
 {
+	public static List<Bag> Baglar = new();
+	/// <summary>Verilen kart kimlikleriyle tamamlanan bağlar.</summary>
+	public static List<Bag> AktifBaglar(IEnumerable<string> idler)
+	{
+		var h = new HashSet<string>(idler.Where(i => i != null));
+		return Baglar.Where(b => b.Kartlar.All(h.Contains)).ToList();
+	}
+	public static IEnumerable<Bag> KartBaglari(string id) => Baglar.Where(b => b.Kartlar.Contains(id));
 	public static List<KartTanim> Kartlar = new();
 	public static Dictionary<string, KartTanim> Harita = new();
 	public static Dictionary<string, string> Mitolojiler = new();
@@ -76,7 +94,7 @@ public static class Veri
 
 	public static void YukleMetin(string json)
 	{
-		Kartlar.Clear(); Harita.Clear(); Mitolojiler.Clear();
+		Kartlar.Clear(); Harita.Clear(); Mitolojiler.Clear(); Baglar.Clear();
 		var kok = Json.ParseString(json).AsGodotDictionary();
 		foreach (var (k, v) in kok["mitolojiler"].AsGodotDictionary())
 			Mitolojiler[k.AsString()] = v.AsString();
@@ -96,6 +114,8 @@ public static class Veri
 				Savunma = k["savunma"].AsSingle(),
 				Hiz = k["hiz"].AsSingle(),
 			};
+			if (k.ContainsKey("unvan")) t.Unvan = k["unvan"].AsString();
+			if (k.ContainsKey("biyo")) t.Biyo = k["biyo"].AsString();
 			var u = k["ulti"].AsGodotDictionary();
 			t.UltiAd = u["ad"].AsString();
 			foreach (var ev in u["etkiler"].AsGodotArray())
@@ -114,6 +134,14 @@ public static class Veri
 			Kartlar.Add(t);
 			Harita[t.Id] = t;
 		}
+		if (kok.ContainsKey("baglar"))
+			foreach (var bv in kok["baglar"].AsGodotArray())
+			{
+				var b = bv.AsGodotDictionary();
+				var bag = new Bag { Id = b["id"].AsString(), Ad = b["ad"].AsString(), Stat = b["stat"].AsString(), Oran = b["oran"].AsSingle(), Aciklama = b["aciklama"].AsString() };
+				foreach (var c in b["kartlar"].AsGodotArray()) bag.Kartlar.Add(c.AsString());
+				Baglar.Add(bag);
+			}
 	}
 
 	// ------------------------------------------------------------ statlar
@@ -149,6 +177,7 @@ public static class Veri
 				"guclendir" => $"{h} saldırı +%{e.Oran * 100:0} ({e.Tur} tur)",
 				"zayiflat" => $"{h} savunma -%{e.Oran * 100:0} ({e.Tur} tur)",
 				"alay" => $"{e.Tur} tur düşmanları kendine çeker",
+				"kacinma" => $"{h} %{e.Sans * 100:0} şansla saldırılardan kaçar ({e.Tur} tur)",
 				"enerji" => $"{h} +{e.Miktar} enerji",
 				_ => e.Tip
 			});

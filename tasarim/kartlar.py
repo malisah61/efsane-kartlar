@@ -15,12 +15,15 @@ Yetenek etkileri (sırayla uygulanır):
   zayiflat   hedef, oran, tur                    (savunma -%)
   alay       hedef=kendi, tur                    (düşmanlar bu karta vurur)
   enerji     hedef, miktar
+  kacinma    hedef, sans, tur                    (saldırıları sans ihtimalle boşa çıkarır; Japon mitolojisi)
 Hedefler: tek, tum, arka, en_zayif, rastgele(adet), son (önceki hasarın hedefleri),
           kendi, tum_dost, en_zayif_dost
 """
-import json, os, hashlib
+import json, os, hashlib, sys
+sys.path.insert(0, os.path.dirname(__file__))
+from hikaye import HIKAYE, BAGLAR
 
-MITOLOJI = {"turk": "Türk", "yunan": "Yunan", "iskandinav": "İskandinav", "misir": "Mısır"}
+MITOLOJI = {"turk": "Türk", "yunan": "Yunan", "iskandinav": "İskandinav", "misir": "Mısır", "japon": "Japon"}
 NADIRLIK = {"siradan": 1.04, "nadir": 1.15, "epik": 1.30, "efsanevi": 1.40}
 SINIF = {  # can, saldırı, savunma, hız
     "tank":    (1200, 62, 60, 92),
@@ -38,6 +41,7 @@ def G(hedef, oran, tur=2): return {"tip": "guclendir", "hedef": hedef, "oran": o
 def Z(hedef, oran, tur=2): return {"tip": "zayiflat", "hedef": hedef, "oran": oran, "tur": tur}
 def A(tur=2): return {"tip": "alay", "hedef": "kendi", "tur": tur}
 def E(hedef, miktar): return {"tip": "enerji", "hedef": hedef, "miktar": miktar}
+def KC(hedef, sans, tur=2): return {"tip": "kacinma", "hedef": hedef, "sans": sans, "tur": tur}   # Japon: saldırıdan kaçma
 
 # id, ad, mitoloji, nadirlik, sınıf, element, ulti adı, etkiler, görsel tarifi (İngilizce, çizim için)
 K_ = [
@@ -233,6 +237,43 @@ K_ = [
     ("hathor", "Hathor", "misir", "nadir", "destek", "doga", "Sistrum Ezgisi",
      [I("tum_dost", 1.15), E("tum_dost", 20)],
      "Hathor Egyptian goddess of love and music, cow horns with golden sun disc, red dress, gold collar, sistrum"),
+    # ---------------- JAPON (2026-11-23; mekanik: kaçınma — kitsune yanılsaması)
+    ("amaterasu", "Amaterasu", "japon", "efsanevi", "buyucu", "ates", "Güneş Aynası",
+     [H("tum", 1.1), KC("tum_dost", 0.2, 2)],
+     "Amaterasu Japanese sun goddess, serene woman with long black hair, golden sun disc halo behind her head, white and red layered kimono robes, holding the sacred bronze mirror Yata no Kagami"),
+    ("susanoo", "Susanoo", "japon", "epik", "savasci", "su", "Fırtına Kılıcı",
+     [H("tek", 1.8), H("tum", 0.35)],
+     "Susanoo Japanese storm god, wild long black hair and beard, dark blue armored kimono with storm clouds, holding the long straight sword Kusanagi, lightning and rain"),
+    ("raijin", "Raijin", "japon", "epik", "buyucu", "ates", "Gök Gürültüsü Davulu",
+     [H("rastgele", 1.0, adet=4), S("son", 0.25, 1)],
+     "Raijin Japanese thunder god, red-skinned muscular oni-like god with wild hair and horns, ring of taiko drums behind his back, drumsticks, lightning bolts"),
+    ("ryujin", "Ryujin", "japon", "epik", "tank", "su", "Gelgit Kalesi",
+     [A(2), K("tum_dost", 0.1, 2), KC("kendi", 0.3, 2)],
+     "Ryujin Japanese dragon king of the sea, long blue-green eastern dragon with golden horns and whiskers, holding a glowing tide jewel pearl, ocean waves"),
+    ("kitsune", "Kitsune", "japon", "nadir", "destek", "ates", "Dokuz Kuyruk",
+     [KC("tum_dost", 0.3, 2), I("en_zayif_dost", 1.2)],
+     "Kitsune Japanese fox spirit woman, white fox ears, nine fluffy white fox tails, red and white shrine kimono, blue foxfire flames floating around her"),
+    ("oni", "Oni", "japon", "nadir", "tank", "ates", "Demir Gürz",
+     [A(2), H("tek", 1.2), S("son", 0.4, 1)],
+     "Oni Japanese ogre demon, big red-skinned brute with two horns, tiger skin loincloth, huge spiked iron club kanabo, fangs"),
+    ("tengu", "Tengu", "japon", "nadir", "savasci", "doga", "Kanat Fırtınası",
+     [H("arka", 1.3), KC("kendi", 0.3, 2)],
+     "Tengu Japanese mountain spirit warrior, red face with a very long nose, black feathered wings, yamabushi monk clothes with small black hat tokin, feather fan and katana"),
+    ("yuki_onna", "Yuki-onna", "japon", "nadir", "buyucu", "su", "Kar Fırtınası",
+     [H("tum", 0.8), Z("tum", 0.2, 2)],
+     "Yuki-onna Japanese snow woman spirit, very pale skin, long straight black hair, pure white kimono, icy blue breath, snowflakes swirling"),
+    ("samuray", "Samuray", "japon", "siradan", "savasci", "doga", "Iaijutsu",
+     [H("tek", 2.1)],
+     "Japanese samurai warrior in red lacquered o-yoroi armor, horned kabuto helmet with menpo face mask, drawing a katana"),
+    ("ninja", "Ninja", "japon", "siradan", "savasci", "doga", "Gölge Hançeri",
+     [H("en_zayif", 1.7), KC("kendi", 0.35, 2)],
+     "Japanese ninja shinobi in dark navy shinobi shozoku outfit and face mask, short ninjato sword on the back, shuriken in hand"),
+    ("miko", "Miko", "japon", "siradan", "destek", "su", "Arınma Ayini",
+     [I("tum_dost", 1.1), KC("en_zayif_dost", 0.3, 2)],
+     "Japanese shrine maiden miko, long black hair tied with white ribbon, white kimono top and red hakama trousers, holding a gohei purification wand with paper streamers"),
+    ("kappa", "Kappa", "japon", "siradan", "tank", "doga", "Su Kabuğu",
+     [A(1), K("kendi", 0.25, 2)],
+     "Kappa Japanese river creature, green turtle-like humanoid with a turtle shell on its back, beak, water-filled dish on top of its head, webbed hands"),
 ]
 
 def varyans(id_, i):
@@ -251,6 +292,7 @@ def uret():
             "savunma": round(sav * m * varyans(id_, 2)),
             "hiz": round(hiz * (1 + (m - 1) * 0.25) * varyans(id_, 3)),
             "ulti": {"ad": ulti, "etkiler": etk},
+            "unvan": HIKAYE[id_][0], "biyo": HIKAYE[id_][1],
             "tarif": tarif,
         })
     return kartlar
@@ -259,8 +301,11 @@ if __name__ == "__main__":
     k = uret()
     yol = os.path.join(os.path.dirname(__file__), "..", "assets", "veri", "kartlar.json")
     os.makedirs(os.path.dirname(yol), exist_ok=True)
+    ids = {x["id"] for x in k}
+    for b in BAGLAR: assert all(c in ids for c in b[2]), b
+    baglar = [{"id": a, "ad": ad, "kartlar": ks, "stat": st, "oran": o, "aciklama": ac} for (a, ad, ks, st, o, ac) in BAGLAR]
     with open(yol, "w", encoding="utf-8") as f:
-        json.dump({"mitolojiler": MITOLOJI, "kartlar": k}, f, ensure_ascii=False, indent=1)
+        json.dump({"mitolojiler": MITOLOJI, "kartlar": k, "baglar": baglar}, f, ensure_ascii=False, indent=1)
     from collections import Counter
     print(len(k), "kart")
     print(Counter(x["nadirlik"] for x in k), Counter(x["sinif"] for x in k), Counter(x["element"] for x in k))

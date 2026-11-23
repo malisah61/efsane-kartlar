@@ -12,9 +12,9 @@ namespace EfsaneKartlar;
 public static class Kule
 {
 	public const int KatSayisi = 100;
-	static readonly string[] Mitler = { "turk", "yunan", "iskandinav", "misir" };
+	static readonly string[] Mitler = { "turk", "yunan", "iskandinav", "misir", "japon" };
 
-	public static string KatMitoloji(int kat) => Mitler[((Math.Max(1, kat) - 1) / 10) % 4];
+	public static string KatMitoloji(int kat) => Mitler[((Math.Max(1, kat) - 1) / 10) % Mitler.Length];
 	public static string KatBolum(int kat) => $"{Veri.MitolojiAd(KatMitoloji(kat))} Katları";
 	public static bool BossKati(int kat) => kat % 10 == 0;
 	public static int KatYildiz(int kat) => 1 + Math.Min(4, (kat - 1) / 20);

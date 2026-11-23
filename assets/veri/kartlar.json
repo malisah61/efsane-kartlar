@@ -3,7 +3,8 @@
   "turk": "Türk",
   "yunan": "Yunan",
   "iskandinav": "İskandinav",
-  "misir": "Mısır"
+  "misir": "Mısır",
+  "japon": "Japon"
  },
  "kartlar": [
   {
@@ -38,6 +39,8 @@
      }
     ]
    },
+   "unvan": "Gök Tanrısı",
+   "biyo": "Altay ve Yakut inanışında göğün en üst katında oturan yaratıcı iyilik tanrısı. Yeri, göğü ve insanı yarattığına inanılır; kamlar ona ancak göğün katlarını tek tek aşarak ulaşabilir. Kardeşi Erlik ile ezelî bir çekişme içindedir.",
    "tarif": "Turkic sky god Ulgen, old man with long white beard, glowing golden sun crown, blue robes, fire in hands"
   },
   {
@@ -62,6 +65,8 @@
      }
     ]
    },
+   "unvan": "Bozkurt Ana",
+   "biyo": "Göktürk destanında, düşman baskınından sağ kurtulan tek çocuğu besleyip büyüten dişi bozkurt. Bir mağarada doğurduğu on oğuldan Türk boyları türemiştir. Türklerin atası ve koruyucusu sayılır.",
    "tarif": "Asena the grey she-wolf warrior woman, wolf pelt hood, twin curved swords, fierce yellow eyes"
   },
   {
@@ -91,6 +96,8 @@
      }
     ]
    },
+   "unvan": "Ana Tanrıça",
+   "biyo": "Kadınların, çocukların ve doğumun koruyucusu olan bereket tanrıçası. Bebeklerin beşiğini gözetir, yeni doğanlara can verir. Orhun Yazıtları'nda bile adı geçen en eski Türk tanrıçalarındandır.",
    "tarif": "Umay mother goddess, kind woman with white veil and silver headdress, glowing blue light, holding a cradle charm"
   },
   {
@@ -131,6 +138,8 @@
      }
     ]
    },
+   "unvan": "Tek Gözlü Dev",
+   "biyo": "Dede Korkut Kitabı'nda Oğuz illerine dehşet salan, alnında tek gözü olan dev. Kılıç işlemeyen bedeniyle her gün insan ve koyun yerdi. Sonunda yiğit Basat gözüne kızgın şiş saplayarak onu yendi.",
    "tarif": "Tepegoz one-eyed giant cyclops from Turkish legend, huge brown-skinned brute, single big eye, club, fur loincloth"
   },
   {
@@ -161,6 +170,8 @@
      }
     ]
    },
+   "unvan": "Yılanların Şahı",
+   "biyo": "Belden yukarısı kadın, aşağısı yılan olan bilge yılanlar kraliçesi. Yeraltında bütün şifa sırlarını bilir. Ona ihanet edildiğinde bile bilgisini insanlığa bırakmıştır; Anadolu'da hâlâ resmi evlere asılır.",
    "tarif": "Sahmeran snake queen, beautiful woman with crown and serpent body, green and gold scales"
   },
   {
@@ -190,6 +201,8 @@
      }
     ]
    },
+   "unvan": "Turan Hükümdarı",
+   "biyo": "İran kaynaklarında Afrasiyab diye anılan efsanevi Saka-Turan hükümdarı. Yıllarca İran'a karşı savaşan bu cesur kağanın ölümüne bütün Türk illeri ağıt yakmıştır; o ağıtlar Türkçenin en eski şiirlerindendir.",
    "tarif": "Alp Er Tunga Turkic khan warrior king, ornate golden helmet, red cape, sword raised"
   },
   {
@@ -218,6 +231,8 @@
      }
     ]
    },
+   "unvan": "Bilge Ozan",
+   "biyo": "Oğuzların bilge ozanı ve danışmanı. Kopuzuyla boyları dolaşır, yiğitlere ad koyar, beylere öğüt verir. Anlattığı on iki hikâye Dede Korkut Kitabı'nda toplanmıştır.",
    "tarif": "Dede Korkut old wise bard with long grey beard playing a kopuz lute, blue felt hat"
   },
   {
@@ -247,6 +262,8 @@
      }
     ]
    },
+   "unvan": "Demirci Yiğit",
+   "biyo": "Ergenekon'dan çıkışta demir dağı eriten demircilerin soyundan gelen yiğit. Örsünde dövdüğü zırhı hiçbir kılıç delemez; savaşta takımının önünde demirden bir duvar gibi durur.",
    "tarif": "Demir Alp armored Turkic heavy cavalryman, full iron lamellar armor, big round shield"
   },
   {
@@ -270,6 +287,8 @@
      }
     ]
    },
+   "unvan": "Sınır Akıncısı",
+   "biyo": "Sınır boylarında hızlı atlarıyla düşman topraklarına baskın yapan cesur süvari. Ok atar, kılıç sallar ve geldiği gibi rüzgâr hızıyla kaybolur.",
    "tarif": "Ottoman akinci light cavalry raider, feathered cap, curved sword, red tunic"
   },
   {
@@ -299,6 +318,8 @@
      }
     ]
    },
+   "unvan": "Kalkan Taşıyıcı",
+   "biyo": "Ordunun ön safında büyük kalkanıyla duran sadık asker. Kendi canı pahasına arkadaşlarını korumayı şeref sayar.",
    "tarif": "Turkic shield warrior, blue tunic, large wooden shield with wolf emblem, spear"
   },
   {
@@ -327,6 +348,8 @@
      }
     ]
    },
+   "unvan": "Ruh Yolcusu",
+   "biyo": "Davulunun ritmiyle ruhlar dünyasına yolculuk eden Türk şamanı. Hastaları iyileştirir, kötü ruhları kovar, göğün ve yerin tanrılarıyla konuşur.",
    "tarif": "Turkic shaman kam with feathered headdress and frame drum, colorful ribbons"
   },
   {
@@ -350,6 +373,8 @@
      }
     ]
    },
+   "unvan": "Suların Sahibi",
+   "biyo": "Türk inanışında her gölün, ırmağın ve pınarın bir iyesi (koruyucu ruhu) vardır. Suya saygı gösterene bereket, kirletene felaket getirir.",
    "tarif": "water spirit iyesi, translucent blue woman made of water with long flowing hair"
   },
   {
@@ -379,6 +404,8 @@
      }
     ]
    },
+   "unvan": "Tanrıların Kralı",
+   "biyo": "Babası Kronos'u ve Titanları yenerek Olimpos'un hâkimi olan gök ve şimşek tanrısı. Kardeşleriyle dünyayı paylaşırken gökler ona düştü. Fırlattığı şimşekleri Kükloplar dövmüştür.",
    "tarif": "Greek god Zeus, muscular old king with white beard, golden laurel crown, holding a lightning bolt"
   },
   {
@@ -408,6 +435,8 @@
      }
     ]
    },
+   "unvan": "Truva'nın Kahramanı",
+   "biyo": "Annesi Thetis onu Styx ırmağına batırdığı için yalnızca topuğundan yaralanabilen yarı tanrı savaşçı. Truva Savaşı'nın en büyük kahramanıydı; Paris'in oku topuğuna isabet edince öldü.",
    "tarif": "Achilles Greek hero, bronze crested helmet, round shield, spear, red cape"
   },
   {
@@ -443,6 +472,8 @@
      }
     ]
    },
+   "unvan": "Bilgelik Tanrıçası",
+   "biyo": "Zeus'un başından zırhıyla doğan bilgelik ve savaş stratejisi tanrıçası. Atina şehrinin koruyucusudur. Kahramanlara yol gösterir; Perseus'a Medusa'yı yenmesi için parlak kalkanını vermiştir.",
    "tarif": "Athena goddess of war, golden crested helmet, owl emblem shield aegis, spear, white robes"
   },
   {
@@ -472,6 +503,8 @@
      }
     ]
    },
+   "unvan": "Güneş ve Müzik Tanrısı",
+   "biyo": "Işığın, müziğin, şiirin ve kehanetin tanrısı. Delfi kâhinliği onun tapınağıdır. Gümüş yayıyla hastalık da gönderebilir, şifa da. İkiz kız kardeşi Artemis'tir.",
    "tarif": "Apollo sun god, young man with golden curly hair, laurel wreath, golden lyre, glowing sun"
   },
   {
@@ -501,6 +534,8 @@
      }
     ]
    },
+   "unvan": "Gorgon",
+   "biyo": "Saçları yılan olan, bakışı insanı taşa çeviren Gorgon. Bir zamanlar güzel bir rahibeydi; Athena'nın lanetiyle canavara dönüştü. Perseus kalkandaki yansımasına bakarak onun başını kesti.",
    "tarif": "Medusa gorgon with snakes for hair, glowing green eyes, scaly skin"
   },
   {
@@ -530,6 +565,8 @@
      }
     ]
    },
+   "unvan": "Yarı Tanrı Kahraman",
+   "biyo": "Zeus'un oğlu, dünyanın en güçlü ölümlüsü. Hera'nın laneti yüzünden on iki imkânsız görevi yerine getirdi: Nemea aslanını boğdu, Hidra'yı yendi, Kerberos'u yeraltından çıkardı.",
    "tarif": "Heracles strong hero wearing a lion pelt as hood, big wooden club, beard"
   },
   {
@@ -564,6 +601,8 @@
      }
     ]
    },
+   "unvan": "Labirentin Canavarı",
+   "biyo": "Girit kralı Minos'un sarayının altındaki labirentte yaşayan boğa başlı dev. Her yıl Atina'dan gelen gençlerle beslenirdi; sonunda Theseus onu labirentin derinliklerinde yendi.",
    "tarif": "Minotaur bull-headed giant, big horns, double axe, dark red fur"
   },
   {
@@ -592,6 +631,8 @@
      }
     ]
    },
+   "unvan": "Şifa Tanrısı",
+   "biyo": "Apollon'un oğlu, hekimliğin babası. Ölüleri bile diriltecek kadar ustalaşınca Zeus onu şimşekle cezalandırdı. Yılana sarılı asası bugün hâlâ tıbbın simgesidir.",
    "tarif": "Asclepius god of medicine, bearded man in white toga holding a staff with a snake"
   },
   {
@@ -621,6 +662,8 @@
      }
     ]
    },
+   "unvan": "Falanks Askeri",
+   "biyo": "Yunan şehir devletlerinin ağır zırhlı piyadesi. Yuvarlak kalkanı ve uzun mızrağıyla sıkı falanks düzeninde omuz omuza savaşır.",
    "tarif": "Greek hoplite soldier, bronze corinthian helmet, big round blue shield, spear"
   },
   {
@@ -645,6 +688,8 @@
      }
     ]
    },
+   "unvan": "Savaşçı Kadınlar",
+   "biyo": "Karadeniz kıyılarında yaşadığı anlatılan efsanevi kadın savaşçılar ulusu. At üstünden ok atmada eşsizdirler; Truva'da bile kraliçeleri Penthesileia ile savaşmışlardır.",
    "tarif": "Amazon warrior archer woman, braided hair, leather armor, longbow"
   },
   {
@@ -674,6 +719,8 @@
      }
     ]
    },
+   "unvan": "Deniz Şarkıcısı",
+   "biyo": "Kayalık adalarda oturup şarkılarıyla denizcileri ölüme çeken yaratıklar. Odysseus onları duyabilmek için kendini geminin direğine bağlatmıştı.",
    "tarif": "siren sea creature woman with fins and seaweed hair singing, ocean colors"
   },
   {
@@ -703,6 +750,8 @@
      }
     ]
    },
+   "unvan": "Doğa Perisi",
+   "biyo": "Ormanların, pınarların ve dağların genç ve ölümsüz perileri. Doğanın canlılığını korur, yaralı yolculara şifa verirler.",
    "tarif": "forest nymph dryad, green skin, leaves in hair, flowers, gentle smile"
   },
   {
@@ -738,6 +787,8 @@
      }
     ]
    },
+   "unvan": "Her Şeyin Babası",
+   "biyo": "Asgard'ın kralı, bilgelik ve savaş tanrısı. Mimir'in kuyusundan içmek için bir gözünü feda etti, rünlerin sırrını öğrenmek için Dünya Ağacı'na dokuz gece asılı kaldı. Kuzgunları Hugin ve Munin ona her şeyi anlatır.",
    "tarif": "Norse god Odin, one-eyed old king with eyepatch, long grey beard, winged helmet, spear Gungnir, raven"
   },
   {
@@ -772,6 +823,8 @@
      }
     ]
    },
+   "unvan": "Gök Gürültüsü Tanrısı",
+   "biyo": "Odin'in oğlu, insanların ve tanrıların koruyucusu. Çekici Mjölnir'i fırlattığında gök gürler ve şimşek çakar. Devlerin baş düşmanıdır; Ragnarök'te Dünya Yılanı ile savaşacaktır.",
    "tarif": "Norse god Thor, red beard, winged helmet, holding hammer Mjolnir with lightning"
   },
   {
@@ -806,6 +859,8 @@
      }
     ]
    },
+   "unvan": "Aşk ve Savaş Tanrıçası",
+   "biyo": "Vanir soyundan gelen aşk, bereket ve büyü tanrıçası. Savaşta ölenlerin yarısını kendi sarayına alır. Kedilerin çektiği arabasıyla dolaşır, şahin tüyünden pelerini ona uçma gücü verir.",
    "tarif": "Freya norse goddess, long blonde braided hair, golden necklace, falcon feather cloak"
   },
   {
@@ -841,6 +896,8 @@
      }
     ]
    },
+   "unvan": "İlk Dev",
+   "biyo": "Dünyanın başında buzla ateşin buluştuğu boşluktan doğan ilk buz devi. Odin ve kardeşleri onu öldürüp bedeninden dünyayı yarattı: etinden toprak, kanından denizler, kafatasından gök kubbe oldu.",
    "tarif": "frost giant Ymir, huge pale blue giant with icicle beard and ice armor"
   },
   {
@@ -871,6 +928,8 @@
      }
     ]
    },
+   "unvan": "Hilebaz Tanrı",
+   "biyo": "Kılık değiştirmekte usta, zekâsı kadar kötülüğü de olan ateş tanrısı. Tanrıların başını belaya sokar, sonra yine hilesiyle kurtarır. Fenrir, Dünya Yılanı ve Hel onun çocuklarıdır.",
    "tarif": "Loki trickster god, sly grin, horned green and gold helmet, green flames in hand"
   },
   {
@@ -894,6 +953,8 @@
      }
     ]
    },
+   "unvan": "Savaşçı Bakire",
+   "biyo": "Odin'in kanatlı miğferli savaşçı kızları. Savaş alanında ölen en cesur savaşçıları seçip Valhalla'ya taşırlar.",
    "tarif": "Valkyrie warrior maiden, winged helmet, silver armor, spear, white wings"
   },
   {
@@ -928,6 +989,8 @@
      }
     ]
    },
+   "unvan": "Gökkuşağı Bekçisi",
+   "biyo": "Asgard'a giden Bifröst köprüsünün bekçisi. Çimenlerin büyüdüğünü duyacak kadar keskin kulaklıdır, hiç uyumaz. Ragnarök geldiğinde Gjallarhorn borusunu öttürecektir.",
    "tarif": "Heimdall guardian god, golden armor, holding the horn Gjallarhorn, rainbow bridge glow"
   },
   {
@@ -957,6 +1020,8 @@
      }
     ]
    },
+   "unvan": "Gençlik Tanrıçası",
+   "biyo": "Tanrıları genç tutan altın elmaların bekçisi. Bir kez devlerce kaçırıldığında bütün tanrılar yaşlanmaya başlamıştı.",
    "tarif": "Idun goddess with golden apples basket, flower crown, spring green dress"
   },
   {
@@ -986,6 +1051,8 @@
      }
     ]
    },
+   "unvan": "Kalkan Duvarı",
+   "biyo": "Ahşap yuvarlak kalkanlarını birbirine kenetleyip kalkan duvarı kuran Viking savaşçısı. Duvar yıkılmadıkça geri adım atmaz.",
    "tarif": "viking shield warrior, horned-free iron helmet, red and white round shield, axe, braided beard"
   },
   {
@@ -1015,6 +1082,8 @@
      }
     ]
    },
+   "unvan": "Öfkeli Savaşçı",
+   "biyo": "Ayı postuna bürünüp savaş öfkesine kapılan Viking savaşçısı. Öfke anında acı hissetmez, kalkanını ısırır ve zırhsız düşmana atılır.",
    "tarif": "viking berserker wearing a bear pelt, wild eyes, two axes, war paint"
   },
   {
@@ -1044,6 +1113,8 @@
      }
     ]
    },
+   "unvan": "Kâhin Kadın",
+   "biyo": "Asasıyla köy köy dolaşıp geleceği gören İskandinav büyücüsü. Odin bile Ragnarök'ün kehanetini bir völvadan dinlemiştir.",
    "tarif": "norse seeress volva, hooded cloak, staff with runes, glowing eyes"
   },
   {
@@ -1073,6 +1144,8 @@
      }
     ]
    },
+   "unvan": "Rün Oymacısı",
+   "biyo": "Taşlara ve silahlara güç veren rünleri kazıyan bilge. Doğru rün kalkanı sağlamlaştırır, yanlış rün ise lanet getirir.",
    "tarif": "viking rune master, bald tattooed head, carved rune stones glowing blue"
   },
   {
@@ -1102,6 +1175,8 @@
      }
     ]
    },
+   "unvan": "Güneş Tanrısı",
+   "biyo": "Mısır'ın yaratıcı güneş tanrısı. Gündüz güneş kayığıyla göğü geçer, gece yeraltında kaos yılanı Apep ile savaşır. Firavunlar kendilerini Ra'nın oğlu sayardı.",
    "tarif": "Egyptian sun god Ra, falcon head with a glowing sun disk crown, gold collar, staff"
   },
   {
@@ -1132,6 +1207,8 @@
      }
     ]
    },
+   "unvan": "Ölülerin Rehberi",
+   "biyo": "Çakal başlı mumyalama ve mezarlık tanrısı. Ölülerin kalbini Maat'ın tüyüyle tartar; kalbi temiz olanı ahirete geçirir, ağır olanı canavar Ammit'e verir.",
    "tarif": "Egyptian god Anubis, black jackal head, gold collar and armlets, was-scepter"
   },
   {
@@ -1161,6 +1238,8 @@
      }
     ]
    },
+   "unvan": "Büyü Tanrıçası",
+   "biyo": "Mısır'ın en güçlü büyücü tanrıçası ve anaların koruyucusu. Kocası Osiris'i Set öldürüp parçalayınca parçaları toplayıp onu yeniden diriltti. Oğlu Horus'tur.",
    "tarif": "Egyptian goddess Isis, colorful outstretched wings, throne headdress, gold jewelry"
   },
   {
@@ -1196,6 +1275,8 @@
      }
     ]
    },
+   "unvan": "Bilmececi Bekçi",
+   "biyo": "Aslan gövdeli, insan başlı dev bekçi. Gize'deki büyük heykeli firavunların mezarlarını korur. Söylencelere göre bilmecesini bilemeyen yolcuyu yutar.",
    "tarif": "Sphinx creature with lion body and pharaoh head with nemes headdress, sandstone"
   },
   {
@@ -1224,6 +1305,8 @@
      }
     ]
    },
+   "unvan": "Bilgi Tanrısı",
+   "biyo": "İbis başlı yazı, bilgi ve ay tanrısı. Hiyeroglifleri icat ettiğine, ölülerin yargısında kaydı tuttuğuna inanılır.",
    "tarif": "Egyptian god Thoth with ibis bird head, holding a scroll and reed pen, blue glow"
   },
   {
@@ -1253,6 +1336,8 @@
      }
     ]
    },
+   "unvan": "Gök Şahini",
+   "biyo": "Şahin başlı gök tanrısı, Osiris ile İsis'in oğlu. Babasının öcünü almak için amcası Set ile savaştı ve bir gözünü kaybetti. Horus'un Gözü koruma ve şifa simgesidir.",
    "tarif": "Egyptian god Horus with falcon head, double crown, khopesh sword"
   },
   {
@@ -1282,6 +1367,8 @@
      }
     ]
    },
+   "unvan": "Nil'in Timsahı",
+   "biyo": "Timsah başlı Nil ve güç tanrısı. Nil'in taşkınlarını ve bereketini yönetir; ordunun ve firavunun koruyucusudur.",
    "tarif": "Egyptian god Sobek with crocodile head, green scales, gold armor, spear"
   },
   {
@@ -1311,6 +1398,8 @@
      }
     ]
    },
+   "unvan": "Kedi Tanrıça",
+   "biyo": "Kedi başlı ev, bereket ve koruma tanrıçası. Evleri kötü ruhlardan ve hastalıklardan korur. Mısırlılar kedileri onun kutsal hayvanı olarak çok severdi.",
    "tarif": "Egyptian goddess Bastet with black cat head, gold earrings, sistrum instrument"
   },
   {
@@ -1346,6 +1435,8 @@
      }
     ]
    },
+   "unvan": "Uyanan Ölü",
+   "biyo": "Ahiret için sargılara sarılarak korunmuş eski bir firavun muhafızı. Mezarına giren hırsızlara karşı uyanır.",
    "tarif": "mummy wrapped in old bandages with glowing green eyes"
   },
   {
@@ -1375,6 +1466,8 @@
      }
     ]
    },
+   "unvan": "Akrep Muhafızı",
+   "biyo": "Akrep tanrıçası Serket'e bağlı çöl savaşçısı. Kıskaçları kadar zehirli mızrağı da korkulur.",
    "tarif": "scorpion warrior, man with scorpion tail and pincers, bronze armor"
   },
   {
@@ -1398,6 +1491,8 @@
      }
     ]
    },
+   "unvan": "Nil Kâhini",
+   "biyo": "Tapınakta kutsal ateşi besleyen ve yıldızlardan Nil'in taşkınını okuyan rahip.",
    "tarif": "Egyptian priest mage with shaved head, gold collar, glowing hieroglyphs, staff"
   },
   {
@@ -1427,6 +1522,8 @@
      }
     ]
    },
+   "unvan": "Hayat Rahibesi",
+   "biyo": "Elindeki ankh, yani hayatın anahtarıyla yaralılara can veren tapınak rahibesi.",
    "tarif": "Egyptian priestess holding a glowing ankh, black bob hair, white linen dress"
   },
   {
@@ -1456,6 +1553,8 @@
      }
     ]
    },
+   "unvan": "Çamlıbel Yiğidi",
+   "biyo": "Babasının gözlerine mil çektiren zalim beyden öcünü almak için dağa çıkan halk kahramanı. Kır atı ve sazıyla Çamlıbel'de zalimlere karşı direnir, yoksulun yanında durur.",
    "tarif": "Koroglu Turkish folk hero bard-warrior, thick black mustache, fur-trimmed red kaftan, saz lute and curved sword"
   },
   {
@@ -1491,6 +1590,8 @@
      }
     ]
    },
+   "unvan": "Gorgon Avcısı",
+   "biyo": "Zeus'un ölümlü oğlu. Tanrıların hediyeleriyle — Athena'nın kalkanı, Hermes'in kanatlı sandaletleri — Medusa'nın başını kesti ve deniz canavarından prenses Andromeda'yı kurtardı.",
    "tarif": "Perseus young Greek hero, bronze winged helmet, polished mirror shield, short sword"
   },
   {
@@ -1521,6 +1622,8 @@
      }
     ]
    },
+   "unvan": "Dev Kurt",
+   "biyo": "Loki'nin oğlu, büyüdükçe büyüyen korkunç kurt. Tanrılar onu büyülü Gleipnir zinciriyle bağladı; bu sırada Tyr elini kurdun ağzında kaybetti. Ragnarök'te zincirlerini kırıp Odin'i yutacaktır.",
    "tarif": "Fenrir giant grey wolf, glowing yellow eyes, broken iron chain, snarling fangs"
   },
   {
@@ -1550,6 +1653,8 @@
      }
     ]
    },
+   "unvan": "Aslan Tanrıça",
+   "biyo": "Ra'nın gözünden doğan aslan başlı savaş ve salgın tanrıçası. İnsanlığı yok etmek üzereyken tanrılar onu kırmızıya boyanmış birayla sarhoş ederek durdurdu.",
    "tarif": "Sekhmet lioness-headed Egyptian war goddess, golden sun disc crown, red linen dress"
   },
   {
@@ -1585,6 +1690,8 @@
      }
     ]
    },
+   "unvan": "Yeraltı Hanı",
+   "biyo": "Altay inanışında yeraltı dünyasının hükümdarı ve ölülerin yargıcı. Ülgen'in kardeşiyken ondan üstün olmak isteyince yeraltına sürüldü. Kötü ruhlar ve hastalıklar onun emrindedir.",
    "tarif": "Erlik Khan Turkic god of the underworld, old king with black beard, horned black iron crown, dark robes, staff with blue flames"
   },
   {
@@ -1615,6 +1722,8 @@
      }
     ]
    },
+   "unvan": "Lohusa Cini",
+   "biyo": "Anadolu ve Orta Asya inanışında lohusa kadınlara ve yeni doğanlara musallat olan kötü ruh. Ateş gibi kızıl saçlıdır; demirden ve kırmızı kurdeleden korktuğuna inanılır.",
    "tarif": "Al Karisi Turkic nightmare demon woman, wild red hair, pale skin, glowing red eyes, ragged red dress, fire in hand"
   },
   {
@@ -1644,6 +1753,8 @@
      }
     ]
    },
+   "unvan": "Malatya'nın Gazisi",
+   "biyo": "Emevî-Bizans savaşlarında yaşamış, adı destanlara karışmış Malatyalı kahraman. Battalname'de dev ve cadılarla dövüşen, kılık değiştirip düşman kalelerine sızan yenilmez bir gazi olarak anlatılır.",
    "tarif": "Battal Gazi legendary Turkish warrior, turban helmet with plume, chainmail, green cape, curved sword"
   },
   {
@@ -1679,6 +1790,8 @@
      }
     ]
    },
+   "unvan": "Yeraltının Efendisi",
+   "biyo": "Zeus ve Poseidon'un ağabeyi; dünya paylaşılırken ona ölüler diyarı düştü. Adil ama acımasızdır: yeraltına giren kimsenin geri dönmesine izin vermez. Bekçisi üç başlı Kerberos'tur.",
    "tarif": "Hades Greek god of the underworld, pale grim king with black beard, dark armor, black crown, bident, green ghost flames"
   },
   {
@@ -1709,6 +1822,8 @@
      }
     ]
    },
+   "unvan": "Av Tanrıçası",
+   "biyo": "Apollon'un ikizi; avın, vahşi doğanın ve ayın tanrıçası. Gümüş yayından çıkan ok hedefini asla şaşırmaz. Genç kızların ve hayvanların koruyucusudur.",
    "tarif": "Artemis goddess of the hunt, silver hair, crescent moon tiara, white tunic, silver bow"
   },
   {
@@ -1749,6 +1864,8 @@
      }
     ]
    },
+   "unvan": "Yeraltı Bekçisi",
+   "biyo": "Hades'in kapısını bekleyen üç başlı, yılan kuyruklu dev köpek. Ölüleri içeri alır ama kimseyi dışarı bırakmaz. Herakles on ikinci görevinde onu çıplak elleriyle yakaladı.",
    "tarif": "Cerberus three-headed black hellhound, fiery eyes, spiked collar, flames"
   },
   {
@@ -1783,6 +1900,8 @@
      }
     ]
    },
+   "unvan": "Ölüler Kraliçesi",
+   "biyo": "Loki'nin kızı; bedeninin yarısı canlı, yarısı ölü. Odin onu savaşta ölmeyenlerin gittiği soğuk Helheim'a kraliçe yaptı. Güzel tanrı Baldur'u bile geri vermemiştir.",
    "tarif": "Hel Norse goddess of the dead, face half pale half dark blue, long black hair, dark hooded cloak, bone crown"
   },
   {
@@ -1812,6 +1931,8 @@
      }
     ]
    },
+   "unvan": "Savaş ve Adalet Tanrısı",
+   "biyo": "Tanrıların en cesuru. Fenrir bağlanırken güven teminatı olarak elini kurdun ağzına koydu ve onu feda etti. Yeminlerin ve adaletin koruyucusudur.",
    "tarif": "Tyr Norse god of war, one-handed bearded warrior, iron helmet, chainmail, sword, round shield"
   },
   {
@@ -1842,6 +1963,8 @@
      }
     ]
    },
+   "unvan": "Kaos ve Çöl Tanrısı",
+   "biyo": "Fırtınanın, çölün ve kaosun tanrısı. Tahta geçmek için kardeşi Osiris'i öldürdü, Horus ile yıllarca savaştı. Yine de her gece Ra'nın kayığında Apep yılanıyla savaşan da odur.",
    "tarif": "Set Egyptian god of chaos, red-skinned man with a desert animal head with tall square ears, dark armor, golden was-scepter"
   },
   {
@@ -1870,7 +1993,793 @@
      }
     ]
    },
+   "unvan": "Sevgi ve Müzik Tanrıçası",
+   "biyo": "İnek boynuzlu, güneş taçlı sevgi, müzik ve sevinç tanrıçası. Ra'nın kızıdır; öfkelendiğinde Sekhmet'e dönüştüğü anlatılır.",
    "tarif": "Hathor Egyptian goddess of love and music, cow horns with golden sun disc, red dress, gold collar, sistrum"
+  },
+  {
+   "id": "amaterasu",
+   "ad": "Amaterasu",
+   "mitoloji": "japon",
+   "nadirlik": "efsanevi",
+   "sinif": "buyucu",
+   "element": "ates",
+   "can": 919,
+   "saldiri": 173,
+   "savunma": 34,
+   "hiz": 114,
+   "ulti": {
+    "ad": "Güneş Aynası",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 1.1
+     },
+     {
+      "tip": "kacinma",
+      "hedef": "tum_dost",
+      "sans": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "unvan": "Güneş Tanrıçası",
+   "biyo": "Şinto'nun en yüce tanrıçası, güneşin ve evrenin ışığı. Kardeşi Susanoo'nun taşkınlıklarına kızıp bir mağaraya saklandığında dünya karanlığa gömüldü; tanrılar onu bir aynayla dışarı çıkardı. Japon imparatorlarının atası sayılır.",
+   "tarif": "Amaterasu Japanese sun goddess, serene woman with long black hair, golden sun disc halo behind her head, white and red layered kimono robes, holding the sacred bronze mirror Yata no Kagami"
+  },
+  {
+   "id": "susanoo",
+   "ad": "Susanoo",
+   "mitoloji": "japon",
+   "nadirlik": "epik",
+   "sinif": "savasci",
+   "element": "su",
+   "can": 1117,
+   "saldiri": 148,
+   "savunma": 46,
+   "hiz": 126,
+   "ulti": {
+    "ad": "Fırtına Kılıcı",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.8
+     },
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 0.35
+     }
+    ]
+   },
+   "unvan": "Fırtına Tanrısı",
+   "biyo": "Amaterasu'nun asi kardeşi, denizlerin ve fırtınaların tanrısı. Göklerden sürüldükten sonra sekiz başlı ejderha Yamata no Orochi'yi öldürdü ve kuyruğundan efsanevi Kusanagi kılıcını çıkardı.",
+   "tarif": "Susanoo Japanese storm god, wild long black hair and beard, dark blue armored kimono with storm clouds, holding the long straight sword Kusanagi, lightning and rain"
+  },
+  {
+   "id": "raijin",
+   "ad": "Raijin",
+   "mitoloji": "japon",
+   "nadirlik": "epik",
+   "sinif": "buyucu",
+   "element": "ates",
+   "can": 913,
+   "saldiri": 153,
+   "savunma": 31,
+   "hiz": 104,
+   "ulti": {
+    "ad": "Gök Gürültüsü Davulu",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "rastgele",
+      "carpan": 1.0,
+      "adet": 4
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "son",
+      "sans": 0.25,
+      "tur": 1
+     }
+    ]
+   },
+   "unvan": "Şimşek Tanrısı",
+   "biyo": "Sırtındaki davulları çalarak gök gürültüsü çıkaran şimşek tanrısı. Rüzgâr tanrısı Fujin ile birlikte fırtınaları getirir; çocuklara göbeklerini saklamalarını, yoksa Raijin'in yiyeceğini söylerler.",
+   "tarif": "Raijin Japanese thunder god, red-skinned muscular oni-like god with wild hair and horns, ring of taiko drums behind his back, drumsticks, lightning bolts"
+  },
+  {
+   "id": "ryujin",
+   "ad": "Ryujin",
+   "mitoloji": "japon",
+   "nadirlik": "epik",
+   "sinif": "tank",
+   "element": "su",
+   "can": 1667,
+   "saldiri": 81,
+   "savunma": 81,
+   "hiz": 103,
+   "ulti": {
+    "ad": "Gelgit Kalesi",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "tum_dost",
+      "oran": 0.1,
+      "tur": 2
+     },
+     {
+      "tip": "kacinma",
+      "hedef": "kendi",
+      "sans": 0.3,
+      "tur": 2
+     }
+    ]
+   },
+   "unvan": "Deniz Ejderha Kralı",
+   "biyo": "Denizin dibindeki mercan sarayda yaşayan ejderha kral. Gelgitleri yöneten mücevherlere sahiptir; denizcilerin hem korkusu hem koruyucusudur.",
+   "tarif": "Ryujin Japanese dragon king of the sea, long blue-green eastern dragon with golden horns and whiskers, holding a glowing tide jewel pearl, ocean waves"
+  },
+  {
+   "id": "kitsune",
+   "ad": "Kitsune",
+   "mitoloji": "japon",
+   "nadirlik": "nadir",
+   "sinif": "destek",
+   "element": "ates",
+   "can": 912,
+   "saldiri": 108,
+   "savunma": 44,
+   "hiz": 117,
+   "ulti": {
+    "ad": "Dokuz Kuyruk",
+    "etkiler": [
+     {
+      "tip": "kacinma",
+      "hedef": "tum_dost",
+      "sans": 0.3,
+      "tur": 2
+     },
+     {
+      "tip": "iyilestir",
+      "hedef": "en_zayif_dost",
+      "carpan": 1.2
+     }
+    ]
+   },
+   "unvan": "Tilki Ruhu",
+   "biyo": "Yaşı ilerledikçe yeni kuyruklar çıkaran, en fazla dokuz kuyruğa ulaşan bilge tilki. İnsan kılığına girer, göz yanılsamaları yaratır. Pirinç tanrısı Inari'nin habercisidir.",
+   "tarif": "Kitsune Japanese fox spirit woman, white fox ears, nine fluffy white fox tails, red and white shrine kimono, blue foxfire flames floating around her"
+  },
+  {
+   "id": "oni",
+   "ad": "Oni",
+   "mitoloji": "japon",
+   "nadirlik": "nadir",
+   "sinif": "tank",
+   "element": "ates",
+   "can": 1399,
+   "saldiri": 71,
+   "savunma": 66,
+   "hiz": 101,
+   "ulti": {
+    "ad": "Demir Gürz",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 2
+     },
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 1.2
+     },
+     {
+      "tip": "sersemlet",
+      "hedef": "son",
+      "sans": 0.4,
+      "tur": 1
+     }
+    ]
+   },
+   "unvan": "İblis",
+   "biyo": "Kırmızı ya da mavi tenli, boynuzlu, demir gürzlü Japon iblisi. Dağlarda yaşar, köylere baskın yapar. Setsubun bayramında fasulye atılarak kovulur.",
+   "tarif": "Oni Japanese ogre demon, big red-skinned brute with two horns, tiger skin loincloth, huge spiked iron club kanabo, fangs"
+  },
+  {
+   "id": "tengu",
+   "ad": "Tengu",
+   "mitoloji": "japon",
+   "nadirlik": "nadir",
+   "sinif": "savasci",
+   "element": "doga",
+   "can": 984,
+   "saldiri": 122,
+   "savunma": 40,
+   "hiz": 114,
+   "ulti": {
+    "ad": "Kanat Fırtınası",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "arka",
+      "carpan": 1.3
+     },
+     {
+      "tip": "kacinma",
+      "hedef": "kendi",
+      "sans": 0.3,
+      "tur": 2
+     }
+    ]
+   },
+   "unvan": "Dağ Ruhu",
+   "biyo": "Uzun burunlu, kanatlı dağ ruhu. Kılıç ustalığında eşsizdir; efsaneye göre ünlü savaşçı Minamoto no Yoshitsune'ye kılıç kullanmayı tengular öğretmiştir.",
+   "tarif": "Tengu Japanese mountain spirit warrior, red face with a very long nose, black feathered wings, yamabushi monk clothes with small black hat tokin, feather fan and katana"
+  },
+  {
+   "id": "yuki_onna",
+   "ad": "Yuki-onna",
+   "mitoloji": "japon",
+   "nadirlik": "nadir",
+   "sinif": "buyucu",
+   "element": "su",
+   "can": 806,
+   "saldiri": 128,
+   "savunma": 27,
+   "hiz": 105,
+   "ulti": {
+    "ad": "Kar Fırtınası",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tum",
+      "carpan": 0.8
+     },
+     {
+      "tip": "zayiflat",
+      "hedef": "tum",
+      "oran": 0.2,
+      "tur": 2
+     }
+    ]
+   },
+   "unvan": "Kar Kadını",
+   "biyo": "Karlı dağlarda beyaz kimonosuyla beliren solgun hayalet kadın. Nefesiyle yolcuları dondurur; ama bazı hikâyelerde merhamet gösterdiği de olur.",
+   "tarif": "Yuki-onna Japanese snow woman spirit, very pale skin, long straight black hair, pure white kimono, icy blue breath, snowflakes swirling"
+  },
+  {
+   "id": "samuray",
+   "ad": "Samuray",
+   "mitoloji": "japon",
+   "nadirlik": "siradan",
+   "sinif": "savasci",
+   "element": "doga",
+   "can": 874,
+   "saldiri": 116,
+   "savunma": 38,
+   "hiz": 113,
+   "ulti": {
+    "ad": "Iaijutsu",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "tek",
+      "carpan": 2.1
+     }
+    ]
+   },
+   "unvan": "Kılıç Ustası",
+   "biyo": "Buşido yolunu izleyen Japon savaşçısı. Sadakati, onuru ve katanasıyla tanınır; ustası için canını vermekten çekinmez.",
+   "tarif": "Japanese samurai warrior in red lacquered o-yoroi armor, horned kabuto helmet with menpo face mask, drawing a katana"
+  },
+  {
+   "id": "ninja",
+   "ad": "Ninja",
+   "mitoloji": "japon",
+   "nadirlik": "siradan",
+   "sinif": "savasci",
+   "element": "doga",
+   "can": 801,
+   "saldiri": 112,
+   "savunma": 34,
+   "hiz": 108,
+   "ulti": {
+    "ad": "Gölge Hançeri",
+    "etkiler": [
+     {
+      "tip": "hasar",
+      "hedef": "en_zayif",
+      "carpan": 1.7
+     },
+     {
+      "tip": "kacinma",
+      "hedef": "kendi",
+      "sans": 0.35,
+      "tur": 2
+     }
+    ]
+   },
+   "unvan": "Gölge Savaşçısı",
+   "biyo": "Casusluk, gizlenme ve suikast sanatında eğitilmiş shinobi. Gece karanlığında iz bırakmadan gelir ve gider.",
+   "tarif": "Japanese ninja shinobi in dark navy shinobi shozoku outfit and face mask, short ninjato sword on the back, shuriken in hand"
+  },
+  {
+   "id": "miko",
+   "ad": "Miko",
+   "mitoloji": "japon",
+   "nadirlik": "siradan",
+   "sinif": "destek",
+   "element": "su",
+   "can": 850,
+   "saldiri": 96,
+   "savunma": 39,
+   "hiz": 112,
+   "ulti": {
+    "ad": "Arınma Ayini",
+    "etkiler": [
+     {
+      "tip": "iyilestir",
+      "hedef": "tum_dost",
+      "carpan": 1.1
+     },
+     {
+      "tip": "kacinma",
+      "hedef": "en_zayif_dost",
+      "sans": 0.3,
+      "tur": 2
+     }
+    ]
+   },
+   "unvan": "Tapınak Rahibesi",
+   "biyo": "Şinto tapınaklarında hizmet eden rahibe. Kutsal danslarıyla ve gohei asasıyla kötü ruhları arındırır.",
+   "tarif": "Japanese shrine maiden miko, long black hair tied with white ribbon, white kimono top and red hakama trousers, holding a gohei purification wand with paper streamers"
+  },
+  {
+   "id": "kappa",
+   "ad": "Kappa",
+   "mitoloji": "japon",
+   "nadirlik": "siradan",
+   "sinif": "tank",
+   "element": "doga",
+   "can": 1263,
+   "saldiri": 66,
+   "savunma": 64,
+   "hiz": 88,
+   "ulti": {
+    "ad": "Su Kabuğu",
+    "etkiler": [
+     {
+      "tip": "alay",
+      "hedef": "kendi",
+      "tur": 1
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "kendi",
+      "oran": 0.25,
+      "tur": 2
+     }
+    ]
+   },
+   "unvan": "Nehir Yaratığı",
+   "biyo": "Nehirlerde yaşayan kaplumbağa kabuklu yaramaz su yaratığı. Gücü başındaki su çanağından gelir; eğilip selam verirse su dökülür ve gücünü kaybeder. Salatalığa bayılır.",
+   "tarif": "Kappa Japanese river creature, green turtle-like humanoid with a turtle shell on its back, beak, water-filled dish on top of its head, webbed hands"
+  }
+ ],
+ "baglar": [
+  {
+   "id": "gok_yer",
+   "ad": "Gök ve Yer",
+   "kartlar": [
+    "ulgen",
+    "erlik"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "İki kardeş tanrının ezelî rekabeti birbirlerini kamçılar."
+  },
+  {
+   "id": "korkut_tepegoz",
+   "ad": "Dede Korkut Hikâyesi",
+   "kartlar": [
+    "dede_korkut",
+    "tepegoz"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Ozan, devin hikâyesini anlattıkça ikisi de efsaneleşir."
+  },
+  {
+   "id": "gaziler",
+   "ad": "Gazi Ruhu",
+   "kartlar": [
+    "battal_gazi",
+    "koroglu",
+    "akinci"
+   ],
+   "stat": "saldiri",
+   "oran": 0.08,
+   "aciklama": "Halk kahramanları aynı sancak altında."
+  },
+  {
+   "id": "bozkurt",
+   "ad": "Bozkurt Soyu",
+   "kartlar": [
+    "asena",
+    "alp_er_tunga"
+   ],
+   "stat": "hiz",
+   "oran": 0.1,
+   "aciklama": "Bozkurt ananın torunu, atasıyla birlikte koşar."
+  },
+  {
+   "id": "olimpos",
+   "ad": "Olimpos Kardeşleri",
+   "kartlar": [
+    "zeus",
+    "hades"
+   ],
+   "stat": "saldiri",
+   "oran": 0.12,
+   "aciklama": "Dünyayı paylaşan iki kardeş yan yana."
+  },
+  {
+   "id": "ikizler",
+   "ad": "Delos İkizleri",
+   "kartlar": [
+    "apollon",
+    "artemis"
+   ],
+   "stat": "hiz",
+   "oran": 0.1,
+   "aciklama": "Güneş ve ayın ikiz okçuları."
+  },
+  {
+   "id": "gorgon_avi",
+   "ad": "Gorgon Avı",
+   "kartlar": [
+    "perseus",
+    "athena"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Athena'nın kalkanı Perseus'un elinde."
+  },
+  {
+   "id": "yeralti",
+   "ad": "Yeraltı Kapısı",
+   "kartlar": [
+    "hades",
+    "kerberos"
+   ],
+   "stat": "can",
+   "oran": 0.12,
+   "aciklama": "Efendi ve sadık bekçisi."
+  },
+  {
+   "id": "on_iki_gorev",
+   "ad": "On İki Görev",
+   "kartlar": [
+    "herakles",
+    "kerberos"
+   ],
+   "stat": "saldiri",
+   "oran": 0.08,
+   "aciklama": "Herakles'in son görevi."
+  },
+  {
+   "id": "truva",
+   "ad": "Truva Seferi",
+   "kartlar": [
+    "akhilleus",
+    "hoplit"
+   ],
+   "stat": "savunma",
+   "oran": 0.08,
+   "aciklama": "Akhilleus ve falanksı."
+  },
+  {
+   "id": "asgard",
+   "ad": "Asgard Hanedanı",
+   "kartlar": [
+    "odin",
+    "thor"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Baba ve oğul Asgard'ı korur."
+  },
+  {
+   "id": "loki_cocuklari",
+   "ad": "Loki'nin Çocukları",
+   "kartlar": [
+    "loki",
+    "fenrir",
+    "hel"
+   ],
+   "stat": "saldiri",
+   "oran": 0.12,
+   "aciklama": "Ragnarök'ü getirecek aile."
+  },
+  {
+   "id": "gleipnir",
+   "ad": "Gleipnir Yemini",
+   "kartlar": [
+    "tyr",
+    "fenrir"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Feda edilen elin hatırası."
+  },
+  {
+   "id": "valhalla",
+   "ad": "Valhalla'nın Seçilmişleri",
+   "kartlar": [
+    "valkur",
+    "berserker"
+   ],
+   "stat": "hiz",
+   "oran": 0.1,
+   "aciklama": "Valkür, en cesur savaşçıyı seçer."
+  },
+  {
+   "id": "ra_gozu",
+   "ad": "Ra'nın Gözü",
+   "kartlar": [
+    "ra",
+    "sekhmet",
+    "hathor"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Güneş tanrısı ve iki yüzlü kızı."
+  },
+  {
+   "id": "osiris_ailesi",
+   "ad": "Osiris'in Ailesi",
+   "kartlar": [
+    "isis",
+    "horus"
+   ],
+   "stat": "can",
+   "oran": 0.12,
+   "aciklama": "Ana ve oğul, babanın öcü için."
+  },
+  {
+   "id": "taht_kavgasi",
+   "ad": "Taht Kavgası",
+   "kartlar": [
+    "horus",
+    "set"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Amca ile yeğenin bitmeyen savaşı."
+  },
+  {
+   "id": "ahiret",
+   "ad": "Ahiret Yolu",
+   "kartlar": [
+    "anubis",
+    "mumya"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Rehber ve koruduğu ölü."
+  },
+  {
+   "id": "gunes_firtina",
+   "ad": "Güneş ve Fırtına",
+   "kartlar": [
+    "amaterasu",
+    "susanoo"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Küs kardeşler aynı safta."
+  },
+  {
+   "id": "firtina",
+   "ad": "Fırtına Getirenler",
+   "kartlar": [
+    "raijin",
+    "susanoo"
+   ],
+   "stat": "hiz",
+   "oran": 0.08,
+   "aciklama": "Davullar ve dalgalar birlikte."
+  },
+  {
+   "id": "bushido",
+   "ad": "Kılıç ve Gölge",
+   "kartlar": [
+    "samuray",
+    "ninja"
+   ],
+   "stat": "hiz",
+   "oran": 0.1,
+   "aciklama": "Açık savaşın ustası ve gizli savaşın ustası."
+  },
+  {
+   "id": "inari",
+   "ad": "Inari Tapınağı",
+   "kartlar": [
+    "miko",
+    "kitsune"
+   ],
+   "stat": "can",
+   "oran": 0.12,
+   "aciklama": "Rahibe ve tapınağın tilki habercisi."
+  },
+  {
+   "id": "deniz_sarayi",
+   "ad": "Deniz Sarayı",
+   "kartlar": [
+    "ryujin",
+    "kappa"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Ejderha kral ve nehirlerin yaramazı."
+  },
+  {
+   "id": "simsek",
+   "ad": "Şimşek Tanrıları",
+   "kartlar": [
+    "zeus",
+    "thor",
+    "raijin"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Üç diyarın gök gürültüsü bir arada."
+  },
+  {
+   "id": "gunes_tanrilari",
+   "ad": "Güneş Tanrıları",
+   "kartlar": [
+    "ra",
+    "apollon",
+    "amaterasu"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Üç güneş aynı gökte."
+  },
+  {
+   "id": "olum",
+   "ad": "Ölümün Efendileri",
+   "kartlar": [
+    "hades",
+    "hel",
+    "anubis"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Üç ölüler diyarının hükümdarları."
+  },
+  {
+   "id": "yeralti_hanlari",
+   "ad": "Karanlık Hanlar",
+   "kartlar": [
+    "erlik",
+    "hades"
+   ],
+   "stat": "savunma",
+   "oran": 0.08,
+   "aciklama": "Yeraltının iki hükümdarı."
+  },
+  {
+   "id": "kurtlar",
+   "ad": "Kurt Kardeşliği",
+   "kartlar": [
+    "asena",
+    "fenrir"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Bozkurt ile dev kurt aynı sürüde."
+  },
+  {
+   "id": "ana_tanricalar",
+   "ad": "Ana Tanrıçalar",
+   "kartlar": [
+    "umay",
+    "isis",
+    "freya"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Koruyan, büyüten anaların gücü."
+  },
+  {
+   "id": "avcilar",
+   "ad": "Avcı Okları",
+   "kartlar": [
+    "artemis",
+    "amazon"
+   ],
+   "stat": "hiz",
+   "oran": 0.1,
+   "aciklama": "Tanrıça ve onun savaşçı kızları."
+  },
+  {
+   "id": "tek_goz",
+   "ad": "Tek Gözlüler",
+   "kartlar": [
+    "tepegoz",
+    "odin"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Biri doğuştan, biri bilgelik için tek gözlü."
+  },
+  {
+   "id": "yilanlar",
+   "ad": "Yılan Kraliçeleri",
+   "kartlar": [
+    "sahmeran",
+    "medusa"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "İki yılan saçlı kraliçe."
+  },
+  {
+   "id": "devler",
+   "ad": "Devler Ordusu",
+   "kartlar": [
+    "ymir",
+    "tepegoz",
+    "oni"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Üç diyarın en iri canavarları."
+  },
+  {
+   "id": "kediler",
+   "ad": "Kedi Tanrıçalar",
+   "kartlar": [
+    "bastet",
+    "sekhmet"
+   ],
+   "stat": "hiz",
+   "oran": 0.1,
+   "aciklama": "Ev kedisi ile çöl aslanı."
+  },
+  {
+   "id": "sifacilar",
+   "ad": "Şifacılar",
+   "kartlar": [
+    "asklepios",
+    "idun"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Hekimlik ve gençlik bir arada."
+  },
+  {
+   "id": "bilgeler",
+   "ad": "Bilgeler Meclisi",
+   "kartlar": [
+    "thoth",
+    "dede_korkut",
+    "athena"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Yazının, sözün ve aklın ustaları."
   }
  ]
 }

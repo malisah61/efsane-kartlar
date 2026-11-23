@@ -229,7 +229,7 @@ public partial class SavasEkrani : Control
 		alt.AddChild(Ui.Genis(hizB));
 		alt.AddChild(Ui.Genis(Ui.Dugme("Atla", () => Atla = true, new Color("6a4c8a"))));
 
-		Ses.Muzik(Boss ? "boss" : Arka switch { "yunan" => "savas3", "iskandinav" => "savas2", _ => "savas1" });
+		Ses.Muzik(Boss ? "boss" : Arka switch { "yunan" or "japon" => "savas3", "iskandinav" => "savas2", _ => "savas1" });
 		Ses.Konus("anons_basla");
 		_ = Oynat();
 	}

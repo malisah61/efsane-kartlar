@@ -35,6 +35,9 @@ public static class Onizleme
 		o.OnizlemeDetay("zeus");
 		await Bekle(o, 0.5f);
 		await Kare(o, $"{klasor}/6_kart_detay.png");
+		o.OnizlemeHikaye("susanoo");
+		await Bekle(o, 0.5f);
+		await Kare(o, $"{klasor}/6b_kart_hikaye.png");
 		o.OnizlemeKapat();
 		o.OnizlemeCagir();
 		await Bekle(o, 0.9f);

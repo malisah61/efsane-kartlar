@@ -324,9 +324,9 @@ public partial class Oyun : Control
 		v.AddChild(Ui.Etiket($"Koleksiyon {p.Kartlar.Count}/{Veri.Kartlar.Count}   •   Ruh özü {p.RuhOzu}", 28));
 		var f = Ui.Yatay(6);
 		v.AddChild(f);
-		foreach (var (k, ad) in new[] { ("hepsi", "Tümü"), ("turk", "Türk"), ("yunan", "Yunan"), ("iskandinav", "İskandinav"), ("misir", "Mısır") })
+		foreach (var (k, ad) in new[] { ("hepsi", "Tümü"), ("turk", "Türk"), ("yunan", "Yunan"), ("iskandinav", "İskandinav"), ("misir", "Mısır"), ("japon", "Japon") })
 		{
-			var b = Ui.Genis(Ui.Dugme(ad, () => { _filtre = k; Yenile(); }, _filtre == k ? new Color("3b6fd8") : new Color("2a3052"), 18, 50));
+			var b = Ui.Genis(Ui.Dugme(ad, () => { _filtre = k; Yenile(); }, _filtre == k ? new Color("3b6fd8") : new Color("2a3052"), 16, 50));
 			f.AddChild(b);
 		}
 		var izgara = new GridContainer { Columns = 4 };
@@ -378,6 +378,9 @@ public partial class Oyun : Control
 		uv.AddChild(Ui.Etiket($"Ulti: {t.UltiAd}", 24, Ui.Altin));
 		uv.AddChild(Ui.Etiket(Veri.UltiAciklama(t), 20));
 		uv.AddChild(Ui.Etiket("Enerji 100 olunca otomatik kullanılır.", 16, Ui.Soluk));
+		if (t.Unvan != "") bilgi.AddChild(Ui.Etiket(t.Unvan, 20, new Color("e8d9a8")));
+		int bagSay = Veri.KartBaglari(t.Id).Count();
+		v.AddChild(Ui.Dugme(bagSay > 0 ? $"Efsanesi ve Bağları ({bagSay})" : "Efsanesi", () => KartHikaye(t, gosterim), new Color("5a4a2a"), 21, 56));
 
 		if (s != null && !rakip)
 		{
@@ -444,6 +447,60 @@ public partial class Oyun : Control
 		if (kutlama != null) Kutla(kk, kutlama, kutlama.Contains("Yıldız") ? new Color("c58bff") : Ui.Altin);
 	}
 
+	/// <summary>Kartın biyografisi ve takım bağları (simya).</summary>
+	void KartHikaye(KartTanim t, TakimUyesi gosterim)
+	{
+		var v = Ui.Dikey(10);
+		v.AddChild(Ui.Etiket(t.Ad, 34, Veri.NadirlikRenk(t.Nadirlik), HorizontalAlignment.Center));
+		if (t.Unvan != "") v.AddChild(Ui.Etiket($"{t.Unvan} • {Veri.MitolojiAd(t.Mitoloji)} mitolojisi", 20, new Color("e8d9a8"), HorizontalAlignment.Center));
+		var bp = Ui.Panel(Ui.PanelAcik, 14);
+		v.AddChild(bp);
+		bp.AddChild(Ui.Etiket(t.Biyo == "" ? "Bu kahramanın hikâyesi henüz yazılmadı." : t.Biyo, 20));
+
+		var baglar = Veri.KartBaglari(t.Id).ToList();
+		v.AddChild(Ui.Etiket("Takım Bağları", 26, Ui.Altin));
+		if (baglar.Count == 0)
+			v.AddChild(Ui.Etiket("Bu kartın özel bir bağı yok; mitoloji uyumundan yine de yararlanır.", 18, Ui.Soluk));
+		var takim = Kayit.P.Takim;
+		foreach (var b in baglar)
+		{
+			bool aktif = b.Kartlar.All(k => takim.Contains(k));
+			bool hepsiVar = b.Kartlar.All(k => Kayit.Sahip(k) != null);
+			var pp = Ui.Panel(aktif ? new Color("1f4a32") : Ui.PanelRenk, 10);
+			v.AddChild(pp);
+			var pv = Ui.Dikey(2);
+			pp.AddChild(pv);
+			pv.AddChild(Ui.Etiket(b.Ad + (aktif ? "  (takımda AKTİF)" : ""), 21, aktif ? Ui.Yesil : Colors.White));
+			pv.AddChild(Ui.Etiket(b.Ozet, 18, Ui.Altin));
+			pv.AddChild(Ui.Etiket(b.Aciklama + (aktif || hepsiVar ? "" : "  Eksik: " + string.Join(", ", b.Kartlar.Where(k => Kayit.Sahip(k) == null).Select(k => Veri.Harita[k].Ad))), 16, Ui.Soluk));
+		}
+		v.AddChild(Ui.Etiket("Bağ bonusunu yalnızca bağdaki kartlar alır; hepsi aynı takımda olmalı.", 16, Ui.Soluk, HorizontalAlignment.Center));
+		var sat = Ui.Yatay(10);
+		v.AddChild(sat);
+		sat.AddChild(Ui.Genis(Ui.Dugme("Geri", () => KartDetayi(t, gosterim), new Color("444c6a"), 22)));
+		sat.AddChild(Ui.Genis(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 22)));
+		Pencere(v);
+	}
+
+	/// <summary>Takım ekranındaki simya paneli: aktif bağlar + bir kartı eksik olanlar.</summary>
+	Control SimyaPaneli(List<TakimUyesi> dolu)
+	{
+		var ids = dolu.Select(u => u.Id).ToList();
+		var aktif = Veri.AktifBaglar(ids);
+		var yakin = Veri.Baglar.Where(b => !aktif.Contains(b) && b.Kartlar.Count(ids.Contains) >= 1 && b.Kartlar.Count(k => !ids.Contains(k)) == 1
+			&& Kayit.Sahip(b.Kartlar.First(k => !ids.Contains(k))) != null).Take(3).ToList();
+		var p = Ui.Panel(Ui.PanelRenk, 10);
+		var v = Ui.Dikey(4);
+		p.AddChild(v);
+		v.AddChild(Ui.Etiket(aktif.Count > 0 ? $"Takım Simyası: {aktif.Count} bağ aktif" : "Takım Simyası", 21, Ui.Altin));
+		foreach (var b in aktif) v.AddChild(Ui.Etiket($"{b.Ad} — {b.Ozet}", 17, Ui.Yesil));
+		foreach (var b in yakin)
+			v.AddChild(Ui.Etiket($"{b.Ad}: {Veri.Harita[b.Kartlar.First(k => !ids.Contains(k))].Ad} eklersen {b.StatAd} +%{b.Oran * 100:0}", 17, Ui.Soluk));
+		if (aktif.Count == 0 && yakin.Count == 0)
+			v.AddChild(Ui.Etiket("Efsanelerde birbirine bağlı kahramanları birlikte koy (ör. Zeus + Hades, Amaterasu + Susanoo). Kartın Efsanesi ekranında bağlarını gör.", 17, Ui.Soluk));
+		return p;
+	}
+
 	// ================================================================ TAKIM
 	Control TakimEkrani()
 	{
@@ -456,6 +513,7 @@ public partial class Oyun : Control
 		v.AddChild(Ui.Etiket($"Takım Gücü {Kayit.TakimGucu():N0}", 30, Ui.Altin));
 		float bonus = Savas.MitolojiBonus(enCok);
 		v.AddChild(Ui.Etiket(bonus > 0 ? $"{enCokAd} uyumu ({enCok} kart): can ve saldırı +%{bonus * 100:0}" : "Aynı mitolojiden 2+ kart koyarsan bonus kazanırsın.", 19, bonus > 0 ? Ui.Yesil : Ui.Soluk));
+		v.AddChild(SimyaPaneli(dolu));
 
 		var dizilis = Ui.Panel(Ui.PanelRenk, 12);
 		v.AddChild(dizilis);
@@ -1054,6 +1112,7 @@ public partial class Oyun : Control
 	// ================================================================ önizleme için erişim
 	public void OnizlemeEkran(int i) => Goster((Ekran)i);
 	public void OnizlemeDetay(string id) => KartDetayi(Veri.Harita[id], null);
+	public void OnizlemeHikaye(string id) => KartHikaye(Veri.Harita[id], null);
 	public void OnizlemeCagir() { var once = Kayit.P.Kartlar.Select(k => k.Id).ToHashSet(); Kayit.P.Elmas += 2700; CagirSonucu(Kayit.Cagir("elmas", 10), once); }
 	public void OnizlemeKapat() => PencereKapat();
 	public void OnizlemeGunluk() => GunlukOdulPenceresi();
