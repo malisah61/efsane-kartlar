@@ -6,12 +6,12 @@
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 300,
+   "seed": 777,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Battal Gazi, legendary Seljuk Turkish warrior hero, tall pointed conical iron helmet wrapped with a white turban, chainmail aventail hanging from the helmet, grey beard, long kaftan with lamellar scale armor, green cloak, wide sash belt, holding a curved scimitar sword, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "Battal Gazi, battle-hardened Seljuk Turkish warrior hero in full war gear, tall pointed conical steel helmet with a small white cloth wrapped at its base, chainmail hood under the helmet covering the neck, grey beard, scale lamellar armor over a red kaftan, green cloak, raising a curved scimitar sword, determined fierce expression, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
    "cikti": "assets/kartlar/battal_gazi.png"
   },
   {
@@ -146,12 +146,12 @@
    "tur": "karakter",
    "stil": "pixel",
    "adet": 3,
-   "seed": 305,
+   "seed": 778,
    "boyut": [
     1024,
     1024
    ],
-   "tarif": "Hathor Egyptian goddess of love and music, beautiful woman with long black hair, a golden sun disc held between two large curved cow horns on her head, red linen dress, gold collar necklace, holding a sistrum, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, plain flat solid medium gray background",
+   "tarif": "Hathor Egyptian goddess of love and music, beautiful woman with long black hair, a golden sun disc held between two large curved cow horns on her head, red linen dress, gold collar necklace, holding a sistrum, pixel art, 16-bit SNES JRPG character portrait, head and shoulders bust shot facing forward, close-up of face and shoulders only, bold outlines, rich shading, vibrant colors, single character, isolated on a plain flat solid medium gray background, no scenery, no wall, no pattern",
    "cikti": "assets/kartlar/hathor.png"
   },
   {
