@@ -77,8 +77,8 @@
    "nadirlik": "epik",
    "sinif": "destek",
    "element": "su",
-   "can": 1159,
-   "saldiri": 119,
+   "can": 1173,
+   "saldiri": 123,
    "savunma": 48,
    "hiz": 116,
    "ulti": {
@@ -213,8 +213,8 @@
    "nadirlik": "nadir",
    "sinif": "destek",
    "element": "su",
-   "can": 980,
-   "saldiri": 105,
+   "can": 992,
+   "saldiri": 108,
    "savunma": 46,
    "hiz": 105,
    "ulti": {
@@ -330,8 +330,8 @@
    "nadirlik": "siradan",
    "sinif": "destek",
    "element": "doga",
-   "can": 917,
-   "saldiri": 87,
+   "can": 928,
+   "saldiri": 90,
    "savunma": 38,
    "hiz": 102,
    "ulti": {
@@ -484,8 +484,8 @@
    "nadirlik": "epik",
    "sinif": "destek",
    "element": "ates",
-   "can": 1029,
-   "saldiri": 121,
+   "can": 1042,
+   "saldiri": 125,
    "savunma": 53,
    "hiz": 111,
    "ulti": {
@@ -613,8 +613,8 @@
    "nadirlik": "nadir",
    "sinif": "destek",
    "element": "su",
-   "can": 955,
-   "saldiri": 101,
+   "can": 966,
+   "saldiri": 104,
    "savunma": 44,
    "hiz": 109,
    "ulti": {
@@ -731,8 +731,8 @@
    "nadirlik": "siradan",
    "sinif": "destek",
    "element": "doga",
-   "can": 856,
-   "saldiri": 93,
+   "can": 866,
+   "saldiri": 96,
    "savunma": 41,
    "hiz": 106,
    "ulti": {
@@ -835,8 +835,8 @@
    "nadirlik": "epik",
    "sinif": "destek",
    "element": "doga",
-   "can": 1098,
-   "saldiri": 115,
+   "can": 1111,
+   "saldiri": 118,
    "savunma": 47,
    "hiz": 117,
    "ulti": {
@@ -1001,8 +1001,8 @@
    "nadirlik": "nadir",
    "sinif": "destek",
    "element": "su",
-   "can": 994,
-   "saldiri": 105,
+   "can": 1006,
+   "saldiri": 109,
    "savunma": 46,
    "hiz": 115,
    "ulti": {
@@ -1125,8 +1125,8 @@
    "nadirlik": "siradan",
    "sinif": "destek",
    "element": "doga",
-   "can": 864,
-   "saldiri": 94,
+   "can": 875,
+   "saldiri": 97,
    "savunma": 42,
    "hiz": 106,
    "ulti": {
@@ -1219,8 +1219,8 @@
    "nadirlik": "epik",
    "sinif": "destek",
    "element": "su",
-   "can": 1073,
-   "saldiri": 114,
+   "can": 1085,
+   "saldiri": 117,
    "savunma": 52,
    "hiz": 124,
    "ulti": {
@@ -1379,8 +1379,8 @@
    "nadirlik": "nadir",
    "sinif": "destek",
    "element": "doga",
-   "can": 939,
-   "saldiri": 109,
+   "can": 950,
+   "saldiri": 112,
    "savunma": 43,
    "hiz": 118,
    "ulti": {
@@ -1503,8 +1503,8 @@
    "nadirlik": "siradan",
    "sinif": "destek",
    "element": "ates",
-   "can": 914,
-   "saldiri": 99,
+   "can": 925,
+   "saldiri": 102,
    "savunma": 37,
    "hiz": 113,
    "ulti": {
@@ -1876,8 +1876,8 @@
    "nadirlik": "epik",
    "sinif": "destek",
    "element": "su",
-   "can": 1120,
-   "saldiri": 109,
+   "can": 1133,
+   "saldiri": 113,
    "savunma": 52,
    "hiz": 117,
    "ulti": {
@@ -1975,8 +1975,8 @@
    "nadirlik": "nadir",
    "sinif": "destek",
    "element": "doga",
-   "can": 917,
-   "saldiri": 103,
+   "can": 928,
+   "saldiri": 106,
    "savunma": 42,
    "hiz": 116,
    "ulti": {
@@ -2135,8 +2135,8 @@
    "nadirlik": "nadir",
    "sinif": "destek",
    "element": "ates",
-   "can": 912,
-   "saldiri": 108,
+   "can": 922,
+   "saldiri": 112,
    "savunma": 44,
    "hiz": 117,
    "ulti": {
@@ -2320,8 +2320,8 @@
    "nadirlik": "siradan",
    "sinif": "destek",
    "element": "su",
-   "can": 850,
-   "saldiri": 96,
+   "can": 860,
+   "saldiri": 99,
    "savunma": 39,
    "hiz": 112,
    "ulti": {
@@ -2414,8 +2414,8 @@
    "nadirlik": "epik",
    "sinif": "destek",
    "element": "su",
-   "can": 1117,
-   "saldiri": 124,
+   "can": 1131,
+   "saldiri": 128,
    "savunma": 49,
    "hiz": 123,
    "ulti": {
@@ -2544,8 +2544,8 @@
    "nadirlik": "nadir",
    "sinif": "destek",
    "element": "doga",
-   "can": 901,
-   "saldiri": 104,
+   "can": 912,
+   "saldiri": 107,
    "savunma": 45,
    "hiz": 112,
    "ulti": {
@@ -2736,8 +2736,8 @@
    "nadirlik": "siradan",
    "sinif": "destek",
    "element": "su",
-   "can": 882,
-   "saldiri": 88,
+   "can": 893,
+   "saldiri": 91,
    "savunma": 40,
    "hiz": 108,
    "ulti": {
@@ -2746,7 +2746,13 @@
      {
       "tip": "iyilestir",
       "hedef": "en_zayif_dost",
-      "carpan": 1.5
+      "carpan": 1.8
+     },
+     {
+      "tip": "kalkan",
+      "hedef": "en_zayif_dost",
+      "oran": 0.12,
+      "tur": 2
      },
      {
       "tip": "enerji",
@@ -3299,6 +3305,162 @@
    "stat": "hiz",
    "oran": 0.1,
    "aciklama": "Kılık değiştiren üç düzenbaz."
+  },
+  {
+   "id": "ergenekon",
+   "ad": "Ergenekon'dan Çıkış",
+   "kartlar": [
+    "asena",
+    "demir_alp"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Demir dağı eriten demirci ve yolu gösteren bozkurt."
+  },
+  {
+   "id": "gok_yolculugu",
+   "ad": "Gök Yolculuğu",
+   "kartlar": [
+    "kam",
+    "ulgen"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Şaman davuluyla göğün katlarına çıkıp Ülgen'e ulaşır."
+  },
+  {
+   "id": "lohusa_bekcisi",
+   "ad": "Lohusa Bekçisi",
+   "kartlar": [
+    "umay",
+    "al_karisi"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Umay Ana anneleri ve bebekleri Al Karısı'ndan korur; ezeli düşmanlar birbirini sınar."
+  },
+  {
+   "id": "ragnarok_duellosu",
+   "ad": "Ragnarök Düellosu",
+   "kartlar": [
+    "heimdall",
+    "loki"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Kıyamet günü birbirini yok edecek iki ezeli düşman."
+  },
+  {
+   "id": "seidr",
+   "ad": "Seiðr Büyüsü",
+   "kartlar": [
+    "freya",
+    "volva"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Freya'nın öğrettiği kehanet büyüsü kâhinin elinde."
+  },
+  {
+   "id": "runler",
+   "ad": "Rünlerin Sırrı",
+   "kartlar": [
+    "odin",
+    "runa_ustasi"
+   ],
+   "stat": "can",
+   "oran": 0.08,
+   "aciklama": "Dünya ağacında asılı kalıp rünleri bulan Odin ve öğrencisi."
+  },
+  {
+   "id": "nil_bekcileri",
+   "ad": "Nil'in Bekçileri",
+   "kartlar": [
+    "sobek",
+    "kahin"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Timsah tanrı ve Nil'in taşkınlarını okuyan kâhin."
+  },
+  {
+   "id": "yedi_akrep",
+   "ad": "Yedi Akrep",
+   "kartlar": [
+    "isis",
+    "akrep"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "İsis'i saklandığı bataklıkta yedi akrep korumuştu."
+  },
+  {
+   "id": "hathor_rahibesi",
+   "ad": "Hathor'un Rahibesi",
+   "kartlar": [
+    "hathor",
+    "ankh_rahibesi"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Tanrıça ve tapınağında ankh taşıyan rahibesi."
+  },
+  {
+   "id": "kurama_dagi",
+   "ad": "Kurama Dağı",
+   "kartlar": [
+    "tengu",
+    "samuray"
+   ],
+   "stat": "hiz",
+   "oran": 0.1,
+   "aciklama": "Efsaneye göre Kurama Dağı'nın tengusu genç samuraya kılıç öğretti."
+  },
+  {
+   "id": "kalkan_duvari",
+   "ad": "Kalkan Duvarı",
+   "kartlar": [
+    "bahadir",
+    "kalkanci",
+    "hoplit"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Üç diyarın kalkancıları omuz omuza."
+  },
+  {
+   "id": "su_ruhlari",
+   "ad": "Su Ruhları",
+   "kartlar": [
+    "su_iyesi",
+    "kappa",
+    "nimf"
+   ],
+   "stat": "hiz",
+   "oran": 0.1,
+   "aciklama": "Göllerin, nehirlerin ve pınarların sahipleri."
+  },
+  {
+   "id": "olumcul_ezgi",
+   "ad": "Ölümcül Ezgi",
+   "kartlar": [
+    "siren",
+    "yuki_onna"
+   ],
+   "stat": "saldiri",
+   "oran": 0.08,
+   "aciklama": "Yolcuyu güzelliğiyle çağırıp ölüme götürenler."
+  },
+  {
+   "id": "kadim_bekciler",
+   "ad": "Kadim Bekçiler",
+   "kartlar": [
+    "sfenks",
+    "minotor"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Biri piramitlerin, biri labirentin yarı insan bekçisi."
   }
  ]
 }

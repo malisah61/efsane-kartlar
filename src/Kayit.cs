@@ -65,6 +65,10 @@ public class Profil
 	public int EtkinlikHafta { get; set; } = -1;
 	public int EtkinlikPuan { get; set; }
 	public List<int> EtkinlikAlinan { get; set; } = new();
+	public int EtkinlikJeton { get; set; }          // etkinlik mağazası parası (haftalık)
+	public List<int> EtkinlikAlim { get; set; } = new();   // mağazadan alınan ürün sıraları (haftalık)
+	public int MuhafizSavas { get; set; }           // bugünkü mitoloji muhafızı savaşları
+	public int RehberAdim { get; set; }             // Başlangıç Yolu: ödülü alınan adım sayısı
 	public bool Reklamsiz => AlinanUrunler.Contains("reklam_kaldir");
 }
 
@@ -216,6 +220,7 @@ public static class Kayit
 			["skKimlik"] = p.SezonKartiKimlik, ["skXp"] = p.SezonXp, ["skPremium"] = p.SezonPremium,
 			["skAlinan"] = Dizi(p.SezonAlinan), ["skAlinanP"] = Dizi(p.SezonAlinanP),
 			["etHafta"] = p.EtkinlikHafta, ["etPuan"] = p.EtkinlikPuan, ["etAlinan"] = Dizi(p.EtkinlikAlinan),
+			["etJeton"] = p.EtkinlikJeton, ["etAlim"] = Dizi(p.EtkinlikAlim), ["muhafiz"] = p.MuhafizSavas, ["rehber"] = p.RehberAdim,
 		};
 	}
 
@@ -261,6 +266,12 @@ public static class Kayit
 		p.EtkinlikHafta = d.ContainsKey("etHafta") ? I("etHafta") : -1;
 		p.EtkinlikPuan = I("etPuan");
 		if (d.ContainsKey("etAlinan")) foreach (var x in d["etAlinan"].AsGodotArray()) p.EtkinlikAlinan.Add(x.AsInt32());
+		// eski kayıtlarda jeton yoktu: bu haftanın puanı kadar jetonla başla
+		p.EtkinlikJeton = d.ContainsKey("etJeton") ? I("etJeton") : p.EtkinlikPuan;
+		if (d.ContainsKey("etAlim")) foreach (var x in d["etAlim"].AsGodotArray()) p.EtkinlikAlim.Add(x.AsInt32());
+		p.MuhafizSavas = I("muhafiz");
+		p.RehberAdim = I("rehber");
+		if (!d.ContainsKey("rehber") && p.EnIyiAsama >= 12) p.RehberAdim = 99;   // eski, ilerlemiş oyuncular rehberi görmez
 		if (d.ContainsKey("kartlar"))
 			foreach (var kv in d["kartlar"].AsGodotArray())
 			{
@@ -297,7 +308,7 @@ public static class Kayit
 		P.GirisOdulAlindi = false;
 		P.ArenaHak = Math.Max(P.ArenaHak, ArenaGunlukHak);
 		P.ArenaYenileme = 0;
-		P.GunlukSavas = P.GunlukCekim = P.GunlukYukseltme = P.GunlukHikaye = P.EnerjiAlim = P.ArenaGunlukSavas = 0;
+		P.GunlukSavas = P.GunlukCekim = P.GunlukYukseltme = P.GunlukHikaye = P.EnerjiAlim = P.ArenaGunlukSavas = P.MuhafizSavas = 0;
 		P.AlinanGorevler.Clear();
 		P.ReklamGunluk = new int[4];
 		Kaydet();

@@ -72,6 +72,16 @@ public static class Onizleme
 		await Bekle(o, 0.5f);
 		await Kare(o, $"{klasor}/14_etkinlik.png");
 		o.OnizlemeKapat();
+		p.EtkinlikJeton = 640;
+		p.EtkinlikAlim.Add(0);
+		o.OnizlemeEtkinlikMagaza();
+		await Bekle(o, 0.5f);
+		await Kare(o, $"{klasor}/14b_etkinlik_magaza.png");
+		o.OnizlemeKapat();
+		o.OnizlemeMuhafiz();
+		await Bekle(o, 0.5f);
+		await Kare(o, $"{klasor}/14c_muhafiz.png");
+		o.OnizlemeKapat();
 		o.OnizlemeKutlama(p.Kartlar[0].Id);
 		await Bekle(o, 0.35f);
 		await Kare(o, $"{klasor}/15_seviye_atlama.png");

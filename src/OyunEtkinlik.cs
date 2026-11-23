@@ -19,7 +19,7 @@ public partial class Oyun
 		int n = Etkinlik.AlinabilirSayi();
 		var k = Etkinlik.Kalan;
 		string ust = $"Etkinlik: {Etkinlik.Ad}";
-		string alt = n > 0 ? $"{n} ödül hazır!" : $"{Etkinlik.Puan} puan  •  {k.Days}g {k.Hours}s kaldı";
+		string alt = n > 0 ? $"{n} ödül hazır!" : Etkinlik.MuhafizKalan > 0 ? $"{Etkinlik.Puan} puan  •  Muhafızlar {Etkinlik.MuhafizKalan}/{Etkinlik.MuhafizHak}  •  {k.Days}g kaldı" : $"{Etkinlik.Puan} puan  •  {k.Days}g {k.Hours}s kaldı";
 		return Ui.Dugme($"{ust}\n{alt}", EtkinlikPenceresi, MitolojiRenk(Etkinlik.Mitoloji).Darkened(0.15f), 21, 84);
 	}
 
@@ -41,7 +41,7 @@ public partial class Oyun
 		bv.AddChild(Ui.Etiket("Bu hafta", 22, Colors.White, HorizontalAlignment.Center));
 		bv.AddChild(Ui.Etiket($"• {Veri.MitolojiAd(m)} kartları hikâyede ve kulede can/saldırı +%{Etkinlik.GucBonus * 100:0}", 18, Ui.Yesil));
 		bv.AddChild(Ui.Etiket($"• Çağırmada {Veri.MitolojiAd(m)} kartları 2 kat sık çıkar", 18, Ui.Elmas));
-		bv.AddChild(Ui.Etiket("• Zafer: hikâye/kule 10, arena 15 puan; takımdaki her etkinlik kartı +5 puan", 18, Colors.White));
+		bv.AddChild(Ui.Etiket("• Zafer: hikâye/kule 10, arena 15 puan (+5/etkinlik kartı); puan kadar jeton", 18, Colors.White));
 		int sayi = Etkinlik.TakimdakiSayi(Kayit.TakimUyeleri());
 		bv.AddChild(Ui.Etiket(sayi > 0 ? $"Takımında {sayi} {Veri.MitolojiAd(m)} kartı var: zafer başına {Etkinlik.ZaferPuani(false)} puan" : $"Takımına {Veri.MitolojiAd(m)} kartı koyarsan daha çok puan kazanırsın!", 18, sayi > 0 ? Ui.Altin : Ui.Soluk));
 
@@ -53,7 +53,7 @@ public partial class Oyun
 			v.AddChild(kp);
 			var kh = Ui.Yatay(12);
 			kp.AddChild(kh);
-			var kk = new KartKutu(kah, 120) { Kilitli = Kayit.Sahip(kah.Id) == null };
+			var kk = new KartKutu(kah, 96) { Kilitli = Kayit.Sahip(kah.Id) == null };
 			kk.Tiklandi = () => KartDetayi(kah, null);
 			kh.AddChild(kk);
 			var kv = Ui.Genis(Ui.Dikey(4));
@@ -77,7 +77,7 @@ public partial class Oyun
 			var o = Etkinlik.Oduller[i];
 			bool alindi = Etkinlik.Alindi(i);
 			bool hazir = Etkinlik.Alinabilir(i);
-			var sp = Ui.Panel(o.KahramanKopya ? new Color("3a2f55") : Ui.PanelRenk, 8, 10);
+			var sp = Ui.Panel(o.KahramanKopya ? new Color("3a2f55") : Ui.PanelRenk, 5, 10);
 			liste.AddChild(sp);
 			var h = Ui.Yatay(8);
 			sp.AddChild(h);
@@ -96,12 +96,18 @@ public partial class Oyun
 				if (s == null) return;
 				Ses.Efekt(o.KahramanKopya ? "efsanevi" : "para");
 				PencereKapat(); Yenile(); EtkinlikPenceresi(); Mesaj("+" + s);
-			}, hazir ? Ui.Yesil.Darkened(0.2f) : new Color("3a4060"), 18, 44);
-			b.CustomMinimumSize = new Vector2(110, 44);
+			}, hazir ? Ui.Yesil.Darkened(0.2f) : new Color("3a4060"), 18, 40);
+			b.CustomMinimumSize = new Vector2(110, 40);
 			b.Disabled = !hazir;
 			h.AddChild(b);
 		}
 		v.AddChild(liste);
+
+		// muhafız savaşı + etkinlik mağazası
+		var ek = Ui.Yatay(10);
+		v.AddChild(ek);
+		ek.AddChild(Ui.Genis(Ui.Dugme($"Muhafızlar ({Etkinlik.MuhafizKalan}/{Etkinlik.MuhafizHak})", MuhafizPenceresi, new Color("a0402f"), 21, 58)));
+		ek.AddChild(Ui.Genis(Ui.Dugme($"Mağaza ({Etkinlik.Jeton:N0} jeton)", EtkinlikMagazasi, new Color("8a4fc0"), 21, 58)));
 
 		var alt = Ui.Yatay(10);
 		v.AddChild(alt);

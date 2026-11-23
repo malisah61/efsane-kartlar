@@ -259,6 +259,44 @@ public partial class SavasEkrani : Control
 		var k = _kutular[idx]; k.Can = can; k.Kalkan = kalkan; k.QueueRedraw();
 	}
 
+	/// <summary>Ulti yakın planı: ekranı boydan kesen şeritte kartın portresi ve ulti adı kayarak girer.</summary>
+	void UltiYakinPlan(Birim b, string ultiAd)
+	{
+		bool biz = b.Taraf == 0;
+		var renk = Efekt.ElementRengi(b.T.Element);
+		var kok = new Control { Position = new Vector2(0, SahneUst + 150), Size = new Vector2(720, 170), MouseFilter = MouseFilterEnum.Ignore, ZIndex = 20 };
+		AddChild(kok);
+		kok.AddChild(new ColorRect { Color = new Color(0, 0, 0, 0.72f), Size = new Vector2(720, 170), MouseFilter = MouseFilterEnum.Ignore });
+		kok.AddChild(new ColorRect { Color = renk, Size = new Vector2(720, 5), MouseFilter = MouseFilterEnum.Ignore });
+		kok.AddChild(new ColorRect { Color = renk, Position = new Vector2(0, 165), Size = new Vector2(720, 5), MouseFilter = MouseFilterEnum.Ignore });
+		// kayan içerik: portre + yazılar
+		var ic = new Control { Size = new Vector2(720, 170), MouseFilter = MouseFilterEnum.Ignore };
+		kok.AddChild(ic);
+		var portre = new TextureRect
+		{
+			Texture = Veri.Portre(b.T.Id), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered,
+			TextureFilter = TextureFilterEnum.Nearest, Size = new Vector2(150, 150), Position = new Vector2(biz ? 30 : 540, 10),
+			FlipH = !biz, MouseFilter = MouseFilterEnum.Ignore,
+		};
+		ic.AddChild(portre);
+		var ad = Ui.Etiket(b.T.Ad, 24, biz ? Ui.Yesil : Ui.Kirmizi, biz ? HorizontalAlignment.Left : HorizontalAlignment.Right);
+		ad.Position = new Vector2(biz ? 200 : 20, 34); ad.Size = new Vector2(500, 34);
+		ic.AddChild(ad);
+		var ul = Ui.Etiket(ultiAd + "!", 40, Ui.Altin, biz ? HorizontalAlignment.Left : HorizontalAlignment.Right);
+		ul.AddThemeConstantOverride("outline_size", 8);
+		ul.AddThemeColorOverride("font_outline_color", Colors.Black);
+		ul.Position = new Vector2(biz ? 200 : 20, 72); ul.Size = new Vector2(500, 56);
+		ic.AddChild(ul);
+		ic.Position = new Vector2(biz ? -720 : 720, 0);
+		kok.Modulate = new Color(1, 1, 1, 0);
+		var tw = kok.CreateTween();
+		tw.TweenProperty(kok, "modulate:a", 1f, 0.1f / Hiz);
+		tw.Parallel().TweenProperty(ic, "position:x", 0f, 0.18f / Hiz).SetTrans(Tween.TransitionType.Back).SetEase(Tween.EaseType.Out);
+		tw.TweenProperty(ic, "position:x", biz ? 24f : -24f, 0.5f / Hiz);
+		tw.TweenProperty(kok, "modulate:a", 0f, 0.2f / Hiz);
+		tw.TweenCallback(Callable.From(kok.QueueFree));
+	}
+
 	static bool Yakin(Birim b) => b.T.Sinif is "tank" or "savasci";
 	static bool Yildirimli(Birim b) => b.T.Id is "zeus" or "thor" or "odin";
 
@@ -283,7 +321,9 @@ public partial class SavasEkrani : Control
 					Ses.Konus(s.B.T.Id);
 					Ses.Efekt("buyu", -4, 0.7f);
 					foreach (var k in _kutular.Values) { k.Aktif = k.B.Idx == o.Kaynak; k.QueueRedraw(); }
-					_ultiEtiket.Text = $"{s.B.T.Ad}: {o.Metin}!";
+					bool yakinPlan = Hiz < 3 && !Atla;
+					if (yakinPlan) UltiYakinPlan(s.B, o.Metin);
+					_ultiEtiket.Text = yakinPlan ? "" : $"{s.B.T.Ad}: {o.Metin}!";
 					_ultiEtiket.Modulate = Colors.White;
 					var tw = CreateTween();
 					tw.TweenInterval(1.1f / Hiz);
@@ -295,7 +335,7 @@ public partial class SavasEkrani : Control
 					var st = s.CreateTween();
 					st.TweenProperty(s, "position", s.Ev + new Vector2(0, -16), 0.15f / Hiz);
 					st.TweenProperty(s, "position", s.Ev, 0.15f / Hiz);
-					await Bekle(0.45f);
+					await Bekle(yakinPlan ? 0.8f : 0.45f);
 					break;
 				}
 

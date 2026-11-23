@@ -227,6 +227,10 @@ public partial class Oyun : Control
 		var p = Kayit.P;
 		v.AddChild(Ui.Etiket($"Takım gücü {Kayit.TakimGucu():N0}   •   {Rakipler.Lig(p.Kupa)} Ligi   •   {p.Kartlar.Count}/{Veri.Kartlar.Count} kart", 20, Ui.Soluk, HorizontalAlignment.Center));
 
+		// yeni oyuncu rehberi
+		var rehber = RehberPaneli();
+		if (rehber != null) v.AddChild(rehber);
+
 		// hikâye
 		int asama = Math.Min(p.EnIyiAsama + 1, Rakipler.AsamaSayisi);
 		var hp = Ui.Panel(Ui.PanelRenk, 16);
@@ -1123,6 +1127,8 @@ public partial class Oyun : Control
 	public void OnizlemeKule() => KulePenceresi();
 	public void OnizlemeSezon() => SezonPenceresi();
 	public void OnizlemeEtkinlik() => EtkinlikPenceresi();
+	public void OnizlemeEtkinlikMagaza() => EtkinlikMagazasi();
+	public void OnizlemeMuhafiz() => MuhafizPenceresi();
 	public void OnizlemeKutlama(string id) => KartDetayi(Veri.Harita[id], null, "Seviye 12!");
 	public SavasEkrani OnizlemeSavas(int asama)
 	{

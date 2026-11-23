@@ -29,7 +29,7 @@ SINIF = {  # can, saldırı, savunma, hız
     "tank":    (1200, 62, 60, 92),
     "savasci": (820, 110, 34, 112),
     "buyucu":  (660, 120, 24, 100),
-    "destek":  (840, 90, 38, 108),
+    "destek":  (850, 93, 38, 108),
 }
 
 def H(hedef, carpan, **k): return {"tip": "hasar", "hedef": hedef, "carpan": carpan, **k}
@@ -309,7 +309,7 @@ K_ = [
      [H("rastgele", 1.0, adet=2), Y("son", 0.2, 3)],
      "Chinese Taoist priest sorcerer, black and white yin yang robe, black Taoist hat, thin long beard, holding yellow paper talismans with red writing that burn with fire, peach wood sword"),
     ("qilin", "Qilin", "cin", "siradan", "destek", "su", "Uğur Işığı",
-     [I("en_zayif_dost", 1.5), E("tum_dost", 10)],
+     [I("en_zayif_dost", 1.8), K("en_zayif_dost", 0.12, 2), E("tum_dost", 10)],
      "Qilin Chinese mythical chimera, deer-like body covered in blue and gold dragon scales, single antler horn, flowing cloud-like mane and tail, hooves wreathed in soft flames, gentle glowing eyes"),
 ]
 

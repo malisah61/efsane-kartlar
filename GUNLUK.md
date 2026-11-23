@@ -37,3 +37,12 @@
 - 12 kart: Sun Wukong (efsanevi), Yeşim İmparator, Guan Yu, Gök Ejderhası (epik), Nezha, Nüwa, Chang'e, Zhong Kui (nadir), Terakota Askeri, Şaolin Keşişi, Taocu Büyücü, Qilin (sıradan). Portre, beden, arka plan (saray avlusu) Sprite Atölye; replikler Speko.
 - 12 yeni bağ (toplam 48), ör. Batı'ya Yolculuk, Ejderha Kralları, Hilebazlar (Sun Wukong+Loki+Kitsune). Etkinlik kahramanı Guan Yu.
 - Kartlar ekranındaki mitoloji filtresi 4 sütunlu ızgara oldu (mitoloji sayısı arttıkça satır ekler).
+
+## 2026-11-24 — Başlangıç Yolu, Mitoloji Muhafızları, etkinlik mağazası, ulti yakın planı
+- Yeni: **Başlangıç Yolu** — yeni oyuncuya oyunu sırayla tanıtan 10 adım (ilk zafer, seviye atlatma, çağırma, arena, kule, ilk boss, efsane bağı, 2★, etkinlik puanı, aşama 12). Ana sayfanın tepesinde parlayan panel, "Git" ilgili ekrana götürür, "Al" ödülü verir (toplam 5.000 altın, 410 elmas, 3 parşömen). Aşama 12'yi geçmiş eski kayıtlar görmez.
+- Yeni: **Mitoloji Muhafızları** — etkinlik boss'u: haftanın mitolojisinin en güçlü 5 kartı, senin takımının ortalama seviye/yıldızında ve tam mitoloji uyumuyla. Günde 3 hak, enerjisiz; zafer 4 kat etkinlik puanı + 800 altın, yenilgi 10 puan.
+- Yeni: **Etkinlik Mağazası** — her etkinlik puanı 1 jeton da verir. Altın, ruh özü, parşömen, etkinlik mitolojisinden rastgele nadir/epik kart, etkinlik kahramanı kopyası (haftalık sınırlı). Jetonlar hafta sonunda sıfırlanır.
+- İyileştirme: **ulti yakın planı** — ulti atılınca kartın portresi ve ulti adı ekranı kesen renkli bir şeritte kayarak girer (Hız 3'te ve "Atla"da kapalı).
+- İyileştirme: etkinlik penceresi sıkılaştırıldı, Muhafızlar/Mağaza düğmeleri eklendi; ana sayfadaki etkinlik düğmesi kalan muhafız hakkını gösterir.
+- Takım simyası: bağı olmayan 19 kartın hepsine 14 yeni bağ (toplam 62): Ergenekon'dan Çıkış (Asena+Demir Alp), Gök Yolculuğu (Kam+Ülgen), Lohusa Bekçisi (Umay+Al Karısı), Ragnarök Düellosu (Heimdall+Loki), Seiðr Büyüsü (Freya+Völva), Rünlerin Sırrı (Odin+Rün Ustası), Nil'in Bekçileri (Sobek+Nil Kâhini), Yedi Akrep (İsis+Akrep Savaşçısı), Hathor'un Rahibesi, Kurama Dağı (Tengu+Samuray), Kalkan Duvarı (Bahadır+Viking Kalkancı+Hoplit), Su Ruhları (Su İyesi+Kappa+Nimf), Ölümcül Ezgi (Siren+Yuki-onna), Kadim Bekçiler (Sfenks+Minotor).
+- Denge: destek sınıfı %47,4 / savaşçı %52,7 (fark 5,3) → destek can 840→850, saldırı 90→93; Qilin (%32,5, en düşük) iyileştirme 1.5→1.8 + küçük kalkan.

@@ -1,7 +1,7 @@
 # Efsane Kartlar — Tasarım ve Yol Haritası
 
 ## Oyun özeti
-Türk, Yunan, İskandinav ve Mısır mitolojilerinden 52 kahraman kartı topla, yükselt, 5 kişilik takım kur.
+Türk, Yunan, İskandinav, Mısır, Japon ve Çin mitolojilerinden 86 kahraman kartı topla, yükselt, 5 kişilik takım kur.
 Savaşlar otomatik ve sıra tabanlıdır; strateji takım kurmada: diziliş (2 ön, 3 arka), element üstünlüğü, mitoloji uyumu ve ultilerin uyumu.
 
 ## Kartlar (çıkış seti 48 + ek kartlar)
@@ -50,10 +50,14 @@ Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), 
    - [x] Efsaneler Kulesi (100 kat) — 2026-11-18
    - [ ] Lonca boss'u (sunucu: lonca üyelerinin toplam hasarı, haftalık ödül)
    - [x] Haftalık etkinlik: Mitoloji Haftası (+%10, çağırma oranı, puan eşikleri, etkinlik kahramanı) — 2026-11-19
-   - [ ] Etkinliğe özel boss aşaması / etkinlik mağazası (puanla takas)
+   - [x] Etkinliğe özel boss: Mitoloji Muhafızları (günde 3, enerjisiz, takım seviyesinde, 4 kat puan) — 2026-11-24
+   - [x] Etkinlik mağazası: her puan 1 jeton; altın/ruh özü/parşömen/etkinlik mitolojisinden nadir-epik kart/kahraman kopyası, haftalık sınırlı — 2026-11-24
    - [ ] Kule'ye haftalık "mitoloji kısıtlı" katlar
 6. [~] Ses/müzik [x], savaş efektleri [x], kart çekme animasyonu [x] (kart çevirme, nadirlik parıltısı, efsanevide ekran flaşı), menü rozetleri [x]
    - [x] Seviye/yıldız atlatma kutlaması + çoklu seviye düğmesi (2026-11-19)
-   - [ ] Ulti yakın plan
+   - [x] Ulti yakın plan: portre + ulti adı kayan şerit (Hız 3'te kapalı) — 2026-11-24
 7. [~] Yeni kartlar (ayda 2-4): Köroğlu, Perseus, Fenrir, Sekhmet eklendi (2026-11-19, Kasım kotası doldu). Sonraki: Aralık'ta 2-4 kart (bedenleri de çizilmeli)
-8. [ ] Yeni oyuncu rehberi (ilk 10 dakika: ok işaretli adımlar)
+8. [x] Yeni oyuncu rehberi: **Başlangıç Yolu** (10 adım, ana sayfada parlayan panel, Git/Al düğmesi; aşama 12'yi geçmiş eski oyunculara gösterilmez) — 2026-11-24
+   - [ ] Sonraki: ilk açılışta kısa hikâye girişi, alt menüde rehberin gösterdiği sekmeye ok işareti
+9. [~] Takım simyası: 62 bağ (2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi, ör. Ergenekon, Ragnarök Düellosu, Yedi Akrep, Su Ruhları, Kalkan Duvarı)
+10. [ ] Sıradaki fikirler: Kule'ye haftalık "mitoloji kısıtlı" katlar, lonca boss'u (sunucu), kart koleksiyon başarımları (mitoloji tamamlama ödülü), takım ön ayarları (hikâye/arena/kule için ayrı diziliş)
