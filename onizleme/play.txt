@@ -1,6 +1,6 @@
 durum: success
 Downloading https://services.gradle.org/distributions/gradle-8.14.5-bin.zip
-.............10%.............20%.............30%.............40%.............50%.............60%..............70%.............80%.............90%.............100%
+.............10%.............20%.............30%.............40%.............50%..............60%.............70%.............80%.............90%.............100%
 Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
 
 [   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
