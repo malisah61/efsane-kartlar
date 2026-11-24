@@ -54,3 +54,12 @@
 - İyileştirme: Kartlar ekranındaki mitoloji filtresinde koleksiyon sayısı (ör. "Türk 12/16"); tamamlanan mitoloji altın renkli.
 - Takım simyası: 4 yeni bağ (toplam 66): Şoki ve Oni (Zhong Kui+Oni), Kilden İnsan (Nüwa+Ülgen), Göklerin Hükümdarları (Yeşim İmparator+Zeus+Odin), Odin'in Seçtikleri (Odin+Valkür).
 - Denge (önceki test: saldıran %50,1, zaman aşımı %8,0, sınıflar %48,0–52,5): Völva 2.3→2.5 + zayıflatma tüm düşmanlara, Valkür 2.3→2.2, Chang'e 0.75→0.85 + sersemletme %18, Zhong Kui kendine kalkan, Taocu 2×1.0→3×0.85, Dede Korkut takıma küçük iyileştirme, Hel iyileştirme 1.35→1.5 + enerji 15; Köroğlu 2.2→2.1 (güçlendirme %12), Sun Wukong 0.95→0.9.
+
+## 2026-11-24 (gece) — Mühürlü Katlar, savaş öncesi diziliş seçici, element önerisi
+- Yeni: **Mühürlü Katlar** (Kule penceresinde düğme): her hafta bir mitolojinin mührü (etkinlik mitolojisinden farklı). 10 kat; yalnızca o mitolojinin kartları savaşır, diğerlerinin yeri boş kalır. Düşmanlar başka mitolojilerden; zorluk hafta başında ana kule ilerlemesinin %70'ine sabitlenir. Ödüller haftada bir: her kat altın + 15 ruh özü, 5. kat 30 elmas, 10. kat (boss) 60 elmas + parşömen + 40 ruh özü. Ana sayfadaki kule düğmesi mühür ilerlemesini gösterir.
+- Yeni: **savaş öncesi diziliş seçici** — Kule, Mühürlü Katlar ve Muhafızlar pencerelerinde "Diziliş: 1 / 2 / 3" satırı; kayıtlı dizilişe tek dokunuşla geçip pencere güncellenir.
+- İyileştirme: **element önerisi** — aynı pencerelerde düşmanın baskın elementi ve ona üstün gelen element (takımında kaç tane olduğu) yazar.
+- İyileştirme: Kule penceresinin alt satırı (Mühürlü Katlar + Kapat).
+- Takım simyası: 4 yeni bağ (toplam 70): Kalbin Tartılışı (Anubis+Thoth), Gorgon'un Başı (Perseus+Medusa), Girit Boğası (Herakles+Minotor), Fırtına Tanrıları (Set+Raijin).
+- Denge (önceki test: saldıran %50,3, zaman aşımı %8,1, sınıflar %48,2–52,4): Völva (%33,1, en düşük) ultisine 2 tur yanma, Nil Kâhini kum fırtınasına hafif yanma; Susanoo 1.8→1.7, Valkür 2.2→2.1.
+

@@ -6,3 +6,4 @@ build/
 bin/
 obj/
 .mono/
+__pycache__/

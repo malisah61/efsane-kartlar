@@ -64,6 +64,10 @@ public static class Onizleme
 		await Bekle(o, 0.4f);
 		await Kare(o, $"{klasor}/12_kule.png");
 		o.OnizlemeKapat();
+		o.OnizlemeMuhur();
+		await Bekle(o, 0.4f);
+		await Kare(o, $"{klasor}/12b_muhur.png");
+		o.OnizlemeKapat();
 		SezonKarti.Kontrol();
 		p.SezonXp = 7 * SezonKarti.SeviyeXp + 140;
 		p.SezonAlinan.AddRange(new[] { 1, 2, 3, 4 });

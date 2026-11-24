@@ -126,8 +126,10 @@ public partial class Oyun
 		v.AddChild(MiniTakim(dusman, 104));
 		int dg = Kayit.TakimGucu(dusman), bg = Kayit.TakimGucu();
 		v.AddChild(Ui.Etiket($"Muhafız gücü {dg:N0}   •   Senin gücün {bg:N0}", 19, bg >= dg ? Ui.Yesil : Ui.Soluk, HorizontalAlignment.Center));
+		v.AddChild(ElementIpucu(dusman, Kayit.TakimUyeleri()));
 		v.AddChild(Ui.Etiket($"Zafer: {Etkinlik.ZaferPuani(false) * 4} etkinlik puanı + jeton, 800 altın   •   Yenilgi: 10 puan", 19, Ui.Altin, HorizontalAlignment.Center));
 		v.AddChild(Ui.Etiket($"Kalan hak bugün: {Etkinlik.MuhafizKalan}/{Etkinlik.MuhafizHak}", 20, Colors.White, HorizontalAlignment.Center));
+		v.AddChild(DizilisSecici(MuhafizPenceresi));
 		var b = Ui.Dugme("Muhafızlara Saldır", MuhafizSavasi, new Color("c0582f"), 26, 72);
 		b.Disabled = Etkinlik.MuhafizKalan <= 0;
 		v.AddChild(b);

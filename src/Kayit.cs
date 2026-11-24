@@ -70,6 +70,10 @@ public class Profil
 	public int MuhafizSavas { get; set; }           // bugünkü mitoloji muhafızı savaşları
 	public int RehberAdim { get; set; }             // Başlangıç Yolu: ödülü alınan adım sayısı
 	public List<string> Basarimlar { get; set; } = new();   // ödülü alınan koleksiyon başarımları
+	// Mühürlü Katlar (haftalık mitoloji kısıtlı kule)
+	public int MuhurHafta { get; set; } = -1;
+	public int MuhurKat { get; set; }
+	public int MuhurTaban { get; set; } = 2;
 	// kayıtlı takım dizilişleri (ör. hikâye / arena / kule için)
 	public List<List<string>> Dizilisler { get; set; } = Kayit.BosDizilisler();
 	public bool Reklamsiz => AlinanUrunler.Contains("reklam_kaldir");
@@ -225,6 +229,7 @@ public static class Kayit
 			["etHafta"] = p.EtkinlikHafta, ["etPuan"] = p.EtkinlikPuan, ["etAlinan"] = Dizi(p.EtkinlikAlinan),
 			["etJeton"] = p.EtkinlikJeton, ["etAlim"] = Dizi(p.EtkinlikAlim), ["muhafiz"] = p.MuhafizSavas, ["rehber"] = p.RehberAdim,
 			["basarim"] = Dizi(p.Basarimlar), ["dizilis"] = DizilisDizi(p.Dizilisler),
+			["muhurHafta"] = p.MuhurHafta, ["muhurKat"] = p.MuhurKat, ["muhurTaban"] = p.MuhurTaban,
 		};
 	}
 
@@ -290,6 +295,9 @@ public static class Kayit
 		p.MuhafizSavas = I("muhafiz");
 		p.RehberAdim = I("rehber");
 		if (!d.ContainsKey("rehber") && p.EnIyiAsama >= 12) p.RehberAdim = 99;   // eski, ilerlemiş oyuncular rehberi görmez
+		p.MuhurHafta = d.ContainsKey("muhurHafta") ? I("muhurHafta") : -1;
+		p.MuhurKat = I("muhurKat");
+		p.MuhurTaban = d.ContainsKey("muhurTaban") ? I("muhurTaban") : 2;
 		if (d.ContainsKey("basarim")) foreach (var x in d["basarim"].AsGodotArray()) p.Basarimlar.Add(x.AsString());
 		if (d.ContainsKey("dizilis"))
 		{

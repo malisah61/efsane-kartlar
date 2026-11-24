@@ -131,6 +131,30 @@ public partial class Oyun
 		Pencere(v);
 	}
 
+	/// <summary>Savaş öncesi pencerelerde kayıtlı dizilişler arasında hızlı geçiş satırı.</summary>
+	Control DizilisSecici(Action yeniden)
+	{
+		var h = Ui.Yatay(8);
+		var e = Ui.Etiket("Diziliş:", 19, Ui.Soluk);
+		e.AutowrapMode = TextServer.AutowrapMode.Off;
+		e.VerticalAlignment = VerticalAlignment.Center;
+		h.AddChild(e);
+		for (int i = 0; i < Kayit.DizilisSayisi; i++)
+		{
+			int di = i;
+			bool bos = Kayit.DizilisBos(i);
+			bool ayni = !bos && Kayit.P.Dizilisler[i].SequenceEqual(Kayit.P.Takim);
+			var b = Ui.Genis(Ui.Dugme(ayni ? $"{i + 1} (seçili)" : bos ? $"{i + 1} (boş)" : $"{i + 1}. diziliş", () =>
+			{
+				if (!Kayit.DizilisYukle(di)) return;
+				Yenile(); yeniden(); Mesaj($"Diziliş {di + 1} yüklendi");
+			}, ayni ? new Color("2f8a57") : new Color("3478c8"), 17, 44));
+			b.Disabled = bos || ayni;
+			h.AddChild(b);
+		}
+		return h;
+	}
+
 	// ================================================================ REHBER OKU (alt menü)
 	Control _rehberOk;
 

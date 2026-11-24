@@ -955,7 +955,7 @@
      {
       "tip": "hasar",
       "hedef": "en_zayif",
-      "carpan": 2.2
+      "carpan": 2.1
      }
     ]
    },
@@ -1115,6 +1115,12 @@
       "tip": "zayiflat",
       "hedef": "tum",
       "oran": 0.2,
+      "tur": 2
+     },
+     {
+      "tip": "yanma",
+      "hedef": "tek",
+      "oran": 0.25,
       "tur": 2
      }
     ]
@@ -1494,6 +1500,12 @@
       "tip": "hasar",
       "hedef": "tum",
       "carpan": 1.2
+     },
+     {
+      "tip": "yanma",
+      "hedef": "tum",
+      "oran": 0.12,
+      "tur": 2
      }
     ]
    },
@@ -2051,7 +2063,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 1.8
+      "carpan": 1.7
      },
      {
       "tip": "hasar",
@@ -3517,6 +3529,50 @@
    "stat": "hiz",
    "oran": 0.08,
    "aciklama": "Valkürler savaş alanından seçtikleri ruhları Odin'in salonuna taşır."
+  },
+  {
+   "id": "kalp_tartisi",
+   "ad": "Kalbin Tartılışı",
+   "kartlar": [
+    "anubis",
+    "thoth"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Anubis ölünün kalbini Maat'ın tüyüyle tartar, Thoth sonucu yazar."
+  },
+  {
+   "id": "gorgon_basi",
+   "ad": "Gorgon'un Başı",
+   "kartlar": [
+    "perseus",
+    "medusa"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Perseus, kestiği Medusa'nın taşlaştıran bakışını silah olarak taşıdı."
+  },
+  {
+   "id": "girit_bogasi",
+   "ad": "Girit Boğası",
+   "kartlar": [
+    "herakles",
+    "minotor"
+   ],
+   "stat": "can",
+   "oran": 0.08,
+   "aciklama": "Herakles'in yedinci görevi, Minotor'un babası olan Girit Boğası'nı yakalamaktı."
+  },
+  {
+   "id": "col_firtinasi",
+   "ad": "Fırtına Tanrıları",
+   "kartlar": [
+    "set",
+    "raijin"
+   ],
+   "stat": "hiz",
+   "oran": 0.08,
+   "aciklama": "Çölün kum fırtınası ile göğün davullu fırtınası aynı safta."
   }
  ]
 }

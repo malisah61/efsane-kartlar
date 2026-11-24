@@ -329,4 +329,9 @@ BAGLAR = [
     ("kilden_insan", "Kilden İnsan", ["nuwa", "ulgen"], "can", 0.10, "Nüwa sarı kilden, Ülgen çamurdan ilk insanı yoğurdu."),
     ("gok_hukumdarlari", "Göklerin Hükümdarları", ["yesim_imparator", "zeus", "odin"], "savunma", 0.08, "Üç diyarın tanrılar meclisine başkanlık eden hükümdarlar."),
     ("kizkalkanlar", "Odin'in Seçtikleri", ["odin", "valkur"], "hiz", 0.08, "Valkürler savaş alanından seçtikleri ruhları Odin'in salonuna taşır."),
+    # 2026-11-24 gece
+    ("kalp_tartisi", "Kalbin Tartılışı", ["anubis", "thoth"], "savunma", 0.10, "Anubis ölünün kalbini Maat'ın tüyüyle tartar, Thoth sonucu yazar."),
+    ("gorgon_basi", "Gorgon'un Başı", ["perseus", "medusa"], "saldiri", 0.10, "Perseus, kestiği Medusa'nın taşlaştıran bakışını silah olarak taşıdı."),
+    ("girit_bogasi", "Girit Boğası", ["herakles", "minotor"], "can", 0.08, "Herakles'in yedinci görevi, Minotor'un babası olan Girit Boğası'nı yakalamaktı."),
+    ("col_firtinasi", "Fırtına Tanrıları", ["set", "raijin"], "hiz", 0.08, "Çölün kum fırtınası ile göğün davullu fırtınası aynı safta."),
 ]

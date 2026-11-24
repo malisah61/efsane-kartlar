@@ -262,7 +262,7 @@ public partial class Oyun : Control
 		// kule + sezon kartı
 		var ks = Ui.Yatay(12);
 		v.AddChild(ks);
-		ks.AddChild(Ui.Genis(Ui.Dugme(Kule.Bitti ? "Efsaneler Kulesi\nZirve fethedildi" : $"Efsaneler Kulesi\nKat {Kule.SiradakiKat}/{Kule.KatSayisi}", KulePenceresi, new Color("5a3a9a"), 21, 84)));
+		ks.AddChild(Ui.Genis(Ui.Dugme(Kule.Bitti ? "Efsaneler Kulesi\nZirve fethedildi" : $"Efsaneler Kulesi\nKat {Kule.SiradakiKat}/{Kule.KatSayisi}" + (!Kule.MuhurBitti && Kule.MuhurUygunSayi > 0 ? $" • Mühür {Kule.MuhurGecilen}/{Kule.MuhurKatSayisi}" : ""), KulePenceresi, new Color("5a3a9a"), 21, 84)));
 		int sOdul = SezonKarti.AlinabilirSayi();
 		ks.AddChild(Ui.Genis(Ui.Dugme($"Efsane Yolu\nSeviye {SezonKarti.Seviye}/{SezonKarti.SeviyeSayisi}" + (sOdul > 0 ? $"  •  {sOdul} ödül!" : ""), SezonPenceresi, new Color("9a6a2a"), 21, 84)));
 
@@ -1224,6 +1224,7 @@ public partial class Oyun : Control
 	public void OnizlemeGunluk() => GunlukOdulPenceresi();
 	public void OnizlemeMagaza() => MagazaPenceresi();
 	public void OnizlemeKule() => KulePenceresi();
+	public void OnizlemeMuhur() => MuhurPenceresi();
 	public void OnizlemeSezon() => SezonPenceresi();
 	public void OnizlemeEtkinlik() => EtkinlikPenceresi();
 	public void OnizlemeTakimKart(string id) { var s = Kayit.Sahip(id); if (s != null) TakimKartPenceresi(s); }

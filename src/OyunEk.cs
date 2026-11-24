@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 
 namespace EfsaneKartlar;
@@ -91,14 +92,94 @@ public partial class Oyun
 			kv.AddChild(MiniTakim(dusman, 104));
 			int dg = Kayit.TakimGucu(dusman), bg = Kayit.TakimGucu();
 			kv.AddChild(Ui.Etiket($"Düşman gücü {dg:N0}   •   Senin gücün {bg:N0}", 19, bg >= dg ? Ui.Yesil : Ui.Soluk, HorizontalAlignment.Center));
+			kv.AddChild(ElementIpucu(dusman, Kayit.TakimUyeleri()));
 			kv.AddChild(Ui.Etiket($"Ödül: {Kule.OdulYazi(Kule.KatOdulu(kat))}, {SezonKarti.XpKule} sezon puanı", 19, Ui.Altin, HorizontalAlignment.Center));
+			kv.AddChild(DizilisSecici(KulePenceresi));
 			kv.AddChild(Ui.Dugme($"{kat}. Kata Saldır", () => KuleSavasi(kat), new Color("c0582f"), 26, 72));
 			int sb = ((kat - 1) / 10 + 1) * 10;
 			if (sb != kat) v.AddChild(Ui.Etiket($"Sıradaki boss: {sb}. kat  —  {Kule.OdulYazi(Kule.KatOdulu(sb))}", 18, Ui.Elmas, HorizontalAlignment.Center));
 			v.AddChild(Ui.Etiket($"Her 10 kat bir mitolojinin katlarıdır; düşmanlar o mitolojinin uyum bonusunu alır. Element üstünlüğüyle karşı takım kur!", 16, Ui.Soluk, HorizontalAlignment.Center));
 		}
-		v.AddChild(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 22));
+		var alt = Ui.Yatay(10);
+		v.AddChild(alt);
+		string mm = Veri.MitolojiAd(Kule.MuhurMitoloji);
+		alt.AddChild(Ui.Genis(Ui.Dugme(Kule.MuhurBitti ? $"Mühürlü Katlar\n{mm} • tamamlandı" : $"Mühürlü Katlar\n{mm} • {Kule.MuhurGecilen}/{Kule.MuhurKatSayisi}",
+			() => { PencereKapat(); MuhurPenceresi(); }, Veri.MitolojiRenk(Kule.MuhurMitoloji).Darkened(0.2f), 20, 68), 1.4f));
+		alt.AddChild(Ui.Genis(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 22, 68)));
 		Pencere(v);
+	}
+
+	// ================================================================ MÜHÜRLÜ KATLAR (haftalık, mitoloji kısıtlı)
+	void MuhurPenceresi()
+	{
+		Kule.MuhurKontrol();
+		string m = Kule.MuhurMitoloji, ma = Veri.MitolojiAd(m);
+		var v = Ui.Dikey(10);
+		v.AddChild(Ui.Etiket("Mühürlü Katlar", 36, Ui.Altin, HorizontalAlignment.Center));
+		var k = Rakipler.SezonKalan();
+		v.AddChild(Ui.Etiket($"Bu haftanın mührü: {ma}. Yalnızca {ma} kartların savaşabilir; diğerlerinin yeri boş kalır. Katlar ve ödüller her hafta yenilenir ({k.Days}g {k.Hours}s kaldı).", 18, Ui.Soluk, HorizontalAlignment.Center));
+		v.AddChild(Cubuk(Kule.MuhurGecilen, Kule.MuhurKatSayisi, Veri.MitolojiRenk(m)));
+		if (Kule.MuhurBitti)
+		{
+			v.AddChild(Ui.Etiket($"Bu haftanın 10 mühürlü katını geçtin! Gelecek hafta yeni bir mitolojinin mührü açılacak.", 22, Ui.Altin, HorizontalAlignment.Center));
+		}
+		else
+		{
+			int kat = Kule.MuhurSiradaki;
+			bool boss = kat == Kule.MuhurKatSayisi;
+			var kp = Ui.Panel(boss ? new Color("3a1f2a") : Ui.PanelRenk, 14);
+			v.AddChild(kp);
+			var kv = Ui.Dikey(8);
+			kp.AddChild(kv);
+			kv.AddChild(Ui.Etiket($"{kat}. Mühürlü Kat" + (boss ? "  (BOSS)" : ""), 26, boss ? Ui.Kirmizi : Colors.White, HorizontalAlignment.Center));
+			var dusman = Kule.MuhurTakimi(kat);
+			kv.AddChild(MiniTakim(dusman, 96));
+			var bizim = Kule.MuhurUyeleri();
+			int n = bizim.Count(u => u != null);
+			kv.AddChild(Ui.Etiket(n == 0 ? $"Takımında hiç {ma} kartı yok!" : $"Savaşacak kartların ({n}/5):", 19, n == 0 ? Ui.Kirmizi : Colors.White, HorizontalAlignment.Center));
+			if (n > 0) kv.AddChild(MiniTakim(bizim, 72));
+			int dg = Kayit.TakimGucu(dusman), bg = Kayit.TakimGucu(bizim);
+			kv.AddChild(Ui.Etiket($"Düşman gücü {dg:N0}   •   Senin gücün {bg:N0}", 19, bg >= dg ? Ui.Yesil : Ui.Soluk, HorizontalAlignment.Center));
+			kv.AddChild(ElementIpucu(dusman, bizim));
+			kv.AddChild(Ui.Etiket($"Ödül: {Kule.OdulYazi(Kule.MuhurOdulu(kat))}", 19, Ui.Altin, HorizontalAlignment.Center));
+			kv.AddChild(DizilisSecici(MuhurPenceresi));
+			var b = Ui.Dugme($"{kat}. Mühürlü Kata Saldır", () => MuhurSavasi(kat), new Color("c0582f"), 26, 68);
+			b.Disabled = n == 0;
+			kv.AddChild(b);
+			if (kat < 5) v.AddChild(Ui.Etiket($"5. kat: {Kule.OdulYazi(Kule.MuhurOdulu(5))}  •  10. kat: {Kule.OdulYazi(Kule.MuhurOdulu(10))}", 16, Ui.Elmas, HorizontalAlignment.Center));
+		}
+		var alt = Ui.Yatay(10);
+		v.AddChild(alt);
+		alt.AddChild(Ui.Genis(Ui.Dugme("Takımı Düzenle", () => { PencereKapat(); Goster(Ekran.Takim); }, new Color("3478c8"), 20)));
+		alt.AddChild(Ui.Genis(Ui.Dugme("Kuleye Dön", () => { PencereKapat(); KulePenceresi(); }, new Color("5a3a9a"), 20)));
+		alt.AddChild(Ui.Genis(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 20)));
+		Pencere(v);
+	}
+
+	void MuhurSavasi(int kat)
+	{
+		var bizim = Kule.MuhurUyeleri();
+		if (bizim.All(u => u == null)) { Mesaj($"Takımına {Veri.MitolojiAd(Kule.MuhurMitoloji)} kartı ekle"); return; }
+		PencereKapat();
+		SavasBaslat(Kule.MuhurTakimi(kat), $"Mühürlü Kat {kat}", Kule.MuhurMitoloji, k =>
+		{
+			var l = Kule.MuhurSonuc(kat, k);
+			if (k) { l.Add($"+{Etkinlik.PuanEkle(Etkinlik.ZaferPuani(false))} etkinlik puanı"); Kayit.Kaydet(); }
+			return Task.FromResult(l);
+		}, kat == Kule.MuhurKatSayisi, bizim, Etkinlik.Mitoloji);
+	}
+
+	/// <summary>Düşmanın baskın elementini ve ona üstün gelen elementi gösterir.</summary>
+	static Control ElementIpucu(List<TakimUyesi> dusman, List<TakimUyesi> bizim)
+	{
+		var gruplar = dusman.Where(u => u != null && Veri.Harita.ContainsKey(u.Id)).GroupBy(u => Veri.Harita[u.Id].Element)
+			.OrderByDescending(g => g.Count()).ToList();
+		if (gruplar.Count == 0) return new Control();
+		string e = gruplar[0].Key;
+		int n = gruplar[0].Count();
+		string karsi = e switch { "ates" => "su", "su" => "doga", _ => "ates" };
+		int bizde = bizim.Count(u => u != null && Veri.Harita.TryGetValue(u.Id, out var t) && t.Element == karsi);
+		return Ui.Etiket($"Düşmanın {n}/5 kartı {Veri.ElementAd(e)}  →  {Veri.ElementAd(karsi)} kartları üstün (takımında {bizde})", 18, Veri.ElementRenk(karsi).Lightened(0.25f), HorizontalAlignment.Center);
 	}
 
 	void KuleSavasi(int kat)

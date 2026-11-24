@@ -52,7 +52,8 @@ Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), 
    - [x] Haftalık etkinlik: Mitoloji Haftası (+%10, çağırma oranı, puan eşikleri, etkinlik kahramanı) — 2026-11-19
    - [x] Etkinliğe özel boss: Mitoloji Muhafızları (günde 3, enerjisiz, takım seviyesinde, 4 kat puan) — 2026-11-24
    - [x] Etkinlik mağazası: her puan 1 jeton; altın/ruh özü/parşömen/etkinlik mitolojisinden nadir-epik kart/kahraman kopyası, haftalık sınırlı — 2026-11-24
-   - [ ] Kule'ye haftalık "mitoloji kısıtlı" katlar
+   - [x] Kule'ye haftalık "mitoloji kısıtlı" katlar: **Mühürlü Katlar** (10 kat, yalnızca haftanın mühür mitolojisinden kartlar; zorluk hafta başında kule ilerlemesinin %70'ine sabitlenir; haftada ~90 elmas, 1 parşömen) — 2026-11-24 gece
+     - [ ] Sonraki: mühürlü katlar için haftalık sıralama (sunucu), 10. katta mitolojiye özel boss
 6. [~] Ses/müzik [x], savaş efektleri [x], kart çekme animasyonu [x] (kart çevirme, nadirlik parıltısı, efsanevide ekran flaşı), menü rozetleri [x]
    - [x] Seviye/yıldız atlatma kutlaması + çoklu seviye düğmesi (2026-11-19)
    - [x] Ulti yakın plan: portre + ulti adı kayan şerit (Hız 3'te kapalı) — 2026-11-24
@@ -60,7 +61,11 @@ Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), 
 8. [x] Yeni oyuncu rehberi: **Başlangıç Yolu** (10 adım, ana sayfada parlayan panel, Git/Al düğmesi; aşama 12'yi geçmiş eski oyunculara gösterilmez) — 2026-11-24
    - [x] Alt menüde rehberin gösterdiği sekmenin üstünde zıplayan ok — 2026-11-23 gece
    - [ ] Sonraki: ilk açılışta kısa hikâye girişi
-9. [~] Takım simyası: 66 bağ (2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi; 2026-11-23 gece: Şoki ve Oni, Kilden İnsan, Göklerin Hükümdarları, Odin'in Seçtikleri)
+9. [~] Takım simyası: 70 bağ (2026-11-24 gece: Kalbin Tartılışı, Gorgon'un Başı, Girit Boğası, Fırtına Tanrıları; 2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi; 2026-11-23 gece: Şoki ve Oni, Kilden İnsan, Göklerin Hükümdarları, Odin'in Seçtikleri)
 10. [x] Koleksiyon başarımları: mitoloji yarısı/tamamı, toplam kart, yıldız hedefleri, bağ koleksiyoncusu (ömür boyu ~2.000 elmas) — 2026-11-23 gece
 11. [x] Kayıtlı dizilişler: 3 takım (hikâye/arena/kule için), Takım ekranında "Dizilişler" — 2026-11-23 gece
-12. [ ] Sıradaki fikirler: Kule'ye haftalık "mitoloji kısıtlı" katlar, lonca boss'u (sunucu), dizilişi moda göre otomatik seçme (kule/muhafız savaşı öncesi "Diziliş seç"), başarım rozeti/unvanı profilde
+12. [~] Sıradaki fikirler
+   - [x] Savaş öncesi "Diziliş" seçici (Kule, Mühürlü Katlar, Muhafızlar) + düşmanın baskın elementine karşı öneri — 2026-11-24 gece
+   - [ ] Başarım rozeti/unvanı profilde (sunucu profiline de yazılmalı)
+   - [ ] Lonca boss'u (sunucu)
+   - [ ] Hikâye/arena savaşı öncesi de diziliş seçici; arenada savunma dizilişini ayrı kaydetme
