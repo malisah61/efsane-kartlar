@@ -64,7 +64,7 @@
 - Denge (önceki test: saldıran %50,3, zaman aşımı %8,1, sınıflar %48,2–52,4): Völva (%33,1, en düşük) ultisine 2 tur yanma, Nil Kâhini kum fırtınasına hafif yanma; Susanoo 1.8→1.7, Valkür 2.2→2.1.
 
 ## 2026-11-25 — Savaş istatistikleri, hikâye girişi, arena savunma dizilişi
-- Yeni: **Savaş İstatistikleri** — sonuç penceresinde "İstatistikler": iki takımın her kahramanı için verilen hasar, iyileştirme + kalkan, alınan hasar çubukları, alt etme sayısı, düşenler soluk; kazanan takımda **MVP** (savaşın yıldızı). Sayaçlar savaşın sonucunu etkilemez (rastgelelik aynı).
+- Yeni: **Savaş İstatistikleri** — sonuç penceresinde "İstatistikler": iki takımın her kahramanı için verilen hasar, iyileştirme + kalkanının emdiği hasar, alınan hasar çubukları, alt etme sayısı, düşenler soluk; kazanan takımda **MVP** (savaşın yıldızı). "Geri" sonuç penceresine döner. Sayaçlar savaşın sonucunu etkilemez (rastgelelik aynı).
 - Yeni: **Hikâye girişi** — ilk açılışta Dede Korkut anlatır: Dünya Ağacı → Kaos'un Gölgesi → Ozanın Çağrısı → Yol Başlıyor (mitoloji arka planı, beliren portreler, daktilo yazısı, "Atla"). Eski kayıtlar görmez.
 - Yeni: **Arena savunma dizilişi** — Arena ekranında "Savunma: Takımım / 1 / 2 / 3"; sunucuya seçili diziliş savunma olarak gider (eşleşme gücü saldırı ve savunmanın büyüğü, zayıf savunmayla kolay rakip alınamaz).
 - İyileştirme: hikâye paneline ve Arena'ya **diziliş seçici** (kayıtlı diziliş varsa).

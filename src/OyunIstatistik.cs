@@ -9,10 +9,11 @@ namespace EfsaneKartlar;
 public partial class Oyun
 {
 	Savas _sonSavas;   // son oynanan savaş (istatistik penceresi için)
+	(bool kazandi, List<string> satirlar)? _sonSonuc;   // istatistikten sonuç penceresine geri dönmek için
 
 	// ================================================================ SAVAŞ İSTATİSTİKLERİ
-	/// <summary>Bir birimin savaştaki katkı puanı (MVP seçimi): hasar + iyileştirme + kalkanın yarısı + alınan hasarın üçte biri.</summary>
-	static float KatkiPuani(Birim b) => b.IstHasar + b.IstIyiles + 0.5f * b.IstKalkan + 0.33f * b.IstAlinan;
+	/// <summary>Bir birimin savaştaki katkı puanı (MVP seçimi): hasar + iyileştirme + kalkanın emdiği + alınan hasarın üçte biri.</summary>
+	static float KatkiPuani(Birim b) => b.IstHasar + b.IstIyiles + b.IstKalkan + 0.33f * b.IstAlinan;
 
 	void IstatistikPenceresi()
 	{
@@ -87,7 +88,10 @@ public partial class Oyun
 		}
 		if (mvp != null)
 			v.AddChild(Ui.Etiket($"Savaşın yıldızı: {mvp.T.Ad} ({Veri.SinifAd(mvp.T.Sinif)})", 19, Ui.Altin, HorizontalAlignment.Center));
-		v.AddChild(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 22, 58));
+		var sonuc = _sonSonuc;
+		v.AddChild(sonuc.HasValue
+			? Ui.Dugme("Geri", () => SonucPenceresi(sonuc.Value.kazandi, sonuc.Value.satirlar), new Color("444c6a"), 22, 58)
+			: Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 22, 58));
 		Pencere(v);
 	}
 
@@ -136,6 +140,7 @@ public partial class Oyun
 		v.SetAnchorsPreset(LayoutPreset.FullRect);
 		v.OffsetLeft = 28; v.OffsetRight = -28; v.OffsetTop = 70; v.OffsetBottom = -50;
 		kok.AddChild(v);
+		v.AddChild(Ui.Uzun(new Control { CustomMinimumSize = new Vector2(0, 10) }));
 		v.AddChild(Ui.Etiket($"{sayfa + 1} / {GirisSayfalari.Length}", 18, Ui.Soluk, HorizontalAlignment.Center));
 		v.AddChild(Ui.Etiket(baslik, 46, Ui.Altin, HorizontalAlignment.Center));
 		v.AddChild(Ui.Bosluk(20));
@@ -171,6 +176,7 @@ public partial class Oyun
 		ytw.TweenInterval(0.3f);
 		ytw.TweenProperty(yazi, "visible_ratio", 1f, Math.Clamp(metin.Length / 70f, 1.2f, 3.2f));
 
+		v.AddChild(Ui.Uzun(new Control()));
 		v.AddChild(Ui.Uzun(new Control()));
 		var alt = Ui.Yatay(14);
 		v.AddChild(alt);
@@ -209,11 +215,12 @@ public partial class Oyun
 			string ad = i < 0 ? "Takımım" : bos ? $"{i + 1} (boş)" : $"{i + 1}. diziliş";
 			var b = Ui.Genis(Ui.Dugme(ad, () =>
 			{
+				if (sec) return;
 				Kayit.P.SavunmaDizilis = di;
 				Kayit.Kaydet(); Yenile();
 				Mesaj(di < 0 ? "Savunman artık güncel takımın" : $"Savunman artık Diziliş {di + 1}");
 			}, sec ? new Color("2f8a57") : new Color("6a4a8a"), 17, 44));
-			b.Disabled = bos || sec;
+			b.Disabled = bos;   // seçili olan yeşil kalır (soluk görünmesin)
 			h.AddChild(b);
 		}
 		return h;

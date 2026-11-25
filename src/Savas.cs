@@ -239,8 +239,7 @@ public class Savas
 					foreach (var h in hedefler)
 					{
 						float m = b.MaxCan * e.Oran;
-						h.Durumlar.Add(new Durum { Tip = "kalkan", Deger = m, Kalan = Math.Max(1, e.Tur) });
-						b.IstKalkan += m;
+						h.Durumlar.Add(new Durum { Tip = "kalkan", Deger = m, Kalan = Math.Max(1, e.Tur), Sahip = b });
 						Olaylar.Add(new Olay { Tip = "kalkan", Hedef = h.Idx, Deger = m, KalanCan = h.Can, KalanKalkan = h.Kalkan });
 					}
 					break;
@@ -332,6 +331,7 @@ public class Savas
 		{
 			float emilen = MathF.Min(k.Deger, kalan);
 			k.Deger -= emilen; kalan -= emilen;
+			if (k.Sahip != null) k.Sahip.IstKalkan += emilen;   // istatistik: kalkanın gerçekten emdiği hasar
 			if (k.Deger <= 0.5f) h.Durumlar.Remove(k);
 			if (kalan <= 0) break;
 		}

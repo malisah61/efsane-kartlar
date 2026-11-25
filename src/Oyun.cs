@@ -1045,6 +1045,7 @@ public partial class Oyun : Control
 
 	void SonucPenceresi(bool kazandi, List<string> satirlar)
 	{
+		_sonSonuc = (kazandi, satirlar);
 		var v = Ui.Dikey(12);
 		v.AddChild(Ui.Etiket(kazandi ? "ZAFER!" : "YENİLGİ", 52, kazandi ? Ui.Altin : Ui.Kirmizi, HorizontalAlignment.Center));
 		foreach (var s in satirlar) v.AddChild(Ui.Etiket(s, 24, Colors.White, HorizontalAlignment.Center));
