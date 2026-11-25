@@ -340,4 +340,10 @@ BAGLAR = [
     ("gok_gurultusu_onisi", "Gök Gürültüsü Onisi", ["raijin", "oni"], "saldiri", 0.08, "Japon resimlerinde Raijin davullarını çalan bir oni olarak çizilir; iki kızıl boynuzlu yan yana gürler."),
     ("olu_bekcileri", "Ölüler Diyarının Köpekleri", ["kerberos", "anubis"], "savunma", 0.10, "Biri Hades'in kapısını, öteki mezarları bekler; iki diyarın köpek başlı bekçileri kimseyi geçirmez."),
     ("uyumayan_gozler", "Uyumayan Gözler", ["heimdall", "horus"], "savunma", 0.10, "Yüz fersah öteyi gören Bifröst bekçisi ile her şeyi gören Horus'un Gözü; ikisini birden atlatmak imkânsızdır."),
+    # 2026-11-25 gece
+    ("apophis", "Apep'in Düşmanları", ["ra", "bastet"], "savunma", 0.10, "Ra'nın kedisi Bastet, her gece güneş kayığına saldıran kaos yılanı Apep'in başını keser."),
+    ("idun_elmalari", "İdun'un Elmaları", ["idun", "loki"], "can", 0.10, "Loki, tanrıları genç tutan elmalarla İdun'u devlere kaçırdı, sonra şahin kılığında geri getirdi."),
+    ("gok_magarasi", "Gök Mağarası", ["miko", "amaterasu"], "can", 0.10, "Amaterasu mağaraya kapanınca tapınak dansçısının neşeli dansı güneşi dışarı çıkardı."),
+    ("wedjat", "Wedjat Gözü", ["thoth", "horus"], "saldiri", 0.10, "Set'in kopardığı gözünü Thoth iyileştirdi; Horus'un gözü şifa ve korumanın simgesi oldu."),
+    ("jotunheim", "Jötunheim Seferi", ["thor", "ymir"], "saldiri", 0.08, "Thor ömrünü devlerle dövüşerek geçirir; buz devlerinin atası karşısında çekici daha da ağırlaşır."),
 ]

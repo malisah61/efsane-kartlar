@@ -131,7 +131,9 @@ public partial class Oyun
 			v.AddChild(kp);
 			var kv = Ui.Dikey(8);
 			kp.AddChild(kv);
-			kv.AddChild(Ui.Etiket($"{kat}. Mühürlü Kat" + (boss ? "  (BOSS)" : ""), 26, boss ? Ui.Kirmizi : Colors.White, HorizontalAlignment.Center));
+			var mb = boss ? Kule.MuhurBoss : null;
+			kv.AddChild(Ui.Etiket($"{kat}. Mühürlü Kat" + (mb != null ? $": {mb.Value.ad}" : boss ? "  (BOSS)" : ""), 26, boss ? Ui.Kirmizi : Colors.White, HorizontalAlignment.Center));
+			if (mb != null) kv.AddChild(Ui.Etiket(mb.Value.aciklama + " (Ayna savaşı: onlar da aynı mitolojinin uyum bonusunu alır.)", 17, Ui.Soluk, HorizontalAlignment.Center));
 			var dusman = Kule.MuhurTakimi(kat);
 			kv.AddChild(MiniTakim(dusman, 96));
 			var bizim = Kule.MuhurUyeleri();
@@ -147,6 +149,7 @@ public partial class Oyun
 			b.Disabled = n == 0;
 			kv.AddChild(b);
 			if (kat < 5) v.AddChild(Ui.Etiket($"5. kat: {Kule.OdulYazi(Kule.MuhurOdulu(5))}  •  10. kat: {Kule.OdulYazi(Kule.MuhurOdulu(10))}", 16, Ui.Elmas, HorizontalAlignment.Center));
+			if (!boss && Kule.MuhurBoss is { } sb) v.AddChild(Ui.Etiket($"10. kattaki boss: {sb.ad}", 17, Ui.Kirmizi, HorizontalAlignment.Center));
 		}
 		var alt = Ui.Yatay(10);
 		v.AddChild(alt);

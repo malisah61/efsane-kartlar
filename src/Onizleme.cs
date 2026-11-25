@@ -75,6 +75,13 @@ public static class Onizleme
 		await Bekle(o, 0.4f);
 		await Kare(o, $"{klasor}/12b_muhur.png");
 		o.OnizlemeKapat();
+		int eskiMuhur = p.MuhurKat;
+		p.MuhurKat = Kule.MuhurKatSayisi - 1;
+		o.OnizlemeMuhur();
+		await Bekle(o, 0.4f);
+		await Kare(o, $"{klasor}/12c_muhur_boss.png");
+		o.OnizlemeKapat();
+		p.MuhurKat = eskiMuhur;
 		SezonKarti.Kontrol();
 		p.SezonXp = 7 * SezonKarti.SeviyeXp + 140;
 		p.SezonAlinan.AddRange(new[] { 1, 2, 3, 4 });
@@ -141,9 +148,25 @@ public static class Onizleme
 		o.OnizlemeIstatistik();
 		await Bekle(o, 0.5f);
 		await Kare(o, $"{klasor}/11b_istatistik.png");
+		o.OnizlemeKapat();
+		// savaş tekrarları: birkaç örnek kayıt (biri favori)
+		var ornek = new SavasKaydi { Baslik = "Arena: Börü_Kaan", Arka = "yunan", Tur = "arena", Tohum = 42,
+			A = p.Takim.Select(id => new TakimUyesi(id, 20, 2)).ToList(),
+			B = new[] { "ymir", "thor", "odin", "loki", "freya" }.Select(id => new TakimUyesi(id, 21, 2)).ToList() };
+		ornek.Kazandi = Calis(ornek.Kur()) == 0;
+		Tekrar.Ekle(ornek);
+		Tekrar.FavoriDegistir(ornek);
+		var ornek2 = new SavasKaydi { Baslik = "Kule — 9. Kat", Arka = "misir", Tur = "kule", Tohum = 7, A = ornek.A, B = Kule.KatTakimi(9) };
+		ornek2.Kazandi = Calis(ornek2.Kur()) == 0;
+		Tekrar.Ekle(ornek2);
+		o.OnizlemeTekrarlar();
+		await Bekle(o, 0.5f);
+		await Kare(o, $"{klasor}/19_tekrarlar.png");
 		GD.Print($"ONIZLEME tamam fps={Engine.GetFramesPerSecond()}");
 		o.GetTree().Quit();
 	}
+
+	static int Calis(Savas s) { s.Oyna(); return s.Kazanan; }
 
 	static bool IsInstanceValid(GodotObject g) => g != null && GodotObject.IsInstanceValid(g);
 
@@ -216,6 +239,25 @@ public static class DengeTesti
 				if (w >= 10) son = asama; else break;
 			}
 			sb.AppendLine($"  seviye {L,2}: aşama {son}  (aşama seviyesi ~{Rakipler.AsamaSeviye(Math.Max(1, son))})");
+		}
+		// mühürlü katların 10. kat boss'u: aynı mitolojiden rastgele 5 kart (sv 20, 1★) boss'a karşı (boss sv 20 tabanlı)
+		sb.AppendLine();
+		sb.AppendLine("Mühür boss'ları: aynı mitolojiden rastgele takım (sv 20) kazanma oranı (hedef ~%35-55)");
+		foreach (var (mit, boss) in Kule.MuhurBosslari)
+		{
+			if (!boss.kartlar.All(id => Veri.Harita.ContainsKey(id))) continue;
+			var bt = boss.kartlar.Select(id => new TakimUyesi(id, Veri.Harita[id].Nadirlik is "epik" or "efsanevi" ? 17 : 21, 1)).ToList();
+			var havuz = kartlar.Where(k => k.Mitoloji == mit).ToList();
+			int w = 0, n = 300;
+			for (int i = 0; i < n; i++)
+			{
+				var a = havuz.OrderBy(_ => r.Next()).Take(5).OrderBy(k => k.Sinif switch { "tank" => 0, "savasci" => 1, "buyucu" => 2, _ => 3 })
+					.Select(k => new TakimUyesi(k.Id, 20, 1)).ToList();
+				var s = new Savas(a, bt, (ulong)(i * 31 + 9));
+				s.Oyna();
+				if (s.Kazanan == 0) w++;
+			}
+			sb.AppendLine($"  {Veri.MitolojiAd(mit),-11} {boss.ad,-20} %{100f * w / n:0.0}");
 		}
 		var metin = sb.ToString();
 		GD.Print(metin);

@@ -689,7 +689,7 @@
      {
       "tip": "hasar",
       "hedef": "rastgele",
-      "carpan": 0.9,
+      "carpan": 1.0,
       "adet": 3
      }
     ]
@@ -1109,7 +1109,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 2.6
+      "carpan": 2.8
      },
      {
       "tip": "zayiflat",
@@ -1120,7 +1120,7 @@
      {
       "tip": "yanma",
       "hedef": "tek",
-      "oran": 0.25,
+      "oran": 0.3,
       "tur": 2
      }
     ]
@@ -1499,12 +1499,12 @@
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 1.2
+      "carpan": 1.25
      },
      {
       "tip": "yanma",
       "hedef": "tum",
-      "oran": 0.12,
+      "oran": 0.14,
       "tur": 2
      }
     ]
@@ -2093,13 +2093,13 @@
      {
       "tip": "hasar",
       "hedef": "rastgele",
-      "carpan": 1.0,
+      "carpan": 1.05,
       "adet": 4
      },
      {
       "tip": "sersemlet",
       "hedef": "son",
-      "sans": 0.25,
+      "sans": 0.3,
       "tur": 1
      }
     ]
@@ -2409,7 +2409,7 @@
      {
       "tip": "hasar",
       "hedef": "rastgele",
-      "carpan": 0.9,
+      "carpan": 0.85,
       "adet": 4
      },
      {
@@ -2769,18 +2769,18 @@
      {
       "tip": "iyilestir",
       "hedef": "en_zayif_dost",
-      "carpan": 1.8
+      "carpan": 1.9
      },
      {
       "tip": "kalkan",
       "hedef": "en_zayif_dost",
-      "oran": 0.12,
+      "oran": 0.15,
       "tur": 2
      },
      {
       "tip": "enerji",
       "hedef": "tum_dost",
-      "miktar": 10
+      "miktar": 12
      }
     ]
    },
@@ -3628,6 +3628,61 @@
    "stat": "savunma",
    "oran": 0.1,
    "aciklama": "Yüz fersah öteyi gören Bifröst bekçisi ile her şeyi gören Horus'un Gözü; ikisini birden atlatmak imkânsızdır."
+  },
+  {
+   "id": "apophis",
+   "ad": "Apep'in Düşmanları",
+   "kartlar": [
+    "ra",
+    "bastet"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Ra'nın kedisi Bastet, her gece güneş kayığına saldıran kaos yılanı Apep'in başını keser."
+  },
+  {
+   "id": "idun_elmalari",
+   "ad": "İdun'un Elmaları",
+   "kartlar": [
+    "idun",
+    "loki"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Loki, tanrıları genç tutan elmalarla İdun'u devlere kaçırdı, sonra şahin kılığında geri getirdi."
+  },
+  {
+   "id": "gok_magarasi",
+   "ad": "Gök Mağarası",
+   "kartlar": [
+    "miko",
+    "amaterasu"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Amaterasu mağaraya kapanınca tapınak dansçısının neşeli dansı güneşi dışarı çıkardı."
+  },
+  {
+   "id": "wedjat",
+   "ad": "Wedjat Gözü",
+   "kartlar": [
+    "thoth",
+    "horus"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Set'in kopardığı gözünü Thoth iyileştirdi; Horus'un gözü şifa ve korumanın simgesi oldu."
+  },
+  {
+   "id": "jotunheim",
+   "ad": "Jötunheim Seferi",
+   "kartlar": [
+    "thor",
+    "ymir"
+   ],
+   "stat": "saldiri",
+   "oran": 0.08,
+   "aciklama": "Thor ömrünü devlerle dövüşerek geçirir; buz devlerinin atası karşısında çekici daha da ağırlaşır."
   }
  ]
 }

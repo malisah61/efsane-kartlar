@@ -112,8 +112,33 @@ public static class Kule
 	/// <summary>Mühürlü katın denk geldiği kule katı (zorluk).</summary>
 	public static int MuhurZorluk(int kat) { MuhurKontrol(); return Math.Min(KatSayisi, Kayit.P.MuhurTaban + (int)MathF.Round(kat * 1.5f)); }
 
+	/// <summary>10. mühürlü katın boss'u: mühür mitolojisinin kendi karanlık yüzü (efsanelerdeki kötüler / isyancılar).
+	/// Oyuncu yalnızca o mitolojiyle savaştığı için ayna maçı olur; iki taraf da aynı uyum bonusunu alır.</summary>
+	public static readonly Dictionary<string, (string ad, string aciklama, string[] kartlar)> MuhurBosslari = new()
+	{
+		["turk"] = ("Erlik'in Ordusu", "Yeraltının hanı Erlik, Tepegöz ve Al Karısı ile mührü bekliyor.", new[] { "tepegoz", "sahmeran", "erlik", "al_karisi", "su_iyesi" }),
+		["yunan"] = ("Hades'in Mahkemesi", "Ölüler diyarının efendisi; Kerberos kapıda, Medusa ve Siren yanında.", new[] { "hades", "kerberos", "medusa", "siren", "minotor" }),
+		["iskandinav"] = ("Ragnarök", "Loki'nin çocukları zincirlerini kırdı: Fenrir, Hel ve buz devleri.", new[] { "ymir", "fenrir", "loki", "hel", "volva" }),
+		["misir"] = ("Kaosun Yılanı", "Set ve Sekhmet'in öfkesi, Sobek'in dişleri: Maat'ı yık ya da koru.", new[] { "sobek", "mumya", "set", "akrep", "sekhmet" }),
+		["japon"] = ("Yüz Yokai Geçidi", "Gece yürüyen yokai alayı: Oni, Kappa, Tengu, Yuki-onna ve Raijin.", new[] { "oni", "kappa", "tengu", "yuki_onna", "raijin" }),
+		["cin"] = ("Göklerin İsyanı", "Maymun Kral göğe başkaldırdı; Ejderha Kral ve Nezha da saflarında.", new[] { "long", "nezha", "sun_wukong", "change", "taocu" }),
+	};
+
+	public static (string ad, string aciklama, string[] kartlar)? MuhurBoss =>
+		MuhurBosslari.TryGetValue(MuhurMitoloji, out var b) && b.kartlar.All(id => Veri.Harita.ContainsKey(id)) ? b : null;
+
 	public static List<TakimUyesi> MuhurTakimi(int kat)
 	{
+		if (kat == MuhurKatSayisi && MuhurBoss is { } boss)
+		{
+			// boss takımı çoğunlukla epik/efsanevi: dengelemek için onlar 3 seviye düşük
+			int z = MuhurZorluk(kat), sev = KatSeviye(z), yil = KatYildiz(z);
+			return boss.kartlar.Select(id =>
+			{
+				var n = Veri.Harita[id].Nadirlik;
+				return new TakimUyesi(id, n is "epik" or "efsanevi" ? Math.Max(1, sev - 3) : sev + 1, yil);
+			}).ToList();
+		}
 		var r = new Rng((ulong)(MuhurHafta * 7919 + kat * 31 + 11));
 		var digerleri = Mitler.Where(m => m != MuhurMitoloji).ToArray();
 		string mit = digerleri[r.Aralik(digerleri.Length)];

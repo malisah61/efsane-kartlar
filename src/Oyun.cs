@@ -913,6 +913,7 @@ public partial class Oyun : Control
 		v.AddChild(alt2);
 		alt2.AddChild(Ui.Genis(Ui.Dugme("Rakipleri Yenile", () => { p.ArenaYenileme++; Kayit.Kaydet(); _rakipler = null; Yenile(); }, new Color("444c78"), 21)));
 		alt2.AddChild(Ui.Genis(Ui.Dugme("Sıralamalar", () => { if (Sunucu.Girisli) CevrimiciSiralama("hafta"); else SiralamaPenceresi(); }, new Color("8a4fc0"), 21)));
+		alt2.AddChild(Ui.Genis(Ui.Dugme("Tekrarlar", TekrarlarPenceresi, new Color("2f6f7a"), 21)));
 		return Ui.Kaydirma(v);
 	}
 
@@ -1023,9 +1024,19 @@ public partial class Oyun : Control
 	void SavasBaslat(List<TakimUyesi> dusman, string baslik, string arka, Func<bool, Task<List<string>>> sonuc, bool boss, List<TakimUyesi> bizim, string bonusMit = null)
 	{
 		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
-		var s = new Savas(bizim ?? Kayit.TakimUyeleri(), dusman, (ulong)Time.GetTicksUsec(), bonusMit, bonusMit != null ? Etkinlik.GucBonus : 0f);
+		var biz = (bizim ?? Kayit.TakimUyeleri()).ToList();
+		var kayit = new SavasKaydi
+		{
+			Baslik = baslik, Arka = arka, Boss = boss, Tur = Tekrar.TurBul(baslik), Tohum = (ulong)Time.GetTicksUsec(),
+			BonusMit = bonusMit, BonusOran = bonusMit != null ? Etkinlik.GucBonus : 0f,
+			A = biz.Select(u => u == null ? null : new TakimUyesi(u.Id, u.Seviye, u.Yildiz)).ToList(),
+			B = dusman.Select(u => u == null ? null : new TakimUyesi(u.Id, u.Seviye, u.Yildiz)).ToList(),
+		};
+		var s = kayit.Kur();
 		s.Oyna();
-		_sonSavas = s;
+		kayit.Kazandi = s.Kazanan == 0;
+		Tekrar.Ekle(kayit);
+		_sonSavas = s; _sonKayit = kayit;
 		Kayit.P.GunlukSavas++;
 		_katlaAltin = 0;
 		var ekran = new SavasEkrani { S = s, Baslik = baslik, Arka = arka, Boss = boss };
@@ -1064,6 +1075,7 @@ public partial class Oyun : Control
 		if (gk > 0 && gk <= 2) v.AddChild(Ui.Etiket(gk == 1 ? "Sonraki savaştan sonra reklam var — Mağaza'dan reklamları kaldırabilirsin." : $"{gk} savaş sonra reklam", 16, Ui.Soluk, HorizontalAlignment.Center));
 		var sa = Ui.Yatay(10);
 		if (_sonSavas != null) sa.AddChild(Ui.Genis(Ui.Dugme("İstatistikler", IstatistikPenceresi, new Color("6a4a8a"), 22, 64), 0.7f));
+		if (_sonKayit != null) sa.AddChild(Ui.Genis(Ui.Dugme("Tekrar İzle", () => { PencereKapat(); TekrarIzle(_sonKayit, true); }, new Color("2f6f7a"), 22, 64), 0.7f));
 		sa.AddChild(Ui.Genis(Ui.Dugme("Devam", () => { PencereKapat(); Reklam.SavasSonrasi(() => { }); }, new Color("3b6fd8"), 26)));
 		v.AddChild(sa);
 		Pencere(v);
