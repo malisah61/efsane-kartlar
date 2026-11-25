@@ -114,18 +114,22 @@ public static class Kule
 
 	/// <summary>10. mühürlü katın boss'u: mühür mitolojisinin kendi karanlık yüzü (efsanelerdeki kötüler / isyancılar).
 	/// Oyuncu yalnızca o mitolojiyle savaştığı için ayna maçı olur; iki taraf da aynı uyum bonusunu alır.</summary>
-	public static readonly Dictionary<string, (string ad, string aciklama, string[] kartlar)> MuhurBosslari = new()
+	public static readonly Dictionary<string, (string ad, string aciklama, string[] kartlar, int sevFark)> MuhurBosslari = new()
 	{
-		["turk"] = ("Erlik'in Ordusu", "Yeraltının hanı Erlik, Tepegöz ve Al Karısı ile mührü bekliyor.", new[] { "tepegoz", "sahmeran", "erlik", "al_karisi", "su_iyesi" }),
-		["yunan"] = ("Hades'in Mahkemesi", "Ölüler diyarının efendisi; Kerberos kapıda, Medusa ve Siren yanında.", new[] { "hades", "kerberos", "medusa", "siren", "minotor" }),
-		["iskandinav"] = ("Ragnarök", "Loki'nin çocukları zincirlerini kırdı: Fenrir, Hel ve buz devleri.", new[] { "ymir", "fenrir", "loki", "hel", "volva" }),
-		["misir"] = ("Kaosun Yılanı", "Set ve Sekhmet'in öfkesi, Sobek'in dişleri: Maat'ı yık ya da koru.", new[] { "sobek", "mumya", "set", "akrep", "sekhmet" }),
-		["japon"] = ("Yüz Yokai Geçidi", "Gece yürüyen yokai alayı: Oni, Kappa, Tengu, Yuki-onna ve Raijin.", new[] { "oni", "kappa", "tengu", "yuki_onna", "raijin" }),
-		["cin"] = ("Göklerin İsyanı", "Maymun Kral göğe başkaldırdı; Ejderha Kral ve Nezha da saflarında.", new[] { "long", "nezha", "sun_wukong", "change", "taocu" }),
+		["turk"] = ("Erlik'in Ordusu", "Yeraltının hanı Erlik, Tepegöz ve Al Karısı ile mührü bekliyor.", new[] { "tepegoz", "sahmeran", "erlik", "al_karisi", "su_iyesi" }, 2),
+		["yunan"] = ("Hades'in Mahkemesi", "Ölüler diyarının efendisi; Kerberos kapıda, Medusa ve Siren yanında.", new[] { "hades", "kerberos", "medusa", "siren", "minotor" }, 3),
+		["iskandinav"] = ("Ragnarök", "Loki'nin çocukları zincirlerini kırdı: Fenrir, Hel ve buz devleri.", new[] { "ymir", "fenrir", "loki", "hel", "volva" }, -2),
+		["misir"] = ("Kaosun Yılanı", "Set ve Sekhmet'in öfkesi, Sobek'in dişleri: Maat'ı yık ya da koru.", new[] { "sobek", "mumya", "set", "akrep", "sekhmet" }, 4),
+		["japon"] = ("Yüz Yokai Geçidi", "Gece yürüyen yokai alayı: Oni, Kappa, Tengu, Yuki-onna ve Raijin.", new[] { "oni", "kappa", "tengu", "yuki_onna", "raijin" }, 4),
+		["cin"] = ("Göklerin İsyanı", "Maymun Kral göğe başkaldırdı; Ejderha Kral ve Nezha da saflarında.", new[] { "long", "nezha", "sun_wukong", "change", "taocu" }, -2),
 	};
 
-	public static (string ad, string aciklama, string[] kartlar)? MuhurBoss =>
+	public static (string ad, string aciklama, string[] kartlar, int sevFark)? MuhurBoss =>
 		MuhurBosslari.TryGetValue(MuhurMitoloji, out var b) && b.kartlar.All(id => Veri.Harita.ContainsKey(id)) ? b : null;
+
+	/// <summary>Boss kartının seviyesi: epik/efsanevi 3 düşük, diğerleri 1 yüksek; sevFark mitolojiye göre denge ayarı (denge.txt).</summary>
+	public static int BossSeviye(string nadirlik, int sev, int fark) =>
+		Math.Clamp((nadirlik is "epik" or "efsanevi" ? sev - 3 : sev + 1) + fark, 1, Kayit.MaxSeviye(5));
 
 	public static List<TakimUyesi> MuhurTakimi(int kat)
 	{
@@ -136,7 +140,7 @@ public static class Kule
 			return boss.kartlar.Select(id =>
 			{
 				var n = Veri.Harita[id].Nadirlik;
-				return new TakimUyesi(id, n is "epik" or "efsanevi" ? Math.Max(1, sev - 3) : sev + 1, yil);
+				return new TakimUyesi(id, BossSeviye(n, sev, boss.sevFark), yil);
 			}).ToList();
 		}
 		var r = new Rng((ulong)(MuhurHafta * 7919 + kat * 31 + 11));

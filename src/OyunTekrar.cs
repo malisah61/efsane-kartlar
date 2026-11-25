@@ -47,11 +47,15 @@ public partial class Oyun
 			pv.AddChild(ust);
 			string tur = Tekrar.TurAd.TryGetValue(k.Tur ?? "", out var ta) ? ta : "Savaş";
 			ust.AddChild(Ui.Genis(Ui.Etiket($"{(k.Favori ? "★ " : "")}{k.Baslik}", 20, Colors.White)));
-			ust.AddChild(Ui.Etiket($"{tur} • {k.Zaman}", 16, Ui.Soluk, HorizontalAlignment.Right));
+			var zl = Ui.Etiket($"{tur} • {k.Zaman}", 16, Ui.Soluk, HorizontalAlignment.Right);
+			zl.AutowrapMode = TextServer.AutowrapMode.Off;
+			ust.AddChild(zl);
 			var takimlar = Ui.Yatay(4);
 			takimlar.Alignment = BoxContainer.AlignmentMode.Center;
 			takimlar.AddChild(MiniTakim(GecerliTakim(k.A), 48));
-			takimlar.AddChild(Ui.Etiket("vs", 18, Ui.Soluk));
+			var vs = Ui.Etiket("vs", 18, Ui.Soluk);
+			vs.AutowrapMode = TextServer.AutowrapMode.Off;
+			takimlar.AddChild(vs);
 			takimlar.AddChild(MiniTakim(GecerliTakim(k.B), 48));
 			pv.AddChild(takimlar);
 			var alt = Ui.Yatay(8);

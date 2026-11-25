@@ -246,7 +246,7 @@ public static class DengeTesti
 		foreach (var (mit, boss) in Kule.MuhurBosslari)
 		{
 			if (!boss.kartlar.All(id => Veri.Harita.ContainsKey(id))) continue;
-			var bt = boss.kartlar.Select(id => new TakimUyesi(id, Veri.Harita[id].Nadirlik is "epik" or "efsanevi" ? 17 : 21, 1)).ToList();
+			var bt = boss.kartlar.Select(id => new TakimUyesi(id, Kule.BossSeviye(Veri.Harita[id].Nadirlik, 20, boss.sevFark), 1)).ToList();
 			var havuz = kartlar.Where(k => k.Mitoloji == mit).ToList();
 			int w = 0, n = 300;
 			for (int i = 0; i < n; i++)
