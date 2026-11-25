@@ -111,7 +111,7 @@ Hikâye: başlangıç takımı (sıradan/nadir) seviye L iken hangi aşamaya kad
 Mühür boss'ları: aynı mitolojiden rastgele takım (sv 20) kazanma oranı (hedef ~%35-55)
   Türk        Erlik'in Ordusu      %46.7
   Yunan       Hades'in Mahkemesi   %49.0
-  İskandinav  Ragnarök             %56.7
-  Mısır       Kaosun Yılanı        %38.3
-  Japon       Yüz Yokai Geçidi     %25.7
-  Çin         Göklerin İsyanı      %61.7
+  İskandinav  Ragnarök             %44.0
+  Mısır       Kaosun Yılanı        %49.0
+  Japon       Yüz Yokai Geçidi     %50.0
+  Çin         Göklerin İsyanı      %51.3
