@@ -334,4 +334,10 @@ BAGLAR = [
     ("gorgon_basi", "Gorgon'un Başı", ["perseus", "medusa"], "saldiri", 0.10, "Perseus, kestiği Medusa'nın taşlaştıran bakışını silah olarak taşıdı."),
     ("girit_bogasi", "Girit Boğası", ["herakles", "minotor"], "can", 0.08, "Herakles'in yedinci görevi, Minotor'un babası olan Girit Boğası'nı yakalamaktı."),
     ("col_firtinasi", "Fırtına Tanrıları", ["set", "raijin"], "hiz", 0.08, "Çölün kum fırtınası ile göğün davullu fırtınası aynı safta."),
+    # 2026-11-25
+    ("voluspa", "Völuspá", ["odin", "volva"], "saldiri", 0.10, "Odin ölüleri uyandıran kâhine dünyanın başını ve sonunu sordurur; kehanet ikisini de keskinleştirir."),
+    ("sifa_soyu", "Şifa Soyu", ["apollon", "asklepios"], "can", 0.10, "Apollon, oğlu Asklepios'a hekimliği öğretti; baba ile oğul yan yana olunca yaralar çabuk kapanır."),
+    ("gok_gurultusu_onisi", "Gök Gürültüsü Onisi", ["raijin", "oni"], "saldiri", 0.08, "Japon resimlerinde Raijin davullarını çalan bir oni olarak çizilir; iki kızıl boynuzlu yan yana gürler."),
+    ("olu_bekcileri", "Ölüler Diyarının Köpekleri", ["kerberos", "anubis"], "savunma", 0.10, "Biri Hades'in kapısını, öteki mezarları bekler; iki diyarın köpek başlı bekçileri kimseyi geçirmez."),
+    ("uyumayan_gozler", "Uyumayan Gözler", ["heimdall", "horus"], "savunma", 0.10, "Yüz fersah öteyi gören Bifröst bekçisi ile her şeyi gören Horus'un Gözü; ikisini birden atlatmak imkânsızdır."),
 ]

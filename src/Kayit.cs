@@ -76,6 +76,8 @@ public class Profil
 	public int MuhurTaban { get; set; } = 2;
 	// kayıtlı takım dizilişleri (ör. hikâye / arena / kule için)
 	public List<List<string>> Dizilisler { get; set; } = Kayit.BosDizilisler();
+	public int SavunmaDizilis { get; set; } = -1;   // arena savunması: -1 güncel takım, 0-2 kayıtlı diziliş
+	public bool GirisHikayesi { get; set; }          // ilk açılış hikâye girişi görüldü mü
 	public bool Reklamsiz => AlinanUrunler.Contains("reklam_kaldir");
 }
 
@@ -230,6 +232,7 @@ public static class Kayit
 			["etJeton"] = p.EtkinlikJeton, ["etAlim"] = Dizi(p.EtkinlikAlim), ["muhafiz"] = p.MuhafizSavas, ["rehber"] = p.RehberAdim,
 			["basarim"] = Dizi(p.Basarimlar), ["dizilis"] = DizilisDizi(p.Dizilisler),
 			["muhurHafta"] = p.MuhurHafta, ["muhurKat"] = p.MuhurKat, ["muhurTaban"] = p.MuhurTaban,
+			["savunma"] = p.SavunmaDizilis, ["girisHik"] = p.GirisHikayesi,
 		};
 	}
 
@@ -298,6 +301,8 @@ public static class Kayit
 		p.MuhurHafta = d.ContainsKey("muhurHafta") ? I("muhurHafta") : -1;
 		p.MuhurKat = I("muhurKat");
 		p.MuhurTaban = d.ContainsKey("muhurTaban") ? I("muhurTaban") : 2;
+		p.SavunmaDizilis = d.ContainsKey("savunma") ? Math.Clamp(I("savunma"), -1, DizilisSayisi - 1) : -1;
+		p.GirisHikayesi = !d.ContainsKey("girisHik") || d["girisHik"].AsBool();   // eski kayıtlar girişi görmüş sayılır
 		if (d.ContainsKey("basarim")) foreach (var x in d["basarim"].AsGodotArray()) p.Basarimlar.Add(x.AsString());
 		if (d.ContainsKey("dizilis"))
 		{
@@ -525,6 +530,10 @@ public static class Kayit
 	}
 
 	public static int TakimGucu() => TakimGucu(TakimUyeleri());
+
+	/// <summary>Arena savunması: seçili kayıtlı diziliş (boşsa güncel takım).</summary>
+	public static bool SavunmaAyri => P.SavunmaDizilis >= 0 && P.SavunmaDizilis < DizilisSayisi && !DizilisBos(P.SavunmaDizilis);
+	public static List<TakimUyesi> SavunmaUyeleri() => SavunmaAyri ? DizilisUyeleri(P.SavunmaDizilis) : TakimUyeleri();
 	public static int TakimGucu(IEnumerable<TakimUyesi> t) =>
 		t.Where(u => u != null && Veri.Harita.ContainsKey(u.Id)).Sum(u => Veri.Guc(Veri.Harita[u.Id], u.Seviye, u.Yildiz));
 

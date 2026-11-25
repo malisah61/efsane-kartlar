@@ -318,7 +318,7 @@ public partial class Sunucu : Node
 	public static Godot.Collections.Array SavunmaJson()
 	{
 		var a = new Godot.Collections.Array();
-		foreach (var u in Kayit.TakimUyeleri().Where(u => u != null))
+		foreach (var u in Kayit.SavunmaUyeleri().Where(u => u != null))
 			a.Add(new Godot.Collections.Dictionary { ["id"] = u.Id, ["sv"] = u.Seviye, ["y"] = u.Yildiz });
 		return a;
 	}
@@ -329,7 +329,7 @@ public partial class Sunucu : Node
 		try
 		{
 			await Rpc("kayit_yaz", new() { ["p_veri"] = Json.ParseString(Kayit.Metin()) });
-			await Rpc("profil_guncelle", new() { ["p_savunma"] = SavunmaJson(), ["p_guc"] = Kayit.TakimGucu(), ["p_asama"] = Kayit.P.EnIyiAsama });
+			await Rpc("profil_guncelle", new() { ["p_savunma"] = SavunmaJson(), ["p_guc"] = Math.Max(Kayit.TakimGucu(), Kayit.TakimGucu(Kayit.SavunmaUyeleri())), ["p_asama"] = Kayit.P.EnIyiAsama });
 		}
 		catch (Exception e) { GD.PrintErr("Bulut kaydı: " + e.Message); }
 	}

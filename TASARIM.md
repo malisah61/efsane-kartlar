@@ -60,12 +60,15 @@ Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), 
 7. [~] Yeni kartlar (ayda 2-4): Köroğlu, Perseus, Fenrir, Sekhmet eklendi (2026-11-19, Kasım kotası doldu). Sonraki: Aralık'ta 2-4 kart (bedenleri de çizilmeli)
 8. [x] Yeni oyuncu rehberi: **Başlangıç Yolu** (10 adım, ana sayfada parlayan panel, Git/Al düğmesi; aşama 12'yi geçmiş eski oyunculara gösterilmez) — 2026-11-24
    - [x] Alt menüde rehberin gösterdiği sekmenin üstünde zıplayan ok — 2026-11-23 gece
-   - [ ] Sonraki: ilk açılışta kısa hikâye girişi
-9. [~] Takım simyası: 70 bağ (2026-11-24 gece: Kalbin Tartılışı, Gorgon'un Başı, Girit Boğası, Fırtına Tanrıları; 2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi; 2026-11-23 gece: Şoki ve Oni, Kilden İnsan, Göklerin Hükümdarları, Odin'in Seçtikleri)
+   - [x] İlk açılışta kısa hikâye girişi: Dede Korkut anlatır, 4 sayfa (Dünya Ağacı, Kaos'un Gölgesi, Ozanın Çağrısı, Yol Başlıyor), daktilo yazısı, Atla — 2026-11-25
+9. [~] Takım simyası: 75 bağ (2026-11-25: Völuspá, Şifa Soyu, Gök Gürültüsü Onisi, Ölüler Diyarının Köpekleri, Uyumayan Gözler; 2026-11-24 gece: Kalbin Tartılışı, Gorgon'un Başı, Girit Boğası, Fırtına Tanrıları; 2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi; 2026-11-23 gece: Şoki ve Oni, Kilden İnsan, Göklerin Hükümdarları, Odin'in Seçtikleri)
 10. [x] Koleksiyon başarımları: mitoloji yarısı/tamamı, toplam kart, yıldız hedefleri, bağ koleksiyoncusu (ömür boyu ~2.000 elmas) — 2026-11-23 gece
 11. [x] Kayıtlı dizilişler: 3 takım (hikâye/arena/kule için), Takım ekranında "Dizilişler" — 2026-11-23 gece
 12. [~] Sıradaki fikirler
    - [x] Savaş öncesi "Diziliş" seçici (Kule, Mühürlü Katlar, Muhafızlar) + düşmanın baskın elementine karşı öneri — 2026-11-24 gece
    - [ ] Başarım rozeti/unvanı profilde (sunucu profiline de yazılmalı)
    - [ ] Lonca boss'u (sunucu)
-   - [ ] Hikâye/arena savaşı öncesi de diziliş seçici; arenada savunma dizilişini ayrı kaydetme
+   - [x] Hikâye/arena savaşı öncesi de diziliş seçici; arenada savunma dizilişini ayrı kaydetme (sunucuya seçili diziliş gider) — 2026-11-25
+   - [x] Savaş sonu istatistikleri (AFK Arena tarzı): her kahramanın verdiği/aldığı hasar, iyileştirme+kalkan, alt etme, MVP — 2026-11-25
+   - [ ] Sonraki: savaş tekrarı (son 10 savaşı yeniden izle; savaş tohumu + takımlar saklanarak), arenada savunma kayıtlarından tekrar
+   - [ ] Sonraki: kahraman ustalığı / rün yuvaları (seviye sonu ilerleme; Raid'deki mastery benzeri)

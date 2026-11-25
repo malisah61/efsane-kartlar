@@ -23,6 +23,13 @@ public static class Onizleme
 		p.GunlukSavas = 3; p.GunlukCekim = 1;
 		p.Takim = new List<string> { "tepegoz", "akhilleus", "zeus", "medusa", "umay" };
 		await Bekle(o, 0.6f);
+		o.OnizlemeGiris(0);
+		await Bekle(o, 4.2f);
+		await Kare(o, $"{klasor}/0_giris.png");
+		o.OnizlemeGiris(2);
+		await Bekle(o, 4.2f);
+		await Kare(o, $"{klasor}/0b_giris.png");
+		o.OnizlemeKapat();
 
 		string[] adlar = { "1_ana", "2_kartlar", "3_takim", "4_cagir", "5_arena", "6_sosyal" };
 		for (int i = 0; i < 6; i++)
@@ -103,6 +110,11 @@ public static class Onizleme
 		await Bekle(o, 0.5f);
 		await Kare(o, $"{klasor}/18_dizilis.png");
 		o.OnizlemeKapat();
+		p.SavunmaDizilis = 1;
+		o.OnizlemeEkran(4);
+		await Bekle(o, 0.5f);
+		await Kare(o, $"{klasor}/5b_arena_savunma.png");
+		o.OnizlemeEkran(0);
 		o.OnizlemeKutlama(p.Kartlar[0].Id);
 		await Bekle(o, 0.35f);
 		await Kare(o, $"{klasor}/15_seviye_atlama.png");
@@ -126,6 +138,9 @@ public static class Onizleme
 		for (int i = 0; i < 80 && IsInstanceValid(se); i++) await Bekle(o, 0.5f);
 		await Bekle(o, 0.5f);
 		await Kare(o, $"{klasor}/11_sonuc.png");
+		o.OnizlemeIstatistik();
+		await Bekle(o, 0.5f);
+		await Kare(o, $"{klasor}/11b_istatistik.png");
 		GD.Print($"ONIZLEME tamam fps={Engine.GetFramesPerSecond()}");
 		o.GetTree().Quit();
 	}

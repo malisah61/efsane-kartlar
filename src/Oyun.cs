@@ -71,7 +71,8 @@ public partial class Oyun : Control
 		{
 			// çevrimiçi oyuncularda haftalık ödülleri sunucu dağıtır
 			var sezon = Sunucu.OturumVar ? null : Kayit.SezonKontrol();
-			if (sezon.HasValue) SezonOdulPenceresi(sezon.Value.sira, sezon.Value.elmas, sezon.Value.eskiKupa);
+			if (!Kayit.P.GirisHikayesi) GirisHikayesi();
+			else if (sezon.HasValue) SezonOdulPenceresi(sezon.Value.sira, sezon.Value.elmas, sezon.Value.eskiKupa);
 			else if (!Kayit.P.GirisOdulAlindi) GunlukOdulPenceresi();
 		}
 	}
@@ -246,6 +247,7 @@ public partial class Oyun : Control
 		hv.AddChild(MiniTakim(dusman, 100));
 		var odul = Rakipler.AsamaOdulu(asama, asama > p.EnIyiAsama);
 		hv.AddChild(Ui.Etiket($"Düşman gücü {Kayit.TakimGucu(dusman):N0}   •   Ödül: {odul.altin} altın" + (odul.elmas > 0 ? $", {odul.elmas} elmas" : "") + (odul.parsomen > 0 ? $", {odul.parsomen} parşömen" : ""), 19, Ui.Soluk));
+		if (Enumerable.Range(0, Kayit.DizilisSayisi).Any(i => !Kayit.DizilisBos(i))) hv.AddChild(DizilisSecici(() => { }));
 		bool hepsiBitti = p.EnIyiAsama >= Rakipler.AsamaSayisi;
 		hv.AddChild(Ui.Dugme((hepsiBitti ? "Son aşamayı tekrar oyna" : "Savaşa Başla") + $"   ({Kayit.HikayeEnerji} enerji)", () => HikayeSavasi(asama), new Color("c0582f"), 28, 76));
 		if (p.EnIyiAsama >= 1 && !hepsiBitti)
@@ -876,6 +878,15 @@ public partial class Oyun : Control
 		hak.CustomMinimumSize = new Vector2(220, 50);
 		hs.AddChild(hak);
 		v.AddChild(Ui.Etiket("Rakiplerin kayıtlı savunma takımlarıyla savaşırsın; onların çevrimiçi olması gerekmez.", 17, Ui.Soluk));
+		if (Enumerable.Range(0, Kayit.DizilisSayisi).Any(i => !Kayit.DizilisBos(i)))
+		{
+			v.AddChild(DizilisSecici(() => { }));
+			v.AddChild(SavunmaSecici());
+			v.AddChild(Ui.Etiket(Kayit.SavunmaAyri
+				? $"Saldırırken güncel takımın, savunmada Diziliş {Kayit.P.SavunmaDizilis + 1} savaşır (savunma gücü {Kayit.TakimGucu(Kayit.SavunmaUyeleri()):N0})."
+				: "Savunmanda güncel takımın savaşır. Ayrı bir savunma için Takım ekranında bir diziliş kaydet ve burada seç.", 16, Ui.Soluk));
+		}
+		else v.AddChild(Ui.Etiket("İpucu: Takım ekranındaki \"Dizilişler\" ile takımlarını kaydedersen burada saldırı ve savunma için ayrı diziliş seçebilirsin.", 16, Ui.Soluk));
 
 		string[] zad = { "Kolay", "Denk", "Zor" };
 		Color[] zrenk = { Ui.Yesil, Ui.Altin, Ui.Kirmizi };
@@ -1014,6 +1025,7 @@ public partial class Oyun : Control
 		if (!Kayit.TakimHazir) { Mesaj("Önce takımına kart ekle"); Goster(Ekran.Takim); return; }
 		var s = new Savas(bizim ?? Kayit.TakimUyeleri(), dusman, (ulong)Time.GetTicksUsec(), bonusMit, bonusMit != null ? Etkinlik.GucBonus : 0f);
 		s.Oyna();
+		_sonSavas = s;
 		Kayit.P.GunlukSavas++;
 		_katlaAltin = 0;
 		var ekran = new SavasEkrani { S = s, Baslik = baslik, Arka = arka, Boss = boss };
@@ -1049,7 +1061,10 @@ public partial class Oyun : Control
 		}
 		int gk = Reklam.GeciseKalan;
 		if (gk > 0 && gk <= 2) v.AddChild(Ui.Etiket(gk == 1 ? "Sonraki savaştan sonra reklam var — Mağaza'dan reklamları kaldırabilirsin." : $"{gk} savaş sonra reklam", 16, Ui.Soluk, HorizontalAlignment.Center));
-		v.AddChild(Ui.Dugme("Devam", () => { PencereKapat(); Reklam.SavasSonrasi(() => { }); }, new Color("3b6fd8"), 26));
+		var sa = Ui.Yatay(10);
+		if (_sonSavas != null) sa.AddChild(Ui.Genis(Ui.Dugme("İstatistikler", IstatistikPenceresi, new Color("6a4a8a"), 22, 64), 0.7f));
+		sa.AddChild(Ui.Genis(Ui.Dugme("Devam", () => { PencereKapat(); Reklam.SavasSonrasi(() => { }); }, new Color("3b6fd8"), 26)));
+		v.AddChild(sa);
 		Pencere(v);
 	}
 

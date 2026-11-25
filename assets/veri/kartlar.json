@@ -985,7 +985,7 @@
      {
       "tip": "kalkan",
       "hedef": "tum_dost",
-      "oran": 0.08,
+      "oran": 0.1,
       "tur": 2
      },
      {
@@ -1109,12 +1109,12 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 2.5
+      "carpan": 2.6
      },
      {
       "tip": "zayiflat",
       "hedef": "tum",
-      "oran": 0.2,
+      "oran": 0.25,
       "tur": 2
      },
      {
@@ -2260,7 +2260,7 @@
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 0.8
+      "carpan": 0.85
      },
      {
       "tip": "zayiflat",
@@ -2508,12 +2508,12 @@
      {
       "tip": "hasar",
       "hedef": "tum",
-      "carpan": 0.5
+      "carpan": 0.6
      },
      {
       "tip": "kalkan",
       "hedef": "kendi",
-      "oran": 0.2,
+      "oran": 0.25,
       "tur": 2
      }
     ]
@@ -3573,6 +3573,61 @@
    "stat": "hiz",
    "oran": 0.08,
    "aciklama": "Çölün kum fırtınası ile göğün davullu fırtınası aynı safta."
+  },
+  {
+   "id": "voluspa",
+   "ad": "Völuspá",
+   "kartlar": [
+    "odin",
+    "volva"
+   ],
+   "stat": "saldiri",
+   "oran": 0.1,
+   "aciklama": "Odin ölüleri uyandıran kâhine dünyanın başını ve sonunu sordurur; kehanet ikisini de keskinleştirir."
+  },
+  {
+   "id": "sifa_soyu",
+   "ad": "Şifa Soyu",
+   "kartlar": [
+    "apollon",
+    "asklepios"
+   ],
+   "stat": "can",
+   "oran": 0.1,
+   "aciklama": "Apollon, oğlu Asklepios'a hekimliği öğretti; baba ile oğul yan yana olunca yaralar çabuk kapanır."
+  },
+  {
+   "id": "gok_gurultusu_onisi",
+   "ad": "Gök Gürültüsü Onisi",
+   "kartlar": [
+    "raijin",
+    "oni"
+   ],
+   "stat": "saldiri",
+   "oran": 0.08,
+   "aciklama": "Japon resimlerinde Raijin davullarını çalan bir oni olarak çizilir; iki kızıl boynuzlu yan yana gürler."
+  },
+  {
+   "id": "olu_bekcileri",
+   "ad": "Ölüler Diyarının Köpekleri",
+   "kartlar": [
+    "kerberos",
+    "anubis"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Biri Hades'in kapısını, öteki mezarları bekler; iki diyarın köpek başlı bekçileri kimseyi geçirmez."
+  },
+  {
+   "id": "uyumayan_gozler",
+   "ad": "Uyumayan Gözler",
+   "kartlar": [
+    "heimdall",
+    "horus"
+   ],
+   "stat": "savunma",
+   "oran": 0.1,
+   "aciklama": "Yüz fersah öteyi gören Bifröst bekçisi ile her şeyi gören Horus'un Gözü; ikisini birden atlatmak imkânsızdır."
   }
  ]
 }

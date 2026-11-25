@@ -24,6 +24,7 @@ public class Durum
 	public string Tip;      // kalkan, sersem, yanma, guclendir, zayiflat, alay
 	public float Deger;
 	public int Kalan;
+	public Birim Sahip;     // yanma/zehri uygulayan (savaş istatistiği için)
 }
 
 public class Birim
@@ -32,6 +33,9 @@ public class Birim
 	public int Idx, Taraf, Konum, Seviye, Yildiz;   // Konum 0-1 ön sıra, 2-4 arka sıra
 	public float MaxCan, Can, Sal, Sav, Hiz, Enerji;
 	public List<Durum> Durumlar = new();
+	// savaş sonu istatistikleri (yalnızca sayaç; savaşın sonucunu etkilemez)
+	public float IstHasar, IstAlinan, IstIyiles, IstKalkan;
+	public int IstOldurme;
 	public bool Canli => Can > 0;
 	public bool OnSira => Konum < 2;
 	public float Kalkan => Durumlar.Where(d => d.Tip == "kalkan").Sum(d => d.Deger);
@@ -165,7 +169,7 @@ public class Savas
 		// yanma/zehir hasarı hamle başında
 		foreach (var d in b.Durumlar.Where(d => d.Tip == "yanma").ToList())
 		{
-			HasarUygula(null, b, d.Deger, false, 0, "yanma");
+			HasarUygula(null, b, d.Deger, false, 0, "yanma", d.Sahip);
 			if (!b.Canli) return;
 		}
 		var sersem = b.Durumlar.FirstOrDefault(d => d.Tip == "sersem");
@@ -229,13 +233,14 @@ public class Savas
 					}
 					break;
 				case "iyilestir":
-					foreach (var h in hedefler) Iyilestir(h, b.EtkinSal * e.Carpan);
+					foreach (var h in hedefler) Iyilestir(h, b.EtkinSal * e.Carpan, b);
 					break;
 				case "kalkan":
 					foreach (var h in hedefler)
 					{
 						float m = b.MaxCan * e.Oran;
 						h.Durumlar.Add(new Durum { Tip = "kalkan", Deger = m, Kalan = Math.Max(1, e.Tur) });
+						b.IstKalkan += m;
 						Olaylar.Add(new Olay { Tip = "kalkan", Hedef = h.Idx, Deger = m, KalanCan = h.Can, KalanKalkan = h.Kalkan });
 					}
 					break;
@@ -252,7 +257,7 @@ public class Savas
 				case "yanma":
 					foreach (var h in hedefler.Where(h => h.Canli))
 					{
-						h.Durumlar.Add(new Durum { Tip = "yanma", Deger = b.EtkinSal * e.Oran, Kalan = Math.Max(1, e.Tur) });
+						h.Durumlar.Add(new Durum { Tip = "yanma", Deger = b.EtkinSal * e.Oran, Kalan = Math.Max(1, e.Tur), Sahip = b });
 						Olaylar.Add(new Olay { Tip = "durum", Hedef = h.Idx, Metin = b.T.Element == "doga" ? "Zehir" : "Yanma" });
 					}
 					break;
@@ -311,13 +316,17 @@ public class Savas
 		if (krit) hasar *= 1.6f;
 		hasar *= 0.92f + 0.16f * _rng.Kesir();
 		float verilen = HasarUygula(s, h, hasar, krit, ust, "");
-		if (canCal > 0 && s.Canli) Iyilestir(s, verilen * canCal);
+		if (canCal > 0 && s.Canli) Iyilestir(s, verilen * canCal, s);
 		if (h.Canli) EnerjiVer(h, 10);
 	}
 
-	float HasarUygula(Birim s, Birim h, float hasar, bool krit, int ust, string metin)
+	float HasarUygula(Birim s, Birim h, float hasar, bool krit, int ust, string metin, Birim istKaynak = null)
 	{
 		hasar = MathF.Max(1, MathF.Round(hasar));
+		float etkin = MathF.Min(hasar, h.Can + h.Kalkan);
+		var ik = s ?? istKaynak;
+		if (ik != null) ik.IstHasar += etkin;
+		h.IstAlinan += etkin;
 		float kalan = hasar;
 		foreach (var k in h.Durumlar.Where(d => d.Tip == "kalkan").ToList())
 		{
@@ -335,16 +344,18 @@ public class Savas
 		if (!h.Canli)
 		{
 			h.Durumlar.Clear();
+			if (ik != null) ik.IstOldurme++;
 			Olaylar.Add(new Olay { Tip = "olum", Hedef = h.Idx });
 		}
 		return hasar;
 	}
 
-	void Iyilestir(Birim h, float miktar)
+	void Iyilestir(Birim h, float miktar, Birim kaynak = null)
 	{
 		if (!h.Canli) return;
 		miktar = MathF.Round(MathF.Min(miktar, h.MaxCan - h.Can));
 		if (miktar <= 0) return;
+		if (kaynak != null) kaynak.IstIyiles += miktar;
 		h.Can += miktar;
 		Olaylar.Add(new Olay { Tip = "iyiles", Hedef = h.Idx, Deger = miktar, KalanCan = h.Can, KalanKalkan = h.Kalkan });
 	}
