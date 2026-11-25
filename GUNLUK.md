@@ -71,3 +71,11 @@
 - Takım simyası: 5 yeni bağ (toplam 75): Völuspá (Odin+Völva), Şifa Soyu (Apollon+Asklepios), Gök Gürültüsü Onisi (Raijin+Oni), Ölüler Diyarının Köpekleri (Kerberos+Anubis), Uyumayan Gözler (Heimdall+Horus).
 - Denge (önceki test: saldıran %50,4, zaman aşımı %8,1, sınıflar %48,1–52,2; sapan kart yok): Gök Ejderhası (epik, %51,3) alan hasarı 0.5→0.6 + kalkan 0.25; Heimdall takım kalkanı 0.08→0.10; Völva 2.5→2.6 + zayıflatma 0.25; Yuki-onna 0.8→0.85.
 
+
+## 2026-11-25 (gece) — Savaş tekrarları, mühür boss'ları, yeni arka planlar
+- Yeni: **Savaş Tekrarları** — her savaş (tohum + iki takım + etkinlik bonusu) cihazda saklanır; son 10 savaş + yıldızla en fazla 5 favori. Sonuç penceresinde "Tekrar İzle", Arena'da "Tekrarlar" (filtre: Hepsi/Zafer/Yenilgi/Favori; İzle, Sakla, Sil). Tekrar ödül/enerji/görev vermez; sonunda İstatistikler ve Yeniden İzle. Kart değerleri değiştiyse farklı oynandığı yazılır.
+- Yeni: **Mühürlü Katların 10. kat boss'u** mitolojinin kendi karanlık yüzü (ayna savaşı): Erlik'in Ordusu, Hades'in Mahkemesi, Ragnarök, Kaosun Yılanı, Yüz Yokai Geçidi, Göklerin İsyanı. Denge testinde her boss'un kazanma oranı ölçülür ve mitolojiye göre seviye farkı ayarlanır.
+- İyileştirme: **Tüm savaş arka planları** Sprite Atölye'de (Qwen motoru) piksel stili olmadan, ayrıntılı yeniden üretildi; eskileriyle karşılaştırma `onizleme/arka_karsilastirma.png`. Mısır'da arka plandaki küçük insan figürü silindi; Türk'te yazı çıkan aday elendi.
+- Takım simyası: 5 yeni bağ (toplam 80): Apep'in Düşmanları (Ra+Bastet), İdun'un Elmaları (İdun+Loki), Gök Mağarası (Miko+Amaterasu), Wedjat Gözü (Thoth+Horus), Jötunheim Seferi (Thor+Ymir).
+- Denge (önceki test: saldıran %50,4, zaman aşımı %8,2, sınıflar %48,1–52,1; sapan kart yok): Raijin 1.0→1.05 + sersemletme %30, Völva 2.6→2.8 + yanma 0.3, Amazon Okçu 0.9→1.0, Qilin iyileştirme 1.9 + kalkan 0.15 + enerji 12, Nil Kâhini 1.25 + yanma 0.14; Sun Wukong 0.9→0.85.
+- Sunucu: savunma kayıtlarından tekrar için migration (savaslar.tekrar + savas_tekrar_yaz) onay beklediği için uygulanmadı.

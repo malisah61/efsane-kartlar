@@ -53,15 +53,16 @@ Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), 
    - [x] Etkinliğe özel boss: Mitoloji Muhafızları (günde 3, enerjisiz, takım seviyesinde, 4 kat puan) — 2026-11-24
    - [x] Etkinlik mağazası: her puan 1 jeton; altın/ruh özü/parşömen/etkinlik mitolojisinden nadir-epik kart/kahraman kopyası, haftalık sınırlı — 2026-11-24
    - [x] Kule'ye haftalık "mitoloji kısıtlı" katlar: **Mühürlü Katlar** (10 kat, yalnızca haftanın mühür mitolojisinden kartlar; zorluk hafta başında kule ilerlemesinin %70'ine sabitlenir; haftada ~90 elmas, 1 parşömen) — 2026-11-24 gece
-     - [ ] Sonraki: mühürlü katlar için haftalık sıralama (sunucu), 10. katta mitolojiye özel boss
-6. [~] Ses/müzik [x], savaş efektleri [x], kart çekme animasyonu [x] (kart çevirme, nadirlik parıltısı, efsanevide ekran flaşı), menü rozetleri [x]
+     - [x] 10. katta mitolojiye özel boss (mitolojinin kötüleri, ayna savaşı: Erlik'in Ordusu, Hades'in Mahkemesi, Ragnarök, Kaosun Yılanı, Yüz Yokai Geçidi, Göklerin İsyanı) — 2026-11-25 gece
+     - [ ] Sonraki: mühürlü katlar için haftalık sıralama (sunucu)
+6. [~] Savaş arka planları piksel stilsiz, ayrıntılı yeniden üretildi (Sprite Atölye, Qwen; 2026-11-25 gece) [x], ses/müzik [x], savaş efektleri [x], kart çekme animasyonu [x] (kart çevirme, nadirlik parıltısı, efsanevide ekran flaşı), menü rozetleri [x]
    - [x] Seviye/yıldız atlatma kutlaması + çoklu seviye düğmesi (2026-11-19)
    - [x] Ulti yakın plan: portre + ulti adı kayan şerit (Hız 3'te kapalı) — 2026-11-24
 7. [~] Yeni kartlar (ayda 2-4): Köroğlu, Perseus, Fenrir, Sekhmet eklendi (2026-11-19, Kasım kotası doldu). Sonraki: Aralık'ta 2-4 kart (bedenleri de çizilmeli)
 8. [x] Yeni oyuncu rehberi: **Başlangıç Yolu** (10 adım, ana sayfada parlayan panel, Git/Al düğmesi; aşama 12'yi geçmiş eski oyunculara gösterilmez) — 2026-11-24
    - [x] Alt menüde rehberin gösterdiği sekmenin üstünde zıplayan ok — 2026-11-23 gece
    - [x] İlk açılışta kısa hikâye girişi: Dede Korkut anlatır, 4 sayfa (Dünya Ağacı, Kaos'un Gölgesi, Ozanın Çağrısı, Yol Başlıyor), daktilo yazısı, Atla — 2026-11-25
-9. [~] Takım simyası: 75 bağ (2026-11-25: Völuspá, Şifa Soyu, Gök Gürültüsü Onisi, Ölüler Diyarının Köpekleri, Uyumayan Gözler; 2026-11-24 gece: Kalbin Tartılışı, Gorgon'un Başı, Girit Boğası, Fırtına Tanrıları; 2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi; 2026-11-23 gece: Şoki ve Oni, Kilden İnsan, Göklerin Hükümdarları, Odin'in Seçtikleri)
+9. [~] Takım simyası: 80 bağ (2026-11-25 gece: Apep'in Düşmanları, İdun'un Elmaları, Gök Mağarası, Wedjat Gözü, Jötunheim Seferi; 2026-11-25: Völuspá, Şifa Soyu, Gök Gürültüsü Onisi, Ölüler Diyarının Köpekleri, Uyumayan Gözler; 2026-11-24 gece: Kalbin Tartılışı, Gorgon'un Başı, Girit Boğası, Fırtına Tanrıları; 2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi; 2026-11-23 gece: Şoki ve Oni, Kilden İnsan, Göklerin Hükümdarları, Odin'in Seçtikleri)
 10. [x] Koleksiyon başarımları: mitoloji yarısı/tamamı, toplam kart, yıldız hedefleri, bağ koleksiyoncusu (ömür boyu ~2.000 elmas) — 2026-11-23 gece
 11. [x] Kayıtlı dizilişler: 3 takım (hikâye/arena/kule için), Takım ekranında "Dizilişler" — 2026-11-23 gece
 12. [~] Sıradaki fikirler
@@ -70,5 +71,6 @@ Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), 
    - [ ] Lonca boss'u (sunucu)
    - [x] Hikâye/arena savaşı öncesi de diziliş seçici; arenada savunma dizilişini ayrı kaydetme (sunucuya seçili diziliş gider) — 2026-11-25
    - [x] Savaş sonu istatistikleri (AFK Arena tarzı): her kahramanın verdiği/aldığı hasar, iyileştirme+kalkan, alt etme, MVP — 2026-11-25
-   - [ ] Sonraki: savaş tekrarı (son 10 savaşı yeniden izle; savaş tohumu + takımlar saklanarak), arenada savunma kayıtlarından tekrar
+   - [x] Savaş tekrarı: son 10 savaş + 5 favori (tohum + takımlar, cihazda), sonuç penceresinde "Tekrar İzle", Arena'da "Tekrarlar" — 2026-11-25 gece
+   - [ ] Sonraki: arenada savunma kayıtlarından tekrar (sunucu: `savaslar.tekrar jsonb` + `savas_tekrar_yaz` RPC; migration hazır, onay bekliyor)
    - [ ] Sonraki: kahraman ustalığı / rün yuvaları (seviye sonu ilerleme; Raid'deki mastery benzeri)

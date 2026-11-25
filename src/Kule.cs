@@ -118,10 +118,10 @@ public static class Kule
 	{
 		["turk"] = ("Erlik'in Ordusu", "Yeraltının hanı Erlik, Tepegöz ve Al Karısı ile mührü bekliyor.", new[] { "tepegoz", "sahmeran", "erlik", "al_karisi", "su_iyesi" }, 2),
 		["yunan"] = ("Hades'in Mahkemesi", "Ölüler diyarının efendisi; Kerberos kapıda, Medusa ve Siren yanında.", new[] { "hades", "kerberos", "medusa", "siren", "minotor" }, 3),
-		["iskandinav"] = ("Ragnarök", "Loki'nin çocukları zincirlerini kırdı: Fenrir, Hel ve buz devleri.", new[] { "ymir", "fenrir", "loki", "hel", "volva" }, -2),
-		["misir"] = ("Kaosun Yılanı", "Set ve Sekhmet'in öfkesi, Sobek'in dişleri: Maat'ı yık ya da koru.", new[] { "sobek", "mumya", "set", "akrep", "sekhmet" }, 4),
-		["japon"] = ("Yüz Yokai Geçidi", "Gece yürüyen yokai alayı: Oni, Kappa, Tengu, Yuki-onna ve Raijin.", new[] { "oni", "kappa", "tengu", "yuki_onna", "raijin" }, 4),
-		["cin"] = ("Göklerin İsyanı", "Maymun Kral göğe başkaldırdı; Ejderha Kral ve Nezha da saflarında.", new[] { "long", "nezha", "sun_wukong", "change", "taocu" }, -2),
+		["iskandinav"] = ("Ragnarök", "Loki'nin çocukları zincirlerini kırdı: Fenrir, Hel ve buz devleri.", new[] { "ymir", "fenrir", "loki", "hel", "volva" }, -1),
+		["misir"] = ("Kaosun Yılanı", "Set ve Sekhmet'in öfkesi, Sobek'in dişleri: Maat'ı yık ya da koru.", new[] { "sobek", "mumya", "set", "akrep", "sekhmet" }, 3),
+		["japon"] = ("Yüz Yokai Geçidi", "Gece yürüyen yokai alayı: Oni, Kappa, Tengu, Yuki-onna ve Raijin.", new[] { "oni", "kappa", "tengu", "yuki_onna", "raijin" }, 2),
+		["cin"] = ("Göklerin İsyanı", "Maymun Kral göğe başkaldırdı; Ejderha Kral ve Nezha da saflarında.", new[] { "long", "nezha", "sun_wukong", "change", "taocu" }, -1),
 	};
 
 	public static (string ad, string aciklama, string[] kartlar, int sevFark)? MuhurBoss =>
