@@ -162,7 +162,7 @@ public partial class SavasEkrani : Control
 			float olc = Mathf.Max(720f / arka.GetWidth(), SahneBoy / arka.GetHeight());
 			_sahne.AddChild(new Sprite2D
 			{
-				Texture = arka, Centered = false, Scale = new Vector2(olc, olc), TextureFilter = TextureFilterEnum.Nearest,
+				Texture = arka, Centered = false, Scale = new Vector2(olc, olc), TextureFilter = TextureFilterEnum.Linear,   // ayrıntılı (piksel olmayan) arka planlar
 				Position = new Vector2((720 - arka.GetWidth() * olc) / 2, 0),
 			});
 		}

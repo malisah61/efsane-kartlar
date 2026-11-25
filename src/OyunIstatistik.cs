@@ -126,7 +126,7 @@ public partial class Oyun
 			var resim = new TextureRect
 			{
 				Texture = GD.Load<Texture2D>(yol), ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-				StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered, TextureFilter = TextureFilterEnum.Nearest,
+				StretchMode = TextureRect.StretchModeEnum.KeepAspectCovered, TextureFilter = TextureFilterEnum.Linear,
 				Modulate = new Color(0.55f, 0.55f, 0.7f),
 			};
 			resim.SetAnchorsPreset(LayoutPreset.FullRect);
