@@ -36,4 +36,4 @@ kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10c_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10d_ulti.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/11_sonuc.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/11b_istatistik.png
-ONIZLEME tamam fps=31
+ONIZLEME tamam fps=34
