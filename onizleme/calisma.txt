@@ -4,6 +4,8 @@ WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by 
 OpenGL API 4.5 (Core Profile) Mesa 26.0.8-1ubuntu0.3 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 21.1.8, 256 bits)
 Ödeme eklentisi yok (Google Play dışı sürüm).
 Reklam eklentisi yok.
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/0_giris.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/0b_giris.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/1_ana.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/2_kartlar.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/3_takim.png
@@ -25,6 +27,7 @@ kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/14b_etkinlik_maga
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/14c_muhafiz.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/17_koleksiyon.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/18_dizilis.png
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/5b_arena_savunma.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/15_seviye_atlama.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/16_yeni_kart.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10_savas.png
@@ -32,4 +35,5 @@ kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10b_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10c_savas.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/10d_ulti.png
 kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/11_sonuc.png
-ONIZLEME tamam fps=28
+kare: /home/runner/work/efsane-kartlar/efsane-kartlar/onizleme/11b_istatistik.png
+ONIZLEME tamam fps=31
