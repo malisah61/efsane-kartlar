@@ -106,7 +106,7 @@ public static class Ui
 public partial class KartKutu : Control
 {
 	public KartTanim T;
-	public int Seviye = 1, Yildiz = 1, Kopya;
+	public int Seviye = 1, Yildiz = 1, Kopya, Ustalik;
 	public bool Kilitli, Secili, KopyaGoster;
 	public bool Arka;   // kart arkası (çağırma animasyonunda açılmadan önce)
 	public Action Tiklandi;
@@ -123,7 +123,7 @@ public partial class KartKutu : Control
 
 	public static KartKutu Sahipten(SahipKart s, float genislik = 150)
 	{
-		return new KartKutu(Veri.Harita[s.Id], genislik) { Seviye = s.Seviye, Yildiz = s.Yildiz, Kopya = s.Kopya };
+		return new KartKutu(Veri.Harita[s.Id], genislik) { Seviye = s.Seviye, Yildiz = s.Yildiz, Kopya = s.Kopya, Ustalik = EfsaneKartlar.Ustalik.Seviye(s) };
 	}
 
 	public override void _GuiInput(InputEvent e)
@@ -201,6 +201,17 @@ public partial class KartKutu : Control
 			for (int i = 0; i < Yildiz; i++) Ui.Yildiz(this, new Vector2(bas + i * yr * 2.2f, h - k - yr * 3.3f), yr, Ui.Altin);
 			// seviye
 			DrawString(Ui.Yazi, new Vector2(k, h - k - 4), $"Sv {Seviye}", HorizontalAlignment.Center, w - 2 * k, (int)(fs * 0.85f), Ui.Soluk);
+			// ustalık rozeti: portrenin sol altında mor elmas + seviye
+			if (Ustalik > 0 && w >= 70)
+			{
+				float ur = w * 0.09f;
+				float alt = w >= 90 ? MathF.Max(13, w * 0.12f) : 0;
+				var uc = new Vector2(k + ur + 3, pr.End.Y - alt - ur - 3);
+				var renk = Ustalik >= EfsaneKartlar.Ustalik.MaxSeviye ? Ui.Altin : new Color("a35ee0");
+				Ui.ElmasSekli(this, uc, ur * 1.25f, new Color(0, 0, 0, 0.6f));
+				Ui.ElmasSekli(this, uc, ur * 1.1f, renk);
+				DrawString(Ui.Yazi, uc + new Vector2(-ur, ur * 0.42f), Ustalik.ToString(), HorizontalAlignment.Center, 2 * ur, (int)(ur * 1.15f), Ustalik >= EfsaneKartlar.Ustalik.MaxSeviye ? new Color("2a1d05") : Colors.White);
+			}
 			if (KopyaGoster && Kopya > 0)
 			{
 				var kc = new Vector2(w - k - r - 2, pr.End.Y - r - 2);

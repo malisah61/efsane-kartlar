@@ -319,7 +319,7 @@ public partial class Sunucu : Node
 	{
 		var a = new Godot.Collections.Array();
 		foreach (var u in Kayit.SavunmaUyeleri().Where(u => u != null))
-			a.Add(new Godot.Collections.Dictionary { ["id"] = u.Id, ["sv"] = u.Seviye, ["y"] = u.Yildiz });
+			a.Add(new Godot.Collections.Dictionary { ["id"] = u.Id, ["sv"] = u.Seviye, ["y"] = u.Yildiz, ["u"] = u.Ustalik });
 		return a;
 	}
 
@@ -348,7 +348,8 @@ public partial class Sunucu : Node
 			if (!Veri.Harita.ContainsKey(id) || l.Any(u => u.Id == id)) continue;
 			int y = Math.Clamp(d.ContainsKey("y") ? d["y"].AsInt32() : 1, 1, Kayit.MaxYildiz);
 			int sv = Math.Clamp(d.ContainsKey("sv") ? d["sv"].AsInt32() : 1, 1, Kayit.MaxSeviye(y));
-			l.Add(new TakimUyesi(id, sv, y));
+			int us = Math.Clamp(d.ContainsKey("u") ? d["u"].AsInt32() : 0, 0, Ustalik.MaxSeviye);
+			l.Add(new TakimUyesi(id, sv, y, us));
 			if (l.Count == 5) break;
 		}
 		return l;

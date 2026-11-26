@@ -21,6 +21,10 @@ public static class Onizleme
 		foreach (var s in p.Kartlar) { s.Yildiz = 1 + r.Next(3); s.Seviye = 5 + r.Next(Kayit.MaxSeviye(s.Yildiz) - 5); s.Kopya = r.Next(4); }
 		p.Altin = 48250; p.Elmas = 3120; p.Parsomen = 7; p.Kupa = 742; p.EnIyiAsama = 11; p.ElmasCekimSayaci = 23;
 		p.GunlukSavas = 3; p.GunlukCekim = 1;
+		foreach (var s in p.Kartlar) s.UstalikXp = r.Next(4) == 0 ? r.Next(Ustalik.Esik[Ustalik.MaxSeviye] + 1) : 0;
+		if (Kayit.Sahip("zeus") != null) Kayit.Sahip("zeus").UstalikXp = 205;
+		if (Kayit.Sahip("akhilleus") != null) Kayit.Sahip("akhilleus").UstalikXp = Ustalik.Esik[Ustalik.MaxSeviye];
+		p.KervanZaman = Kayit.Simdi() - 5 * 3600 - 17 * 60;
 		p.Takim = new List<string> { "tepegoz", "akhilleus", "zeus", "medusa", "umay" };
 		await Bekle(o, 0.6f);
 		o.OnizlemeGiris(0);
@@ -105,6 +109,10 @@ public static class Onizleme
 		o.OnizlemeMuhafiz();
 		await Bekle(o, 0.5f);
 		await Kare(o, $"{klasor}/14c_muhafiz.png");
+		o.OnizlemeKapat();
+		o.OnizlemeKervan();
+		await Bekle(o, 0.5f);
+		await Kare(o, $"{klasor}/20_kervan.png");
 		o.OnizlemeKapat();
 		p.Basarimlar.Add("toplam_15");
 		o.OnizlemeKoleksiyon();

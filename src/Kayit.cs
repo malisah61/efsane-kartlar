@@ -11,6 +11,7 @@ public class SahipKart
 	public int Seviye { get; set; } = 1;
 	public int Yildiz { get; set; } = 1;
 	public int Kopya { get; set; }
+	public int UstalikXp { get; set; }   // kahraman ustalığı puanı (Ustalik.cs)
 }
 
 /// <summary>Oyuncunun kalıcı verisi (user://kayit.json).</summary>
@@ -78,6 +79,8 @@ public class Profil
 	public List<List<string>> Dizilisler { get; set; } = Kayit.BosDizilisler();
 	public int SavunmaDizilis { get; set; } = -1;   // arena savunması: -1 güncel takım, 0-2 kayıtlı diziliş
 	public bool GirisHikayesi { get; set; }          // ilk açılış hikâye girişi görüldü mü
+	public long KervanZaman { get; set; }            // Kervansaray: son toplama (unix sn)
+	public int KervanHizli { get; set; }             // bugünkü elmaslı hızlı sefer sayısı
 	public bool Reklamsiz => AlinanUrunler.Contains("reklam_kaldir");
 }
 
@@ -204,7 +207,7 @@ public static class Kayit
 	{
 		var kartlar = new Godot.Collections.Array();
 		foreach (var k in p.Kartlar)
-			kartlar.Add(new Godot.Collections.Dictionary { ["id"] = k.Id, ["sv"] = k.Seviye, ["y"] = k.Yildiz, ["k"] = k.Kopya });
+			kartlar.Add(new Godot.Collections.Dictionary { ["id"] = k.Id, ["sv"] = k.Seviye, ["y"] = k.Yildiz, ["k"] = k.Kopya, ["u"] = k.UstalikXp });
 		var takim = new Godot.Collections.Array();
 		foreach (var t in p.Takim) takim.Add(t ?? "");
 		var gorev = new Godot.Collections.Array();
@@ -233,6 +236,7 @@ public static class Kayit
 			["basarim"] = Dizi(p.Basarimlar), ["dizilis"] = DizilisDizi(p.Dizilisler),
 			["muhurHafta"] = p.MuhurHafta, ["muhurKat"] = p.MuhurKat, ["muhurTaban"] = p.MuhurTaban,
 			["savunma"] = p.SavunmaDizilis, ["girisHik"] = p.GirisHikayesi,
+			["kervan"] = p.KervanZaman, ["kervanHizli"] = p.KervanHizli,
 		};
 	}
 
@@ -303,6 +307,8 @@ public static class Kayit
 		p.MuhurTaban = d.ContainsKey("muhurTaban") ? I("muhurTaban") : 2;
 		p.SavunmaDizilis = d.ContainsKey("savunma") ? Math.Clamp(I("savunma"), -1, DizilisSayisi - 1) : -1;
 		p.GirisHikayesi = !d.ContainsKey("girisHik") || d["girisHik"].AsBool();   // eski kayıtlar girişi görmüş sayılır
+		p.KervanZaman = d.ContainsKey("kervan") ? (long)d["kervan"].AsDouble() : 0;   // 0: ilk açılışta şimdiden başlar
+		p.KervanHizli = I("kervanHizli");
 		if (d.ContainsKey("basarim")) foreach (var x in d["basarim"].AsGodotArray()) p.Basarimlar.Add(x.AsString());
 		if (d.ContainsKey("dizilis"))
 		{
@@ -317,7 +323,8 @@ public static class Kayit
 			foreach (var kv in d["kartlar"].AsGodotArray())
 			{
 				var k = kv.AsGodotDictionary();
-				p.Kartlar.Add(new SahipKart { Id = k["id"].AsString(), Seviye = k["sv"].AsInt32(), Yildiz = k["y"].AsInt32(), Kopya = k["k"].AsInt32() });
+				p.Kartlar.Add(new SahipKart { Id = k["id"].AsString(), Seviye = k["sv"].AsInt32(), Yildiz = k["y"].AsInt32(), Kopya = k["k"].AsInt32(),
+					UstalikXp = k.ContainsKey("u") ? Math.Clamp(k["u"].AsInt32(), 0, Ustalik.Esik[Ustalik.MaxSeviye]) : 0 });
 			}
 		p.Takim = new List<string>();
 		if (d.ContainsKey("takim")) foreach (var t in d["takim"].AsGodotArray()) { var s = t.AsString(); p.Takim.Add(s == "" ? null : s); }
@@ -326,7 +333,7 @@ public static class Kayit
 
 	public static void YeniOyun()
 	{
-		P = new Profil { Altin = 3000, Elmas = 2700, Parsomen = 3, Enerji = EnerjiMax, EnerjiZaman = Simdi(), Sezon = Rakipler.Hafta() };
+		P = new Profil { Altin = 3000, Elmas = 2700, Parsomen = 3, Enerji = EnerjiMax, EnerjiZaman = Simdi(), KervanZaman = Simdi(), Sezon = Rakipler.Hafta() };
 		foreach (var id in new[] { "akinci", "bahadir", "kam", "siren", "berserker", "medusa" }) KartEkle(id);
 		P.Takim = new List<string> { "bahadir", "akinci", "medusa", "siren", "kam" };
 		GunKontrol();
@@ -349,7 +356,7 @@ public static class Kayit
 		P.GirisOdulAlindi = false;
 		P.ArenaHak = Math.Max(P.ArenaHak, ArenaGunlukHak);
 		P.ArenaYenileme = 0;
-		P.GunlukSavas = P.GunlukCekim = P.GunlukYukseltme = P.GunlukHikaye = P.EnerjiAlim = P.ArenaGunlukSavas = P.MuhafizSavas = 0;
+		P.GunlukSavas = P.GunlukCekim = P.GunlukYukseltme = P.GunlukHikaye = P.EnerjiAlim = P.ArenaGunlukSavas = P.MuhafizSavas = P.KervanHizli = 0;
 		P.AlinanGorevler.Clear();
 		P.ReklamGunluk = new int[4];
 		Kaydet();
@@ -522,11 +529,11 @@ public static class Kayit
 	}
 
 	public static List<TakimUyesi> DizilisUyeleri(int i) =>
-		P.Dizilisler[i].Select(id => { var s = id == null ? null : Sahip(id); return s == null ? null : new TakimUyesi(s.Id, s.Seviye, s.Yildiz); }).ToList();
+		P.Dizilisler[i].Select(id => { var s = id == null ? null : Sahip(id); return s == null ? null : new TakimUyesi(s.Id, s.Seviye, s.Yildiz, Ustalik.Seviye(s)); }).ToList();
 
 	public static List<TakimUyesi> TakimUyeleri()
 	{
-		return P.Takim.Select(id => { var s = id == null ? null : Sahip(id); return s == null ? null : new TakimUyesi(s.Id, s.Seviye, s.Yildiz); }).ToList();
+		return P.Takim.Select(id => { var s = id == null ? null : Sahip(id); return s == null ? null : new TakimUyesi(s.Id, s.Seviye, s.Yildiz, Ustalik.Seviye(s)); }).ToList();
 	}
 
 	public static int TakimGucu() => TakimGucu(TakimUyeleri());
@@ -535,7 +542,7 @@ public static class Kayit
 	public static bool SavunmaAyri => P.SavunmaDizilis >= 0 && P.SavunmaDizilis < DizilisSayisi && !DizilisBos(P.SavunmaDizilis);
 	public static List<TakimUyesi> SavunmaUyeleri() => SavunmaAyri ? DizilisUyeleri(P.SavunmaDizilis) : TakimUyeleri();
 	public static int TakimGucu(IEnumerable<TakimUyesi> t) =>
-		t.Where(u => u != null && Veri.Harita.ContainsKey(u.Id)).Sum(u => Veri.Guc(Veri.Harita[u.Id], u.Seviye, u.Yildiz));
+		t.Where(u => u != null && Veri.Harita.ContainsKey(u.Id)).Sum(u => (int)(Veri.Guc(Veri.Harita[u.Id], u.Seviye, u.Yildiz) * Ustalik.Carpan(u.Ustalik)));
 
 	public static bool TakimHazir => P.Takim.Count(x => x != null) > 0;
 

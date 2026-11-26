@@ -260,6 +260,7 @@ public partial class Oyun : Control
 
 		// haftalık etkinlik
 		v.AddChild(EtkinlikDugmesi());
+		v.AddChild(KervanDugmesi());
 
 		// kule + sezon kartı
 		var ks = Ui.Yatay(12);
@@ -316,7 +317,7 @@ public partial class Oyun : Control
 		foreach (var u in takim)
 		{
 			if (u == null) { h.AddChild(new Control { CustomMinimumSize = new Vector2(g, g * 1.38f) }); continue; }
-			var k = new KartKutu(Veri.Harita[u.Id], g) { Seviye = u.Seviye, Yildiz = u.Yildiz };
+			var k = new KartKutu(Veri.Harita[u.Id], g) { Seviye = u.Seviye, Yildiz = u.Yildiz, Ustalik = u.Ustalik };
 			k.Tiklandi = () => KartDetayi(Veri.Harita[u.Id], u);
 			h.AddChild(k);
 		}
@@ -381,11 +382,12 @@ public partial class Oyun : Control
 		bool rakip = gosterim != null && (s == null || s.Seviye != gosterim.Seviye || s.Yildiz != gosterim.Yildiz || !Kayit.P.Takim.Contains(t.Id));
 		int sev = rakip ? gosterim.Seviye : s?.Seviye ?? 1;
 		int yil = rakip ? gosterim.Yildiz : s?.Yildiz ?? 1;
+		int ustSv = rakip ? gosterim.Ustalik : Ustalik.Seviye(s);
 
 		var v = Ui.Dikey(10);
 		var ust = Ui.Yatay(16);
 		v.AddChild(ust);
-		var kk = new KartKutu(t, 250) { Seviye = sev, Yildiz = yil, Kilitli = s == null && !rakip };
+		var kk = new KartKutu(t, 250) { Seviye = sev, Yildiz = yil, Ustalik = ustSv, Kilitli = s == null && !rakip };
 		ust.AddChild(kk);
 		var bilgi = Ui.Genis(Ui.Dikey(6));
 		ust.AddChild(bilgi);
@@ -394,8 +396,9 @@ public partial class Oyun : Control
 		bilgi.AddChild(Ui.Etiket($"{Veri.MitolojiAd(t.Mitoloji)} mitolojisi", 21, Ui.Soluk));
 		bilgi.AddChild(Ui.Etiket($"Element: {Veri.ElementAd(t.Element)}", 21, Veri.ElementRenk(t.Element)));
 		var st = Veri.Stat(t, sev, yil);
-		bilgi.AddChild(Ui.Etiket($"Can {st.can:0}\nSaldırı {st.sal:0}\nSavunma {st.sav:0}\nHız {st.hiz:0}", 22));
-		bilgi.AddChild(Ui.Etiket($"Güç {Veri.Guc(t, sev, yil):N0}", 22, Ui.Altin));
+		float uc = Ustalik.Carpan(ustSv);
+		bilgi.AddChild(Ui.Etiket($"Can {st.can * uc:0}\nSaldırı {st.sal * uc:0}\nSavunma {st.sav:0}\nHız {st.hiz:0}", 22));
+		bilgi.AddChild(Ui.Etiket($"Güç {(int)(Veri.Guc(t, sev, yil) * uc):N0}", 22, Ui.Altin));
 
 		var up = Ui.Panel(Ui.PanelAcik, 12);
 		v.AddChild(up);
@@ -404,6 +407,7 @@ public partial class Oyun : Control
 		uv.AddChild(Ui.Etiket($"Ulti: {t.UltiAd}", 24, Ui.Altin));
 		uv.AddChild(Ui.Etiket(Veri.UltiAciklama(t), 20));
 		uv.AddChild(Ui.Etiket("Enerji 100 olunca otomatik kullanılır.", 16, Ui.Soluk));
+		if (s != null || rakip) v.AddChild(UstalikPaneli(rakip ? null : s, ustSv));
 		if (t.Unvan != "") bilgi.AddChild(Ui.Etiket(t.Unvan, 20, new Color("e8d9a8")));
 		int bagSay = Veri.KartBaglari(t.Id).Count();
 		v.AddChild(Ui.Dugme(bagSay > 0 ? $"Efsanesi ve Bağları ({bagSay})" : "Efsanesi", () => KartHikaye(t, gosterim), new Color("5a4a2a"), 21, 56));
@@ -471,6 +475,27 @@ public partial class Oyun : Control
 		v.AddChild(Ui.Dugme("Kapat", PencereKapat, new Color("444c6a"), 22));
 		Pencere(v);
 		if (kutlama != null) Kutla(kk, kutlama, kutlama.Contains("Yıldız") ? new Color("c58bff") : Ui.Altin);
+	}
+
+	/// <summary>Kart detayındaki ustalık satırı: seviye, unvan, bonus ve sonraki seviyeye ilerleme çubuğu.</summary>
+	Control UstalikPaneli(SahipKart s, int ust)
+	{
+		var p = Ui.Panel(new Color("2a2245"), 10);
+		var v = Ui.Dikey(4);
+		p.AddChild(v);
+		var ust1 = Ui.Yatay(8);
+		v.AddChild(ust1);
+		ust1.AddChild(Ui.Genis(Ui.Etiket($"Ustalık {ust}/{Ustalik.MaxSeviye} — {Ustalik.Unvanlar[ust]}", 21, ust >= Ustalik.MaxSeviye ? Ui.Altin : new Color("c9a5f5"))));
+		ust1.AddChild(Ui.Etiket(ust > 0 ? $"+%{ust} can/saldırı" : "bonus yok", 18, Ui.Soluk, HorizontalAlignment.Right));
+		if (s == null) return p;
+		if (ust >= Ustalik.MaxSeviye) { v.AddChild(Ui.Etiket("En yüksek ustalık! Bu kahraman efsanesini tamamladı.", 16, Ui.Soluk)); return p; }
+		int once = Ustalik.Esik[ust], sonra = Ustalik.Esik[ust + 1];
+		var bar = new ProgressBar { MinValue = 0, MaxValue = sonra - once, Value = s.UstalikXp - once, ShowPercentage = false, CustomMinimumSize = new Vector2(0, 12) };
+		bar.AddThemeStyleboxOverride("background", Ui.Kutu(new Color("15122a"), 6, null, 0, 0));
+		bar.AddThemeStyleboxOverride("fill", Ui.Kutu(new Color("a35ee0"), 6, null, 0, 0));
+		v.AddChild(bar);
+		v.AddChild(Ui.Etiket($"{s.UstalikXp}/{sonra} puan • sonraki: {Ustalik.OdulYazi(ust + 1)} • zafer +{Ustalik.ZaferXp}, Kervansaray saatte +1", 15, Ui.Soluk));
+		return p;
 	}
 
 	/// <summary>Kartın biyografisi ve takım bağları (simya).</summary>
@@ -1029,8 +1054,8 @@ public partial class Oyun : Control
 		{
 			Baslik = baslik, Arka = arka, Boss = boss, Tur = Tekrar.TurBul(baslik), Tohum = (ulong)Time.GetTicksUsec(),
 			BonusMit = bonusMit, BonusOran = bonusMit != null ? Etkinlik.GucBonus : 0f,
-			A = biz.Select(u => u == null ? null : new TakimUyesi(u.Id, u.Seviye, u.Yildiz)).ToList(),
-			B = dusman.Select(u => u == null ? null : new TakimUyesi(u.Id, u.Seviye, u.Yildiz)).ToList(),
+			A = biz.Select(u => u == null ? null : new TakimUyesi(u.Id, u.Seviye, u.Yildiz, u.Ustalik)).ToList(),
+			B = dusman.Select(u => u == null ? null : new TakimUyesi(u.Id, u.Seviye, u.Yildiz, u.Ustalik)).ToList(),
 		};
 		var s = kayit.Kur();
 		s.Oyna();
@@ -1047,6 +1072,8 @@ public partial class Oyun : Control
 			List<string> satirlar;
 			try { satirlar = await sonuc(kazandi); }
 			catch (Exception e) { satirlar = new List<string> { e.Message }; }
+			var ust = Ustalik.SavasSonu(biz, kazandi, kayit.Tur);
+			if (ust.Count > 0) { satirlar = new List<string>(satirlar ?? new()); satirlar.AddRange(ust); Kayit.Kaydet(); }
 			ekran.QueueFree();
 			Yenile();
 			SonucPenceresi(kazandi, satirlar);
@@ -1260,6 +1287,7 @@ public partial class Oyun : Control
 	public void OnizlemeMuhafiz() => MuhafizPenceresi();
 	public void OnizlemeKoleksiyon() => KoleksiyonPenceresi();
 	public void OnizlemeDizilis() => DizilisPenceresi();
+	public void OnizlemeKervan() => KervanPenceresi();
 	public void OnizlemeKutlama(string id) => KartDetayi(Veri.Harita[id], null, "Seviye 12!");
 	public SavasEkrani OnizlemeSavas(int asama)
 	{

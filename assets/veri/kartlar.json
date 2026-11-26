@@ -1109,7 +1109,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 2.8
+      "carpan": 3.0
      },
      {
       "tip": "zayiflat",
@@ -1561,7 +1561,7 @@
      {
       "tip": "hasar",
       "hedef": "tek",
-      "carpan": 2.1
+      "carpan": 2.0
      },
      {
       "tip": "guclendir",
@@ -2093,7 +2093,7 @@
      {
       "tip": "hasar",
       "hedef": "rastgele",
-      "carpan": 1.05,
+      "carpan": 1.1,
       "adet": 4
      },
      {
@@ -3683,6 +3683,62 @@
    "stat": "saldiri",
    "oran": 0.08,
    "aciklama": "Thor ömrünü devlerle dövüşerek geçirir; buz devlerinin atası karşısında çekici daha da ağırlaşır."
+  },
+  {
+   "id": "ymir_yaratilis",
+   "ad": "Dünyanın Yaratılışı",
+   "kartlar": [
+    "odin",
+    "ymir"
+   ],
+   "stat": "can",
+   "oran": 0.08,
+   "aciklama": "Odin ve kardeşleri ilk dev Ymir'i yendi; etinden toprağı, kanından denizleri, kafatasından göğü yarattılar."
+  },
+  {
+   "id": "saz_kopuz",
+   "ad": "Saz ve Kopuz",
+   "kartlar": [
+    "dede_korkut",
+    "koroglu"
+   ],
+   "stat": "hiz",
+   "oran": 0.08,
+   "aciklama": "Dede Korkut kopuzuyla destan söyler, Köroğlu sazıyla meydan okur; iki ozan aynı türküde buluşur."
+  },
+  {
+   "id": "soguk_olum",
+   "ad": "Soğuk Ölüm",
+   "kartlar": [
+    "yuki_onna",
+    "hel"
+   ],
+   "stat": "saldiri",
+   "oran": 0.08,
+   "aciklama": "Kar kadını yolcuyu nefesiyle dondurur; Hel de buzlu Niflheim'da savaşta ölmeyenlerin ruhlarını karşılar."
+  },
+  {
+   "id": "goksel_duello",
+   "ad": "Göksel Düello",
+   "kartlar": [
+    "nezha",
+    "sun_wukong"
+   ],
+   "stat": "saldiri",
+   "oran": 0.08,
+   "aciklama": "Yeşim İmparator Maymun Kral'ı yakalamaya Nezha'yı yolladı; üç başlı altı kollu çocuk tanrı ile Wukong günlerce dövüştü."
+  },
+  {
+   "id": "kahinler",
+   "ad": "Kâhinler",
+   "kartlar": [
+    "volva",
+    "kahin",
+    "miko"
+   ],
+   "stat": "hiz",
+   "oran": 0.1,
+   "aciklama": "Seiðr okuyan völva, Nil'in kâhini ve tanrıyı bedenine çağıran miko: geleceği görenler bir adım önde."
   }
  ]
 }

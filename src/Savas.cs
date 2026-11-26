@@ -58,9 +58,9 @@ public class Olay
 
 public class TakimUyesi
 {
-	public string Id; public int Seviye = 1, Yildiz = 1;
+	public string Id; public int Seviye = 1, Yildiz = 1, Ustalik;
 	public TakimUyesi() { }
-	public TakimUyesi(string id, int seviye, int yildiz) { Id = id; Seviye = seviye; Yildiz = yildiz; }
+	public TakimUyesi(string id, int seviye, int yildiz, int ustalik = 0) { Id = id; Seviye = seviye; Yildiz = yildiz; Ustalik = ustalik; }
 }
 
 /// <summary>
@@ -104,6 +104,9 @@ public class Savas
 			var u = takim[i];
 			if (u == null || !Veri.Harita.TryGetValue(u.Id, out var t)) continue;
 			var s = Veri.Stat(t, u.Seviye, u.Yildiz);
+			// kahraman ustalığı: seviye başına +%1 can ve saldırı
+			float uc = Ustalik.Carpan(u.Ustalik);
+			s.can *= uc; s.sal *= uc;
 			if (taraf == 0 && _bonusMit != null && t.Mitoloji == _bonusMit) { s.can *= 1 + _bonusOran; s.sal *= 1 + _bonusOran; }
 			// takım bağları (simya): yalnızca bağın üyeleri
 			foreach (var bag in baglar.Where(b => b.Kartlar.Contains(t.Id)))

@@ -27,7 +27,7 @@ public class SavasKaydi
 	public static Godot.Collections.Array TakimKodla(List<TakimUyesi> t)
 	{
 		var a = new Godot.Collections.Array();
-		foreach (var u in t) a.Add(u == null ? new Godot.Collections.Array() : new Godot.Collections.Array { u.Id, u.Seviye, u.Yildiz });
+		foreach (var u in t) a.Add(u == null ? new Godot.Collections.Array() : new Godot.Collections.Array { u.Id, u.Seviye, u.Yildiz, u.Ustalik });
 		return a;
 	}
 
@@ -37,7 +37,7 @@ public class SavasKaydi
 		foreach (var x in a)
 		{
 			var u = x.AsGodotArray();
-			l.Add(u.Count < 3 ? null : new TakimUyesi(u[0].AsString(), u[1].AsInt32(), u[2].AsInt32()));
+			l.Add(u.Count < 3 ? null : new TakimUyesi(u[0].AsString(), u[1].AsInt32(), u[2].AsInt32(), u.Count > 3 ? Math.Clamp(u[3].AsInt32(), 0, Ustalik.MaxSeviye) : 0));
 		}
 		return l;
 	}

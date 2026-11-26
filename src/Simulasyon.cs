@@ -117,6 +117,7 @@ public static class Simulasyon
 				var s = new Savas(Kayit.TakimUyeleri(), Rakipler.AsamaTakimi(hedef), savasTohum++);
 				s.Oyna();
 				p.GunlukSavas++; p.GunlukHikaye++;
+				Ustalik.XpEkle(p.Takim, s.Kazanan == 0 ? Ustalik.ZaferXp : Ustalik.YenilgiXp);
 				SezonKarti.XpEkle(SezonKarti.XpHikaye);
 				if (s.Kazanan == 0)
 				{
@@ -146,6 +147,7 @@ public static class Simulasyon
 				p.Kupa = Math.Max(0, p.Kupa + o.kupa); p.Altin += o.altin; p.Elmas += o.elmas;
 				if (kazandi) p.ArenaGalibiyet++; else p.ArenaMaglubiyet++;
 				p.ArenaGunlukSavas++; p.GunlukSavas++;
+				Ustalik.XpEkle(p.Takim, kazandi ? Ustalik.ZaferXp : Ustalik.YenilgiXp);
 				SezonKarti.XpEkle(SezonKarti.XpArena);
 			}
 
@@ -164,6 +166,9 @@ public static class Simulasyon
 			string lig = Rakipler.Lig(p.Kupa);
 			if (lig != "Bronz") k.Olay(lig + " lig", gun);
 
+			// Kervansaray: gündelik oyuncu günde bir (12 sa), aktifler iki kez toplar
+			Kervan.Ver(Kervan.Ganimet(p, t.HikayeSavas >= 40 ? 2 * Kervan.MaxSaat : Kervan.MaxSaat));
+
 			// çağırma
 			while (Kayit.TakasKalan > 0 && p.Altin >= Kayit.AltinParsomenFiyat + 100000) Kayit.AltinlaParsomen();
 			while (p.Parsomen > 0) { p.Parsomen--; Kayit.CekimYap(false, r); }
@@ -173,6 +178,8 @@ public static class Simulasyon
 			for (int i = 0; i < Kayit.Gorevler.Length; i++) Kayit.GorevOdulAl(i);
 			SezonKarti.HepsiniAl(r);   // yalnızca ücretsiz yol (botlar Altın Yol almaz)
 			Koleksiyon.HepsiniAl();
+			if (Ustalik.UstaSayisi(p, Ustalik.MaxSeviye) > 0) k.Olay("İlk ustalık 5 kahraman", gun);
+			if (Ustalik.UstaSayisi(p, Ustalik.MaxSeviye) >= 5) k.Olay("Takım ustalığı tamam (5 kahraman ustalık 5)", gun);
 
 			// olaylar
 			if (p.Kartlar.Any(x => Veri.Harita[x.Id].Nadirlik == "epik")) k.Olay("İlk epik kart", gun);

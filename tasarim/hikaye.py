@@ -346,4 +346,10 @@ BAGLAR = [
     ("gok_magarasi", "Gök Mağarası", ["miko", "amaterasu"], "can", 0.10, "Amaterasu mağaraya kapanınca tapınak dansçısının neşeli dansı güneşi dışarı çıkardı."),
     ("wedjat", "Wedjat Gözü", ["thoth", "horus"], "saldiri", 0.10, "Set'in kopardığı gözünü Thoth iyileştirdi; Horus'un gözü şifa ve korumanın simgesi oldu."),
     ("jotunheim", "Jötunheim Seferi", ["thor", "ymir"], "saldiri", 0.08, "Thor ömrünü devlerle dövüşerek geçirir; buz devlerinin atası karşısında çekici daha da ağırlaşır."),
+    # 2026-11-26 gece
+    ("ymir_yaratilis", "Dünyanın Yaratılışı", ["odin", "ymir"], "can", 0.08, "Odin ve kardeşleri ilk dev Ymir'i yendi; etinden toprağı, kanından denizleri, kafatasından göğü yarattılar."),
+    ("saz_kopuz", "Saz ve Kopuz", ["dede_korkut", "koroglu"], "hiz", 0.08, "Dede Korkut kopuzuyla destan söyler, Köroğlu sazıyla meydan okur; iki ozan aynı türküde buluşur."),
+    ("soguk_olum", "Soğuk Ölüm", ["yuki_onna", "hel"], "saldiri", 0.08, "Kar kadını yolcuyu nefesiyle dondurur; Hel de buzlu Niflheim'da savaşta ölmeyenlerin ruhlarını karşılar."),
+    ("goksel_duello", "Göksel Düello", ["nezha", "sun_wukong"], "saldiri", 0.08, "Yeşim İmparator Maymun Kral'ı yakalamaya Nezha'yı yolladı; üç başlı altı kollu çocuk tanrı ile Wukong günlerce dövüştü."),
+    ("kahinler", "Kâhinler", ["volva", "kahin", "miko"], "hiz", 0.10, "Seiðr okuyan völva, Nil'in kâhini ve tanrıyı bedenine çağıran miko: geleceği görenler bir adım önde."),
 ]
