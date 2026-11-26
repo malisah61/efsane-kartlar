@@ -22,7 +22,7 @@ public static class Ustalik
 	/// <summary>Seviye ödülleri (bir kez): altın, ruh özü, elmas, parşömen.</summary>
 	public static readonly (int altin, int oz, int elmas, int parsomen)[] Oduller =
 	{
-		(0, 0, 0, 0), (400, 0, 0, 0), (0, 10, 0, 0), (800, 0, 10, 0), (0, 20, 0, 0), (0, 0, 25, 1),
+		(0, 0, 0, 0), (400, 0, 0, 0), (0, 5, 0, 0), (800, 0, 5, 0), (0, 10, 0, 0), (0, 0, 15, 1),
 	};
 
 	public static int Seviye(int xp)
