@@ -22,7 +22,7 @@ public static class Onizleme
 		p.Altin = 48250; p.Elmas = 3120; p.Parsomen = 7; p.Kupa = 742; p.EnIyiAsama = 11; p.ElmasCekimSayaci = 23;
 		p.GunlukSavas = 3; p.GunlukCekim = 1;
 		foreach (var s in p.Kartlar) s.UstalikXp = r.Next(4) == 0 ? r.Next(Ustalik.Esik[Ustalik.MaxSeviye] + 1) : 0;
-		if (Kayit.Sahip("zeus") != null) Kayit.Sahip("zeus").UstalikXp = 205;
+		if (Kayit.Sahip("zeus") != null) Kayit.Sahip("zeus").UstalikXp = 820;
 		if (Kayit.Sahip("akhilleus") != null) Kayit.Sahip("akhilleus").UstalikXp = Ustalik.Esik[Ustalik.MaxSeviye];
 		p.KervanZaman = Kayit.Simdi() - 5 * 3600 - 17 * 60;
 		p.Takim = new List<string> { "tepegoz", "akhilleus", "zeus", "medusa", "umay" };

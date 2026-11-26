@@ -74,7 +74,7 @@ public static class Koleksiyon
 			l.Add(new($"yildiz_{y}_{h}", "Yıldızlar", h == 1 ? $"İlk {y}★" : $"{h} Kart {y}★", h == 1 ? $"Bir kartı {y} yıldıza çıkar" : $"{h} kartı {y} yıldıza çıkar",
 				p => p.Kartlar.Count(k => k.Yildiz >= yy), h, Elmas: e, Oz: oz));
 		}
-		foreach (var (sv, h, e, pa, oz) in new[] { (3, 1, 15, 0, 0), (5, 1, 30, 0, 10), (3, 5, 40, 0, 20), (5, 5, 80, 1, 30), (5, 15, 150, 1, 60) })
+		foreach (var (sv, h, e, pa, oz) in new[] { (3, 1, 10, 0, 0), (5, 1, 20, 0, 10), (3, 5, 25, 0, 15), (5, 5, 50, 1, 20), (5, 15, 100, 1, 40) })
 		{
 			int ss = sv;
 			l.Add(new($"ustalik_{sv}_{h}", "Ustalık", h == 1 ? $"İlk {Ustalik.Unvanlar[sv]}" : $"{h} {Ustalik.Unvanlar[sv]}",

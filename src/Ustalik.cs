@@ -14,7 +14,7 @@ public static class Ustalik
 {
 	public const int MaxSeviye = 5;
 	/// <summary>Seviye için gereken toplam puan (0. eleman seviye 0).</summary>
-	public static readonly int[] Esik = { 0, 30, 80, 160, 280, 450 };
+	public static readonly int[] Esik = { 0, 100, 300, 650, 1200, 2000 };
 	public const float StatOran = 0.01f;
 	public const int ZaferXp = 3, YenilgiXp = 1;
 

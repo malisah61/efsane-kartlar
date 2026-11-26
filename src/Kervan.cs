@@ -7,7 +7,7 @@ namespace EfsaneKartlar;
 /// Kervansaray (AFK Arena'daki boşta kazanç benzeri): oyuncu yokken kervan altın ve ruh özü toplar,
 /// takımdaki kahramanlar da yolda ustalık puanı kazanır. En fazla 12 saat birikir.
 /// Kazanç hikâye ilerlemesine (ve biraz kuleye) bağlıdır; ekonomi bilerek yavaş: tam ilerlemiş oyuncuda
-/// günde ~7.000 altın (hikâye tekrarlarıyla kazanılanın ~%15'i).
+/// günde ~4.000 altın (hikâye tekrarlarıyla kazanılanın ~%10'u).
 /// Elmaslı "Hızlı Sefer": 2 saatlik ganimet anında, günde 2 kez.
 /// </summary>
 public static class Kervan
@@ -16,8 +16,8 @@ public static class Kervan
 	public const int HizliFiyat = 60, HizliGunluk = 2, HizliSaat = 2;
 	public const int EnAzSaniye = 60;
 
-	public static int AltinSaat(Profil p) => 30 + 3 * p.EnIyiAsama + p.KuleKat;
-	public static float OzSaat(Profil p) => 0.25f + p.EnIyiAsama / 120f;
+	public static int AltinSaat(Profil p) => 20 + 2 * p.EnIyiAsama + p.KuleKat / 2;
+	public static float OzSaat(Profil p) => 0.2f + p.EnIyiAsama / 150f;
 
 	/// <summary>Biriken süre (saniye, en fazla 12 saat).</summary>
 	public static long Gecen()

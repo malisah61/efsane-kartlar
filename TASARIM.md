@@ -73,7 +73,7 @@ Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), 
    - [x] Savaş sonu istatistikleri (AFK Arena tarzı): her kahramanın verdiği/aldığı hasar, iyileştirme+kalkan, alt etme, MVP — 2026-11-25
    - [x] Savaş tekrarı: son 10 savaş + 5 favori (tohum + takımlar, cihazda), sonuç penceresinde "Tekrar İzle", Arena'da "Tekrarlar" — 2026-11-25 gece
    - [ ] Sonraki: arenada savunma kayıtlarından tekrar (sunucu: `savaslar.tekrar jsonb` + `savas_tekrar_yaz` RPC; migration hazır, onay bekliyor)
-   - [x] **Kahraman Ustalığı** (1. kısım): kart savaştıkça ustalık puanı (zafer 3, hikâye/arena yenilgisi 1, Kervansaray saatte 1); 5 seviye (30/80/160/280/450 puan), seviye başına kalıcı +%1 can/saldırı ve bir kez ödül (400 altın / 10 öz / 800 altın+10 elmas / 20 öz / 25 elmas+1 parşömen); kartta mor ustalık rozeti, kart detayında ilerleme çubuğu, Ustalık başarımları — 2026-11-26 gece
+   - [x] **Kahraman Ustalığı** (1. kısım): kart savaştıkça ustalık puanı (zafer 3, hikâye/arena yenilgisi 1, Kervansaray saatte 1); 5 seviye (100/300/650/1200/2000 puan), seviye başına kalıcı +%1 can/saldırı ve bir kez ödül (400 altın / 10 öz / 800 altın+10 elmas / 20 öz / 25 elmas+1 parşömen); kartta mor ustalık rozeti, kart detayında ilerleme çubuğu, Ustalık başarımları — 2026-11-26 gece
    - [ ] Sonraki (2. kısım): ustalık 5 kahramanlara rün yuvası (rün: ruh özüyle yapılan küçük stat taşı, kart başına 1-2 yuva)
    - [x] **Kervansaray** (AFK Arena tarzı boşta kazanç): 12 saate kadar altın + ruh özü + takıma ustalık puanı birikir, hikâye/kule ilerlemesiyle büyür; elmaslı Hızlı Sefer (60 elmas, 2 saatlik, günde 2) — 2026-11-26 gece
    - [ ] Sonraki: Kervansaray'a sefer seçimi (rota: altın / ruh özü / ustalık ağırlıklı) ve günlük ücretsiz reklamlı hızlı sefer
