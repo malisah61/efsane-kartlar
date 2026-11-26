@@ -79,3 +79,11 @@
 - Takım simyası: 5 yeni bağ (toplam 80): Apep'in Düşmanları (Ra+Bastet), İdun'un Elmaları (İdun+Loki), Gök Mağarası (Miko+Amaterasu), Wedjat Gözü (Thoth+Horus), Jötunheim Seferi (Thor+Ymir).
 - Denge (önceki test: saldıran %50,4, zaman aşımı %8,2, sınıflar %48,1–52,1; sapan kart yok): Raijin 1.0→1.05 + sersemletme %30, Völva 2.6→2.8 + yanma 0.3, Amazon Okçu 0.9→1.0, Qilin iyileştirme 1.9 + kalkan 0.15 + enerji 12, Nil Kâhini 1.25 + yanma 0.14; Sun Wukong 0.9→0.85.
 - Sunucu: savunma kayıtlarından tekrar için migration (savaslar.tekrar + savas_tekrar_yaz) onay beklediği için uygulanmadı.
+
+
+## 2026-11-26 (gece) — Kahraman Ustalığı, Kervansaray
+- Yeni: **Kahraman Ustalığı** — kart savaştıkça ustalık puanı kazanır (zafer 3; hikâye/arena yenilgisi 1; dostluk/ikili savaş vermez). 5 seviye (30/80/160/280/450 puan: Çırak, Kalfa, Usta, Üstat, Efsane Ustası), her seviye kalıcı +%1 can ve saldırı ve bir kez ödül (toplam 1.200 altın, 30 ruh özü, 35 elmas, 1 parşömen). Kartlarda mor ustalık rozeti (5'te altın), kart detayında ilerleme çubuğu, savaş sonucunda kazanılan puan ve seviye atlamaları. Ustalık savaş tekrarlarına ve arena savunmasına (`u` alanı) da yazılır.
+- Yeni: **Kervansaray** (boşta kazanç) — oyuncu yokken 12 saate kadar altın + ruh özü birikir, takımdaki her kahramana saatte 1 ustalık puanı. Kazanç hikâye aşaması ve kule katıyla büyür (aşama 60'ta saatte ~210 altın + kule). Elmaslı Hızlı Sefer: 60 elmasa 2 saatlik ganimet, günde 2. Ana sayfada düğme, dolunca menü rozeti.
+- İyileştirme: Koleksiyon başarımlarına **Ustalık** grubu (İlk Usta, İlk Efsane Ustası, 5 Usta, 5/15 Efsane Ustası); takım gücü ustalığı da sayar; ilerleme simülasyonu ustalık ve Kervansaray'ı içerir.
+- Takım simyası: 5 yeni bağ (toplam 85): Dünyanın Yaratılışı (Odin+Ymir), Saz ve Kopuz (Dede Korkut+Köroğlu), Soğuk Ölüm (Yuki-onna+Hel), Göksel Düello (Nezha+Sun Wukong), Kâhinler (Völva+Nil Kâhini+Miko).
+- Denge (önceki test: saldıran %50,3, zaman aşımı %8,4, sınıflar %48,0–52,1; sapan kart yok): Völva 2.8→3.0, Raijin 1.05→1.1; Köroğlu 2.1→2.0.

@@ -486,7 +486,9 @@ public partial class Oyun : Control
 		var ust1 = Ui.Yatay(8);
 		v.AddChild(ust1);
 		ust1.AddChild(Ui.Genis(Ui.Etiket($"Ustalık {ust}/{Ustalik.MaxSeviye} — {Ustalik.Unvanlar[ust]}", 21, ust >= Ustalik.MaxSeviye ? Ui.Altin : new Color("c9a5f5"))));
-		ust1.AddChild(Ui.Etiket(ust > 0 ? $"+%{ust} can/saldırı" : "bonus yok", 18, Ui.Soluk, HorizontalAlignment.Right));
+		var bonus = Ui.Etiket(ust > 0 ? $"+%{ust} can/saldırı" : "bonus yok", 18, Ui.Soluk, HorizontalAlignment.Right);
+		bonus.AutowrapMode = TextServer.AutowrapMode.Off;
+		ust1.AddChild(bonus);
 		if (s == null) return p;
 		if (ust >= Ustalik.MaxSeviye) { v.AddChild(Ui.Etiket("En yüksek ustalık! Bu kahraman efsanesini tamamladı.", 16, Ui.Soluk)); return p; }
 		int once = Ustalik.Esik[ust], sonra = Ustalik.Esik[ust + 1];
@@ -494,7 +496,7 @@ public partial class Oyun : Control
 		bar.AddThemeStyleboxOverride("background", Ui.Kutu(new Color("15122a"), 6, null, 0, 0));
 		bar.AddThemeStyleboxOverride("fill", Ui.Kutu(new Color("a35ee0"), 6, null, 0, 0));
 		v.AddChild(bar);
-		v.AddChild(Ui.Etiket($"{s.UstalikXp}/{sonra} puan • sonraki: {Ustalik.OdulYazi(ust + 1)} • zafer +{Ustalik.ZaferXp}, Kervansaray saatte +1", 15, Ui.Soluk));
+		v.AddChild(Ui.Etiket($"{s.UstalikXp}/{sonra} puan • sonraki ödül: {Ustalik.OdulYazi(ust + 1)}", 15, Ui.Soluk));
 		return p;
 	}
 

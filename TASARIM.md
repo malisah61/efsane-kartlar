@@ -62,7 +62,7 @@ Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), 
 8. [x] Yeni oyuncu rehberi: **Başlangıç Yolu** (10 adım, ana sayfada parlayan panel, Git/Al düğmesi; aşama 12'yi geçmiş eski oyunculara gösterilmez) — 2026-11-24
    - [x] Alt menüde rehberin gösterdiği sekmenin üstünde zıplayan ok — 2026-11-23 gece
    - [x] İlk açılışta kısa hikâye girişi: Dede Korkut anlatır, 4 sayfa (Dünya Ağacı, Kaos'un Gölgesi, Ozanın Çağrısı, Yol Başlıyor), daktilo yazısı, Atla — 2026-11-25
-9. [~] Takım simyası: 80 bağ (2026-11-25 gece: Apep'in Düşmanları, İdun'un Elmaları, Gök Mağarası, Wedjat Gözü, Jötunheim Seferi; 2026-11-25: Völuspá, Şifa Soyu, Gök Gürültüsü Onisi, Ölüler Diyarının Köpekleri, Uyumayan Gözler; 2026-11-24 gece: Kalbin Tartılışı, Gorgon'un Başı, Girit Boğası, Fırtına Tanrıları; 2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi; 2026-11-23 gece: Şoki ve Oni, Kilden İnsan, Göklerin Hükümdarları, Odin'in Seçtikleri)
+9. [~] Takım simyası: 85 bağ (2026-11-26 gece: Dünyanın Yaratılışı, Saz ve Kopuz, Soğuk Ölüm, Göksel Düello, Kâhinler; 2026-11-25 gece: Apep'in Düşmanları, İdun'un Elmaları, Gök Mağarası, Wedjat Gözü, Jötunheim Seferi; 2026-11-25: Völuspá, Şifa Soyu, Gök Gürültüsü Onisi, Ölüler Diyarının Köpekleri, Uyumayan Gözler; 2026-11-24 gece: Kalbin Tartılışı, Gorgon'un Başı, Girit Boğası, Fırtına Tanrıları; 2026-11-24: bağı olmayan 19 kartın hepsine bağ eklendi; 2026-11-23 gece: Şoki ve Oni, Kilden İnsan, Göklerin Hükümdarları, Odin'in Seçtikleri)
 10. [x] Koleksiyon başarımları: mitoloji yarısı/tamamı, toplam kart, yıldız hedefleri, bağ koleksiyoncusu (ömür boyu ~2.000 elmas) — 2026-11-23 gece
 11. [x] Kayıtlı dizilişler: 3 takım (hikâye/arena/kule için), Takım ekranında "Dizilişler" — 2026-11-23 gece
 12. [~] Sıradaki fikirler
@@ -73,4 +73,7 @@ Ek kartlar (etkinlik kahramanları, epik): Köroğlu (Türk savaşçı, ateş), 
    - [x] Savaş sonu istatistikleri (AFK Arena tarzı): her kahramanın verdiği/aldığı hasar, iyileştirme+kalkan, alt etme, MVP — 2026-11-25
    - [x] Savaş tekrarı: son 10 savaş + 5 favori (tohum + takımlar, cihazda), sonuç penceresinde "Tekrar İzle", Arena'da "Tekrarlar" — 2026-11-25 gece
    - [ ] Sonraki: arenada savunma kayıtlarından tekrar (sunucu: `savaslar.tekrar jsonb` + `savas_tekrar_yaz` RPC; migration hazır, onay bekliyor)
-   - [ ] Sonraki: kahraman ustalığı / rün yuvaları (seviye sonu ilerleme; Raid'deki mastery benzeri)
+   - [x] **Kahraman Ustalığı** (1. kısım): kart savaştıkça ustalık puanı (zafer 3, hikâye/arena yenilgisi 1, Kervansaray saatte 1); 5 seviye (30/80/160/280/450 puan), seviye başına kalıcı +%1 can/saldırı ve bir kez ödül (400 altın / 10 öz / 800 altın+10 elmas / 20 öz / 25 elmas+1 parşömen); kartta mor ustalık rozeti, kart detayında ilerleme çubuğu, Ustalık başarımları — 2026-11-26 gece
+   - [ ] Sonraki (2. kısım): ustalık 5 kahramanlara rün yuvası (rün: ruh özüyle yapılan küçük stat taşı, kart başına 1-2 yuva)
+   - [x] **Kervansaray** (AFK Arena tarzı boşta kazanç): 12 saate kadar altın + ruh özü + takıma ustalık puanı birikir, hikâye/kule ilerlemesiyle büyür; elmaslı Hızlı Sefer (60 elmas, 2 saatlik, günde 2) — 2026-11-26 gece
+   - [ ] Sonraki: Kervansaray'a sefer seçimi (rota: altın / ruh özü / ustalık ağırlıklı) ve günlük ücretsiz reklamlı hızlı sefer
